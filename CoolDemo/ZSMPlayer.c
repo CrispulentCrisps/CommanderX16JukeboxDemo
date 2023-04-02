@@ -3,9 +3,8 @@
 
 void frame_wait(void)
 {
-	char c = vera.dcvideo;
-	while ((c ^ vera.dcvideo) < 0x80)
-		;
+	while (vera.ien & 0x40) ;
+	while (!(vera.ien & 0x40)) ;
 }
 
 void sfx_put(char index, char data)
