@@ -1,8 +1,8 @@
 --------------------------------------------------------------------
-main: C:/Users/david/Documents/Games/CoolDemo/Main.c:36
+main: C:/Users/david/Documents/Games/CoolDemo/Main.c:40
 $00 R0(P), $00 R1(C), $04 R2(B), $02 R3(B), 
 L0: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG17171(7:0)	{S}
+0000		CONST	R0(P)	<-	CG748(7:0)	{S}
 0001		STOREZ2		<-	V0+0, R0(PF)	{}
 0002		CALLN		<-	V1+0	{}
 0003		CALLN		<-	V2+0	{}
@@ -39,7 +39,7 @@ L6: <= D-1: (3)  P-1
 L3: <= D-1: (1)  P-1
 0000		RETV		<-	CI:0	{}
 L7: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG17171(7:0)	{S}
+0000		CONST	R0(P)	<-	CG748(7:0)	{S}
 0001		STOREZ2		<-	V0+0, R0(PF)	{}
 0002		CALLN		<-	V1+0	{}
 0003		JUMP		<-		{}
@@ -93,7 +93,7 @@ L0: <= D-1: (1)  P-1
 0000		JSR		<-	V0+0, V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:24
+Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:28
 $00 R0(I), $00 R1(B), $00 R2(B), 
 L0: <= D-1: (1)  P-1
 0000		CALLN	R0(I)	<-	V5+0	{}

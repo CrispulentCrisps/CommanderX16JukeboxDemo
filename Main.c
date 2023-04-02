@@ -14,11 +14,15 @@
 #define SPACE 0x20
 
 const char sound[] = {
-	#embed "zsmfiles/ArkanoidFM.zsm"
+	#embed "zsmfiles/test.zsm"
 };
 
-const char sample[] = {
-	#embed "pcm/test.wav"
+const char sprite[] = {
+	#embed "sprites/bin/TESTSPRITE.bin"
+};
+
+const char palette[] = {
+	#embed "sprites/palette/UIPalette.bin"
 };
 
 bool Control(bool playing) {

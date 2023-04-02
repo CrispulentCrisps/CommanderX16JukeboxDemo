@@ -1,8 +1,8 @@
 sections
 0880 - 0a6a : DATA, code
-0a6a - 4d7f : DATA, data
-4d7f - 4d84 : BSS, bss
-4d84 - 9b00 : HEAP, heap
+0a6a - 0d58 : DATA, data
+0d58 - 0d5d : BSS, bss
+0d5d - 9b00 : HEAP, heap
 9b00 - 9f00 : STACK, stack
 10000 - 10000 : ZEROPAGE, zeropage
 0801 - 0856 : DATA, startup
@@ -20,26 +20,26 @@ sections
 regions
 0080 - 00ff : 0000, 0000, zeropage
 0801 - 0880 : 0856, 0055, startup
-0880 - 9b00 : 4d7f, 4504, main
+0880 - 9b00 : 0d58, 04dd, main
 
 objects
 0801 - 0856 : startup, NATIVE_CODE:startup
 0a6a - 0a6b : spentry, DATA:data
-4d7f - 4d7f : BSSStart, START:bss
-4d84 - 4d84 : BSSEnd, END:bss
+0d58 - 0d58 : BSSStart, START:bss
+0d5d - 0d5d : BSSEnd, END:bss
 9f00 - 9f00 : StackEnd, END:stack
 0880 - 08d9 : main, NATIVE_CODE:code
 08d9 - 08f1 : zsm_init, NATIVE_CODE:code
-4d7f - 4d81 : zsm_sound, DATA:bss
-4d81 - 4d83 : zsm_pos, DATA:bss
-4d83 - 4d84 : zsm_delay, DATA:bss
-0a6b - 4d7e : sound, DATA:data
+0d58 - 0d5a : zsm_sound, DATA:bss
+0d5a - 0d5c : zsm_pos, DATA:bss
+0d5c - 0d5d : zsm_delay, DATA:bss
+0a6b - 0d57 : sound, DATA:data
 08f1 - 0924 : ClearVERAScreen, NATIVE_CODE:code
 0924 - 092a : putch, NATIVE_CODE:code
 092a - 0944 : Control, NATIVE_CODE:code
 0944 - 094e : getchx, NATIVE_CODE:code
 094e - 0975 : getpch, NATIVE_CODE:code
-4d7e - 4d7f : giocharmap, DATA:data
+0d57 - 0d58 : giocharmap, DATA:data
 0975 - 0a47 : zsm_play, NATIVE_CODE:code
 0a47 - 0a5b : sfx_put, NATIVE_CODE:code
 0a5b - 0a6a : frame_wait, NATIVE_CODE:code
