@@ -27,40 +27,60 @@ void delay(unsigned t)
 	while (t--)
 		frame_wait();
 }
-//I don't understand SHIT about this but I'll keep it around because it works
-void interpret(const char sound[])
+
+static const char * zsm_sound;
+static unsigned zsm_pos;
+static char zsm_delay;
+
+void zsm_init(const char * sound)
 {
-	unsigned p = 16;
-	for (;;)
+	zsm_sound = sound;
+	zsm_pos = 16;
+	zsm_delay = 0;
+}
+
+
+bool zsm_play(void)
+{
+	if (zsm_delay)
 	{
-		char c = sound[p++];
-		if (c < 0x40)
+		zsm_delay--;
+		return true;
+	}
+	else
+	{
+		for (;;)
 		{
-			vera.ctrl &= 0xfe;
-			vera.addr = (c & 0x3f) | 0xf9c0;
-			vera.addrh = 0x01;
-			vera.data0 = sound[p++];
-		}
-		else if (c == 0x40)
-		{
-			p += sound[p] & 0x3f;
-		}
-		else if (c < 0x80)
-		{
-			c &= 0x3f;
-			for (char i = 0; i < c; i++)
+			char c = zsm_sound[zsm_pos++];
+			if (c < 0x40)
 			{
-				sfx_put(sound[p + 0], sound[p + 1]);
-				p += 2;
+				vera.ctrl &= 0xfe;
+				vera.addr = (c & 0x3f) | 0xf9c0;
+				vera.addrh = 0x01;
+				vera.data0 = zsm_sound[zsm_pos++];
 			}
-		}
-		else if (c == 0x80)
-		{
-			return;
-		}
-		else
-		{
-			delay(c & 0x7f);
+			else if (c == 0x40)
+			{
+				zsm_pos += zsm_sound[zsm_pos] & 0x3f;
+			}
+			else if (c < 0x80)
+			{
+				c &= 0x3f;
+				for (char i = 0; i < c; i++)
+				{
+					sfx_put(zsm_sound[zsm_pos + 0], zsm_sound[zsm_pos + 1]);
+					zsm_pos += 2;
+				}
+			}
+			else if (c == 0x80)
+			{
+				return false;
+			}
+			else
+			{
+				zsm_delay = (c & 0x7f) - 1;
+				return true;
+			}
 		}
 	}
 }

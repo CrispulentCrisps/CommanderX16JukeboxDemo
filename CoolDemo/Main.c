@@ -25,7 +25,7 @@ bool Control(bool playing) {
 
 	//Tune Playing
 
-	if (getch() == SPACE)
+	if (getchx() == SPACE)
 	{
 		playing = !playing;
 	}
@@ -43,12 +43,17 @@ int main(){
 
 	int n = 0;
 
+	zsm_init(sound);
+
 	while (Running)
 	{
-		if (Control(Playing))
+		Playing = Control(Playing);
+		if (Playing)
 		{
 			printf("%x",n);
-			interpret(sound);
+			if (!zsm_play())
+				zsm_init(sound);
+			frame_wait();
 		}
 
 		n++;
