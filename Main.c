@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include <c64/sprites.h>
 #include <c64/rasterirq.h>
 #include <conio.h>
 
@@ -17,13 +17,20 @@ const char sound[] = {
 	#embed "zsmfiles/test.zsm"
 };
 
+const char sample[] = {
+	#embed "pcm/test.wav"
+};
+
 const char sprite[] = {
-	#embed "sprites/bin/TESTSPRITE.bin"
+	#embed "sprites/bin/TESTSPRITE.BIN"
 };
 
 const char palette[] = {
-	#embed "sprites/palette/UIPalette.bin"
+	#embed "sprites/palette/UIPalette.BIN"
 };
+
+const char TestText[] =
+	s"Concept: Crisps, Coding: Crisps+Blumba";
 
 bool Control(bool playing) {
 
@@ -50,8 +57,10 @@ int main(){
 	ClearVERAScreen();
 
 	vera.ctrl |= VERA_CTRL_DCSEL;
-	vera.dchscale = 150;
+	vera.dchscale = 154;
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
+
+	TypeTextVERA(TestText,0,0);
 
 	while (Running)
 	{

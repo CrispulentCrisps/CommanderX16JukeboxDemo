@@ -47,6 +47,15 @@ void SetPCMSettings(char SRate, char Vol)
 	vera.audioctrl = Vol;
 }
 
+void TypeTextVERA(const char Text[], unsigned x, unsigned y)
+{
+	vera.addr = 0xb000;
+	for (unsigned i = 0; i < sizeof(Text)/8; i++)
+	{
+		vera.data0 = Text[i];
+	}
+}
+
 void PlayPCM(const char PCMData[], bool Loop)
 {
 	unsigned PCMLength = sizeof(PCMData);

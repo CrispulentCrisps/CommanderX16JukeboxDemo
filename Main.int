@@ -1,38 +1,43 @@
 --------------------------------------------------------------------
-main: C:/Users/david/Documents/Games/CoolDemo/Main.c:40
+main: C:/Users/david/Documents/Games/CoolDemo/Main.c:47
 $00 R0(P), $00 R1(C), $04 R2(B), $02 R3(B), 
 L0: <= D-1: (1)  P-1
 0000		CONST	R0(P)	<-	CG748(7:0)	{S}
 0001		STOREZ2		<-	V0+0, R0(PF)	{}
 0002		CALLN		<-	V1+0	{}
 0003		CALLN		<-	V2+0	{}
-0004		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
-0005		BINOP8	R1(C)[-128..255]	<-	R1(CF)[-128..255], CC:2	{}
-0006		STOREA1		<-	V-1+40741, R1(CF)[-128..255]	{V}
-0007		STOREA1		<-	V-1+40746, CC:150	{V}
-0008		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
-0009		BINOP9	R1(C)[-128..255]	<-	R1(CF)[-128..255], CC:-3	{}
-000a		STOREA1		<-	V-1+40741, R1(CF)[-128..255]	{V}
-000b		CONST	R1(B)	<-	CI:1	{S}
-000c		CONST	R2(B)	<-	CI:0	{}
-000d		JUMP		<-		{}
+0004		STOREZ2		<-	V2+0, CI:0	{}
+0005		STOREZ2		<-	V4+0, CI:0	{}
+0006		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
+0007		BINOP8	R1(C)[-128..255]	<-	R1(CF)[-128..255], CC:2	{}
+0008		STOREA1		<-	V-1+40741, R1(CF)[-128..255]	{V}
+0009		STOREA1		<-	V-1+40746, CC:154	{V}
+000a		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
+000b		BINOP9	R1(C)[-128..255]	<-	R1(CF)[-128..255], CC:-3	{}
+000c		STOREA1		<-	V-1+40741, R1(CF)[-128..255]	{V}
+000d		CONST	R0(P)	<-	CG39(9:0)	{S}
+000e		STOREZ2		<-	V0+0, R0(PF)	{}
+000f		CALLN		<-	V4+0	{}
+0010		CONST	R1(B)	<-	CI:1	{S}
+0011		CONST	R2(B)	<-	CI:0	{}
+0012		JUMP		<-		{}
 		==> 2
 L2: <= D-1: (2) Head P34
 0000		STOREZ1		<-	V0+0, R2(BF)[~0..~1]	{}
 0001		STOREA1		<-	V-1+40748, CC:1	{V}
-0002		CALLN	R2(B)	<-	V4+0	{}
+0002		CALLN	R2(B)	<-	V5+0	{}
 0003		BRANCH		<-	R2(B)[~0..~1]	{}
 		==> 4
 		==> 6
 L4: <= D-1: (1)  P-1
 0000		STOREA1		<-	V-1+40748, CC:6	{V}
-0001		CALLN	R3(B)	<-	V6+0	{}
+0001		CALLN	R3(B)	<-	V7+0	{}
 0002		BRANCH		<-	R3(BF)	{}
 		==> 6
 		==> 7
 L6: <= D-1: (3)  P-1
 0000		STOREA1		<-	V-1+40748, CC:0	{V}
-0001		CALLN		<-	V8+0	{}
+0001		CALLN		<-	V9+0	{}
 0002		BRANCH		<-	R1(B)[~1..~1]	{}
 		==> 2
 		==> 3
@@ -93,10 +98,16 @@ L0: <= D-1: (1)  P-1
 0000		JSR		<-	V0+0, V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:28
+TypeTextVERA: C:/Users/david/Documents/Games/CoolDemo/VERA.h:104
+
+L0: <= D-1: (1)  P-1
+0000		STOREA2		<-	V-1+40736, CI:45056	{V}
+0001		RET		<-		{}
+--------------------------------------------------------------------
+Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:35
 $00 R0(I), $00 R1(B), $00 R2(B), 
 L0: <= D-1: (1)  P-1
-0000		CALLN	R0(I)	<-	V5+0	{}
+0000		CALLN	R0(I)	<-	V6+0	{}
 0001		LOADZ1	R1(B)	<-	V0+0	{S}
 0002		RELOP19	R2(B)	<-	R0(IF), CI:32	{}
 0003		BRANCH		<-	R2(BF)	{}
@@ -187,7 +198,7 @@ L19: <= D-1: (2) Head P74
 0004		STOREZ1		<-	V0+0, R6(CF)[-128..255]	{}
 0005		LOADI1	R6(C)[-128..255]	<-	R1(PF)+1	{}
 0006		STOREZ1		<-	V1+0, R6(CF)[-128..255]	{}
-0007		CALLN		<-	V7+0	{}
+0007		CALLN		<-	V8+0	{}
 0008		LOADG2	R1(I)[-32768..65533]	<-	V5+0	{}
 0009		BINOP1	R1(I)[-32766..65535]	<-	R1(IF)[-32768..65533], CI:2	{}
 000a		STOREG2		<-	V5+0, R1(IF)[-32766..65535]	{}
