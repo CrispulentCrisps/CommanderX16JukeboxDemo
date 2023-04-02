@@ -45,6 +45,10 @@ int main(){
 
 	zsm_init(sound);
 
+	vera.ctrl |= VERA_CTRL_DCSEL;
+	vera.dchscale = 100;
+	vera.ctrl &= ~VERA_CTRL_DCSEL;
+
 	while (Running)
 	{
 		Playing = Control(Playing);
@@ -55,6 +59,8 @@ int main(){
 				zsm_init(sound);
 			frame_wait();
 		}
+
+		vera.dcborder++;
 
 		n++;
 	}

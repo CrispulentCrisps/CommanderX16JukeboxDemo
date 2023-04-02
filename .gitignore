@@ -4,3 +4,8 @@ CoolDemo/Main.int
 CoolDemo/Main.lbl
 CoolDemo/Main.map
 CoolDemo/Main.prg
+*.asm
+*.int
+*.lbl
+*.map
+*.prg
