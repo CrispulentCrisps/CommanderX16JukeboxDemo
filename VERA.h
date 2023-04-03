@@ -101,10 +101,11 @@ void ResetVERA(); //y
 
 void ClearVERAScreen();//y
 void SetLayerConfig();//x
-void TypeTextVERA(const char Text[], unsigned x, unsigned y);
+void TypeTextVERA(const char Text[], unsigned x, unsigned y);//x
 void SetVERABorder(byte BGColour);//x
 void SetVERAOutputMode(byte mode);//y
 byte GetVERAOutputMode(); //y
+void ScrollerText(const char Text[], unsigned x, unsigned y, int offset);
 
 //Audio
 struct VERAInstrument {

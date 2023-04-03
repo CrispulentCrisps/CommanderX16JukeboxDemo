@@ -27,6 +27,8 @@ void ClearVERAScreen()
 		{
 			vera.data0 = 0x20;
 			vera.data0 = 1;
+			vera.data1 = 0x20;
+			vera.data1 = 1;
 		}
 	}
 }
@@ -60,4 +62,17 @@ void PlayPCM(const char PCMData[], bool Loop)
 {
 	unsigned PCMLength = sizeof(PCMData);
 	unsigned PCMByteIndex = 0;
+}
+
+void ScrollerText(const char Text[], unsigned x, unsigned y, int offset)
+{
+	vera.l1hscroll = -offset%8 - x;
+
+	for (unsigned i = 0; i < sizeof(Text)/8; i++)
+	{
+		vera.data1 = Text[0];
+	}
+
+
+
 }

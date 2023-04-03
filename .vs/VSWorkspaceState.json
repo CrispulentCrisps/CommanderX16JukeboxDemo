@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\pcm"
   ],
-  "SelectedNode": "\\sprites",
+  "SelectedNode": "\\pcm\\test.wav",
   "PreviewInSolutionExplorer": false
 }

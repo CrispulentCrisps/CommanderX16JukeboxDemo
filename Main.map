@@ -1,8 +1,8 @@
 sections
-0880 - 0a8a : DATA, code
-0a8a - 0d9f : DATA, data
-0d9f - 0da4 : BSS, bss
-0da4 - 9b00 : HEAP, heap
+0880 - 0ba5 : DATA, code
+0ba5 - 4eec : DATA, data
+4eec - 4ef1 : BSS, bss
+4ef1 - 9b00 : HEAP, heap
 9b00 - 9f00 : STACK, stack
 10000 - 10000 : ZEROPAGE, zeropage
 0801 - 0856 : DATA, startup
@@ -13,6 +13,7 @@ sections
 9f00 - 9f00 : SSTACK, TypeTextVERA@stack
 9f00 - 9f00 : SSTACK, getchx@stack
 9f00 - 9f00 : SSTACK, Control@stack
+9f00 - 9f00 : SSTACK, ScrollerText@stack
 9f00 - 9f00 : SSTACK, sfx_put@stack
 9f00 - 9f00 : SSTACK, zsm_play@stack
 9f00 - 9f00 : SSTACK, frame_wait@stack
@@ -21,28 +22,34 @@ sections
 regions
 0080 - 00ff : 0000, 0000, zeropage
 0801 - 0880 : 0856, 0055, startup
-0880 - 9b00 : 0d9f, 0524, main
+0880 - 9b00 : 4eec, 4671, main
 
 objects
 0801 - 0856 : startup, NATIVE_CODE:startup
-0a8a - 0a8b : spentry, DATA:data
-0d9f - 0d9f : BSSStart, START:bss
-0da4 - 0da4 : BSSEnd, END:bss
+0ba5 - 0ba6 : spentry, DATA:data
+4eec - 4eec : BSSStart, START:bss
+4ef1 - 4ef1 : BSSEnd, END:bss
 9f00 - 9f00 : StackEnd, END:stack
-0880 - 08ee : main, NATIVE_CODE:code
-08ee - 0906 : zsm_init, NATIVE_CODE:code
-0d9f - 0da1 : zsm_sound, DATA:bss
-0da1 - 0da3 : zsm_pos, DATA:bss
-0da3 - 0da4 : zsm_delay, DATA:bss
-0a8b - 0d77 : sound, DATA:data
-0906 - 0939 : ClearVERAScreen, NATIVE_CODE:code
-0939 - 093f : putch, NATIVE_CODE:code
-093f - 094a : TypeTextVERA, NATIVE_CODE:code
-0d77 - 0d9e : TestText, DATA:data
-094a - 0964 : Control, NATIVE_CODE:code
-0964 - 096e : getchx, NATIVE_CODE:code
-096e - 0995 : getpch, NATIVE_CODE:code
-0d9e - 0d9f : giocharmap, DATA:data
-0995 - 0a67 : zsm_play, NATIVE_CODE:code
-0a67 - 0a7b : sfx_put, NATIVE_CODE:code
-0a7b - 0a8a : frame_wait, NATIVE_CODE:code
+0880 - 090d : main, NATIVE_CODE:code
+090d - 0925 : zsm_init, NATIVE_CODE:code
+4eec - 4eee : zsm_sound, DATA:bss
+4eee - 4ef0 : zsm_pos, DATA:bss
+4ef0 - 4ef1 : zsm_delay, DATA:bss
+0ba6 - 4eb9 : sound, DATA:data
+0925 - 0962 : ClearVERAScreen, NATIVE_CODE:code
+0962 - 0968 : putch, NATIVE_CODE:code
+0968 - 0973 : TypeTextVERA, NATIVE_CODE:code
+4eb9 - 4ee9 : TestText, DATA:data
+0973 - 098d : Control, NATIVE_CODE:code
+098d - 0997 : getchx, NATIVE_CODE:code
+0997 - 09be : getpch, NATIVE_CODE:code
+4ee9 - 4eea : giocharmap, DATA:data
+09be - 09e6 : ScrollerText, NATIVE_CODE:code
+4eea - 4eec : FrameCount, DATA:data
+09e6 - 0ab8 : zsm_play, NATIVE_CODE:code
+0ab8 - 0acc : sfx_put, NATIVE_CODE:code
+0acc - 0adb : frame_wait, NATIVE_CODE:code
+0adb - 0ae9 : negaccu, NATIVE_CODE:code
+0ae9 - 0af7 : negtmp, NATIVE_CODE:code
+0af7 - 0b7c : divmod, NATIVE_CODE:code
+0b7c - 0ba5 : mods16, NATIVE_CODE:code

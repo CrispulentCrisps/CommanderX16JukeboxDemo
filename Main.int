@@ -1,8 +1,8 @@
 --------------------------------------------------------------------
-main: C:/Users/david/Documents/Games/CoolDemo/Main.c:47
-$00 R0(P), $00 R1(C), $04 R2(B), $02 R3(B), 
+main: C:/Users/david/Documents/Games/CoolDemo/Main.c:54
+$00 R0(P), $00 R1(C), $04 R2(B), $00 R3(B), 
 L0: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG748(7:0)	{S}
+0000		CONST	R0(P)	<-	CG17171(7:0)	{S}
 0001		STOREZ2		<-	V0+0, R0(PF)	{}
 0002		CALLN		<-	V1+0	{}
 0003		CALLN		<-	V2+0	{}
@@ -15,7 +15,7 @@ L0: <= D-1: (1)  P-1
 000a		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
 000b		BINOP9	R1(C)[-128..255]	<-	R1(CF)[-128..255], CC:-3	{}
 000c		STOREA1		<-	V-1+40741, R1(CF)[-128..255]	{V}
-000d		CONST	R0(P)	<-	CG39(9:0)	{S}
+000d		CONST	R0(P)	<-	CG48(9:0)	{S}
 000e		STOREZ2		<-	V0+0, R0(PF)	{}
 000f		CALLN		<-	V4+0	{}
 0010		CONST	R1(B)	<-	CI:1	{S}
@@ -23,28 +23,39 @@ L0: <= D-1: (1)  P-1
 0012		JUMP		<-		{}
 		==> 2
 L2: <= D-1: (2) Head P34
-0000		STOREZ1		<-	V0+0, R2(BF)[~0..~1]	{}
+0000		STOREZ1		<-	V0+0, R2(BF)	{}
 0001		STOREA1		<-	V-1+40748, CC:1	{V}
-0002		CALLN	R2(B)	<-	V5+0	{}
-0003		BRANCH		<-	R2(B)[~0..~1]	{}
+0002		CALLN	R3(B)	<-	V5+0	{}
+0003		STOREZ2		<-	V2+0, CI:0	{}
+0004		STOREZ2		<-	V4+0, CI:0	{}
+0005		MOVE	R2(B)	<-	R3(B)	{}
+0006		CONST	R0(P)	<-	CG48(9:0)	{IS}
+0007		STOREZ2		<-	V0+0, R0(PF)	{}
+0008		LOADG2	R0(I)[-32768..65535]	<-	V12+0	{}
+0009		STOREZ2		<-	V6+0, R0(IF)[-32768..65535]	{}
+000a		CALLN		<-	V7+0	{}
+000b		BRANCH		<-	R3(BF)	{}
 		==> 4
 		==> 6
 L4: <= D-1: (1)  P-1
 0000		STOREA1		<-	V-1+40748, CC:6	{V}
-0001		CALLN	R3(B)	<-	V7+0	{}
+0001		CALLN	R3(B)	<-	V8+0	{}
 0002		BRANCH		<-	R3(BF)	{}
 		==> 6
 		==> 7
 L6: <= D-1: (3)  P-1
 0000		STOREA1		<-	V-1+40748, CC:0	{V}
-0001		CALLN		<-	V9+0	{}
-0002		BRANCH		<-	R1(B)[~1..~1]	{}
+0001		CALLN		<-	V10+0	{}
+0002		LOADG2	R0(I)[-32768..65534]	<-	V12+0	{}
+0003		BINOP1	R0(I)[-32767..65535]	<-	R0(IF)[-32768..65534], CI:1	{}
+0004		STOREG2		<-	V12+0, R0(IF)[-32767..65535]	{}
+0005		BRANCH		<-	R1(B)[~1..~1]	{}
 		==> 2
 		==> 3
 L3: <= D-1: (1)  P-1
 0000		RETV		<-	CI:0	{}
 L7: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG748(7:0)	{S}
+0000		CONST	R0(P)	<-	CG17171(7:0)	{S}
 0001		STOREZ2		<-	V0+0, R0(PF)	{}
 0002		CALLN		<-	V1+0	{}
 0003		JUMP		<-		{}
@@ -78,9 +89,11 @@ L2: <= D-1: (2) Head P42
 L6: <= D-1: (2) Head P41
 0000		STOREA1		<-	V-1+40739, CC:32	{V}
 0001		STOREA1		<-	V-1+40739, CC:1	{V}
-0002		BINOP2	R1(I)[0..79]	<-	R1(IF)[1..80], CI:1	{}
-0003		RELOP27	R2(B)	<-	R1(I)[0..79], CI:0	{}
-0004		BRANCH		<-	R2(BF)	{}
+0002		STOREA1		<-	V-1+40740, CC:32	{V}
+0003		STOREA1		<-	V-1+40740, CC:1	{V}
+0004		BINOP2	R1(I)[0..79]	<-	R1(IF)[1..80], CI:1	{}
+0005		RELOP27	R2(B)	<-	R1(I)[0..79], CI:0	{}
+0006		BRANCH		<-	R2(BF)	{}
 		==> 6
 		==> 3
 L3: <= D-1: (1)  P-1
@@ -104,7 +117,7 @@ L0: <= D-1: (1)  P-1
 0000		STOREA2		<-	V-1+40736, CI:45056	{V}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:35
+Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:42
 $00 R0(I), $00 R1(B), $00 R2(B), 
 L0: <= D-1: (1)  P-1
 0000		CALLN	R0(I)	<-	V6+0	{}
@@ -124,6 +137,17 @@ getchx: C:/Program Files/oscar64/include/conio.h:30
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
 0001		RET		<-		{}
+--------------------------------------------------------------------
+ScrollerText: C:/Users/david/Documents/Games/CoolDemo/VERA.h:108
+$00 R0(I), $00 R1(I), 
+L0: <= D-1: (1)  P-1
+0000		LOADZ2	R0(I)[-32768..65535]	<-	V6+0	{S}
+0001		UNOP11	R0(I)[-32768..32768]	<-	R0(IF)[-32768..65535]	{S}
+0002		BINOP7	R0(I)	<-	R0(IF)[-32768..32768], CI:8	{S}
+0003		LOADZ2	R1(I)[-32768..65535]	<-	V2+0	{S}
+0004		BINOP2	R0(I)	<-	R0(IF), R1(IF)[-32768..65535]	{S}
+0005		STOREA2		<-	V-1+40759, R0(IF)	{V}
+0006		RET		<-		{}
 --------------------------------------------------------------------
 zsm_play: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:20
 $00 R0(C), $01 R1(I), $00 R2(I), $00 R3(P), $00 R4(I), $03 R5(B), $00 R6(C), 
@@ -198,7 +222,7 @@ L19: <= D-1: (2) Head P74
 0004		STOREZ1		<-	V0+0, R6(CF)[-128..255]	{}
 0005		LOADI1	R6(C)[-128..255]	<-	R1(PF)+1	{}
 0006		STOREZ1		<-	V1+0, R6(CF)[-128..255]	{}
-0007		CALLN		<-	V8+0	{}
+0007		CALLN		<-	V9+0	{}
 0008		LOADG2	R1(I)[-32768..65533]	<-	V5+0	{}
 0009		BINOP1	R1(I)[-32766..65535]	<-	R1(IF)[-32768..65533], CI:2	{}
 000a		STOREG2		<-	V5+0, R1(IF)[-32766..65535]	{}

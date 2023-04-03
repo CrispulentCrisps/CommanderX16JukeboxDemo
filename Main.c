@@ -7,14 +7,21 @@
 
 #include "ZSMPlayer.h"
 
+/*
+	Objects on L0
+	Text on L1
+*/
+
 #define A 0x41
 #define D 0x44
 #define L_ARROW 0x9D
 #define R_ARROW 0x1D
 #define SPACE 0x20
 
+int FrameCount = 0;
+
 const char sound[] = {
-	#embed "zsmfiles/test.zsm"
+	#embed "zsmfiles/ArkanoidFM.zsm"
 };
 
 const char sample[] = {
@@ -30,7 +37,7 @@ const char palette[] = {
 };
 
 const char TestText[] =
-	s"Concept: Crisps, Coding: Crisps+Blumba";
+	s"Concept: Crisps, Coding: Crisps, Blumba, Tobach";
 
 bool Control(bool playing) {
 
@@ -67,6 +74,8 @@ int main(){
 		vera.dcborder = 1;
 		Playing = Control(Playing);
 
+		ScrollerText(TestText, 0, 0, FrameCount);
+
 		if (Playing)
 		{
 			vera.dcborder = 6;
@@ -77,6 +86,7 @@ int main(){
 		vera.dcborder = 0;
 
 		frame_wait();
+		FrameCount++;
 	}
 
     return 0;
