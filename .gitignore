@@ -9,3 +9,8 @@ CoolDemo/Main.prg
 *.lbl
 *.map
 *.prg
+Main.int
+Main.lbl
+Main.map
+Main.prg
+Main.asm

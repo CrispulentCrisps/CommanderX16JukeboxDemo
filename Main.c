@@ -44,6 +44,7 @@ bool Control(bool playing) {
 	return playing;
 }
 
+
 int main(){
 
 	const unsigned SCREEN_WIDTH = 640;
@@ -52,6 +53,7 @@ int main(){
     bool Running = true;
 	bool Playing = false;
 
+	zsm_irq_init();
 	zsm_init(sound);
 
 	ClearVERAScreen();
@@ -64,17 +66,9 @@ int main(){
 
 	while (Running)
 	{
-		vera.dcborder = 1;
 		Playing = Control(Playing);
 
-		if (Playing)
-		{
-			vera.dcborder = 6;
-			if (!zsm_play())
-				zsm_init(sound);
-		}
-
-		vera.dcborder = 0;
+		zsm_irq_play(Playing);
 
 		frame_wait();
 	}
