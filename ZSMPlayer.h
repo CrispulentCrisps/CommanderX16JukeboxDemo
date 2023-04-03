@@ -19,6 +19,10 @@ void zsm_init(const char * sound);
 
 bool zsm_play(void);
 
+void zsm_irq_init(void);
+
+void zsm_irq_play(bool play);
+
 #pragma compile("ZSMPlayer.c");
 
 #endif
