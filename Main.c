@@ -19,6 +19,8 @@
 #define SPACE 0x20
 
 int FrameCount = 0;
+char off1, off2;
+unsigned int vadr;
 
 const char sound[] = {
 	#embed "zsmfiles/ArkanoidFM.zsm"
@@ -36,8 +38,10 @@ const char palette[] = {
 	#embed "sprites/palette/UIPalette.BIN"
 };
 
-const char TestText[] =
-	s"Concept: Crisps, Coding: Crisps, Blumba, Tobach";
+const char TestText[] = s"Concept: Crisps, Coding: Crisps, Blumba, Tobach";
+
+const char TestText2[] = s"CONCEPT: CRISPS, CODING: CRISPS, BLUMBA, TOBACH";
+
 
 bool Control(bool playing) {
 
@@ -69,13 +73,26 @@ int main(){
 	vera.dchscale = 154;
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 
-	TypeTextVERA(TestText,0,0);
+	//TypeTextVERA(TestText2,0,0);
+
+	vera.addrh = 0b00100001;
+
+	//vera.addr = vera.addr + (256*32);//+(20*8)-8;
+
+	vera.addr = 0xb000;
 
 	while (Running)
 	{
 		Playing = Control(Playing);
 
-		ScrollerText(TestText, 0, 0, FrameCount);
+		//ScrollerText(TestText2, 0, 0, FrameCount);
+
+		if(FrameCount%4==1){
+			vera.data0 = TestText2[off1]-64;
+			off1++;
+		}
+
+		vera.l1hscroll = -256 + FrameCount*2;
 
 		if (Playing)
 		{

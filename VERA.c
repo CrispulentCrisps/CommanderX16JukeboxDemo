@@ -18,7 +18,7 @@ void SetVERABorder(byte BGColour)
 void ClearVERAScreen()
 {
 	putch(0x93);
-	vera.addrh = 0x11;
+	vera.addrh = 0b00010001;
 
 	for (int i = 0; i < 60; i++)
 	{
@@ -66,13 +66,19 @@ void PlayPCM(const char PCMData[], bool Loop)
 
 void ScrollerText(const char Text[], unsigned x, unsigned y, int offset)
 {
-	vera.l1hscroll = -offset%8 - x;
 
+	off1=offset;
+	
+	vera.data0 = Text[off1]-64;
+
+	vera.l1hscroll = offset - x;
+
+	//vera.l1hscroll = 0;
+
+/*
 	for (unsigned i = 0; i < sizeof(Text)/8; i++)
 	{
-		vera.data1 = Text[0];
+		vera.data0 = 0x01;
 	}
-
-
-
+*/
 }
