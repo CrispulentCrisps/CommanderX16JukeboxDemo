@@ -14,4 +14,5 @@ void SetPaletteColours(const char input[16])
 
 void Update()
 {
+
 }

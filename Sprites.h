@@ -12,6 +12,7 @@ struct Object {
 	int width;//size scaled in 8x8 pixel tiles
 	char palpoint[16];
 	char paloff;
+	char layer;
 };
 
 void SetSpritePos(int x, int y);

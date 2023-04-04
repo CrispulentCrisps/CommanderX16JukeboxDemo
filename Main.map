@@ -1,55 +1,56 @@
 sections
-0880 - 0ba5 : DATA, code
-0ba5 - 4eec : DATA, data
-4eec - 4ef1 : BSS, bss
-4ef1 - 9b00 : HEAP, heap
+0880 - 0c0d : DATA, code
+0c0d - 4f54 : DATA, data
+4f54 - 4f5d : BSS, bss
+4f5d - 9b00 : HEAP, heap
 9b00 - 9f00 : STACK, stack
 10000 - 10000 : ZEROPAGE, zeropage
 0801 - 0856 : DATA, startup
 9f00 - 9f00 : SSTACK, sstack
-9f00 - 9f00 : SSTACK, zsm_init@stack
+9f00 - 9f00 : SSTACK, zsm_irq_init@stack
 9f00 - 9f00 : SSTACK, putch@stack
 9f00 - 9f00 : SSTACK, ClearVERAScreen@stack
-9f00 - 9f00 : SSTACK, TypeTextVERA@stack
 9f00 - 9f00 : SSTACK, getchx@stack
 9f00 - 9f00 : SSTACK, Control@stack
-9f00 - 9f00 : SSTACK, ScrollerText@stack
-9f00 - 9f00 : SSTACK, sfx_put@stack
-9f00 - 9f00 : SSTACK, zsm_play@stack
+9f00 - 9f00 : SSTACK, zsm_irq_play@stack
 9f00 - 9f00 : SSTACK, frame_wait@stack
-9f00 - 9f00 : SSTACK, main@stack
 
 regions
 0080 - 00ff : 0000, 0000, zeropage
 0801 - 0880 : 0856, 0055, startup
-0880 - 9b00 : 4eec, 4671, main
+0880 - 9b00 : 4f54, 46dd, main
 
 objects
 0801 - 0856 : startup, NATIVE_CODE:startup
-0ba5 - 0ba6 : spentry, DATA:data
-4eec - 4eec : BSSStart, START:bss
-4ef1 - 4ef1 : BSSEnd, END:bss
+0c0d - 0c0e : spentry, DATA:data
+4f54 - 4f54 : BSSStart, START:bss
+4f5d - 4f5d : BSSEnd, END:bss
 9f00 - 9f00 : StackEnd, END:stack
-0880 - 090d : main, NATIVE_CODE:code
-090d - 0925 : zsm_init, NATIVE_CODE:code
-4eec - 4eee : zsm_sound, DATA:bss
-4eee - 4ef0 : zsm_pos, DATA:bss
-4ef0 - 4ef1 : zsm_delay, DATA:bss
-0ba6 - 4eb9 : sound, DATA:data
-0925 - 0962 : ClearVERAScreen, NATIVE_CODE:code
-0962 - 0968 : putch, NATIVE_CODE:code
-0968 - 0973 : TypeTextVERA, NATIVE_CODE:code
-4eb9 - 4ee9 : TestText, DATA:data
-0973 - 098d : Control, NATIVE_CODE:code
-098d - 0997 : getchx, NATIVE_CODE:code
-0997 - 09be : getpch, NATIVE_CODE:code
-4ee9 - 4eea : giocharmap, DATA:data
-09be - 09e6 : ScrollerText, NATIVE_CODE:code
-4eea - 4eec : FrameCount, DATA:data
-09e6 - 0ab8 : zsm_play, NATIVE_CODE:code
-0ab8 - 0acc : sfx_put, NATIVE_CODE:code
-0acc - 0adb : frame_wait, NATIVE_CODE:code
-0adb - 0ae9 : negaccu, NATIVE_CODE:code
-0ae9 - 0af7 : negtmp, NATIVE_CODE:code
-0af7 - 0b7c : divmod, NATIVE_CODE:code
-0b7c - 0ba5 : mods16, NATIVE_CODE:code
+0880 - 0937 : main, NATIVE_CODE:code
+0937 - 0950 : zsm_irq_init, NATIVE_CODE:code
+4f54 - 4f56 : oirq, DATA:bss
+0950 - 0956 : irqt, NATIVE_CODE:code
+0956 - 09a4 : irq, NATIVE_CODE:code
+4f56 - 4f57 : zsm_playing, DATA:bss
+09a4 - 0a76 : zsm_play, NATIVE_CODE:code
+4f57 - 4f58 : zsm_delay, DATA:bss
+4f58 - 4f5a : zsm_sound, DATA:bss
+4f5a - 4f5c : zsm_pos, DATA:bss
+0a76 - 0a8a : sfx_put, NATIVE_CODE:code
+0a8a - 0aa2 : zsm_init, NATIVE_CODE:code
+0c0e - 4f21 : sound, DATA:data
+0aa2 - 0adf : ClearVERAScreen, NATIVE_CODE:code
+0adf - 0ae5 : putch, NATIVE_CODE:code
+0ae5 - 0aff : Control, NATIVE_CODE:code
+0aff - 0b09 : getchx, NATIVE_CODE:code
+0b09 - 0b30 : getpch, NATIVE_CODE:code
+4f21 - 4f22 : giocharmap, DATA:data
+4f22 - 4f24 : FrameCount, DATA:data
+4f24 - 4f54 : TestText2, DATA:data
+4f5c - 4f5d : off1, DATA:bss
+0b30 - 0b34 : zsm_irq_play, NATIVE_CODE:code
+0b34 - 0b43 : frame_wait, NATIVE_CODE:code
+0b43 - 0b51 : negaccu, NATIVE_CODE:code
+0b51 - 0b5f : negtmp, NATIVE_CODE:code
+0b5f - 0be4 : divmod, NATIVE_CODE:code
+0be4 - 0c0d : mods16, NATIVE_CODE:code
