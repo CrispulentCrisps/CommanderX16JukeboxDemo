@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\pcm"
+    "\\pcm",
+    "\\sprites",
+    "\\sprites\\bin",
+    "\\sprites\\palette"
   ],
-  "SelectedNode": "\\pcm\\test.wav",
+  "SelectedNode": "\\sprites\\palette\\UIPalette.BIN",
   "PreviewInSolutionExplorer": false
 }

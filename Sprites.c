@@ -1,9 +1,5 @@
 #include "Sprites.h"
 
-void SetSpritePos(int x, int y)
-{
-}
-
 void Animation(const char sprite[], int TimeBetweenFrames)
 {
 }

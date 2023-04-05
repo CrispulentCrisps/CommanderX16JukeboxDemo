@@ -6,17 +6,15 @@
 #include <conio.h>
 
 #include "ZSMPlayer.h"
-
-/*
-	Objects on L0
-	Text on L1
-*/
+#include "Sprites.h"
 
 #define A 0x41
 #define D 0x44
 #define L_ARROW 0x9D
 #define R_ARROW 0x1D
 #define SPACE 0x20
+
+#define TestSprite (*(Sprites *)0x1fd00)
 
 int FrameCount = 0;
 char off1, off2;
@@ -30,7 +28,7 @@ const char sample[] = {
 	#embed "pcm/test.wav"
 };
 
-const char sprite[] = {
+const char TestSpriteImage[] = {
 	#embed "sprites/bin/TESTSPRITE.BIN"
 };
 
@@ -38,10 +36,9 @@ const char palette[] = {
 	#embed "sprites/palette/UIPalette.BIN"
 };
 
-const char TestText[] = s"Concept: Crisps, Coding: Crisps, Blumba, Tobach";
+const char TestText[] = s"Concept Crisps Coding Crisps Blumba, Tobach";
 
-const char TestText2[] = s"CONCEPT: CRISPS, CODING: CRISPS, BLUMBA, TOBACH";
-
+const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH";
 
 bool Control(bool playing) {
 
@@ -55,6 +52,10 @@ bool Control(bool playing) {
 	return playing;
 }
 
+void SetUpSprites() {
+	TestSprite.image = TestSpriteImage;
+	TestSprite.palpoint = palette;
+}
 
 int main(){
 
@@ -66,6 +67,8 @@ int main(){
 
 	zsm_irq_init();
 	zsm_init(sound);
+
+	SetUpSprites();
 
 	ClearVERAScreen();
 
@@ -87,19 +90,12 @@ int main(){
 
 		//ScrollerText(TestText2, 0, 0, FrameCount);
 
-		if(FrameCount%4==1){
-			vera.data0 = TestText2[off1]-64;
+		if (FrameCount % 4 == 1) {
+			vera.data0 = TestText2[off1] - 64;
 			off1++;
 		}
 
-		vera.l1hscroll = -256 + FrameCount*2;
-
-		if (Playing)
-		{
-			vera.dcborder = 6;
-			if (!zsm_play())
-				zsm_init(sound);
-		}
+		vera.l1hscroll = -256 + FrameCount * 2;
 
 		vera.dcborder = 0;
 		zsm_irq_play(Playing);

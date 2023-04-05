@@ -1,12 +1,13 @@
 #ifndef SPRITES_H 
 #define SPRITES_H
 
-#include <vector>
+#include "VERA.h"
 
 /*	Programmers must define each sprite themselves, from a range of 0x13000 to 0x1AFFF
 	#define sprite    (*(Sprites *)0x13000)
 */
-struct Object {
+struct Sprites {
+	const char image[128];
 	int x;
 	int y;
 	int width;//size scaled in 8x8 pixel tiles
@@ -15,7 +16,6 @@ struct Object {
 	char layer;
 };
 
-void SetSpritePos(int x, int y);
 void Animation(const char sprite[], int TimeBetweenFrames);
 void SetPaletteColours(const char input[16]);
 void Update();
