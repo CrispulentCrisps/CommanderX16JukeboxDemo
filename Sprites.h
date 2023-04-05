@@ -7,11 +7,11 @@
 	#define sprite    (*(Sprites *)0x13000)
 */
 struct Sprites {
-	const char image[128];
+	const char * image;
 	int x;
 	int y;
 	int width;//size scaled in 8x8 pixel tiles
-	char palpoint[16];
+	const char * palpoint;
 	char paloff;
 	char layer;
 };
