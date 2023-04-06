@@ -82,7 +82,7 @@ int main(){
 	while (Running)
 	{
 		if (zsm_check())
-			zsm_init("@0:zsmfiles/Kraid.zsm,P,R");	
+			zsm_init("@0:zsmfiles/ArkanoidFM.zsm,P,R");	
 
 		Playing = Control(Playing);
 

@@ -144,9 +144,9 @@ bool zsm_init(const char* fname)
 	zsm_wpos = 0;
 	zsm_delay = 0;
 
-	krnio_setnam(fname);
+	krnio_setnam(fname);	
 	if (krnio_open(2, 8, 2))
-	{
+	{	
 		zsm_reading = true;
 		zsm_fill();
 		zsm_pos = 16;

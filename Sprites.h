@@ -3,7 +3,10 @@
 
 #include "VERA.h"
 
-void Setup(char spr, unsigned addr32, bool mode8, char w, char h, char z, char pal, const char* palsrc, const char* img, unsigned long addr);
+/*	Programmers must define each sprite themselves, from a range of 0x13000 to 0x1AFFF
+	#define sprite    (*(Sprites *)0x13000)
+*/
+
 void Animation(const char sprite[], int TimeBetweenFrames);
 void SetPaletteColours(const char input[16]);
 void Update();
