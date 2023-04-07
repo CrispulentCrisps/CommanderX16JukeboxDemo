@@ -4,7 +4,8 @@
     "\\pcm",
     "\\sprites",
     "\\sprites\\bin",
-    "\\sprites\\palette"
+    "\\sprites\\palette",
+    "\\zsmfiles"
   ],
   "SelectedNode": "\\sprites\\palette\\UIPalette.BIN",
   "PreviewInSolutionExplorer": false
