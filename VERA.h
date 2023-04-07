@@ -4,6 +4,8 @@
 #define VERA_H
 
 #include <c64/types.h>
+#include <cx16/vera.h>
+#include <conio.h>
 
 #define vera    (*(VERA *)0x9f20)
 
@@ -59,7 +61,7 @@
 
 #define VERA_SPI_DATA		0x9F3E
 #define VERA_SPI_CTRL		0x9F3F
-
+/*
 struct VERA
 {
 	volatile word	addr;
@@ -95,7 +97,7 @@ struct VERA
 	volatile byte	spidata;
 	volatile byte	spictrl;
 };
-
+*/
 //Video [x means todo, y means finished]
 void ResetVERA(); //y
 

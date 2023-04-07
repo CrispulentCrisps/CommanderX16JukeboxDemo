@@ -14,22 +14,16 @@
 #define R_ARROW 0x1D
 #define SPACE 0x20
 
-#define TestSprite (*(Sprites *)0x1fd00)
-
 int FrameCount = 0;
 char off1, off2;
 unsigned int vadr;
-
-const char sound[] = {
-	#embed "zsmfiles/ArkanoidFM.zsm"
-};
 
 const char sample[] = {
 	#embed "pcm/test.wav"
 };
 
 const char TestSpriteImage[] = {
-	#embed "sprites/bin/TESTSPRITE.BIN"
+	#embed 32 2 "sprites/bin/TESTSPRITE.BIN"
 };
 
 const char palette[] = {
@@ -47,14 +41,19 @@ bool Control(bool playing) {
 	if (getchx() == SPACE)
 	{
 		playing = !playing;
+		zsm_irq_play(playing);
 	}
 
 	return playing;
 }
 
 void SetUpSprites() {
-	TestSprite.image = TestSpriteImage;
-	TestSprite.palpoint = palette;
+	// Enable sprite display
+	vera.ctrl &= ~VERA_CTRL_DCSEL;
+	vera.dcvideo |= 0x40;
+
+	SetPaletteColours(palette, 4);
+	Setup(2, 0x13000UL, false, 0, 0, 3, 0, TestSpriteImage, sizeof(TestSpriteImage));
 }
 
 int main(){
@@ -66,7 +65,7 @@ int main(){
 	bool Playing = false;
 
 	zsm_irq_init();
-	zsm_init(sound);
+//	zsm_init("@0:zsmfiles/ArkanoidFM.zsm,P,R");	
 
 	SetUpSprites();
 
@@ -84,8 +83,12 @@ int main(){
 
 	vera.addr = 0xb000;
 
+	int nmax = 0;
 	while (Running)
 	{
+		if (zsm_check())
+			zsm_init("@0:zsmfiles/ArkanoidFM.zsm,P,R");	
+
 		Playing = Control(Playing);
 
 		//ScrollerText(TestText2, 0, 0, FrameCount);
@@ -97,8 +100,9 @@ int main(){
 
 		vera.l1hscroll = -256 + FrameCount * 2;
 
+		vera.dcborder = 1;
+		int n = zsm_fill();
 		vera.dcborder = 0;
-		zsm_irq_play(Playing);
 
 		frame_wait();
 		FrameCount++;

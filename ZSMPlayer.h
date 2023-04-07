@@ -10,9 +10,12 @@ struct SFX
 void frame_wait(void);
 void sfx_put(char index, char data);
 void interpret(const char sound[]);
-void zsm_init(const char* sound);
 
-bool zsm_play(void);
+bool zsm_init(const char* fname);
+
+int zsm_fill(void);
+
+bool zsm_check(void);
 
 void zsm_irq_init(void);
 
