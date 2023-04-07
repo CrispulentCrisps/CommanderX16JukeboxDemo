@@ -52,8 +52,7 @@ void SetUpSprites() {
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= 0x40;
 
-	SetPaletteColours(palette, 4);
-	Setup(2, 0x13000UL, false, 0, 0, 3, 0, TestSpriteImage, sizeof(TestSpriteImage));
+	Setup(2, 0x13000UL, false, 0, 0, 3, 0, palette, TestSpriteImage, sizeof(TestSpriteImage));	
 }
 
 int main(){
