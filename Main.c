@@ -48,7 +48,11 @@ bool Control(bool playing) {
 }
 
 void SetUpSprites() {
-	Setup(0, 0x13000, false, 1, 1, 3, 0, palette, TestSpriteImage, 0x13000UL);
+	// Enable sprite display
+	vera.ctrl &= ~VERA_CTRL_DCSEL;
+	vera.dcvideo |= 0x40;
+
+	Setup(2, 0x13000UL, false, 0, 0, 3, 0, palette, TestSpriteImage, sizeof(TestSpriteImage));	
 }
 
 int main(){
