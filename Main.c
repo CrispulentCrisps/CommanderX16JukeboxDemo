@@ -14,8 +14,6 @@
 #define R_ARROW 0x1D
 #define SPACE 0x20
 
-#define Pal1 ()
-
 int FrameCount = 0;
 char off1, off2;
 unsigned int vadr;
@@ -56,7 +54,7 @@ void SetUpSprites() {
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= 0x40;
 
-	SetPaletteColours(palette, sizeof(palette), 0x1fa20);
+	SetPaletteColours(palette, 4);
 	Setup(2, 0x13000UL, false, 0, 0, 3, 0, TestSpriteImage, sizeof(TestSpriteImage));
 }
 

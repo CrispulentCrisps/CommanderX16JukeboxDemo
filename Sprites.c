@@ -12,9 +12,9 @@ void Animation(const char sprite[], int TimeBetweenFrames)
 
 }
 
-void SetPaletteColours(const char* input, char inputsize, unsigned addr)
+void SetPaletteColours(const char* input, char inputsize)
 {
-	vram_putn(addr, input, inputsize);
+	vram_putn(0x1fa00ul, input, inputsize);
 }
 
 void Update()
