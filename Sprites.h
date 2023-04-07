@@ -6,18 +6,11 @@
 /*	Programmers must define each sprite themselves, from a range of 0x13000 to 0x1AFFF
 	#define sprite    (*(Sprites *)0x13000)
 */
-struct Sprites {
-	const char image[128];
-	int x;
-	int y;
-	int width;//size scaled in 8x8 pixel tiles
-	char palpoint[16];
-	char paloff;
-	char layer;
-};
 
+
+void Setup(char spr, unsigned long addr, bool mode8, char w, char h, char z, char pal, const char* img, unsigned imgsize);
 void Animation(const char sprite[], int TimeBetweenFrames);
-void SetPaletteColours(const char input[16]);
+void SetPaletteColours(const char* input, char inputsize, unsigned addr);
 void Update();
 
 #pragma compile("Sprites.c")
