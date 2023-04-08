@@ -67,11 +67,11 @@ void PlayPCM(const char PCMData[], bool Loop)
 void ScrollerText(const char Text[], unsigned x, unsigned y, int offset)
 {
 
-	off1=offset;
+	//off1=offset;
 	
-	vera.data0 = Text[off1]-64;
+	//vera.data0 = Text[off1]-64;
 
-	vera.l1hscroll = offset - x;
+	//vera.l1hscroll = offset - x;
 
 	//vera.l1hscroll = 0;
 
