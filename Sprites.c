@@ -4,7 +4,6 @@ void Setup(char spr, unsigned long addr, bool mode8, char w, char h, char z, cha
 {
 	vram_putn(addr,img, imgsize);
 	vera_spr_set(spr, addr >> 5, mode8, w, h, z, pal);
-	vera_spr_move(spr, 200, 200);
 }
 
 void Animation(const char sprite[], int TimeBetweenFrames)
@@ -12,7 +11,7 @@ void Animation(const char sprite[], int TimeBetweenFrames)
 
 }
 
-void SetPaletteColours(const char* input, char inputsize, char addr)
+void SetPaletteColours(const char* input, char inputsize, unsigned long addr)
 {
 	vram_putn(addr, input, inputsize);
 }
