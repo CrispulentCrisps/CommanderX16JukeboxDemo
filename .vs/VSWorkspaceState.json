@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\sprites"
+    "\\sprites",
+    "\\sprites\\bin"
   ],
+  "SelectedNode": "\\sprites\\bin\\PAUSE.BIN",
   "PreviewInSolutionExplorer": false
 }

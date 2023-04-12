@@ -27,14 +27,14 @@ const char TestSpriteImage[] = {
 };
 */
 const char ScrollerOutline[] = {
-	#embed 1024 0 "sprites/bin/SCROLLEROUTLINE.BIN"
+	#embed 1024 "sprites/bin/SCROLLEROUTLINE.BIN"
 };
 
 const char Pause[] = {
 	#embed 1024 10 "sprites/bin/PAUSE.BIN"
 };
 
-const char Arrow[] = {
+const char Arrow[] = {	
 	#embed 1024 30 "sprites/bin/ARROW.BIN"
 };
 
@@ -71,17 +71,20 @@ void SetUpSprites() {
 	// Enable sprite display
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= 0x40;
+
+	unsigned long ScrollerOutlineAddr = VERA_SPRITES + sizeof(ScrollerOutline);
+	
 	//Bottom bars around the text
-	for (unsigned i = 0; i < 22; i+=2)
+	for (unsigned long i = 0; i < 22; i+=2)
 	{
-		Setup(i, 0x13000UL, false, 3, 1, 3, 1, ScrollerOutline, sizeof(ScrollerOutline));
+		Setup(i, ScrollerOutlineAddr+( i * sizeof(ScrollerOutline)) + , false, 3, 1, 3, 1, ScrollerOutline, sizeof(ScrollerOutline));
 		vera_spr_move(i, 32 * i, 432-16);
-		Setup(i + 1, 0x13000UL, false, 3, 1, 3, 1, ScrollerOutline, sizeof(ScrollerOutline));
+		Setup(i, ScrollerOutlineAddr + (i + 1 * sizeof(ScrollerOutline)), false, 3, 1, 3, 1, ScrollerOutline, sizeof(ScrollerOutline));
 		vera_spr_move(i + 1, 32 * i, 384 - 16);
 	}
 
 	//Pause
-	Setup(23, 0x13100UL, false, 2, 2, 3, 1, Pause, sizeof(Pause));
+	Setup(23, 0x13000UL, false, 2, 2, 3, 1, Pause, sizeof(Pause));
 	vera_spr_move(23,282,440);
 
 	SetPaletteColours(palette, sizeof(palette), 0x1FA20UL);

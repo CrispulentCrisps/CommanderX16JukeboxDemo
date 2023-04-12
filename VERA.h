@@ -9,6 +9,8 @@
 
 #define vera    (*(VERA *)0x9f20)
 
+#define VERA_BMP			0x00
+
 #define VERA_ADDRH_DECR		0x08
 #define VERA_ADDRH_INC		0xf0
 
@@ -61,43 +63,12 @@
 
 #define VERA_SPI_DATA		0x9F3E
 #define VERA_SPI_CTRL		0x9F3F
-/*
-struct VERA
-{
-	volatile word	addr;
-	volatile byte	addrh;
-	volatile byte	data0, data1;
 
-	volatile byte	ctrl;
-	volatile byte	ien;
-	volatile byte	isr;
-	volatile byte	irqline;
+#define VERA_SPRITES		0x13000
+#define VERA_TEXT_MODE		0x1B000
+#define VERA_CHARSET		0x1F000
+#define VERA_INTERNAL		0x1F9C0
 
-	volatile byte	dcvideo;
-	volatile byte	dchscale;
-	volatile byte	dcvscale;
-	volatile byte	dcborder;
-
-	volatile byte	l0config;
-	volatile byte	l0mapbase;
-	volatile byte	l0tilebase;
-	volatile word	l0hscroll;
-	volatile word	l0vscroll;
-
-	volatile byte	l1config;
-	volatile byte	l1mapbase;
-	volatile byte	l1tilebase;
-	volatile word	l1hscroll;
-	volatile word	l1vscroll;
-
-	volatile byte	audioctrl;
-	volatile byte	audiorate;
-	volatile byte	audiodata;
-
-	volatile byte	spidata;
-	volatile byte	spictrl;
-};
-*/
 //Video [x means todo, y means finished]
 void ResetVERA(); //y
 

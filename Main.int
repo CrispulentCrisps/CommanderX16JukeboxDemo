@@ -1,6 +1,6 @@
 --------------------------------------------------------------------
-main: C:/Users/david/Documents/Games/CoolDemo/Main.c:90
-$00 R0(C), $06 R1(B), $00 R2(B), $01 R3(P), $03 R4(I), $05 R5(C), 
+main: C:/Users/david/Documents/Games/CoolDemo/Main.c:93
+$00 R0(C), $05 R1(B), $00 R2(B), $01 R3(P), $03 R4(I), $00 R5(C), 
 L0: <= D-1: (1)  P-1
 0000		CALLN		<-	V1+0	{}
 0001		CALLN		<-	V5+0	{}
@@ -242,7 +242,7 @@ L3: <= D-1: (2)  P-1
 0004		STOREA1		<-	V-1+40769, R0(CF)[-128..255]	{V}
 0005		RET		<-		{}
 --------------------------------------------------------------------
-ClearVERAScreen: C:/Users/david/Documents/Games/CoolDemo/VERA.h:104
+ClearVERAScreen: C:/Users/david/Documents/Games/CoolDemo/VERA.h:75
 $00 R0(I), $00 R1(I), $00 R2(B), 
 L0: <= D-1: (1)  P-1
 0000		STOREZ2		<-	V0+0, CI:147	{}
@@ -284,7 +284,7 @@ L0: <= D-1: (1)  P-1
 0001		RET		<-		{}
 --------------------------------------------------------------------
 SetUpSprites: C:/Users/david/Documents/Games/CoolDemo/Main.c:70
-$00 R0(C), $03 R1(I), $04 R2(I), $00 R3(P), $00 R4(I), 
+$00 R0(C), $00 R1(L), $03 R2(L), $00 R3(P), $00 R4(L), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
 0001		BINOP9	R0(C)[-128..255]	<-	R0(CF)[-128..255], CC:-3	{}
@@ -292,14 +292,14 @@ L0: <= D-1: (1)  P-1
 0003		LOADA1	R0(C)[-128..255]	<-	V-1+40745	{V}
 0004		BINOP8	R0(C)[-128..255]	<-	R0(CF)[-128..255], CC:64	{}
 0005		STOREA1		<-	V-1+40745, R0(CF)[-128..255]	{V}
-0006		CONST	R1(I)[0..0]	<-	CI:0	{}
-0007		CONST	R2(I)[0..0]	<-	CI:0	{}
+0006		CONST	R1(L)[0..0]	<-	CI:0	{}
+0007		CONST	R2(L)[0..0]	<-	CI:0	{}
 0008		CONST	R3(P)	<-	CG514(18:0)	{IS}
 0009		JUMP		<-		{}
 		==> 2
 L2: <= D-1: (2) Head P20
 0000		STOREZ1		<-	V8+0, R1(C)[0..21]	{}
-0001		STOREG4		<-	V12+0, CL:77824	{}
+0001		STOREG4		<-	V12+0, CL:78338	{}
 0002		STOREG1		<-	V16+4, CB:0	{}
 0003		STOREG1		<-	V17+5, CC:3	{}
 0004		STOREG1		<-	V18+6, CC:1	{}
@@ -312,38 +312,38 @@ L2: <= D-1: (2) Head P20
 000b		STOREZ2		<-	V1+0, R2(I)[0..640]	{}
 000c		STOREZ2		<-	V3+0, CI:416	{}
 000d		CALLN		<-	V11+0	{}
-000e		STOREG4		<-	V12+0, CL:77824	{}
-000f		STOREG1		<-	V16+4, CB:0	{}
-0010		STOREG1		<-	V17+5, CC:3	{}
-0011		STOREG1		<-	V18+6, CC:1	{}
-0012		STOREG1		<-	V19+7, CC:3	{}
-0013		STOREG1		<-	V20+8, CC:1	{}
-0014		STOREG2		<-	V21+9, R3(P)	{}
-0015		STOREG2		<-	V23+11, CI:514	{}
-0016		BINOP1	R4(I)[1..22]	<-	R1(I)[0..21], CI:1	{}
-0017		STOREZ1		<-	V8+0, R4(C)[1..22]	{}
-0018		CALLN		<-	V8+0	{}
-0019		STOREZ1		<-	V0+0, R4(CF)[1..22]	{}
-001a		STOREZ2		<-	V1+0, R2(I)[0..640]	{}
-001b		STOREZ2		<-	V3+0, CI:368	{}
+000e		STOREZ1		<-	V8+0, R1(C)[0..21]	{}
+000f		STOREG4		<-	V12+0, CL:78338	{}
+0010		STOREG1		<-	V16+4, CB:0	{}
+0011		STOREG1		<-	V17+5, CC:3	{}
+0012		STOREG1		<-	V18+6, CC:1	{}
+0013		STOREG1		<-	V19+7, CC:3	{}
+0014		STOREG1		<-	V20+8, CC:1	{}
+0015		STOREG2		<-	V21+9, R3(P)	{}
+0016		STOREG2		<-	V23+11, CI:514	{}
+0017		CALLN		<-	V8+0	{}
+0018		STOREZ2		<-	V1+0, R2(I)[0..640]	{}
+0019		STOREZ2		<-	V3+0, CI:368	{}
+001a		BINOP1	R4(L)[1..22]	<-	R1(L)[0..21], CL:1	{}
+001b		STOREZ1		<-	V0+0, R4(CF)[1..22]	{}
 001c		CALLN		<-	V11+0	{}
-001d		BINOP1	R2(I)[64..704]	<-	R2(IF)[0..640], CI:64	{}
-001e		BINOP1	R1(I)[2..23]	<-	R1(IF)[0..21], CI:2	{}
-001f		RELOP28	R0(B)	<-	R1(I)[2..23], CI:22	{}
+001d		BINOP1	R2(L)[64..704]	<-	R2(LF)[0..640], CL:64	{}
+001e		BINOP1	R1(L)[2..23]	<-	R1(LF)[0..21], CL:2	{}
+001f		RELOP28	R0(B)	<-	R1(L)[2..23], CL:22	{}
 0020		BRANCH		<-	R0(BF)	{}
 		==> 2
 		==> 4
 L4: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V8+0, CC:23	{}
-0001		STOREG4		<-	V12+0, CL:78080	{}
+0001		STOREG4		<-	V12+0, CL:81920	{}
 0002		STOREG1		<-	V16+4, CB:0	{}
 0003		STOREG1		<-	V17+5, CC:2	{}
 0004		STOREG1		<-	V18+6, CC:2	{}
 0005		STOREG1		<-	V19+7, CC:3	{}
 0006		STOREG1		<-	V20+8, CC:1	{}
 0007		STOREG2		<-	V23+11, CI:504	{}
-0008		CONST	R1(P)	<-	CG504(22:0)	{S}
-0009		STOREG2		<-	V21+9, R1(PF)	{}
+0008		CONST	R3(P)	<-	CG504(22:0)	{S}
+0009		STOREG2		<-	V21+9, R3(PF)	{}
 000a		CALLN		<-	V8+0	{}
 000b		STOREZ1		<-	V0+0, CC:23	{}
 000c		STOREZ2		<-	V1+0, CI:282	{}
@@ -351,8 +351,8 @@ L4: <= D-1: (1)  P-1
 000e		CALLN		<-	V11+0	{}
 000f		STOREZ1		<-	V10+0, CC:32	{}
 0010		STOREG4		<-	V12+0, CL:129568	{}
-0011		CONST	R1(P)	<-	CG32(23:0)	{S}
-0012		STOREZ2		<-	V8+0, R1(PF)	{}
+0011		CONST	R3(P)	<-	CG32(23:0)	{S}
+0012		STOREZ2		<-	V8+0, R3(PF)	{}
 0013		CALLN		<-	V12+0	{}
 0014		RET		<-		{}
 --------------------------------------------------------------------
