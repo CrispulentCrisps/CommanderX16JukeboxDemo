@@ -112,6 +112,11 @@ void SetUpSprites() {
 		vera_spr_move(i + 1, 32 * i, 384 - 16);
 	}
 	
+	//Pause
+	vram_putn(PauseAddr ,Pause, sizeof(Pause));
+	vera_spr_set(23, PauseAddr >> 5, false, 2, 2, 3, 1);
+	vera_spr_move(23,282,440);
+	
 	SetPaletteColours(palette, sizeof(palette), 0x1FA20UL);
 }
 
