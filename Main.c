@@ -27,15 +27,22 @@ const char TestSpriteImage[] = {
 };
 */
 const char ScrollerOutline[] = {
-	#embed 1024 "sprites/bin/SCROLLEROUTLINE.BIN"
+	#embed 1024 2 "sprites/bin/SCROLLEROUTLINE.BIN"
 };
 
 const char Pause[] = {
-	#embed 1024 10 "sprites/bin/PAUSE.BIN"
+	#embed 1024 2 "sprites/bin/PAUSE.BIN"
 };
 
 const char Arrow[] = {	
 	#embed 1024 30 "sprites/bin/ARROW.BIN"
+};
+const char VolumeInd[] = {
+	#embed 64 "sprites/bin/VOLUMEBUTTON.BIN"
+
+};
+const char MainBG[] = {
+	#embed 76800 "sprites/bin/MAINBG.BIN"
 };
 
 const char palette[] = {
@@ -48,6 +55,18 @@ const char palette[] = {
 	0xEE, 0x0F, 0xFF, 0xEE,
 	0xAA, 0x0A, 0x88, 0x08,
 	0x66, 0x06, 0x44, 0x04
+};
+
+const char BGPal[] = {
+	0x00, 0x00, 0x88, 0x02,
+	0x44, 0x0C, 0x11, 0xEE,
+	0xAA, 0x0A, 0x88, 0x08,
+	0x66, 0x06, 0x44, 0x04,
+
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00
 };
 
 const char TestText[] = s"Concept Crisps Coding Crisps Blumba, Tobach";
@@ -72,21 +91,27 @@ void SetUpSprites() {
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= 0x40;
 
-	unsigned long ScrollerOutlineAddr = VERA_SPRITES + sizeof(ScrollerOutline);
+	const unsigned long BGAddr = 0x00;
+	const unsigned long PauseAddr = VERA_SPRITES;
+	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
+	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
+
+	vram_putn(ScrollerOutlineAddr ,ScrollerOutline, sizeof(ScrollerOutline));
 	
+	//Pause
+	vram_putn(PauseAddr, Pause, sizeof(Pause));
+	vera_spr_set(23, PauseAddr >> 5, false, 2, 2, 3, 1);
+	vera_spr_move(23, 282, 440);
+
 	//Bottom bars around the text
 	for (unsigned long i = 0; i < 22; i+=2)
 	{
-		Setup(i, ScrollerOutlineAddr+( i * sizeof(ScrollerOutline)) + , false, 3, 1, 3, 1, ScrollerOutline, sizeof(ScrollerOutline));
+		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
 		vera_spr_move(i, 32 * i, 432-16);
-		Setup(i, ScrollerOutlineAddr + (i + 1 * sizeof(ScrollerOutline)), false, 3, 1, 3, 1, ScrollerOutline, sizeof(ScrollerOutline));
+		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
 		vera_spr_move(i + 1, 32 * i, 384 - 16);
 	}
-
-	//Pause
-	Setup(23, 0x13000UL, false, 2, 2, 3, 1, Pause, sizeof(Pause));
-	vera_spr_move(23,282,440);
-
+	
 	SetPaletteColours(palette, sizeof(palette), 0x1FA20UL);
 }
 
@@ -101,8 +126,15 @@ int main(){
 	zsm_irq_init();
 //	zsm_init("@0:zsmfiles/ArkanoidFM.zsm,P,R");	
 
-
 	ClearVERAScreen();
+
+	//Set up Background
+	vera.ctrl &= ~VERA_CTRL_DCSEL;
+	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
+
+	vram_putn(BGAddr, MainBG, sizeof(MainBG));
+
+	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FB20UL);
 
 	SetUpSprites();
 
