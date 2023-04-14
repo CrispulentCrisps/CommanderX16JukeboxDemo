@@ -26,6 +26,12 @@ const char TestSpriteImage[] = {
 	#embed 32 2 "sprites/bin/TESTSPRITE.BIN"
 };
 */
+
+const char MainBG[] = {
+	#embed "sprites/bin/MAINBG.BIN"
+};
+
+
 const char ScrollerOutline[] = {
 	#embed 1024 2 "sprites/bin/SCROLLEROUTLINE.BIN"
 };
@@ -41,10 +47,6 @@ const char VolumeInd[] = {
 	#embed 64 "sprites/bin/VOLUMEBUTTON.BIN"
 
 };
-const char MainBG[] = {
-	#embed 76800 "sprites/bin/MAINBG.BIN"
-};
-
 const char palette[] = {
 	0x00, 0x00, 0xFF, 0x0F,
 	0xEE, 0x0F, 0xFF, 0xEE,
@@ -91,7 +93,6 @@ void SetUpSprites() {
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= 0x40;
 
-	const unsigned long BGAddr = 0x00;
 	const unsigned long PauseAddr = VERA_SPRITES;
 	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
@@ -112,11 +113,6 @@ void SetUpSprites() {
 		vera_spr_move(i + 1, 32 * i, 384 - 16);
 	}
 	
-	//Pause
-	vram_putn(PauseAddr ,Pause, sizeof(Pause));
-	vera_spr_set(23, PauseAddr >> 5, false, 2, 2, 3, 1);
-	vera_spr_move(23,282,440);
-	
 	SetPaletteColours(palette, sizeof(palette), 0x1FA20UL);
 }
 
@@ -124,6 +120,8 @@ int main(){
 
 	const unsigned SCREEN_WIDTH = 640;
 	const unsigned SCREEN_HEIGHT = 480;
+
+	const unsigned long BGAddr = 0x00;
 
     bool Running = true;
 	bool Playing = false;
@@ -136,7 +134,8 @@ int main(){
 	//Set up Background
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
-
+	vera.l0config = VERA_LAYER_WIDTH_64 | VERA_LAYER_HEIGHT_32 | VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 | VERA_LAYER_DEPTH_4;
+	vram_fill(0x1b000ul, 0x00, 1024);
 	vram_putn(BGAddr, MainBG, sizeof(MainBG));
 
 	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FB20UL);
