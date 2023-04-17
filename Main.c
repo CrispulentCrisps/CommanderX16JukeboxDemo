@@ -21,14 +21,8 @@ int FrameCount = 0;
 char off1, off2;
 int p = 0;
 
-/*
-const char TestSpriteImage[] = {
-	#embed 32 2 "sprites/bin/TESTSPRITE.BIN"
-};
-*/
-
 const char MainBG[] = {
-	#embed "sprites/bin/MAINBG.BIN"
+	#embed 512 "sprites/bin/MAINBG.BIN"
 };
 
 
@@ -65,10 +59,10 @@ const char BGPal[] = {
 	0xAA, 0x0A, 0x88, 0x08,
 	0x66, 0x06, 0x44, 0x04,
 
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00
+	0x00, 0x00, 0xFF, 0x0F,
+	0xEE, 0x0F, 0xFF, 0xEE,
+	0xAA, 0x0A, 0x88, 0x08,
+	0x66, 0x06, 0x44, 0x04
 };
 
 const char TestText[] = s"Concept Crisps Coding Crisps Blumba, Tobach";
@@ -89,16 +83,34 @@ bool Control(bool playing) {
 }
 
 void SetUpSprites() {
-	// Enable sprite display
-	vera.ctrl &= ~VERA_CTRL_DCSEL;
-	vera.dcvideo |= 0x40;
 
 	const unsigned long PauseAddr = VERA_SPRITES;
 	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
+	const unsigned long BGAddr = 0x000;
+
+	//Set up Background
+	vera.ctrl &= ~VERA_CTRL_DCSEL;
+	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
+	//vera.dcvideo &= ~VERA_DCVIDEO_LAYER0;
+	vera.dcvscale = 128;
+	vera.dchscale = 128;
+	vera.l0config = VERA_LAYER_WIDTH_64 | VERA_LAYER_HEIGHT_32 | VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 | VERA_LAYER_DEPTH_2;
+	vera.l0tilebase = BGAddr;
+	vera.l0mapbase = BGAddr;
+	vram_putn(BGAddr, MainBG, sizeof(MainBG));
+
+	for (unsigned i = 0; i < 80; i++)
+	{
+		for (unsigned j = 0; j < 60; j++)
+		{
+		}
+	}
+	
+	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FB20UL);
 
 	vram_putn(ScrollerOutlineAddr ,ScrollerOutline, sizeof(ScrollerOutline));
-	
+
 	//Pause
 	vram_putn(PauseAddr, Pause, sizeof(Pause));
 	vera_spr_set(23, PauseAddr >> 5, false, 2, 2, 3, 1);
@@ -121,8 +133,6 @@ int main(){
 	const unsigned SCREEN_WIDTH = 640;
 	const unsigned SCREEN_HEIGHT = 480;
 
-	const unsigned long BGAddr = 0x00;
-
     bool Running = true;
 	bool Playing = false;
 
@@ -131,19 +141,10 @@ int main(){
 
 	ClearVERAScreen();
 
-	//Set up Background
-	vera.ctrl &= ~VERA_CTRL_DCSEL;
-	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
-	vera.l0config = VERA_LAYER_WIDTH_64 | VERA_LAYER_HEIGHT_32 | VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 | VERA_LAYER_DEPTH_4;
-	vram_fill(0x1b000ul, 0x00, 1024);
-	vram_putn(BGAddr, MainBG, sizeof(MainBG));
-
-	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FB20UL);
-
 	SetUpSprites();
 
 	vera.ctrl |= VERA_CTRL_DCSEL;
-	vera.dchscale = 154;
+	vera.dchscale = 158;
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	
 	//TypeTextVERA(TestText2,0,0);
@@ -153,6 +154,9 @@ int main(){
 	//vera.addr = vera.addr + (256*32);//+(20*8)-8;
 
 	vera.addr = 0xb000;
+
+	//sets scroller position
+	vera.l1vscroll = 115;
 
 	int nmax = 0;
 	while (Running)

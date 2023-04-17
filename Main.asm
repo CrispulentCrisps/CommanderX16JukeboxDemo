@@ -11,14 +11,14 @@ startup:
 080b : 00 __ __ BRK
 080c : 00 __ __ BRK
 080d : ba __ __ TSX
-080e : 8e 9b 10 STX $109b ; (spentry + 0)
-0811 : a9 2b __ LDA #$2b
+080e : 8e 57 10 STX $1057 ; (spentry + 0)
+0811 : a9 4b __ LDA #$4b
 0813 : 85 39 __ STA IP + 0 
-0815 : a9 60 __ LDA #$60
+0815 : a9 15 __ LDA #$15
 0817 : 85 3a __ STA IP + 1 
 0819 : 38 __ __ SEC
-081a : a9 64 __ LDA #$64
-081c : e9 60 __ SBC #$60
+081a : a9 19 __ LDA #$19
+081c : e9 15 __ SBC #$15
 081e : f0 0f __ BEQ $082f ; (startup + 46)
 0820 : aa __ __ TAX
 0821 : a9 00 __ LDA #$00
@@ -30,8 +30,8 @@ startup:
 082c : ca __ __ DEX
 082d : d0 f6 __ BNE $0825 ; (startup + 36)
 082f : 38 __ __ SEC
-0830 : a9 2b __ LDA #$2b
-0832 : e9 2b __ SBC #$2b
+0830 : a9 63 __ LDA #$63
+0832 : e9 4b __ SBC #$4b
 0834 : f0 08 __ BEQ $083e ; (startup + 61)
 0836 : a8 __ __ TAY
 0837 : a9 00 __ LDA #$00
@@ -59,2497 +59,1262 @@ startup:
 0862 : 60 __ __ RTS
 --------------------------------------------------------------------
 spentry:
-109b : __ __ __ BYT 00                                              : .
+1057 : __ __ __ BYT 00                                              : .
 --------------------------------------------------------------------
 main:
 .s0:
-0880 : 20 98 09 JSR $0998 ; (zsm_irq_init.s0 + 0)
-0883 : 20 66 0b JSR $0b66 ; (ClearVERAScreen.s0 + 0)
-0886 : a9 00 __ LDA #$00
-0888 : 85 2d __ STA P0 
-088a : 85 30 __ STA P3 
-088c : 85 31 __ STA P4 
-088e : 85 32 __ STA P5 
-0890 : a9 b0 __ LDA #$b0
-0892 : 85 2e __ STA P1 
-0894 : a9 01 __ LDA #$01
-0896 : 85 2f __ STA P2 
-0898 : a9 04 __ LDA #$04
-089a : 85 33 __ STA P6 
-089c : ad 25 9f LDA $9f25 
-089f : 29 fd __ AND #$fd
-08a1 : 8d 25 9f STA $9f25 
-08a4 : ad 29 9f LDA $9f29 
-08a7 : 09 70 __ ORA #$70
-08a9 : 8d 29 9f STA $9f29 
-08ac : a9 12 __ LDA #$12
-08ae : 8d 2d 9f STA $9f2d 
-08b1 : 20 a9 0b JSR $0ba9 ; (vram_fill.s0 + 0)
-08b4 : a9 00 __ LDA #$00
-08b6 : 85 2e __ STA P1 
-08b8 : 85 2f __ STA P2 
-08ba : a9 02 __ LDA #$02
-08bc : 85 33 __ STA P6 
-08be : a9 4b __ LDA #$4b
-08c0 : 85 34 __ STA P7 
-08c2 : a9 9e __ LDA #$9e
-08c4 : 85 31 __ STA P4 
-08c6 : a9 10 __ LDA #$10
-08c8 : 85 32 __ STA P5 
-08ca : 20 de 0b JSR $0bde ; (vram_putn.s0 + 0)
-08cd : a9 20 __ LDA #$20
-08cf : 85 37 __ STA P10 
-08d1 : 8d fc 9e STA $9efc ; (sstack + 0)
-08d4 : a9 fb __ LDA #$fb
-08d6 : 8d fd 9e STA $9efd ; (sstack + 1)
-08d9 : a9 01 __ LDA #$01
-08db : 8d fe 9e STA $9efe ; (sstack + 2)
-08de : a9 00 __ LDA #$00
-08e0 : 8d ff 9e STA $9eff ; (sstack + 3)
-08e3 : a9 a0 __ LDA #$a0
-08e5 : 85 35 __ STA P8 
-08e7 : a9 5b __ LDA #$5b
-08e9 : 85 36 __ STA P9 
-08eb : 20 19 0c JSR $0c19 ; (SetPaletteColours.s0 + 0)
-08ee : 20 40 0c JSR $0c40 ; (SetUpSprites.s0 + 0)
-08f1 : ad 25 9f LDA $9f25 
-08f4 : 09 02 __ ORA #$02
-08f6 : 8d 25 9f STA $9f25 
-08f9 : a9 9a __ LDA #$9a
-08fb : 8d 2a 9f STA $9f2a 
-08fe : ad 25 9f LDA $9f25 
-0901 : 29 fd __ AND #$fd
-0903 : 8d 25 9f STA $9f25 
-0906 : a9 21 __ LDA #$21
-0908 : 8d 22 9f STA $9f22 
-090b : a9 00 __ LDA #$00
-090d : 8d 20 9f STA $9f20 
-0910 : a9 b0 __ LDA #$b0
-0912 : 8d 21 9f STA $9f21 
-0915 : a9 00 __ LDA #$00
-0917 : 85 4b __ STA T2 + 0 
+0880 : 20 38 09 JSR $0938 ; (zsm_irq_init.s0 + 0)
+0883 : 20 06 0b JSR $0b06 ; (ClearVERAScreen.s0 + 0)
+0886 : 20 49 0b JSR $0b49 ; (SetUpSprites.s0 + 0)
+0889 : ad 25 9f LDA $9f25 
+088c : 09 02 __ ORA #$02
+088e : 8d 25 9f STA $9f25 
+0891 : a9 9e __ LDA #$9e
+0893 : 8d 2a 9f STA $9f2a 
+0896 : ad 25 9f LDA $9f25 
+0899 : 29 fd __ AND #$fd
+089b : 8d 25 9f STA $9f25 
+089e : a9 21 __ LDA #$21
+08a0 : 8d 22 9f STA $9f22 
+08a3 : a9 00 __ LDA #$00
+08a5 : 8d 20 9f STA $9f20 
+08a8 : a9 b0 __ LDA #$b0
+08aa : 8d 21 9f STA $9f21 
+08ad : a9 73 __ LDA #$73
+08af : 8d 39 9f STA $9f39 
+08b2 : a9 00 __ LDA #$00
+08b4 : 8d 3a 9f STA $9f3a 
+08b7 : 85 4b __ STA T1 + 0 
 .l2:
-0919 : a9 03 __ LDA #$03
-091b : 8d 2c 9f STA $9f2c 
-091e : 20 e2 0d JSR $0de2 ; (zsm_check.s0 + 0)
-0921 : 09 00 __ ORA #$00
-0923 : f0 0b __ BEQ $0930 ; (main.s6 + 0)
+08b9 : a9 03 __ LDA #$03
+08bb : 8d 2c 9f STA $9f2c 
+08be : 20 9e 0d JSR $0d9e ; (zsm_check.s0 + 0)
+08c1 : 09 00 __ ORA #$00
+08c3 : f0 0b __ BEQ $08d0 ; (main.s6 + 0)
 .s4:
-0925 : a9 53 __ LDA #$53
-0927 : 85 30 __ STA P3 
-0929 : a9 0f __ LDA #$0f
-092b : 85 31 __ STA P4 
-092d : 20 e6 0d JSR $0de6 ; (zsm_init.s0 + 0)
+08c5 : a9 0f __ LDA #$0f
+08c7 : 85 30 __ STA P3 
+08c9 : a9 0f __ LDA #$0f
+08cb : 85 31 __ STA P4 
+08cd : 20 a2 0d JSR $0da2 ; (zsm_init.s0 + 0)
 .s6:
-0930 : a5 4b __ LDA T2 + 0 
-0932 : 85 2e __ STA P1 
-0934 : 20 71 0f JSR $0f71 ; (Control.s0 + 0)
-0937 : a5 3b __ LDA ACCU + 0 
-0939 : 85 4b __ STA T2 + 0 
-093b : ad e2 5f LDA $5fe2 ; (FrameCount + 0)
-093e : 85 47 __ STA T1 + 0 
-0940 : 85 3b __ STA ACCU + 0 
-0942 : ad e3 5f LDA $5fe3 ; (FrameCount + 1)
-0945 : 85 3c __ STA ACCU + 1 
-0947 : a9 04 __ LDA #$04
-0949 : 85 23 __ STA WORK + 0 
-094b : a9 00 __ LDA #$00
-094d : 85 24 __ STA WORK + 1 
-094f : 20 72 10 JSR $1072 ; (mods16 + 0)
-0952 : a5 26 __ LDA WORK + 3 
-0954 : d0 16 __ BNE $096c ; (main.s9 + 0)
+08d0 : a5 4b __ LDA T1 + 0 
+08d2 : 85 2e __ STA P1 
+08d4 : 20 2d 0f JSR $0f2d ; (Control.s0 + 0)
+08d7 : a5 3b __ LDA ACCU + 0 
+08d9 : 85 4b __ STA T1 + 0 
+08db : ad fe 14 LDA $14fe ; (FrameCount + 0)
+08de : 85 48 __ STA T3 + 0 
+08e0 : 85 3b __ STA ACCU + 0 
+08e2 : ad ff 14 LDA $14ff ; (FrameCount + 1)
+08e5 : 85 3c __ STA ACCU + 1 
+08e7 : a9 04 __ LDA #$04
+08e9 : 85 23 __ STA WORK + 0 
+08eb : a9 00 __ LDA #$00
+08ed : 85 24 __ STA WORK + 1 
+08ef : 20 2e 10 JSR $102e ; (mods16 + 0)
+08f2 : a5 26 __ LDA WORK + 3 
+08f4 : d0 16 __ BNE $090c ; (main.s9 + 0)
 .s1002:
-0956 : a5 25 __ LDA WORK + 2 
-0958 : c9 01 __ CMP #$01
-095a : d0 10 __ BNE $096c ; (main.s9 + 0)
+08f6 : a5 25 __ LDA WORK + 2 
+08f8 : c9 01 __ CMP #$01
+08fa : d0 10 __ BNE $090c ; (main.s9 + 0)
 .s7:
-095c : ae fb 5f LDX $5ffb ; (off1 + 0)
-095f : e8 __ __ INX
-0960 : 8e fb 5f STX $5ffb ; (off1 + 0)
-0963 : bd ff 5f LDA $5fff,x 
-0966 : 38 __ __ SEC
-0967 : e9 40 __ SBC #$40
-0969 : 8d 23 9f STA $9f23 
+08fc : ae 62 19 LDX $1962 ; (off1 + 0)
+08ff : e8 __ __ INX
+0900 : 8e 62 19 STX $1962 ; (off1 + 0)
+0903 : bd 1f 15 LDA $151f,x ; (palette + 31)
+0906 : 38 __ __ SEC
+0907 : e9 40 __ SBC #$40
+0909 : 8d 23 9f STA $9f23 
 .s9:
-096c : 06 47 __ ASL T1 + 0 
-096e : ad e3 5f LDA $5fe3 ; (FrameCount + 1)
-0971 : 2a __ __ ROL
-0972 : 18 __ __ CLC
-0973 : 69 ff __ ADC #$ff
-0975 : 8d 38 9f STA $9f38 
-0978 : a5 47 __ LDA T1 + 0 
-097a : 8d 37 9f STA $9f37 
-097d : a9 01 __ LDA #$01
-097f : 8d 2c 9f STA $9f2c 
-0982 : 20 85 0e JSR $0e85 ; (zsm_fill.s0 + 0)
-0985 : a9 00 __ LDA #$00
-0987 : 8d 2c 9f STA $9f2c 
-098a : 20 c2 0f JSR $0fc2 ; (frame_wait.l1 + 0)
-098d : ee e2 5f INC $5fe2 ; (FrameCount + 0)
-0990 : d0 87 __ BNE $0919 ; (main.l2 + 0)
+090c : 06 48 __ ASL T3 + 0 
+090e : ad ff 14 LDA $14ff ; (FrameCount + 1)
+0911 : 2a __ __ ROL
+0912 : 18 __ __ CLC
+0913 : 69 ff __ ADC #$ff
+0915 : 8d 38 9f STA $9f38 
+0918 : a5 48 __ LDA T3 + 0 
+091a : 8d 37 9f STA $9f37 
+091d : a9 01 __ LDA #$01
+091f : 8d 2c 9f STA $9f2c 
+0922 : 20 41 0e JSR $0e41 ; (zsm_fill.s0 + 0)
+0925 : a9 00 __ LDA #$00
+0927 : 8d 2c 9f STA $9f2c 
+092a : 20 7e 0f JSR $0f7e ; (frame_wait.l1 + 0)
+092d : ee fe 14 INC $14fe ; (FrameCount + 0)
+0930 : d0 87 __ BNE $08b9 ; (main.l2 + 0)
 .s1003:
-0992 : ee e3 5f INC $5fe3 ; (FrameCount + 1)
-0995 : 4c 19 09 JMP $0919 ; (main.l2 + 0)
+0932 : ee ff 14 INC $14ff ; (FrameCount + 1)
+0935 : 4c b9 08 JMP $08b9 ; (main.l2 + 0)
 --------------------------------------------------------------------
 zsm_irq_init:
 .s0:
-0998 : 78 __ __ SEI
-0999 : ad 14 03 LDA $0314 
-099c : 8d e4 5f STA $5fe4 ; (oirq + 0)
-099f : ad 15 03 LDA $0315 
-09a2 : 8d e5 5f STA $5fe5 ; (oirq + 1)
-09a5 : a9 b1 __ LDA #$b1
-09a7 : 8d 14 03 STA $0314 
-09aa : a9 09 __ LDA #$09
-09ac : 8d 15 03 STA $0315 
-09af : 58 __ __ CLI
+0938 : 78 __ __ SEI
+0939 : ad 14 03 LDA $0314 
+093c : 8d 4b 15 STA $154b ; (oirq + 0)
+093f : ad 15 03 LDA $0315 
+0942 : 8d 4c 15 STA $154c ; (oirq + 1)
+0945 : a9 51 __ LDA #$51
+0947 : 8d 14 03 STA $0314 
+094a : a9 09 __ LDA #$09
+094c : 8d 15 03 STA $0315 
+094f : 58 __ __ CLI
 .s1001:
-09b0 : 60 __ __ RTS
+0950 : 60 __ __ RTS
 --------------------------------------------------------------------
 oirq:
-5fe4 : __ __ __ BSS	2
+154b : __ __ __ BSS	2
 --------------------------------------------------------------------
 irqt:
-09b1 : 20 b7 09 JSR $09b7 ; (irq.s1000 + 0)
-09b4 : 6c e4 5f JMP ($5fe4)
+0951 : 20 57 09 JSR $0957 ; (irq.s1000 + 0)
+0954 : 6c 4b 15 JMP ($154b)
 --------------------------------------------------------------------
 irq:
 .s1000:
-09b7 : a5 2d __ LDA P0 
-09b9 : 48 __ __ PHA
-09ba : a5 2e __ LDA P1 
-09bc : 48 __ __ PHA
-09bd : a5 3b __ LDA ACCU + 0 
-09bf : 48 __ __ PHA
-09c0 : a5 3c __ LDA ACCU + 1 
-09c2 : 48 __ __ PHA
-09c3 : a5 47 __ LDA T0 + 0 
-09c5 : 48 __ __ PHA
-09c6 : a5 48 __ LDA $48 
-09c8 : 48 __ __ PHA
-09c9 : a5 49 __ LDA $49 
-09cb : 48 __ __ PHA
-09cc : a5 4a __ LDA $4a 
-09ce : 48 __ __ PHA
-09cf : a5 4b __ LDA $4b 
-09d1 : 48 __ __ PHA
-09d2 : a5 4c __ LDA $4c 
-09d4 : 48 __ __ PHA
-09d5 : a5 4d __ LDA $4d 
-09d7 : 48 __ __ PHA
-09d8 : a5 4e __ LDA $4e 
-09da : 48 __ __ PHA
-09db : a5 4f __ LDA $4f 
-09dd : 48 __ __ PHA
-09de : a5 50 __ LDA $50 
-09e0 : 48 __ __ PHA
+0957 : a5 2d __ LDA P0 
+0959 : 48 __ __ PHA
+095a : a5 2e __ LDA P1 
+095c : 48 __ __ PHA
+095d : a5 3b __ LDA ACCU + 0 
+095f : 48 __ __ PHA
+0960 : a5 3c __ LDA ACCU + 1 
+0962 : 48 __ __ PHA
+0963 : a5 47 __ LDA T0 + 0 
+0965 : 48 __ __ PHA
+0966 : a5 48 __ LDA $48 
+0968 : 48 __ __ PHA
+0969 : a5 49 __ LDA $49 
+096b : 48 __ __ PHA
+096c : a5 4a __ LDA $4a 
+096e : 48 __ __ PHA
+096f : a5 4b __ LDA $4b 
+0971 : 48 __ __ PHA
+0972 : a5 4c __ LDA $4c 
+0974 : 48 __ __ PHA
+0975 : a5 4d __ LDA $4d 
+0977 : 48 __ __ PHA
+0978 : a5 4e __ LDA $4e 
+097a : 48 __ __ PHA
+097b : a5 4f __ LDA $4f 
+097d : 48 __ __ PHA
+097e : a5 50 __ LDA $50 
+0980 : 48 __ __ PHA
 .s0:
-09e1 : ad 9c 10 LDA $109c ; (zsm_playing + 0)
-09e4 : f0 08 __ BEQ $09ee ; (irq.s1001 + 0)
+0981 : ad 58 10 LDA $1058 ; (zsm_playing + 0)
+0984 : f0 08 __ BEQ $098e ; (irq.s1001 + 0)
 .s4:
-09e6 : ad 9d 10 LDA $109d ; (zsm_finished + 0)
-09e9 : d0 03 __ BNE $09ee ; (irq.s1001 + 0)
+0986 : ad 59 10 LDA $1059 ; (zsm_finished + 0)
+0989 : d0 03 __ BNE $098e ; (irq.s1001 + 0)
 .s1:
-09eb : 20 19 0a JSR $0a19 ; (zsm_play.s0 + 0)
+098b : 20 b9 09 JSR $09b9 ; (zsm_play.s0 + 0)
 .s1001:
-09ee : 68 __ __ PLA
-09ef : 85 50 __ STA $50 
-09f1 : 68 __ __ PLA
-09f2 : 85 4f __ STA $4f 
-09f4 : 68 __ __ PLA
-09f5 : 85 4e __ STA $4e 
-09f7 : 68 __ __ PLA
-09f8 : 85 4d __ STA $4d 
-09fa : 68 __ __ PLA
-09fb : 85 4c __ STA $4c 
-09fd : 68 __ __ PLA
-09fe : 85 4b __ STA $4b 
-0a00 : 68 __ __ PLA
-0a01 : 85 4a __ STA $4a 
-0a03 : 68 __ __ PLA
-0a04 : 85 49 __ STA $49 
-0a06 : 68 __ __ PLA
-0a07 : 85 48 __ STA $48 
-0a09 : 68 __ __ PLA
-0a0a : 85 47 __ STA T0 + 0 
-0a0c : 68 __ __ PLA
-0a0d : 85 3c __ STA ACCU + 1 
-0a0f : 68 __ __ PLA
-0a10 : 85 3b __ STA ACCU + 0 
-0a12 : 68 __ __ PLA
-0a13 : 85 2e __ STA P1 
-0a15 : 68 __ __ PLA
-0a16 : 85 2d __ STA P0 
-0a18 : 60 __ __ RTS
+098e : 68 __ __ PLA
+098f : 85 50 __ STA $50 
+0991 : 68 __ __ PLA
+0992 : 85 4f __ STA $4f 
+0994 : 68 __ __ PLA
+0995 : 85 4e __ STA $4e 
+0997 : 68 __ __ PLA
+0998 : 85 4d __ STA $4d 
+099a : 68 __ __ PLA
+099b : 85 4c __ STA $4c 
+099d : 68 __ __ PLA
+099e : 85 4b __ STA $4b 
+09a0 : 68 __ __ PLA
+09a1 : 85 4a __ STA $4a 
+09a3 : 68 __ __ PLA
+09a4 : 85 49 __ STA $49 
+09a6 : 68 __ __ PLA
+09a7 : 85 48 __ STA $48 
+09a9 : 68 __ __ PLA
+09aa : 85 47 __ STA T0 + 0 
+09ac : 68 __ __ PLA
+09ad : 85 3c __ STA ACCU + 1 
+09af : 68 __ __ PLA
+09b0 : 85 3b __ STA ACCU + 0 
+09b2 : 68 __ __ PLA
+09b3 : 85 2e __ STA P1 
+09b5 : 68 __ __ PLA
+09b6 : 85 2d __ STA P0 
+09b8 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_playing:
-109c : __ __ __ BYT 00                                              : .
+1058 : __ __ __ BYT 00                                              : .
 --------------------------------------------------------------------
 zsm_finished:
-109d : __ __ __ BYT 01                                              : .
+1059 : __ __ __ BYT 01                                              : .
 --------------------------------------------------------------------
 zsm_play:
 .s0:
-0a19 : ad e6 5f LDA $5fe6 ; (zsm_delay + 0)
-0a1c : f0 03 __ BEQ $0a21 ; (zsm_play.s2 + 0)
-0a1e : 4c 4e 0b JMP $0b4e ; (zsm_play.s1 + 0)
+09b9 : ad 4d 15 LDA $154d ; (zsm_delay + 0)
+09bc : f0 03 __ BEQ $09c1 ; (zsm_play.s2 + 0)
+09be : 4c ee 0a JMP $0aee ; (zsm_play.s1 + 0)
 .s2:
-0a21 : ad 25 9f LDA $9f25 
-0a24 : 85 47 __ STA T0 + 0 
-0a26 : ad 25 9f LDA $9f25 
-0a29 : 29 fe __ AND #$fe
-0a2b : 8d 25 9f STA $9f25 
-0a2e : ad 20 9f LDA $9f20 
-0a31 : 85 49 __ STA T2 + 0 
-0a33 : ad 21 9f LDA $9f21 
-0a36 : 85 4a __ STA T2 + 1 
-0a38 : ad 22 9f LDA $9f22 
-0a3b : 85 48 __ STA T1 + 0 
+09c1 : ad 25 9f LDA $9f25 
+09c4 : 85 47 __ STA T0 + 0 
+09c6 : ad 25 9f LDA $9f25 
+09c9 : 29 fe __ AND #$fe
+09cb : 8d 25 9f STA $9f25 
+09ce : ad 20 9f LDA $9f20 
+09d1 : 85 49 __ STA T2 + 0 
+09d3 : ad 21 9f LDA $9f21 
+09d6 : 85 4a __ STA T2 + 1 
+09d8 : ad 22 9f LDA $9f22 
+09db : 85 48 __ STA T1 + 0 
 .l5:
-0a3d : ad e7 5f LDA $5fe7 ; (zsm_pos + 0)
-0a40 : 85 4b __ STA T3 + 0 
-0a42 : 18 __ __ CLC
-0a43 : 69 01 __ ADC #$01
-0a45 : 85 4d __ STA T4 + 0 
-0a47 : 8d e7 5f STA $5fe7 ; (zsm_pos + 0)
-0a4a : ad e8 5f LDA $5fe8 ; (zsm_pos + 1)
-0a4d : aa __ __ TAX
-0a4e : 69 00 __ ADC #$00
-0a50 : 85 4e __ STA T4 + 1 
-0a52 : 8d e8 5f STA $5fe8 ; (zsm_pos + 1)
-0a55 : 18 __ __ CLC
-0a56 : a9 2b __ LDA #$2b
-0a58 : 65 4b __ ADC T3 + 0 
-0a5a : 85 3b __ STA ACCU + 0 
-0a5c : 8a __ __ TXA
-0a5d : 29 03 __ AND #$03
-0a5f : 69 60 __ ADC #$60
-0a61 : 85 3c __ STA ACCU + 1 
-0a63 : a0 00 __ LDY #$00
-0a65 : b1 3b __ LDA (ACCU + 0),y 
-0a67 : c9 40 __ CMP #$40
-0a69 : b0 03 __ BCS $0a6e ; (zsm_play.s9 + 0)
-0a6b : 4c 19 0b JMP $0b19 ; (zsm_play.s8 + 0)
+09dd : ad 4e 19 LDA $194e ; (zsm_pos + 0)
+09e0 : 85 4b __ STA T3 + 0 
+09e2 : 18 __ __ CLC
+09e3 : 69 01 __ ADC #$01
+09e5 : 85 4d __ STA T4 + 0 
+09e7 : 8d 4e 19 STA $194e ; (zsm_pos + 0)
+09ea : ad 4f 19 LDA $194f ; (zsm_pos + 1)
+09ed : aa __ __ TAX
+09ee : 69 00 __ ADC #$00
+09f0 : 85 4e __ STA T4 + 1 
+09f2 : 8d 4f 19 STA $194f ; (zsm_pos + 1)
+09f5 : 18 __ __ CLC
+09f6 : a9 4e __ LDA #$4e
+09f8 : 65 4b __ ADC T3 + 0 
+09fa : 85 3b __ STA ACCU + 0 
+09fc : 8a __ __ TXA
+09fd : 29 03 __ AND #$03
+09ff : 69 15 __ ADC #$15
+0a01 : 85 3c __ STA ACCU + 1 
+0a03 : a0 00 __ LDY #$00
+0a05 : b1 3b __ LDA (ACCU + 0),y 
+0a07 : c9 40 __ CMP #$40
+0a09 : b0 03 __ BCS $0a0e ; (zsm_play.s9 + 0)
+0a0b : 4c b9 0a JMP $0ab9 ; (zsm_play.s8 + 0)
 .s9:
-0a6e : d0 22 __ BNE $0a92 ; (zsm_play.s12 + 0)
+0a0e : d0 22 __ BNE $0a32 ; (zsm_play.s12 + 0)
 .s11:
-0a70 : 18 __ __ CLC
-0a71 : a9 2b __ LDA #$2b
-0a73 : 65 4d __ ADC T4 + 0 
-0a75 : 85 4b __ STA T3 + 0 
-0a77 : a5 4e __ LDA T4 + 1 
-0a79 : 29 03 __ AND #$03
-0a7b : 69 60 __ ADC #$60
-0a7d : 85 4c __ STA T3 + 1 
-0a7f : b1 4b __ LDA (T3 + 0),y 
-0a81 : 29 3f __ AND #$3f
-0a83 : 18 __ __ CLC
-0a84 : 65 4d __ ADC T4 + 0 
-0a86 : 8d e7 5f STA $5fe7 ; (zsm_pos + 0)
-0a89 : 98 __ __ TYA
-0a8a : 65 4e __ ADC T4 + 1 
-0a8c : 8d e8 5f STA $5fe8 ; (zsm_pos + 1)
-0a8f : 4c 3d 0a JMP $0a3d ; (zsm_play.l5 + 0)
+0a10 : 18 __ __ CLC
+0a11 : a9 4e __ LDA #$4e
+0a13 : 65 4d __ ADC T4 + 0 
+0a15 : 85 4b __ STA T3 + 0 
+0a17 : a5 4e __ LDA T4 + 1 
+0a19 : 29 03 __ AND #$03
+0a1b : 69 15 __ ADC #$15
+0a1d : 85 4c __ STA T3 + 1 
+0a1f : b1 4b __ LDA (T3 + 0),y 
+0a21 : 29 3f __ AND #$3f
+0a23 : 18 __ __ CLC
+0a24 : 65 4d __ ADC T4 + 0 
+0a26 : 8d 4e 19 STA $194e ; (zsm_pos + 0)
+0a29 : 98 __ __ TYA
+0a2a : 65 4e __ ADC T4 + 1 
+0a2c : 8d 4f 19 STA $194f ; (zsm_pos + 1)
+0a2f : 4c dd 09 JMP $09dd ; (zsm_play.l5 + 0)
 .s12:
-0a92 : 09 00 __ ORA #$00
-0a94 : 30 5b __ BMI $0af1 ; (zsm_play.s15 + 0)
+0a32 : 09 00 __ ORA #$00
+0a34 : 30 5b __ BMI $0a91 ; (zsm_play.s15 + 0)
 .s14:
-0a96 : 29 3f __ AND #$3f
-0a98 : f0 a3 __ BEQ $0a3d ; (zsm_play.l5 + 0)
+0a36 : 29 3f __ AND #$3f
+0a38 : f0 a3 __ BEQ $09dd ; (zsm_play.l5 + 0)
 .s26:
-0a9a : 84 50 __ STY T7 + 0 
-0a9c : 85 4f __ STA T6 + 0 
-0a9e : 18 __ __ CLC
+0a3a : 84 50 __ STY T7 + 0 
+0a3c : 85 4f __ STA T6 + 0 
+0a3e : 18 __ __ CLC
 .l1012:
-0a9f : a9 2b __ LDA #$2b
-0aa1 : 6d e7 5f ADC $5fe7 ; (zsm_pos + 0)
-0aa4 : 85 4d __ STA T4 + 0 
-0aa6 : ad e8 5f LDA $5fe8 ; (zsm_pos + 1)
-0aa9 : 29 03 __ AND #$03
-0aab : 69 60 __ ADC #$60
-0aad : 85 4e __ STA T4 + 1 
-0aaf : a0 00 __ LDY #$00
-0ab1 : b1 4d __ LDA (T4 + 0),y 
-0ab3 : 85 2d __ STA P0 
-0ab5 : ad e7 5f LDA $5fe7 ; (zsm_pos + 0)
-0ab8 : 18 __ __ CLC
-0ab9 : 69 01 __ ADC #$01
-0abb : aa __ __ TAX
-0abc : ad e8 5f LDA $5fe8 ; (zsm_pos + 1)
-0abf : 69 00 __ ADC #$00
-0ac1 : 29 03 __ AND #$03
-0ac3 : 85 4c __ STA T3 + 1 
-0ac5 : 8a __ __ TXA
-0ac6 : 18 __ __ CLC
-0ac7 : 69 2b __ ADC #$2b
-0ac9 : 85 4b __ STA T3 + 0 
-0acb : a9 60 __ LDA #$60
-0acd : 65 4c __ ADC T3 + 1 
-0acf : 85 4c __ STA T3 + 1 
-0ad1 : b1 4b __ LDA (T3 + 0),y 
-0ad3 : 85 2e __ STA P1 
-0ad5 : 20 52 0b JSR $0b52 ; (sfx_put.l1 + 0)
-0ad8 : ad e7 5f LDA $5fe7 ; (zsm_pos + 0)
-0adb : 18 __ __ CLC
-0adc : 69 02 __ ADC #$02
-0ade : 8d e7 5f STA $5fe7 ; (zsm_pos + 0)
-0ae1 : 90 03 __ BCC $0ae6 ; (zsm_play.s1015 + 0)
+0a3f : a9 4e __ LDA #$4e
+0a41 : 6d 4e 19 ADC $194e ; (zsm_pos + 0)
+0a44 : 85 4d __ STA T4 + 0 
+0a46 : ad 4f 19 LDA $194f ; (zsm_pos + 1)
+0a49 : 29 03 __ AND #$03
+0a4b : 69 15 __ ADC #$15
+0a4d : 85 4e __ STA T4 + 1 
+0a4f : a0 00 __ LDY #$00
+0a51 : b1 4d __ LDA (T4 + 0),y 
+0a53 : 85 2d __ STA P0 
+0a55 : ad 4e 19 LDA $194e ; (zsm_pos + 0)
+0a58 : 18 __ __ CLC
+0a59 : 69 01 __ ADC #$01
+0a5b : aa __ __ TAX
+0a5c : ad 4f 19 LDA $194f ; (zsm_pos + 1)
+0a5f : 69 00 __ ADC #$00
+0a61 : 29 03 __ AND #$03
+0a63 : 85 4c __ STA T3 + 1 
+0a65 : 8a __ __ TXA
+0a66 : 18 __ __ CLC
+0a67 : 69 4e __ ADC #$4e
+0a69 : 85 4b __ STA T3 + 0 
+0a6b : a9 15 __ LDA #$15
+0a6d : 65 4c __ ADC T3 + 1 
+0a6f : 85 4c __ STA T3 + 1 
+0a71 : b1 4b __ LDA (T3 + 0),y 
+0a73 : 85 2e __ STA P1 
+0a75 : 20 f2 0a JSR $0af2 ; (sfx_put.l1 + 0)
+0a78 : ad 4e 19 LDA $194e ; (zsm_pos + 0)
+0a7b : 18 __ __ CLC
+0a7c : 69 02 __ ADC #$02
+0a7e : 8d 4e 19 STA $194e ; (zsm_pos + 0)
+0a81 : 90 03 __ BCC $0a86 ; (zsm_play.s1015 + 0)
 .s1014:
-0ae3 : ee e8 5f INC $5fe8 ; (zsm_pos + 1)
+0a83 : ee 4f 19 INC $194f ; (zsm_pos + 1)
 .s1015:
-0ae6 : e6 50 __ INC T7 + 0 
-0ae8 : a5 50 __ LDA T7 + 0 
-0aea : c5 4f __ CMP T6 + 0 
-0aec : 90 b1 __ BCC $0a9f ; (zsm_play.l1012 + 0)
-0aee : 4c 3d 0a JMP $0a3d ; (zsm_play.l5 + 0)
+0a86 : e6 50 __ INC T7 + 0 
+0a88 : a5 50 __ LDA T7 + 0 
+0a8a : c5 4f __ CMP T6 + 0 
+0a8c : 90 b1 __ BCC $0a3f ; (zsm_play.l1012 + 0)
+0a8e : 4c dd 09 JMP $09dd ; (zsm_play.l5 + 0)
 .s15:
-0af1 : c9 80 __ CMP #$80
-0af3 : d0 07 __ BNE $0afc ; (zsm_play.s22 + 0)
+0a91 : c9 80 __ CMP #$80
+0a93 : d0 07 __ BNE $0a9c ; (zsm_play.s22 + 0)
 .s21:
-0af5 : a9 01 __ LDA #$01
-0af7 : 8d 9d 10 STA $109d ; (zsm_finished + 0)
-0afa : d0 08 __ BNE $0b04 ; (zsm_play.s7 + 0)
+0a95 : a9 01 __ LDA #$01
+0a97 : 8d 59 10 STA $1059 ; (zsm_finished + 0)
+0a9a : d0 08 __ BNE $0aa4 ; (zsm_play.s7 + 0)
 .s22:
-0afc : 29 7f __ AND #$7f
-0afe : 38 __ __ SEC
-0aff : e9 01 __ SBC #$01
-0b01 : 8d e6 5f STA $5fe6 ; (zsm_delay + 0)
+0a9c : 29 7f __ AND #$7f
+0a9e : 38 __ __ SEC
+0a9f : e9 01 __ SBC #$01
+0aa1 : 8d 4d 15 STA $154d ; (zsm_delay + 0)
 .s7:
-0b04 : a5 49 __ LDA T2 + 0 
-0b06 : 8d 20 9f STA $9f20 
-0b09 : a5 4a __ LDA T2 + 1 
-0b0b : 8d 21 9f STA $9f21 
-0b0e : a5 48 __ LDA T1 + 0 
-0b10 : 8d 22 9f STA $9f22 
-0b13 : a5 47 __ LDA T0 + 0 
-0b15 : 8d 25 9f STA $9f25 
+0aa4 : a5 49 __ LDA T2 + 0 
+0aa6 : 8d 20 9f STA $9f20 
+0aa9 : a5 4a __ LDA T2 + 1 
+0aab : 8d 21 9f STA $9f21 
+0aae : a5 48 __ LDA T1 + 0 
+0ab0 : 8d 22 9f STA $9f22 
+0ab3 : a5 47 __ LDA T0 + 0 
+0ab5 : 8d 25 9f STA $9f25 
 .s1001:
-0b18 : 60 __ __ RTS
+0ab8 : 60 __ __ RTS
 .s8:
-0b19 : 29 3f __ AND #$3f
-0b1b : 09 c0 __ ORA #$c0
-0b1d : 8d 20 9f STA $9f20 
-0b20 : a9 f9 __ LDA #$f9
-0b22 : 8d 21 9f STA $9f21 
-0b25 : a9 01 __ LDA #$01
-0b27 : 8d 22 9f STA $9f22 
-0b2a : a5 4b __ LDA T3 + 0 
-0b2c : 69 02 __ ADC #$02
-0b2e : 8d e7 5f STA $5fe7 ; (zsm_pos + 0)
-0b31 : 90 01 __ BCC $0b34 ; (zsm_play.s1017 + 0)
+0ab9 : 29 3f __ AND #$3f
+0abb : 09 c0 __ ORA #$c0
+0abd : 8d 20 9f STA $9f20 
+0ac0 : a9 f9 __ LDA #$f9
+0ac2 : 8d 21 9f STA $9f21 
+0ac5 : a9 01 __ LDA #$01
+0ac7 : 8d 22 9f STA $9f22 
+0aca : a5 4b __ LDA T3 + 0 
+0acc : 69 02 __ ADC #$02
+0ace : 8d 4e 19 STA $194e ; (zsm_pos + 0)
+0ad1 : 90 01 __ BCC $0ad4 ; (zsm_play.s1017 + 0)
 .s1016:
-0b33 : e8 __ __ INX
+0ad3 : e8 __ __ INX
 .s1017:
-0b34 : 8e e8 5f STX $5fe8 ; (zsm_pos + 1)
-0b37 : 18 __ __ CLC
-0b38 : a9 2b __ LDA #$2b
-0b3a : 65 4d __ ADC T4 + 0 
-0b3c : 85 4b __ STA T3 + 0 
-0b3e : a5 4e __ LDA T4 + 1 
-0b40 : 29 03 __ AND #$03
-0b42 : 69 60 __ ADC #$60
-0b44 : 85 4c __ STA T3 + 1 
-0b46 : b1 4b __ LDA (T3 + 0),y 
-0b48 : 8d 23 9f STA $9f23 
-0b4b : 4c 3d 0a JMP $0a3d ; (zsm_play.l5 + 0)
+0ad4 : 8e 4f 19 STX $194f ; (zsm_pos + 1)
+0ad7 : 18 __ __ CLC
+0ad8 : a9 4e __ LDA #$4e
+0ada : 65 4d __ ADC T4 + 0 
+0adc : 85 4b __ STA T3 + 0 
+0ade : a5 4e __ LDA T4 + 1 
+0ae0 : 29 03 __ AND #$03
+0ae2 : 69 15 __ ADC #$15
+0ae4 : 85 4c __ STA T3 + 1 
+0ae6 : b1 4b __ LDA (T3 + 0),y 
+0ae8 : 8d 23 9f STA $9f23 
+0aeb : 4c dd 09 JMP $09dd ; (zsm_play.l5 + 0)
 .s1:
-0b4e : ce e6 5f DEC $5fe6 ; (zsm_delay + 0)
-0b51 : 60 __ __ RTS
+0aee : ce 4d 15 DEC $154d ; (zsm_delay + 0)
+0af1 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_delay:
-5fe6 : __ __ __ BSS	1
+154d : __ __ __ BSS	1
 --------------------------------------------------------------------
 zsm_buffer:
-602b : __ __ __ BSS	1024
+154e : __ __ __ BSS	1024
 --------------------------------------------------------------------
 zsm_pos:
-5fe7 : __ __ __ BSS	2
+194e : __ __ __ BSS	2
 --------------------------------------------------------------------
 sfx_put:
 .l1:
-0b52 : ad 41 9f LDA $9f41 
-0b55 : 30 fb __ BMI $0b52 ; (sfx_put.l1 + 0)
+0af2 : ad 41 9f LDA $9f41 
+0af5 : 30 fb __ BMI $0af2 ; (sfx_put.l1 + 0)
 .s3:
-0b57 : a5 2d __ LDA P0 ; (index + 0)
-0b59 : 8d 40 9f STA $9f40 
-0b5c : ea __ __ NOP
-0b5d : ea __ __ NOP
-0b5e : ea __ __ NOP
-0b5f : ea __ __ NOP
-0b60 : a5 2e __ LDA P1 ; (data + 0)
-0b62 : 8d 41 9f STA $9f41 
+0af7 : a5 2d __ LDA P0 ; (index + 0)
+0af9 : 8d 40 9f STA $9f40 
+0afc : ea __ __ NOP
+0afd : ea __ __ NOP
+0afe : ea __ __ NOP
+0aff : ea __ __ NOP
+0b00 : a5 2e __ LDA P1 ; (data + 0)
+0b02 : 8d 41 9f STA $9f41 
 .s1001:
-0b65 : 60 __ __ RTS
+0b05 : 60 __ __ RTS
 --------------------------------------------------------------------
 ClearVERAScreen:
 .s0:
-0b66 : a9 93 __ LDA #$93
-0b68 : 85 2d __ STA P0 
-0b6a : a9 00 __ LDA #$00
-0b6c : 85 2e __ STA P1 
-0b6e : 20 a3 0b JSR $0ba3 ; (putch.s0 + 0)
-0b71 : a9 11 __ LDA #$11
-0b73 : 8d 22 9f STA $9f22 
-0b76 : a2 00 __ LDX #$00
+0b06 : a9 93 __ LDA #$93
+0b08 : 85 2d __ STA P0 
+0b0a : a9 00 __ LDA #$00
+0b0c : 85 2e __ STA P1 
+0b0e : 20 43 0b JSR $0b43 ; (putch.s0 + 0)
+0b11 : a9 11 __ LDA #$11
+0b13 : 8d 22 9f STA $9f22 
+0b16 : a2 00 __ LDX #$00
 .l2:
-0b78 : 8a __ __ TXA
-0b79 : 18 __ __ CLC
-0b7a : 69 b0 __ ADC #$b0
-0b7c : 8d 21 9f STA $9f21 
-0b7f : a9 00 __ LDA #$00
-0b81 : 8d 20 9f STA $9f20 
-0b84 : a0 50 __ LDY #$50
+0b18 : 8a __ __ TXA
+0b19 : 18 __ __ CLC
+0b1a : 69 b0 __ ADC #$b0
+0b1c : 8d 21 9f STA $9f21 
+0b1f : a9 00 __ LDA #$00
+0b21 : 8d 20 9f STA $9f20 
+0b24 : a0 50 __ LDY #$50
 .l1003:
-0b86 : a9 20 __ LDA #$20
-0b88 : 8d 23 9f STA $9f23 
-0b8b : a9 01 __ LDA #$01
-0b8d : 8d 23 9f STA $9f23 
-0b90 : a9 20 __ LDA #$20
-0b92 : 8d 24 9f STA $9f24 
-0b95 : a9 01 __ LDA #$01
-0b97 : 8d 24 9f STA $9f24 
-0b9a : 88 __ __ DEY
-0b9b : d0 e9 __ BNE $0b86 ; (ClearVERAScreen.l1003 + 0)
+0b26 : a9 20 __ LDA #$20
+0b28 : 8d 23 9f STA $9f23 
+0b2b : a9 01 __ LDA #$01
+0b2d : 8d 23 9f STA $9f23 
+0b30 : a9 20 __ LDA #$20
+0b32 : 8d 24 9f STA $9f24 
+0b35 : a9 01 __ LDA #$01
+0b37 : 8d 24 9f STA $9f24 
+0b3a : 88 __ __ DEY
+0b3b : d0 e9 __ BNE $0b26 ; (ClearVERAScreen.l1003 + 0)
 .s1004:
-0b9d : e8 __ __ INX
-0b9e : e0 3c __ CPX #$3c
-0ba0 : 90 d6 __ BCC $0b78 ; (ClearVERAScreen.l2 + 0)
+0b3d : e8 __ __ INX
+0b3e : e0 3c __ CPX #$3c
+0b40 : 90 d6 __ BCC $0b18 ; (ClearVERAScreen.l2 + 0)
 .s1001:
-0ba2 : 60 __ __ RTS
+0b42 : 60 __ __ RTS
 --------------------------------------------------------------------
 putch:
 .s0:
-0ba3 : a5 2d __ LDA P0 
-0ba5 : 20 d2 ff JSR $ffd2 
+0b43 : a5 2d __ LDA P0 
+0b45 : 20 d2 ff JSR $ffd2 
 .s1001:
-0ba8 : 60 __ __ RTS
---------------------------------------------------------------------
-vram_fill:
-.s0:
-0ba9 : ad 25 9f LDA $9f25 
-0bac : 29 fe __ AND #$fe
-0bae : 8d 25 9f STA $9f25 
-0bb1 : a5 2d __ LDA P0 ; (addr + 0)
-0bb3 : 8d 20 9f STA $9f20 
-0bb6 : a5 2e __ LDA P1 ; (addr + 1)
-0bb8 : 8d 21 9f STA $9f21 
-0bbb : a5 2f __ LDA P2 ; (addr + 2)
-0bbd : 29 01 __ AND #$01
-0bbf : 09 10 __ ORA #$10
-0bc1 : 8d 22 9f STA $9f22 
-0bc4 : a5 32 __ LDA P5 ; (size + 0)
-0bc6 : 05 33 __ ORA P6 ; (size + 1)
-0bc8 : f0 13 __ BEQ $0bdd ; (vram_fill.s1001 + 0)
-.s1006:
-0bca : a4 32 __ LDY P5 ; (size + 0)
-0bcc : a6 33 __ LDX P6 ; (size + 1)
-.l3:
-0bce : a5 31 __ LDA P4 ; (data + 0)
-0bd0 : 8d 23 9f STA $9f23 
-0bd3 : 98 __ __ TYA
-0bd4 : d0 01 __ BNE $0bd7 ; (vram_fill.s1003 + 0)
-.s1002:
-0bd6 : ca __ __ DEX
-.s1003:
-0bd7 : 88 __ __ DEY
-0bd8 : d0 f4 __ BNE $0bce ; (vram_fill.l3 + 0)
-.s1004:
-0bda : 8a __ __ TXA
-0bdb : d0 f1 __ BNE $0bce ; (vram_fill.l3 + 0)
-.s1001:
-0bdd : 60 __ __ RTS
---------------------------------------------------------------------
-vram_putn:
-.s0:
-0bde : ad 25 9f LDA $9f25 
-0be1 : 29 fe __ AND #$fe
-0be3 : 8d 25 9f STA $9f25 
-0be6 : a5 2d __ LDA P0 ; (addr + 0)
-0be8 : 8d 20 9f STA $9f20 
-0beb : a5 2e __ LDA P1 ; (addr + 1)
-0bed : 8d 21 9f STA $9f21 
-0bf0 : a5 2f __ LDA P2 ; (addr + 2)
-0bf2 : 29 01 __ AND #$01
-0bf4 : 09 10 __ ORA #$10
-0bf6 : 8d 22 9f STA $9f22 
-0bf9 : a5 33 __ LDA P6 ; (size + 0)
-0bfb : 05 34 __ ORA P7 ; (size + 1)
-0bfd : f0 19 __ BEQ $0c18 ; (vram_putn.s1001 + 0)
-.s6:
-0bff : a0 00 __ LDY #$00
-0c01 : a6 33 __ LDX P6 ; (size + 0)
-0c03 : f0 02 __ BEQ $0c07 ; (vram_putn.l1002 + 0)
-.s1005:
-0c05 : e6 34 __ INC P7 ; (size + 1)
-.l1002:
-0c07 : b1 31 __ LDA (P4),y ; (data + 0)
-0c09 : 8d 23 9f STA $9f23 
-0c0c : c8 __ __ INY
-0c0d : d0 02 __ BNE $0c11 ; (vram_putn.s1009 + 0)
-.s1008:
-0c0f : e6 32 __ INC P5 ; (data + 1)
-.s1009:
-0c11 : ca __ __ DEX
-0c12 : d0 f3 __ BNE $0c07 ; (vram_putn.l1002 + 0)
-.s1004:
-0c14 : c6 34 __ DEC P7 ; (size + 1)
-0c16 : d0 ef __ BNE $0c07 ; (vram_putn.l1002 + 0)
-.s1001:
-0c18 : 60 __ __ RTS
---------------------------------------------------------------------
-MainBG:
-109e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-10ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-10be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-10ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-10de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-10ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-10fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-110e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-111e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-112e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-113e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-114e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-115e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-116e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-117e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-118e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-119e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-11ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-11be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-11ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-11de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-11ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-11fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-120e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-121e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-122e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-123e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-124e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-125e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-126e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-127e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-128e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-129e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-12ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-12be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-12ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-12de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-12ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-12fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-130e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-131e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-132e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-133e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-134e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-135e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-136e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-137e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-138e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-139e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-13ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-13be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-13ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-13de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-13ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-13fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-140e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-141e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-142e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-143e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-144e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-145e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-146e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-147e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-148e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-149e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-14ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-14be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-14ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-14de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-14ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-14fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-150e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-151e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-152e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-153e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-154e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-155e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-156e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-157e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-158e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-159e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-15ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-15be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-15ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-15de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-15ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-15fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-160e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-161e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-162e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-163e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-164e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-165e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-166e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-167e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-168e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-169e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-16ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-16be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-16ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-16de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-16ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-16fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-170e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-171e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-172e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-173e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-174e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-175e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-176e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-177e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-178e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-179e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-17ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-17be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-17ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-17de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-17ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-17fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-180e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-181e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-182e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-183e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-184e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-185e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-186e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-187e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-188e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-189e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-18ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-18be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-18ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-18de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-18ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-18fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-190e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-191e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-192e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-193e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-194e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-195e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-196e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-197e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-198e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-199e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-19ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-19be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-19ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-19de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-19ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-19fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1a0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1a1e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-1a2e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-1a3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1a4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1a5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1a6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1a7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1a8e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1a9e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1aae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1abe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1ace : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1ade : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1aee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1afe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1b0e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-1b1e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-1b2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1b3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1b4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1b5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1b6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1b7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1b8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1b9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1bae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1bbe : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-1bce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-1bde : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-1bee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-1bfe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-1c0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1c9e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-1cae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-1cbe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1cce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1cde : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1cee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1cfe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d0e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d1e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d2e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1d8e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-1d9e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-1dae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1dbe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1dce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1dde : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1dee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1dfe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1e0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1e1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1e2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1e3e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-1e4e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-1e5e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-1e6e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-1e7e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-1e8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1e9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1eae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1ebe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1ece : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1ede : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1eee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1efe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1f0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-1f1e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-1f2e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-1f3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1f4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1f5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1f6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1f7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1f8e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1f9e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1fae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1fbe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1fce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1fde : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1fee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-1ffe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-200e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-201e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-202e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-203e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-204e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-205e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-206e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-207e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-208e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-209e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-20ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-20be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-20ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-20de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-20ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-20fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-210e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-211e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-212e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-213e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-214e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-215e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-216e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-217e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-218e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-219e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-21ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-21be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-21ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-21de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-21ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-21fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-220e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-221e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-222e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-223e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-224e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-225e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-226e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-227e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-228e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-229e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-22ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-22be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-22ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-22de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-22ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-22fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-230e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-231e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-232e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-233e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-234e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-235e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-236e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-237e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-238e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-239e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-23ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-23be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-23ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-23de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-23ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-23fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-240e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-241e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-242e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-243e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-244e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-245e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-246e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-247e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-248e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-249e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-24ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-24be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-24ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-24de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-24ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-24fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-250e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-251e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-252e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-253e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-254e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-255e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-256e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-257e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-258e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-259e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-25ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-25be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-25ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-25de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-25ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-25fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-260e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-261e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-262e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-263e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-264e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-265e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-266e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-267e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-268e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-269e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-26ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-26be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-26ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-26de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-26ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-26fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-270e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-271e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-272e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-273e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-274e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-275e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-276e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-277e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-278e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-279e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-27ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-27be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-27ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-27de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-27ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-27fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-280e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-281e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-282e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-283e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-284e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-285e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-286e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-287e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-288e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-289e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-28ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-28be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-28ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-28de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-28ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-28fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-290e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-291e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-292e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-293e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-294e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-295e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-296e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-297e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-298e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-299e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-29ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-29be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-29ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-29de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-29ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-29fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2a0e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-2a1e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-2a2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2a3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2a4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2a5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2a6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2a7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2a8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2a9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2aae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2abe : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-2ace : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-2ade : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-2aee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-2afe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-2b0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2b9e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-2bae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-2bbe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2bce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2bde : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2bee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2bfe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c0e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c1e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c2e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2c8e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-2c9e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-2cae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2cbe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2cce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2cde : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2cee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2cfe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2d0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2d1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2d2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2d3e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-2d4e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-2d5e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-2d6e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-2d7e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-2d8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2d9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2dae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2dbe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2dce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2dde : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2dee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2dfe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2e0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2e1e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-2e2e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-2e3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2e4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2e5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2e6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2e7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2e8e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2e9e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2eae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2ebe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2ece : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2ede : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2eee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2efe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-2f0e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-2f1e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-2f2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2f3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2f4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2f5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2f6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2f7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2f8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2f9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2fae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-2fbe : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-2fce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-2fde : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-2fee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-2ffe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-300e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-301e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-302e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-303e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-304e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-305e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-306e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-307e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-308e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-309e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-30ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-30be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-30ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-30de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-30ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-30fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-310e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-311e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-312e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-313e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-314e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-315e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-316e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-317e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-318e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-319e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-31ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-31be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-31ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-31de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-31ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-31fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-320e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-321e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-322e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-323e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-324e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-325e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-326e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-327e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-328e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-329e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-32ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-32be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-32ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-32de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-32ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-32fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-330e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-331e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-332e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-333e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-334e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-335e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-336e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-337e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-338e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-339e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-33ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-33be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-33ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-33de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-33ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-33fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-340e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-341e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-342e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-343e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-344e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-345e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-346e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-347e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-348e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-349e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-34ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-34be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-34ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-34de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-34ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-34fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-350e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-351e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-352e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-353e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-354e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-355e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-356e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-357e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-358e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-359e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-35ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-35be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-35ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-35de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-35ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-35fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-360e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-361e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-362e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-363e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-364e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-365e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-366e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-367e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-368e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-369e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-36ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-36be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-36ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-36de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-36ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-36fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-370e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-371e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-372e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-373e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-374e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-375e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-376e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-377e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-378e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-379e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-37ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-37be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-37ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-37de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-37ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-37fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-380e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-381e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-382e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-383e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-384e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-385e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-386e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-387e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-388e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-389e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-38ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-38be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-38ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-38de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-38ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-38fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-390e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-391e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-392e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-393e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-394e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-395e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-396e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-397e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-398e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-399e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-39ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-39be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-39ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-39de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-39ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-39fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-3a0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3a9e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-3aae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-3abe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3ace : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3ade : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3aee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3afe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b0e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b1e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b2e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3b8e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-3b9e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-3bae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3bbe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3bce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3bde : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3bee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3bfe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3c0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3c1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3c2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3c3e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-3c4e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-3c5e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-3c6e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-3c7e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-3c8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3c9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3cae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3cbe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3cce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3cde : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3cee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3cfe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3d0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3d1e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-3d2e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-3d3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3d4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3d5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3d6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3d7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3d8e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3d9e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3dae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3dbe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3dce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3dde : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3dee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3dfe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3e0e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-3e1e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-3e2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3e3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3e4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3e5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3e6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3e7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3e8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3e9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3eae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3ebe : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-3ece : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-3ede : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-3eee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-3efe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-3f0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-3f9e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-3fae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-3fbe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3fce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3fde : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3fee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-3ffe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-400e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-401e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-402e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-403e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-404e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-405e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-406e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-407e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-408e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-409e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-40ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-40be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-40ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-40de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-40ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-40fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-410e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-411e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-412e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-413e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-414e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-415e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-416e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-417e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-418e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-419e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-41ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-41be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-41ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-41de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-41ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-41fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-420e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-421e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-422e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-423e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-424e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-425e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-426e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-427e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-428e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-429e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-42ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-42be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-42ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-42de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-42ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-42fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-430e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-431e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-432e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-433e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-434e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-435e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-436e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-437e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-438e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-439e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-43ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-43be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-43ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-43de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-43ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-43fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-440e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-441e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-442e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-443e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-444e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-445e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-446e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-447e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-448e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-449e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-44ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-44be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-44ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-44de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-44ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-44fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-450e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-451e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-452e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-453e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-454e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-455e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-456e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-457e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-458e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-459e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-45ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-45be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-45ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-45de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-45ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-45fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-460e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-461e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-462e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-463e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-464e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-465e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-466e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-467e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-468e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-469e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-46ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-46be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-46ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-46de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-46ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-46fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-470e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-471e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-472e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-473e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-474e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-475e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-476e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-477e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-478e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-479e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-47ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-47be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-47ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-47de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-47ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-47fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-480e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-481e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-482e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-483e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-484e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-485e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-486e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-487e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-488e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-489e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-48ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-48be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-48ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-48de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-48ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-48fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-490e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-491e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-492e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-493e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-494e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-495e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-496e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-497e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-498e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-499e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-49ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-49be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-49ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-49de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-49ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-49fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a0e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a1e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a2e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4a8e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-4a9e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-4aae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4abe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4ace : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4ade : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4aee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4afe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4b0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4b1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4b2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4b3e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-4b4e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-4b5e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-4b6e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-4b7e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-4b8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4b9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4bae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4bbe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4bce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4bde : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4bee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4bfe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4c0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4c1e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-4c2e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-4c3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4c4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4c5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4c6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4c7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4c8e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4c9e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4cae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4cbe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4cce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4cde : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4cee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4cfe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4d0e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-4d1e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-4d2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4d3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4d4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4d5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4d6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4d7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4d8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4d9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4dae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4dbe : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-4dce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-4dde : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-4dee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-4dfe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-4e0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e3e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e4e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e5e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e6e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e7e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4e9e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-4eae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-4ebe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4ece : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4ede : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4eee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4efe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f0e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f1e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f2e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-4f8e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-4f9e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-4fae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4fbe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4fce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4fde : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4fee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-4ffe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-500e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-501e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-502e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-503e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-504e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-505e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-506e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-507e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-508e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-509e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-50ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-50be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-50ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-50de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-50ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-50fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-510e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-511e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-512e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-513e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-514e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-515e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-516e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-517e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-518e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-519e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-51ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-51be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-51ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-51de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-51ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-51fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-520e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-521e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-522e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-523e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-524e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-525e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-526e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-527e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-528e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-529e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-52ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-52be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-52ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-52de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-52ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-52fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-530e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-531e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-532e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-533e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-534e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-535e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-536e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-537e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-538e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-539e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-53ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-53be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-53ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-53de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-53ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-53fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-540e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-541e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-542e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-543e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-544e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-545e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-546e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-547e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-548e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-549e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-54ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-54be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-54ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-54de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-54ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-54fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-550e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-551e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-552e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-553e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-554e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-555e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-556e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-557e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-558e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-559e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-55ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-55be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-55ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-55de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-55ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-55fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-560e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-561e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-562e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-563e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-564e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-565e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-566e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-567e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-568e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-569e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-56ae : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-56be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-56ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-56de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-56ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-56fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-570e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-571e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-572e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-573e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-574e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-575e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-576e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-577e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-578e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-579e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-57ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-57be : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-57ce : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-57de : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-57ee : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-57fe : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-580e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-581e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-582e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-583e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-584e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-585e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-586e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-587e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-588e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-589e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-58ae : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-58be : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-58ce : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-58de : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-58ee : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-58fe : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-590e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-591e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-592e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-593e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-594e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-595e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-596e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-597e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-598e : __ __ __ BYT 00 00 00 05 00 05 00 05 00 05 00 05 00 05 00 05 : ................
-599e : __ __ __ BYT 00 05 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-59ae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-59be : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-59ce : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-59de : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-59ee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-59fe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5a0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5a1e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5a2e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5a3e : __ __ __ BYT 55 55 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa 6a aa : UUj.j.j.j.j.j.j.
-5a4e : __ __ __ BYT 6a aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : j...............
-5a5e : __ __ __ BYT aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa : ................
-5a6e : __ __ __ BYT aa aa aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 aa a9 : ................
-5a7e : __ __ __ BYT aa a9 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
-5a8e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5a9e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5aae : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5abe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5ace : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5ade : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5aee : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5afe : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5b0e : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5b1e : __ __ __ BYT 55 55 50 00 50 00 50 00 50 00 50 00 50 00 50 00 : UUP.P.P.P.P.P.P.
-5b2e : __ __ __ BYT 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : P...............
-5b3e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5b4e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5b5e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5b6e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5b7e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5b8e : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5b9e : __ __ __ BYT 00 00                                           : ..
---------------------------------------------------------------------
-SetPaletteColours:
-.s0:
-0c19 : ad fc 9e LDA $9efc ; (sstack + 0)
-0c1c : 85 2d __ STA P0 
-0c1e : ad fd 9e LDA $9efd ; (sstack + 1)
-0c21 : 85 2e __ STA P1 
-0c23 : ad fe 9e LDA $9efe ; (sstack + 2)
-0c26 : 85 2f __ STA P2 
-0c28 : ad ff 9e LDA $9eff ; (sstack + 3)
-0c2b : 85 30 __ STA P3 
-0c2d : a5 35 __ LDA P8 ; (input + 0)
-0c2f : 85 31 __ STA P4 
-0c31 : a5 36 __ LDA P9 ; (input + 1)
-0c33 : 85 32 __ STA P5 
-0c35 : a5 37 __ LDA P10 ; (inputsize + 0)
-0c37 : 85 33 __ STA P6 
-0c39 : a9 00 __ LDA #$00
-0c3b : 85 34 __ STA P7 
-0c3d : 4c de 0b JMP $0bde ; (vram_putn.s0 + 0)
---------------------------------------------------------------------
-BGPal:
-5ba0 : __ __ __ BYT 00 00 88 02 44 0c 11 ee aa 0a 88 08 66 06 44 04 : ....D.......f.D.
-5bb0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+0b48 : 60 __ __ RTS
 --------------------------------------------------------------------
 SetUpSprites:
 .s0:
-0c40 : a9 00 __ LDA #$00
-0c42 : 85 2d __ STA P0 
-0c44 : 85 30 __ STA P3 
-0c46 : 85 33 __ STA P6 
-0c48 : a9 32 __ LDA #$32
-0c4a : 85 2e __ STA P1 
-0c4c : a9 01 __ LDA #$01
-0c4e : 85 2f __ STA P2 
-0c50 : a9 02 __ LDA #$02
-0c52 : 85 34 __ STA P7 
-0c54 : ad 25 9f LDA $9f25 
-0c57 : 29 fd __ AND #$fd
-0c59 : 8d 25 9f STA $9f25 
-0c5c : ad 29 9f LDA $9f29 
-0c5f : 09 40 __ ORA #$40
-0c61 : 8d 29 9f STA $9f29 
-0c64 : a9 c0 __ LDA #$c0
-0c66 : 85 31 __ STA P4 
-0c68 : a9 5b __ LDA #$5b
-0c6a : 85 32 __ STA P5 
-0c6c : 20 de 0b JSR $0bde ; (vram_putn.s0 + 0)
-0c6f : a9 30 __ LDA #$30
-0c71 : 85 2e __ STA P1 
-0c73 : a9 02 __ LDA #$02
-0c75 : 85 34 __ STA P7 
-0c77 : a9 c0 __ LDA #$c0
-0c79 : 85 31 __ STA P4 
-0c7b : a9 5d __ LDA #$5d
-0c7d : 85 32 __ STA P5 
-0c7f : 20 de 0b JSR $0bde ; (vram_putn.s0 + 0)
-0c82 : a9 17 __ LDA #$17
-0c84 : 85 2d __ STA P0 
-0c86 : a9 80 __ LDA #$80
-0c88 : 85 2e __ STA P1 
-0c8a : a9 09 __ LDA #$09
-0c8c : 85 2f __ STA P2 
-0c8e : a9 02 __ LDA #$02
-0c90 : 85 31 __ STA P4 
-0c92 : 85 32 __ STA P5 
-0c94 : a9 03 __ LDA #$03
-0c96 : 85 33 __ STA P6 
-0c98 : a9 01 __ LDA #$01
-0c9a : 85 34 __ STA P7 
-0c9c : 20 4c 0d JSR $0d4c ; (vera_spr_set.s0 + 0)
-0c9f : a9 1a __ LDA #$1a
-0ca1 : 85 2e __ STA P1 
-0ca3 : a9 01 __ LDA #$01
-0ca5 : 85 2f __ STA P2 
-0ca7 : 85 31 __ STA P4 
-0ca9 : a9 b8 __ LDA #$b8
-0cab : 85 30 __ STA P3 
-0cad : 20 a9 0d JSR $0da9 ; (vera_spr_move.s0 + 0)
-0cb0 : a9 00 __ LDA #$00
-0cb2 : 85 49 __ STA T3 + 0 
-0cb4 : 85 4a __ STA T3 + 1 
-.l2:
-0cb6 : 85 2d __ STA P0 
-0cb8 : 18 __ __ CLC
-0cb9 : 69 02 __ ADC #$02
-0cbb : 85 47 __ STA T2 + 0 
-0cbd : a9 00 __ LDA #$00
-0cbf : 2a __ __ ROL
-0cc0 : 85 48 __ STA T2 + 1 
-0cc2 : a9 90 __ LDA #$90
-0cc4 : 85 2e __ STA P1 
-0cc6 : a9 09 __ LDA #$09
-0cc8 : 85 2f __ STA P2 
-0cca : a9 00 __ LDA #$00
-0ccc : 85 30 __ STA P3 
-0cce : a9 03 __ LDA #$03
-0cd0 : 85 31 __ STA P4 
-0cd2 : a9 01 __ LDA #$01
-0cd4 : 85 32 __ STA P5 
-0cd6 : 20 4c 0d JSR $0d4c ; (vera_spr_set.s0 + 0)
-0cd9 : a5 49 __ LDA T3 + 0 
-0cdb : 85 2e __ STA P1 
-0cdd : a5 4a __ LDA T3 + 1 
-0cdf : 85 2f __ STA P2 
-0ce1 : a9 a0 __ LDA #$a0
-0ce3 : 85 30 __ STA P3 
-0ce5 : a9 01 __ LDA #$01
-0ce7 : 85 31 __ STA P4 
-0ce9 : 20 a9 0d JSR $0da9 ; (vera_spr_move.s0 + 0)
-0cec : a9 90 __ LDA #$90
-0cee : 85 2e __ STA P1 
-0cf0 : a9 09 __ LDA #$09
-0cf2 : 85 2f __ STA P2 
-0cf4 : a9 00 __ LDA #$00
-0cf6 : 85 30 __ STA P3 
-0cf8 : a9 03 __ LDA #$03
-0cfa : 85 31 __ STA P4 
-0cfc : e6 2d __ INC P0 
-0cfe : 20 4c 0d JSR $0d4c ; (vera_spr_set.s0 + 0)
-0d01 : a5 49 __ LDA T3 + 0 
-0d03 : 85 2e __ STA P1 
-0d05 : a5 4a __ LDA T3 + 1 
-0d07 : 85 2f __ STA P2 
-0d09 : a9 70 __ LDA #$70
-0d0b : 85 30 __ STA P3 
-0d0d : a9 01 __ LDA #$01
-0d0f : 85 31 __ STA P4 
-0d11 : 20 a9 0d JSR $0da9 ; (vera_spr_move.s0 + 0)
-0d14 : a5 48 __ LDA T2 + 1 
-0d16 : d0 13 __ BNE $0d2b ; (SetUpSprites.s4 + 0)
+0b49 : a9 00 __ LDA #$00
+0b4b : 85 2d __ STA P0 
+0b4d : 85 2e __ STA P1 
+0b4f : 85 2f __ STA P2 
+0b51 : 85 30 __ STA P3 
+0b53 : 85 34 __ STA P7 
+0b55 : a9 82 __ LDA #$82
+0b57 : 85 33 __ STA P6 
+0b59 : ad 25 9f LDA $9f25 
+0b5c : 29 fd __ AND #$fd
+0b5e : 8d 25 9f STA $9f25 
+0b61 : ad 29 9f LDA $9f29 
+0b64 : 09 70 __ ORA #$70
+0b66 : 8d 29 9f STA $9f29 
+0b69 : a9 80 __ LDA #$80
+0b6b : 8d 2b 9f STA $9f2b 
+0b6e : 8d 2a 9f STA $9f2a 
+0b71 : a9 11 __ LDA #$11
+0b73 : 8d 2d 9f STA $9f2d 
+0b76 : a9 00 __ LDA #$00
+0b78 : 8d 2f 9f STA $9f2f 
+0b7b : 8d 2e 9f STA $9f2e 
+0b7e : a9 5a __ LDA #$5a
+0b80 : 85 31 __ STA P4 
+0b82 : a9 10 __ LDA #$10
+0b84 : 85 32 __ STA P5 
+0b86 : 20 a6 0c JSR $0ca6 ; (vram_putn.s0 + 0)
+0b89 : a9 20 __ LDA #$20
+0b8b : 85 37 __ STA P10 
+0b8d : 8d fc 9e STA $9efc ; (sstack + 0)
+0b90 : a9 fb __ LDA #$fb
+0b92 : 8d fd 9e STA $9efd ; (sstack + 1)
+0b95 : a9 01 __ LDA #$01
+0b97 : 8d fe 9e STA $9efe ; (sstack + 2)
+0b9a : a9 00 __ LDA #$00
+0b9c : 8d ff 9e STA $9eff ; (sstack + 3)
+0b9f : a9 dc __ LDA #$dc
+0ba1 : 85 35 __ STA P8 
+0ba3 : a9 10 __ LDA #$10
+0ba5 : 85 36 __ STA P9 
+0ba7 : 20 e1 0c JSR $0ce1 ; (SetPaletteColours.s0 + 0)
+0baa : a9 00 __ LDA #$00
+0bac : 85 2d __ STA P0 
+0bae : 85 30 __ STA P3 
+0bb0 : 85 33 __ STA P6 
+0bb2 : a9 32 __ LDA #$32
+0bb4 : 85 2e __ STA P1 
+0bb6 : a9 01 __ LDA #$01
+0bb8 : 85 2f __ STA P2 
+0bba : a9 02 __ LDA #$02
+0bbc : 85 34 __ STA P7 
+0bbe : a9 fc __ LDA #$fc
+0bc0 : 85 31 __ STA P4 
+0bc2 : a9 10 __ LDA #$10
+0bc4 : 85 32 __ STA P5 
+0bc6 : 20 a6 0c JSR $0ca6 ; (vram_putn.s0 + 0)
+0bc9 : a9 30 __ LDA #$30
+0bcb : 85 2e __ STA P1 
+0bcd : a9 02 __ LDA #$02
+0bcf : 85 34 __ STA P7 
+0bd1 : a9 fc __ LDA #$fc
+0bd3 : 85 31 __ STA P4 
+0bd5 : a9 12 __ LDA #$12
+0bd7 : 85 32 __ STA P5 
+0bd9 : 20 a6 0c JSR $0ca6 ; (vram_putn.s0 + 0)
+0bdc : a9 17 __ LDA #$17
+0bde : 85 2d __ STA P0 
+0be0 : a9 80 __ LDA #$80
+0be2 : 85 2e __ STA P1 
+0be4 : a9 09 __ LDA #$09
+0be6 : 85 2f __ STA P2 
+0be8 : a9 02 __ LDA #$02
+0bea : 85 31 __ STA P4 
+0bec : 85 32 __ STA P5 
+0bee : a9 03 __ LDA #$03
+0bf0 : 85 33 __ STA P6 
+0bf2 : a9 01 __ LDA #$01
+0bf4 : 85 34 __ STA P7 
+0bf6 : 20 08 0d JSR $0d08 ; (vera_spr_set.s0 + 0)
+0bf9 : a9 1a __ LDA #$1a
+0bfb : 85 2e __ STA P1 
+0bfd : a9 01 __ LDA #$01
+0bff : 85 2f __ STA P2 
+0c01 : 85 31 __ STA P4 
+0c03 : a9 b8 __ LDA #$b8
+0c05 : 85 30 __ STA P3 
+0c07 : 20 65 0d JSR $0d65 ; (vera_spr_move.s0 + 0)
+0c0a : a9 00 __ LDA #$00
+0c0c : 85 49 __ STA T4 + 0 
+0c0e : 85 4a __ STA T4 + 1 
+.l10:
+0c10 : 85 2d __ STA P0 
+0c12 : 18 __ __ CLC
+0c13 : 69 02 __ ADC #$02
+0c15 : 85 47 __ STA T3 + 0 
+0c17 : a9 00 __ LDA #$00
+0c19 : 2a __ __ ROL
+0c1a : 85 48 __ STA T3 + 1 
+0c1c : a9 90 __ LDA #$90
+0c1e : 85 2e __ STA P1 
+0c20 : a9 09 __ LDA #$09
+0c22 : 85 2f __ STA P2 
+0c24 : a9 00 __ LDA #$00
+0c26 : 85 30 __ STA P3 
+0c28 : a9 03 __ LDA #$03
+0c2a : 85 31 __ STA P4 
+0c2c : a9 01 __ LDA #$01
+0c2e : 85 32 __ STA P5 
+0c30 : 20 08 0d JSR $0d08 ; (vera_spr_set.s0 + 0)
+0c33 : a5 49 __ LDA T4 + 0 
+0c35 : 85 2e __ STA P1 
+0c37 : a5 4a __ LDA T4 + 1 
+0c39 : 85 2f __ STA P2 
+0c3b : a9 a0 __ LDA #$a0
+0c3d : 85 30 __ STA P3 
+0c3f : a9 01 __ LDA #$01
+0c41 : 85 31 __ STA P4 
+0c43 : 20 65 0d JSR $0d65 ; (vera_spr_move.s0 + 0)
+0c46 : a9 90 __ LDA #$90
+0c48 : 85 2e __ STA P1 
+0c4a : a9 09 __ LDA #$09
+0c4c : 85 2f __ STA P2 
+0c4e : a9 00 __ LDA #$00
+0c50 : 85 30 __ STA P3 
+0c52 : a9 03 __ LDA #$03
+0c54 : 85 31 __ STA P4 
+0c56 : e6 2d __ INC P0 
+0c58 : 20 08 0d JSR $0d08 ; (vera_spr_set.s0 + 0)
+0c5b : a5 49 __ LDA T4 + 0 
+0c5d : 85 2e __ STA P1 
+0c5f : a5 4a __ LDA T4 + 1 
+0c61 : 85 2f __ STA P2 
+0c63 : a9 70 __ LDA #$70
+0c65 : 85 30 __ STA P3 
+0c67 : a9 01 __ LDA #$01
+0c69 : 85 31 __ STA P4 
+0c6b : 20 65 0d JSR $0d65 ; (vera_spr_move.s0 + 0)
+0c6e : a5 48 __ LDA T3 + 1 
+0c70 : d0 13 __ BNE $0c85 ; (SetUpSprites.s12 + 0)
 .s1004:
-0d18 : 18 __ __ CLC
-0d19 : a5 2e __ LDA P1 
-0d1b : 69 40 __ ADC #$40
-0d1d : 85 49 __ STA T3 + 0 
-0d1f : a5 2f __ LDA P2 
-0d21 : 69 00 __ ADC #$00
-0d23 : 85 4a __ STA T3 + 1 
-0d25 : a5 47 __ LDA T2 + 0 
-0d27 : c9 16 __ CMP #$16
-0d29 : 90 8b __ BCC $0cb6 ; (SetUpSprites.l2 + 0)
-.s4:
-0d2b : a9 20 __ LDA #$20
-0d2d : 85 37 __ STA P10 
-0d2f : 8d fc 9e STA $9efc ; (sstack + 0)
-0d32 : a9 fa __ LDA #$fa
-0d34 : 8d fd 9e STA $9efd ; (sstack + 1)
-0d37 : a9 01 __ LDA #$01
-0d39 : 8d fe 9e STA $9efe ; (sstack + 2)
-0d3c : a9 00 __ LDA #$00
-0d3e : 8d ff 9e STA $9eff ; (sstack + 3)
-0d41 : a9 c0 __ LDA #$c0
-0d43 : 85 35 __ STA P8 
-0d45 : a9 5f __ LDA #$5f
-0d47 : 85 36 __ STA P9 
-0d49 : 4c 19 0c JMP $0c19 ; (SetPaletteColours.s0 + 0)
+0c72 : 18 __ __ CLC
+0c73 : a5 2e __ LDA P1 
+0c75 : 69 40 __ ADC #$40
+0c77 : 85 49 __ STA T4 + 0 
+0c79 : a5 2f __ LDA P2 
+0c7b : 69 00 __ ADC #$00
+0c7d : 85 4a __ STA T4 + 1 
+0c7f : a5 47 __ LDA T3 + 0 
+0c81 : c9 16 __ CMP #$16
+0c83 : 90 8b __ BCC $0c10 ; (SetUpSprites.l10 + 0)
+.s12:
+0c85 : a9 20 __ LDA #$20
+0c87 : 85 37 __ STA P10 
+0c89 : 8d fc 9e STA $9efc ; (sstack + 0)
+0c8c : a9 fa __ LDA #$fa
+0c8e : 8d fd 9e STA $9efd ; (sstack + 1)
+0c91 : a9 01 __ LDA #$01
+0c93 : 8d fe 9e STA $9efe ; (sstack + 2)
+0c96 : a9 00 __ LDA #$00
+0c98 : 8d ff 9e STA $9eff ; (sstack + 3)
+0c9b : a9 00 __ LDA #$00
+0c9d : 85 35 __ STA P8 
+0c9f : a9 15 __ LDA #$15
+0ca1 : 85 36 __ STA P9 
+0ca3 : 4c e1 0c JMP $0ce1 ; (SetPaletteColours.s0 + 0)
+--------------------------------------------------------------------
+vram_putn:
+.s0:
+0ca6 : ad 25 9f LDA $9f25 
+0ca9 : 29 fe __ AND #$fe
+0cab : 8d 25 9f STA $9f25 
+0cae : a5 2d __ LDA P0 ; (addr + 0)
+0cb0 : 8d 20 9f STA $9f20 
+0cb3 : a5 2e __ LDA P1 ; (addr + 1)
+0cb5 : 8d 21 9f STA $9f21 
+0cb8 : a5 2f __ LDA P2 ; (addr + 2)
+0cba : 29 01 __ AND #$01
+0cbc : 09 10 __ ORA #$10
+0cbe : 8d 22 9f STA $9f22 
+0cc1 : a5 33 __ LDA P6 ; (size + 0)
+0cc3 : 05 34 __ ORA P7 ; (size + 1)
+0cc5 : f0 19 __ BEQ $0ce0 ; (vram_putn.s1001 + 0)
+.s6:
+0cc7 : a0 00 __ LDY #$00
+0cc9 : a6 33 __ LDX P6 ; (size + 0)
+0ccb : f0 02 __ BEQ $0ccf ; (vram_putn.l1002 + 0)
+.s1005:
+0ccd : e6 34 __ INC P7 ; (size + 1)
+.l1002:
+0ccf : b1 31 __ LDA (P4),y ; (data + 0)
+0cd1 : 8d 23 9f STA $9f23 
+0cd4 : c8 __ __ INY
+0cd5 : d0 02 __ BNE $0cd9 ; (vram_putn.s1009 + 0)
+.s1008:
+0cd7 : e6 32 __ INC P5 ; (data + 1)
+.s1009:
+0cd9 : ca __ __ DEX
+0cda : d0 f3 __ BNE $0ccf ; (vram_putn.l1002 + 0)
+.s1004:
+0cdc : c6 34 __ DEC P7 ; (size + 1)
+0cde : d0 ef __ BNE $0ccf ; (vram_putn.l1002 + 0)
+.s1001:
+0ce0 : 60 __ __ RTS
+--------------------------------------------------------------------
+MainBG:
+105a : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+106a : __ __ __ BYT 00 00 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : ..UUUUUUUUUUUUUU
+107a : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
+108a : __ __ __ BYT 55 55 aa aa aa aa aa aa aa aa aa aa aa aa aa aa : UU..............
+109a : __ __ __ BYT aa aa 00 00 00 0c 03 00 00 00 30 00 00 00 00 30 : ..........0....0
+10aa : __ __ __ BYT 00 00 55 55 75 75 55 55 55 55 55 55 75 55 55 5d : ..UUuuUUUUUUuUU]
+10ba : __ __ __ BYT 55 55 d5 55 55 55 55 75 55 55 55 55 55 55 5d 75 : UU.UUUUuUUUUUU]u
+10ca : __ __ __ BYT 55 55 aa aa ba aa aa aa aa ba aa aa aa aa ba aa : UU..............
+10da : __ __ __ BYT aa ae                                           : ..
+--------------------------------------------------------------------
+SetPaletteColours:
+.s0:
+0ce1 : ad fc 9e LDA $9efc ; (sstack + 0)
+0ce4 : 85 2d __ STA P0 
+0ce6 : ad fd 9e LDA $9efd ; (sstack + 1)
+0ce9 : 85 2e __ STA P1 
+0ceb : ad fe 9e LDA $9efe ; (sstack + 2)
+0cee : 85 2f __ STA P2 
+0cf0 : ad ff 9e LDA $9eff ; (sstack + 3)
+0cf3 : 85 30 __ STA P3 
+0cf5 : a5 35 __ LDA P8 ; (input + 0)
+0cf7 : 85 31 __ STA P4 
+0cf9 : a5 36 __ LDA P9 ; (input + 1)
+0cfb : 85 32 __ STA P5 
+0cfd : a5 37 __ LDA P10 ; (inputsize + 0)
+0cff : 85 33 __ STA P6 
+0d01 : a9 00 __ LDA #$00
+0d03 : 85 34 __ STA P7 
+0d05 : 4c a6 0c JMP $0ca6 ; (vram_putn.s0 + 0)
+--------------------------------------------------------------------
+BGPal:
+10dc : __ __ __ BYT 00 00 88 02 44 0c 11 ee aa 0a 88 08 66 06 44 04 : ....D.......f.D.
+10ec : __ __ __ BYT 00 00 ff 0f ee 0f ff ee aa 0a 88 08 66 06 44 04 : ............f.D.
 --------------------------------------------------------------------
 ScrollerOutline:
-5bc0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5bd0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5be0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5bf0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5c00 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c10 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c20 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c30 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c40 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c50 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c60 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c70 : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
-5c80 : __ __ __ BYT 22 22 23 22 22 22 22 22 22 22 22 22 22 22 22 22 : ""#"""""""""""""
-5c90 : __ __ __ BYT 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 : """"""""""""""""
-5ca0 : __ __ __ BYT 22 22 34 32 22 22 22 22 22 22 22 22 22 22 22 22 : ""42""""""""""""
-5cb0 : __ __ __ BYT 22 22 22 22 22 22 22 22 23 22 22 22 22 22 22 22 : """"""""#"""""""
-5cc0 : __ __ __ BYT 22 23 45 43 22 22 22 22 22 22 22 22 22 22 22 22 : "#EC""""""""""""
-5cd0 : __ __ __ BYT 22 22 22 22 22 22 22 22 34 32 22 22 22 22 22 22 : """"""""42""""""
-5ce0 : __ __ __ BYT 22 23 45 43 22 22 22 22 22 22 22 22 22 22 22 22 : "#EC""""""""""""
-5cf0 : __ __ __ BYT 22 22 22 22 22 22 22 23 45 43 22 22 22 22 22 22 : """""""#EC""""""
-5d00 : __ __ __ BYT 33 33 34 33 33 33 33 33 33 33 33 33 33 33 33 33 : 3343333333333333
-5d10 : __ __ __ BYT 33 33 33 33 33 33 33 33 45 43 33 33 33 33 33 33 : 33333333EC333333
-5d20 : __ __ __ BYT 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 : 3333333333333333
-5d30 : __ __ __ BYT 33 33 33 33 33 33 33 33 34 33 33 33 33 33 33 33 : 3333333343333333
-5d40 : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
-5d50 : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
-5d60 : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
-5d70 : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
-5d80 : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5d90 : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
-5da0 : __ __ __ BYT 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 : ffffffffffffffff
-5db0 : __ __ __ BYT 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 : ffffffffffffffff
+10fc : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+110c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+111c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+112c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+113c : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+114c : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+115c : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+116c : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+117c : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+118c : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+119c : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+11ac : __ __ __ BYT 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 : ................
+11bc : __ __ __ BYT 22 22 23 22 22 22 22 22 22 22 22 22 22 22 22 22 : ""#"""""""""""""
+11cc : __ __ __ BYT 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 22 : """"""""""""""""
+11dc : __ __ __ BYT 22 22 34 32 22 22 22 22 22 22 22 22 22 22 22 22 : ""42""""""""""""
+11ec : __ __ __ BYT 22 22 22 22 22 22 22 22 23 22 22 22 22 22 22 22 : """"""""#"""""""
+11fc : __ __ __ BYT 22 23 45 43 22 22 22 22 22 22 22 22 22 22 22 22 : "#EC""""""""""""
+120c : __ __ __ BYT 22 22 22 22 22 22 22 22 34 32 22 22 22 22 22 22 : """"""""42""""""
+121c : __ __ __ BYT 22 23 45 43 22 22 22 22 22 22 22 22 22 22 22 22 : "#EC""""""""""""
+122c : __ __ __ BYT 22 22 22 22 22 22 22 23 45 43 22 22 22 22 22 22 : """""""#EC""""""
+123c : __ __ __ BYT 33 33 34 33 33 33 33 33 33 33 33 33 33 33 33 33 : 3343333333333333
+124c : __ __ __ BYT 33 33 33 33 33 33 33 33 45 43 33 33 33 33 33 33 : 33333333EC333333
+125c : __ __ __ BYT 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 : 3333333333333333
+126c : __ __ __ BYT 33 33 33 33 33 33 33 33 34 33 33 33 33 33 33 33 : 3333333343333333
+127c : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
+128c : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
+129c : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
+12ac : __ __ __ BYT 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 : DDDDDDDDDDDDDDDD
+12bc : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
+12cc : __ __ __ BYT 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 : UUUUUUUUUUUUUUUU
+12dc : __ __ __ BYT 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 : ffffffffffffffff
+12ec : __ __ __ BYT 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66 : ffffffffffffffff
 --------------------------------------------------------------------
 Pause:
-5dc0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5dd0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5de0 : __ __ __ BYT 00 11 11 00 00 12 21 00 00 12 21 00 00 10 01 00 : ......!...!.....
-5df0 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5e00 : __ __ __ BYT 00 11 11 00 00 12 21 00 00 12 21 00 00 10 01 00 : ......!...!.....
-5e10 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5e20 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5e30 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5e40 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5e50 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5e60 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5e70 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5e80 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5e90 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5ea0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5eb0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5ec0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5ed0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5ee0 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5ef0 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5f00 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5f10 : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
-5f20 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5f30 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5f40 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5f50 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5f60 : __ __ __ BYT 00 11 11 00 00 22 22 00 00 22 22 00 00 00 00 00 : ....."".."".....
-5f70 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5f80 : __ __ __ BYT 00 11 11 00 00 22 22 00 00 22 22 00 00 00 00 00 : ....."".."".....
-5f90 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5fa0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
-5fb0 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+12fc : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+130c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+131c : __ __ __ BYT 00 11 11 00 00 12 21 00 00 12 21 00 00 10 01 00 : ......!...!.....
+132c : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+133c : __ __ __ BYT 00 11 11 00 00 12 21 00 00 12 21 00 00 10 01 00 : ......!...!.....
+134c : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+135c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+136c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+137c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+138c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+139c : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+13ac : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+13bc : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+13cc : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+13dc : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+13ec : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+13fc : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+140c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+141c : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+142c : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+143c : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+144c : __ __ __ BYT 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 : ................
+145c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+146c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+147c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+148c : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+149c : __ __ __ BYT 00 11 11 00 00 22 22 00 00 22 22 00 00 00 00 00 : ....."".."".....
+14ac : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+14bc : __ __ __ BYT 00 11 11 00 00 22 22 00 00 22 22 00 00 00 00 00 : ....."".."".....
+14cc : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+14dc : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+14ec : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
 --------------------------------------------------------------------
 vera_spr_set:
 .s0:
-0d4c : ad 25 9f LDA $9f25 
-0d4f : 29 fe __ AND #$fe
-0d51 : 8d 25 9f STA $9f25 
-0d54 : a5 2d __ LDA P0 ; (spr + 0)
-0d56 : 0a __ __ ASL
-0d57 : 0a __ __ ASL
-0d58 : 85 3b __ STA ACCU + 0 
-0d5a : a9 3f __ LDA #$3f
-0d5c : 2a __ __ ROL
-0d5d : 06 3b __ ASL ACCU + 0 
-0d5f : 2a __ __ ROL
-0d60 : 8d 21 9f STA $9f21 
-0d63 : a5 3b __ LDA ACCU + 0 
-0d65 : 8d 20 9f STA $9f20 
-0d68 : a9 11 __ LDA #$11
-0d6a : 8d 22 9f STA $9f22 
-0d6d : a5 30 __ LDA P3 ; (mode8 + 0)
-0d6f : f0 02 __ BEQ $0d73 ; (vera_spr_set.s11 + 0)
+0d08 : ad 25 9f LDA $9f25 
+0d0b : 29 fe __ AND #$fe
+0d0d : 8d 25 9f STA $9f25 
+0d10 : a5 2d __ LDA P0 ; (spr + 0)
+0d12 : 0a __ __ ASL
+0d13 : 0a __ __ ASL
+0d14 : 85 3b __ STA ACCU + 0 
+0d16 : a9 3f __ LDA #$3f
+0d18 : 2a __ __ ROL
+0d19 : 06 3b __ ASL ACCU + 0 
+0d1b : 2a __ __ ROL
+0d1c : 8d 21 9f STA $9f21 
+0d1f : a5 3b __ LDA ACCU + 0 
+0d21 : 8d 20 9f STA $9f20 
+0d24 : a9 11 __ LDA #$11
+0d26 : 8d 22 9f STA $9f22 
+0d29 : a5 30 __ LDA P3 ; (mode8 + 0)
+0d2b : f0 02 __ BEQ $0d2f ; (vera_spr_set.s11 + 0)
 .s9:
-0d71 : a9 80 __ LDA #$80
+0d2d : a9 80 __ LDA #$80
 .s11:
-0d73 : 05 2f __ ORA P2 ; (addr32 + 1)
-0d75 : a6 2e __ LDX P1 ; (addr32 + 0)
-0d77 : 8e 23 9f STX $9f23 
-0d7a : 8d 23 9f STA $9f23 
-0d7d : a9 00 __ LDA #$00
-0d7f : 8d 23 9f STA $9f23 
-0d82 : 8d 23 9f STA $9f23 
-0d85 : 8d 23 9f STA $9f23 
-0d88 : 8d 23 9f STA $9f23 
-0d8b : a5 33 __ LDA P6 ; (z + 0)
-0d8d : 0a __ __ ASL
-0d8e : 0a __ __ ASL
-0d8f : 8d 23 9f STA $9f23 
-0d92 : a5 32 __ LDA P5 ; (h + 0)
-0d94 : 4a __ __ LSR
-0d95 : 6a __ __ ROR
-0d96 : 29 80 __ AND #$80
-0d98 : 6a __ __ ROR
-0d99 : 85 3b __ STA ACCU + 0 
-0d9b : a5 31 __ LDA P4 ; (w + 0)
-0d9d : 0a __ __ ASL
-0d9e : 0a __ __ ASL
-0d9f : 0a __ __ ASL
-0da0 : 0a __ __ ASL
-0da1 : 05 3b __ ORA ACCU + 0 
-0da3 : 05 34 __ ORA P7 ; (pal + 0)
-0da5 : 8d 23 9f STA $9f23 
+0d2f : 05 2f __ ORA P2 ; (addr32 + 1)
+0d31 : a6 2e __ LDX P1 ; (addr32 + 0)
+0d33 : 8e 23 9f STX $9f23 
+0d36 : 8d 23 9f STA $9f23 
+0d39 : a9 00 __ LDA #$00
+0d3b : 8d 23 9f STA $9f23 
+0d3e : 8d 23 9f STA $9f23 
+0d41 : 8d 23 9f STA $9f23 
+0d44 : 8d 23 9f STA $9f23 
+0d47 : a5 33 __ LDA P6 ; (z + 0)
+0d49 : 0a __ __ ASL
+0d4a : 0a __ __ ASL
+0d4b : 8d 23 9f STA $9f23 
+0d4e : a5 32 __ LDA P5 ; (h + 0)
+0d50 : 4a __ __ LSR
+0d51 : 6a __ __ ROR
+0d52 : 29 80 __ AND #$80
+0d54 : 6a __ __ ROR
+0d55 : 85 3b __ STA ACCU + 0 
+0d57 : a5 31 __ LDA P4 ; (w + 0)
+0d59 : 0a __ __ ASL
+0d5a : 0a __ __ ASL
+0d5b : 0a __ __ ASL
+0d5c : 0a __ __ ASL
+0d5d : 05 3b __ ORA ACCU + 0 
+0d5f : 05 34 __ ORA P7 ; (pal + 0)
+0d61 : 8d 23 9f STA $9f23 
 .s1001:
-0da8 : 60 __ __ RTS
+0d64 : 60 __ __ RTS
 --------------------------------------------------------------------
 vera_spr_move:
 .s0:
-0da9 : ad 25 9f LDA $9f25 
-0dac : 29 fe __ AND #$fe
-0dae : 8d 25 9f STA $9f25 
-0db1 : a5 2d __ LDA P0 ; (spr + 0)
-0db3 : 0a __ __ ASL
-0db4 : 0a __ __ ASL
-0db5 : 85 3b __ STA ACCU + 0 
-0db7 : a9 3f __ LDA #$3f
-0db9 : 2a __ __ ROL
-0dba : 06 3b __ ASL ACCU + 0 
-0dbc : 2a __ __ ROL
-0dbd : aa __ __ TAX
-0dbe : a5 3b __ LDA ACCU + 0 
-0dc0 : 09 02 __ ORA #$02
-0dc2 : 8d 20 9f STA $9f20 
-0dc5 : 8e 21 9f STX $9f21 
-0dc8 : a9 11 __ LDA #$11
-0dca : 8d 22 9f STA $9f22 
-0dcd : a5 2e __ LDA P1 ; (x + 0)
-0dcf : 8d 23 9f STA $9f23 
-0dd2 : a5 2f __ LDA P2 ; (x + 1)
-0dd4 : 8d 23 9f STA $9f23 
-0dd7 : a5 30 __ LDA P3 ; (y + 0)
-0dd9 : 8d 23 9f STA $9f23 
-0ddc : a5 31 __ LDA P4 ; (y + 1)
-0dde : 8d 23 9f STA $9f23 
+0d65 : ad 25 9f LDA $9f25 
+0d68 : 29 fe __ AND #$fe
+0d6a : 8d 25 9f STA $9f25 
+0d6d : a5 2d __ LDA P0 ; (spr + 0)
+0d6f : 0a __ __ ASL
+0d70 : 0a __ __ ASL
+0d71 : 85 3b __ STA ACCU + 0 
+0d73 : a9 3f __ LDA #$3f
+0d75 : 2a __ __ ROL
+0d76 : 06 3b __ ASL ACCU + 0 
+0d78 : 2a __ __ ROL
+0d79 : aa __ __ TAX
+0d7a : a5 3b __ LDA ACCU + 0 
+0d7c : 09 02 __ ORA #$02
+0d7e : 8d 20 9f STA $9f20 
+0d81 : 8e 21 9f STX $9f21 
+0d84 : a9 11 __ LDA #$11
+0d86 : 8d 22 9f STA $9f22 
+0d89 : a5 2e __ LDA P1 ; (x + 0)
+0d8b : 8d 23 9f STA $9f23 
+0d8e : a5 2f __ LDA P2 ; (x + 1)
+0d90 : 8d 23 9f STA $9f23 
+0d93 : a5 30 __ LDA P3 ; (y + 0)
+0d95 : 8d 23 9f STA $9f23 
+0d98 : a5 31 __ LDA P4 ; (y + 1)
+0d9a : 8d 23 9f STA $9f23 
 .s1001:
-0de1 : 60 __ __ RTS
+0d9d : 60 __ __ RTS
 --------------------------------------------------------------------
 palette:
-5fc0 : __ __ __ BYT 00 00 ff 0f ee 0f ff ee aa 0a 88 08 66 06 44 04 : ............f.D.
-5fd0 : __ __ __ BYT 00 00 ff 0f ee 0f ff ee aa 0a 88 08 66 06 44 04 : ............f.D.
+1500 : __ __ __ BYT 00 00 ff 0f ee 0f ff ee aa 0a 88 08 66 06 44 04 : ............f.D.
+1510 : __ __ __ BYT 00 00 ff 0f ee 0f ff ee aa 0a 88 08 66 06 44 04 : ............f.D.
 --------------------------------------------------------------------
 zsm_check:
 .s0:
-0de2 : ad 9d 10 LDA $109d ; (zsm_finished + 0)
+0d9e : ad 59 10 LDA $1059 ; (zsm_finished + 0)
 .s1001:
-0de5 : 60 __ __ RTS
+0da1 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_init:
 .s0:
-0de6 : a9 01 __ LDA #$01
-0de8 : 8d 9d 10 STA $109d ; (zsm_finished + 0)
-0deb : ad e0 5f LDA $5fe0 ; (zsm_reading + 0)
-0dee : f0 0a __ BEQ $0dfa ; (zsm_init.s3 + 0)
+0da2 : a9 01 __ LDA #$01
+0da4 : 8d 59 10 STA $1059 ; (zsm_finished + 0)
+0da7 : ad fc 14 LDA $14fc ; (zsm_reading + 0)
+0daa : f0 0a __ BEQ $0db6 ; (zsm_init.s3 + 0)
 .s1:
-0df0 : a9 02 __ LDA #$02
-0df2 : 20 3f 0e JSR $0e3f ; (krnio_close.s1000 + 0)
-0df5 : a9 00 __ LDA #$00
-0df7 : 8d e0 5f STA $5fe0 ; (zsm_reading + 0)
+0dac : a9 02 __ LDA #$02
+0dae : 20 fb 0d JSR $0dfb ; (krnio_close.s1000 + 0)
+0db1 : a9 00 __ LDA #$00
+0db3 : 8d fc 14 STA $14fc ; (zsm_reading + 0)
 .s3:
-0dfa : 8d e7 5f STA $5fe7 ; (zsm_pos + 0)
-0dfd : 8d e8 5f STA $5fe8 ; (zsm_pos + 1)
-0e00 : 8d e9 5f STA $5fe9 ; (zsm_wpos + 0)
-0e03 : 8d ea 5f STA $5fea ; (zsm_wpos + 1)
-0e06 : 8d e6 5f STA $5fe6 ; (zsm_delay + 0)
-0e09 : a5 30 __ LDA P3 ; (fname + 0)
-0e0b : 85 2d __ STA P0 
-0e0d : a5 31 __ LDA P4 ; (fname + 1)
-0e0f : 85 2e __ STA P1 
-0e11 : 20 47 0e JSR $0e47 ; (krnio_setnam.s0 + 0)
-0e14 : a9 02 __ LDA #$02
-0e16 : 85 2d __ STA P0 
-0e18 : 85 2f __ STA P2 
-0e1a : a9 08 __ LDA #$08
-0e1c : 85 2e __ STA P1 
-0e1e : 20 5d 0e JSR $0e5d ; (krnio_open.s0 + 0)
-0e21 : a5 3b __ LDA ACCU + 0 
-0e23 : f0 19 __ BEQ $0e3e ; (zsm_init.s1001 + 0)
+0db6 : 8d 4e 19 STA $194e ; (zsm_pos + 0)
+0db9 : 8d 4f 19 STA $194f ; (zsm_pos + 1)
+0dbc : 8d 50 19 STA $1950 ; (zsm_wpos + 0)
+0dbf : 8d 51 19 STA $1951 ; (zsm_wpos + 1)
+0dc2 : 8d 4d 15 STA $154d ; (zsm_delay + 0)
+0dc5 : a5 30 __ LDA P3 ; (fname + 0)
+0dc7 : 85 2d __ STA P0 
+0dc9 : a5 31 __ LDA P4 ; (fname + 1)
+0dcb : 85 2e __ STA P1 
+0dcd : 20 03 0e JSR $0e03 ; (krnio_setnam.s0 + 0)
+0dd0 : a9 02 __ LDA #$02
+0dd2 : 85 2d __ STA P0 
+0dd4 : 85 2f __ STA P2 
+0dd6 : a9 08 __ LDA #$08
+0dd8 : 85 2e __ STA P1 
+0dda : 20 19 0e JSR $0e19 ; (krnio_open.s0 + 0)
+0ddd : a5 3b __ LDA ACCU + 0 
+0ddf : f0 19 __ BEQ $0dfa ; (zsm_init.s1001 + 0)
 .s4:
-0e25 : a9 01 __ LDA #$01
-0e27 : 8d e0 5f STA $5fe0 ; (zsm_reading + 0)
-0e2a : 20 85 0e JSR $0e85 ; (zsm_fill.s0 + 0)
-0e2d : a9 10 __ LDA #$10
-0e2f : 8d e7 5f STA $5fe7 ; (zsm_pos + 0)
-0e32 : a9 00 __ LDA #$00
-0e34 : 8d e8 5f STA $5fe8 ; (zsm_pos + 1)
-0e37 : 8d 9d 10 STA $109d ; (zsm_finished + 0)
-0e3a : a9 01 __ LDA #$01
-0e3c : 85 3b __ STA ACCU + 0 
+0de1 : a9 01 __ LDA #$01
+0de3 : 8d fc 14 STA $14fc ; (zsm_reading + 0)
+0de6 : 20 41 0e JSR $0e41 ; (zsm_fill.s0 + 0)
+0de9 : a9 10 __ LDA #$10
+0deb : 8d 4e 19 STA $194e ; (zsm_pos + 0)
+0dee : a9 00 __ LDA #$00
+0df0 : 8d 4f 19 STA $194f ; (zsm_pos + 1)
+0df3 : 8d 59 10 STA $1059 ; (zsm_finished + 0)
+0df6 : a9 01 __ LDA #$01
+0df8 : 85 3b __ STA ACCU + 0 
 .s1001:
-0e3e : 60 __ __ RTS
+0dfa : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_reading:
-5fe0 : __ __ __ BYT 00                                              : .
+14fc : __ __ __ BYT 00                                              : .
 --------------------------------------------------------------------
 krnio_close:
 .s1000:
-0e3f : 85 2d __ STA P0 
+0dfb : 85 2d __ STA P0 
 .s0:
-0e41 : a5 2d __ LDA P0 
-0e43 : 20 c3 ff JSR $ffc3 
+0dfd : a5 2d __ LDA P0 
+0dff : 20 c3 ff JSR $ffc3 
 .s1001:
-0e46 : 60 __ __ RTS
+0e02 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_wpos:
-5fe9 : __ __ __ BSS	2
+1950 : __ __ __ BSS	2
 --------------------------------------------------------------------
 krnio_setnam:
 .s0:
-0e47 : a5 2d __ LDA P0 
-0e49 : 05 2e __ ORA P1 
-0e4b : f0 08 __ BEQ $0e55 ; (krnio_setnam.s0 + 14)
-0e4d : a0 ff __ LDY #$ff
-0e4f : c8 __ __ INY
-0e50 : b1 2d __ LDA (P0),y 
-0e52 : d0 fb __ BNE $0e4f ; (krnio_setnam.s0 + 8)
-0e54 : 98 __ __ TYA
-0e55 : a6 2d __ LDX P0 
-0e57 : a4 2e __ LDY P1 
-0e59 : 20 bd ff JSR $ffbd 
+0e03 : a5 2d __ LDA P0 
+0e05 : 05 2e __ ORA P1 
+0e07 : f0 08 __ BEQ $0e11 ; (krnio_setnam.s0 + 14)
+0e09 : a0 ff __ LDY #$ff
+0e0b : c8 __ __ INY
+0e0c : b1 2d __ LDA (P0),y 
+0e0e : d0 fb __ BNE $0e0b ; (krnio_setnam.s0 + 8)
+0e10 : 98 __ __ TYA
+0e11 : a6 2d __ LDX P0 
+0e13 : a4 2e __ LDY P1 
+0e15 : 20 bd ff JSR $ffbd 
 .s1001:
-0e5c : 60 __ __ RTS
+0e18 : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_open:
 .s0:
-0e5d : a9 00 __ LDA #$00
-0e5f : a6 2d __ LDX P0 ; (fnum + 0)
-0e61 : 9d eb 5f STA $5feb,x ; (krnio_pstatus + 0)
-0e64 : a9 00 __ LDA #$00
-0e66 : 85 3b __ STA ACCU + 0 
-0e68 : 85 3c __ STA ACCU + 1 
-0e6a : a5 2d __ LDA P0 ; (fnum + 0)
-0e6c : a6 2e __ LDX P1 
-0e6e : a4 2f __ LDY P2 
-0e70 : 20 ba ff JSR $ffba 
-0e73 : 20 c0 ff JSR $ffc0 
-0e76 : 90 08 __ BCC $0e80 ; (krnio_open.s0 + 35)
-0e78 : a5 2d __ LDA P0 ; (fnum + 0)
-0e7a : 20 c3 ff JSR $ffc3 
-0e7d : 4c 84 0e JMP $0e84 ; (krnio_open.s1001 + 0)
-0e80 : a9 01 __ LDA #$01
-0e82 : 85 3b __ STA ACCU + 0 
+0e19 : a9 00 __ LDA #$00
+0e1b : a6 2d __ LDX P0 ; (fnum + 0)
+0e1d : 9d 52 19 STA $1952,x ; (krnio_pstatus + 0)
+0e20 : a9 00 __ LDA #$00
+0e22 : 85 3b __ STA ACCU + 0 
+0e24 : 85 3c __ STA ACCU + 1 
+0e26 : a5 2d __ LDA P0 ; (fnum + 0)
+0e28 : a6 2e __ LDX P1 
+0e2a : a4 2f __ LDY P2 
+0e2c : 20 ba ff JSR $ffba 
+0e2f : 20 c0 ff JSR $ffc0 
+0e32 : 90 08 __ BCC $0e3c ; (krnio_open.s0 + 35)
+0e34 : a5 2d __ LDA P0 ; (fnum + 0)
+0e36 : 20 c3 ff JSR $ffc3 
+0e39 : 4c 40 0e JMP $0e40 ; (krnio_open.s1001 + 0)
+0e3c : a9 01 __ LDA #$01
+0e3e : 85 3b __ STA ACCU + 0 
 .s1001:
-0e84 : 60 __ __ RTS
+0e40 : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_pstatus:
-5feb : __ __ __ BSS	16
+1952 : __ __ __ BSS	16
 --------------------------------------------------------------------
 zsm_fill:
 .s0:
-0e85 : ad e0 5f LDA $5fe0 ; (zsm_reading + 0)
-0e88 : f0 20 __ BEQ $0eaa ; (zsm_fill.s1 + 0)
+0e41 : ad fc 14 LDA $14fc ; (zsm_reading + 0)
+0e44 : f0 20 __ BEQ $0e66 ; (zsm_fill.s1 + 0)
 .s2:
-0e8a : ad e8 5f LDA $5fe8 ; (zsm_pos + 1)
-0e8d : 18 __ __ CLC
-0e8e : 69 04 __ ADC #$04
-0e90 : cd ea 5f CMP $5fea ; (zsm_wpos + 1)
-0e93 : d0 0c __ BNE $0ea1 ; (zsm_fill.s6 + 0)
+0e46 : ad 4f 19 LDA $194f ; (zsm_pos + 1)
+0e49 : 18 __ __ CLC
+0e4a : 69 04 __ ADC #$04
+0e4c : cd 51 19 CMP $1951 ; (zsm_wpos + 1)
+0e4f : d0 0c __ BNE $0e5d ; (zsm_fill.s6 + 0)
 .s1006:
-0e95 : ad e9 5f LDA $5fe9 ; (zsm_wpos + 0)
-0e98 : cd e7 5f CMP $5fe7 ; (zsm_pos + 0)
-0e9b : d0 04 __ BNE $0ea1 ; (zsm_fill.s6 + 0)
+0e51 : ad 50 19 LDA $1950 ; (zsm_wpos + 0)
+0e54 : cd 4e 19 CMP $194e ; (zsm_pos + 0)
+0e57 : d0 04 __ BNE $0e5d ; (zsm_fill.s6 + 0)
 .s5:
-0e9d : a9 00 __ LDA #$00
-0e9f : f0 0b __ BEQ $0eac ; (zsm_fill.s1008 + 0)
+0e59 : a9 00 __ LDA #$00
+0e5b : f0 0b __ BEQ $0e68 ; (zsm_fill.s1008 + 0)
 .s6:
-0ea1 : a9 02 __ LDA #$02
-0ea3 : 20 29 0f JSR $0f29 ; (krnio_chkin.s1000 + 0)
-0ea6 : a5 3b __ LDA ACCU + 0 
-0ea8 : d0 07 __ BNE $0eb1 ; (zsm_fill.s9 + 0)
+0e5d : a9 02 __ LDA #$02
+0e5f : 20 e5 0e JSR $0ee5 ; (krnio_chkin.s1000 + 0)
+0e62 : a5 3b __ LDA ACCU + 0 
+0e64 : d0 07 __ BNE $0e6d ; (zsm_fill.s9 + 0)
 .s1:
-0eaa : a9 ff __ LDA #$ff
+0e66 : a9 ff __ LDA #$ff
 .s1008:
-0eac : 85 3b __ STA ACCU + 0 
+0e68 : 85 3b __ STA ACCU + 0 
 .s1001:
-0eae : 85 3c __ STA ACCU + 1 
-0eb0 : 60 __ __ RTS
+0e6a : 85 3c __ STA ACCU + 1 
+0e6c : 60 __ __ RTS
 .s9:
-0eb1 : a9 00 __ LDA #$00
-0eb3 : 85 47 __ STA T1 + 0 
-0eb5 : 85 48 __ STA T1 + 1 
-0eb7 : ad e8 5f LDA $5fe8 ; (zsm_pos + 1)
-0eba : 18 __ __ CLC
-0ebb : 69 04 __ ADC #$04
-0ebd : cd ea 5f CMP $5fea ; (zsm_wpos + 1)
-0ec0 : d0 08 __ BNE $0eca ; (zsm_fill.l13 + 0)
+0e6d : a9 00 __ LDA #$00
+0e6f : 85 47 __ STA T1 + 0 
+0e71 : 85 48 __ STA T1 + 1 
+0e73 : ad 4f 19 LDA $194f ; (zsm_pos + 1)
+0e76 : 18 __ __ CLC
+0e77 : 69 04 __ ADC #$04
+0e79 : cd 51 19 CMP $1951 ; (zsm_wpos + 1)
+0e7c : d0 08 __ BNE $0e86 ; (zsm_fill.l13 + 0)
 .s1002:
-0ec2 : ad e9 5f LDA $5fe9 ; (zsm_wpos + 0)
-0ec5 : cd e7 5f CMP $5fe7 ; (zsm_pos + 0)
-0ec8 : f0 49 __ BEQ $0f13 ; (zsm_fill.s37 + 0)
+0e7e : ad 50 19 LDA $1950 ; (zsm_wpos + 0)
+0e81 : cd 4e 19 CMP $194e ; (zsm_pos + 0)
+0e84 : f0 49 __ BEQ $0ecf ; (zsm_fill.s37 + 0)
 .l13:
-0eca : 20 3b 0f JSR $0f3b ; (krnio_chrin.s0 + 0)
-0ecd : ad e9 5f LDA $5fe9 ; (zsm_wpos + 0)
-0ed0 : aa __ __ TAX
-0ed1 : 18 __ __ CLC
-0ed2 : 69 01 __ ADC #$01
-0ed4 : 8d e9 5f STA $5fe9 ; (zsm_wpos + 0)
-0ed7 : ad ea 5f LDA $5fea ; (zsm_wpos + 1)
-0eda : a8 __ __ TAY
-0edb : 69 00 __ ADC #$00
-0edd : 8d ea 5f STA $5fea ; (zsm_wpos + 1)
-0ee0 : 8a __ __ TXA
-0ee1 : 18 __ __ CLC
-0ee2 : 69 2b __ ADC #$2b
-0ee4 : 85 49 __ STA T3 + 0 
-0ee6 : 98 __ __ TYA
-0ee7 : 29 03 __ AND #$03
-0ee9 : 69 60 __ ADC #$60
-0eeb : 85 4a __ STA T3 + 1 
-0eed : a5 3b __ LDA ACCU + 0 
-0eef : a0 00 __ LDY #$00
-0ef1 : 91 49 __ STA (T3 + 0),y 
-0ef3 : e6 47 __ INC T1 + 0 
-0ef5 : d0 02 __ BNE $0ef9 ; (zsm_fill.s1010 + 0)
+0e86 : 20 f7 0e JSR $0ef7 ; (krnio_chrin.s0 + 0)
+0e89 : ad 50 19 LDA $1950 ; (zsm_wpos + 0)
+0e8c : aa __ __ TAX
+0e8d : 18 __ __ CLC
+0e8e : 69 01 __ ADC #$01
+0e90 : 8d 50 19 STA $1950 ; (zsm_wpos + 0)
+0e93 : ad 51 19 LDA $1951 ; (zsm_wpos + 1)
+0e96 : a8 __ __ TAY
+0e97 : 69 00 __ ADC #$00
+0e99 : 8d 51 19 STA $1951 ; (zsm_wpos + 1)
+0e9c : 8a __ __ TXA
+0e9d : 18 __ __ CLC
+0e9e : 69 4e __ ADC #$4e
+0ea0 : 85 49 __ STA T3 + 0 
+0ea2 : 98 __ __ TYA
+0ea3 : 29 03 __ AND #$03
+0ea5 : 69 15 __ ADC #$15
+0ea7 : 85 4a __ STA T3 + 1 
+0ea9 : a5 3b __ LDA ACCU + 0 
+0eab : a0 00 __ LDY #$00
+0ead : 91 49 __ STA (T3 + 0),y 
+0eaf : e6 47 __ INC T1 + 0 
+0eb1 : d0 02 __ BNE $0eb5 ; (zsm_fill.s1010 + 0)
 .s1009:
-0ef7 : e6 48 __ INC T1 + 1 
+0eb3 : e6 48 __ INC T1 + 1 
 .s1010:
-0ef9 : 20 45 0f JSR $0f45 ; (krnio_status.s0 + 0)
-0efc : a5 3b __ LDA ACCU + 0 
-0efe : d0 0e __ BNE $0f0e ; (zsm_fill.s15 + 0)
+0eb5 : 20 01 0f JSR $0f01 ; (krnio_status.s0 + 0)
+0eb8 : a5 3b __ LDA ACCU + 0 
+0eba : d0 0e __ BNE $0eca ; (zsm_fill.s15 + 0)
 .s12:
-0f00 : ad e8 5f LDA $5fe8 ; (zsm_pos + 1)
-0f03 : 18 __ __ CLC
-0f04 : 69 04 __ ADC #$04
-0f06 : cd ea 5f CMP $5fea ; (zsm_wpos + 1)
-0f09 : d0 bf __ BNE $0eca ; (zsm_fill.l13 + 0)
-0f0b : 4c c2 0e JMP $0ec2 ; (zsm_fill.s1002 + 0)
+0ebc : ad 4f 19 LDA $194f ; (zsm_pos + 1)
+0ebf : 18 __ __ CLC
+0ec0 : 69 04 __ ADC #$04
+0ec2 : cd 51 19 CMP $1951 ; (zsm_wpos + 1)
+0ec5 : d0 bf __ BNE $0e86 ; (zsm_fill.l13 + 0)
+0ec7 : 4c 7e 0e JMP $0e7e ; (zsm_fill.s1002 + 0)
 .s15:
-0f0e : a9 00 __ LDA #$00
-0f10 : 8d e0 5f STA $5fe0 ; (zsm_reading + 0)
+0eca : a9 00 __ LDA #$00
+0ecc : 8d fc 14 STA $14fc ; (zsm_reading + 0)
 .s37:
-0f13 : 20 4f 0f JSR $0f4f ; (krnio_clrchn.s0 + 0)
-0f16 : ad e0 5f LDA $5fe0 ; (zsm_reading + 0)
-0f19 : d0 05 __ BNE $0f20 ; (zsm_fill.s21 + 0)
+0ecf : 20 0b 0f JSR $0f0b ; (krnio_clrchn.s0 + 0)
+0ed2 : ad fc 14 LDA $14fc ; (zsm_reading + 0)
+0ed5 : d0 05 __ BNE $0edc ; (zsm_fill.s21 + 0)
 .s19:
-0f1b : a9 02 __ LDA #$02
-0f1d : 20 3f 0e JSR $0e3f ; (krnio_close.s1000 + 0)
+0ed7 : a9 02 __ LDA #$02
+0ed9 : 20 fb 0d JSR $0dfb ; (krnio_close.s1000 + 0)
 .s21:
-0f20 : a5 47 __ LDA T1 + 0 
-0f22 : 85 3b __ STA ACCU + 0 
-0f24 : a5 48 __ LDA T1 + 1 
-0f26 : 4c ae 0e JMP $0eae ; (zsm_fill.s1001 + 0)
+0edc : a5 47 __ LDA T1 + 0 
+0ede : 85 3b __ STA ACCU + 0 
+0ee0 : a5 48 __ LDA T1 + 1 
+0ee2 : 4c 6a 0e JMP $0e6a ; (zsm_fill.s1001 + 0)
 --------------------------------------------------------------------
 krnio_chkin:
 .s1000:
-0f29 : 85 2d __ STA P0 
+0ee5 : 85 2d __ STA P0 
 .s0:
-0f2b : a6 2d __ LDX P0 
-0f2d : 20 c6 ff JSR $ffc6 
-0f30 : a9 00 __ LDA #$00
-0f32 : 85 3c __ STA ACCU + 1 
-0f34 : b0 02 __ BCS $0f38 ; (krnio_chkin.s0 + 13)
-0f36 : a9 01 __ LDA #$01
-0f38 : 85 3b __ STA ACCU + 0 
+0ee7 : a6 2d __ LDX P0 
+0ee9 : 20 c6 ff JSR $ffc6 
+0eec : a9 00 __ LDA #$00
+0eee : 85 3c __ STA ACCU + 1 
+0ef0 : b0 02 __ BCS $0ef4 ; (krnio_chkin.s0 + 13)
+0ef2 : a9 01 __ LDA #$01
+0ef4 : 85 3b __ STA ACCU + 0 
 .s1001:
-0f3a : 60 __ __ RTS
+0ef6 : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_chrin:
 .s0:
-0f3b : 20 cf ff JSR $ffcf 
-0f3e : 85 3b __ STA ACCU + 0 
-0f40 : a9 00 __ LDA #$00
-0f42 : 85 3c __ STA ACCU + 1 
+0ef7 : 20 cf ff JSR $ffcf 
+0efa : 85 3b __ STA ACCU + 0 
+0efc : a9 00 __ LDA #$00
+0efe : 85 3c __ STA ACCU + 1 
 .s1001:
-0f44 : 60 __ __ RTS
+0f00 : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_status:
 .s0:
-0f45 : 20 b7 ff JSR $ffb7 
-0f48 : 85 3b __ STA ACCU + 0 
-0f4a : a9 00 __ LDA #$00
-0f4c : 85 3c __ STA ACCU + 1 
+0f01 : 20 b7 ff JSR $ffb7 
+0f04 : 85 3b __ STA ACCU + 0 
+0f06 : a9 00 __ LDA #$00
+0f08 : 85 3c __ STA ACCU + 1 
 .s1001:
-0f4e : 60 __ __ RTS
+0f0a : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_clrchn:
 .s0:
-0f4f : 20 cc ff JSR $ffcc 
+0f0b : 20 cc ff JSR $ffcc 
 .s1001:
-0f52 : 60 __ __ RTS
+0f0e : 60 __ __ RTS
 --------------------------------------------------------------------
-0f53 : __ __ __ BYT 40 30 3a 7a 73 6d 66 69 6c 65 73 2f 70 61 70 65 : @0:zsmfiles/pape
-0f63 : __ __ __ BYT 72 63 6c 69 70 2e 7a 73 6d 2c 50 2c 52 00       : rclip.zsm,P,R.
+0f0f : __ __ __ BYT 40 30 3a 7a 73 6d 66 69 6c 65 73 2f 70 61 70 65 : @0:zsmfiles/pape
+0f1f : __ __ __ BYT 72 63 6c 69 70 2e 7a 73 6d 2c 50 2c 52 00       : rclip.zsm,P,R.
 --------------------------------------------------------------------
 Control:
 .s0:
-0f71 : 20 8d 0f JSR $0f8d ; (getchx.s0 + 0)
-0f74 : a5 3c __ LDA ACCU + 1 
-0f76 : d0 10 __ BNE $0f88 ; (Control.s3 + 0)
+0f2d : 20 49 0f JSR $0f49 ; (getchx.s0 + 0)
+0f30 : a5 3c __ LDA ACCU + 1 
+0f32 : d0 10 __ BNE $0f44 ; (Control.s3 + 0)
 .s1005:
-0f78 : a5 3b __ LDA ACCU + 0 
-0f7a : c9 20 __ CMP #$20
-0f7c : d0 0a __ BNE $0f88 ; (Control.s3 + 0)
+0f34 : a5 3b __ LDA ACCU + 0 
+0f36 : c9 20 __ CMP #$20
+0f38 : d0 0a __ BNE $0f44 ; (Control.s3 + 0)
 .s1:
-0f7e : a9 00 __ LDA #$00
-0f80 : c5 2e __ CMP P1 ; (playing + 0)
-0f82 : 2a __ __ ROL
-0f83 : 85 2e __ STA P1 ; (playing + 0)
-0f85 : 20 be 0f JSR $0fbe ; (zsm_irq_play.s0 + 0)
+0f3a : a9 00 __ LDA #$00
+0f3c : c5 2e __ CMP P1 ; (playing + 0)
+0f3e : 2a __ __ ROL
+0f3f : 85 2e __ STA P1 ; (playing + 0)
+0f41 : 20 7a 0f JSR $0f7a ; (zsm_irq_play.s0 + 0)
 .s3:
-0f88 : a5 2e __ LDA P1 ; (playing + 0)
-0f8a : 85 3b __ STA ACCU + 0 
+0f44 : a5 2e __ LDA P1 ; (playing + 0)
+0f46 : 85 3b __ STA ACCU + 0 
 .s1001:
-0f8c : 60 __ __ RTS
+0f48 : 60 __ __ RTS
 --------------------------------------------------------------------
 getchx:
 .s0:
-0f8d : 20 97 0f JSR $0f97 ; (getpch + 0)
-0f90 : 85 3b __ STA ACCU + 0 
-0f92 : a9 00 __ LDA #$00
-0f94 : 85 3c __ STA ACCU + 1 
+0f49 : 20 53 0f JSR $0f53 ; (getpch + 0)
+0f4c : 85 3b __ STA ACCU + 0 
+0f4e : a9 00 __ LDA #$00
+0f50 : 85 3c __ STA ACCU + 1 
 .s1001:
-0f96 : 60 __ __ RTS
+0f52 : 60 __ __ RTS
 --------------------------------------------------------------------
 getpch:
-0f97 : 20 e4 ff JSR $ffe4 
-0f9a : ae e1 5f LDX $5fe1 ; (giocharmap + 0)
-0f9d : e0 01 __ CPX #$01
-0f9f : 90 1c __ BCC $0fbd ; (getpch + 38)
-0fa1 : c9 0d __ CMP #$0d
-0fa3 : d0 02 __ BNE $0fa7 ; (getpch + 16)
-0fa5 : a9 0a __ LDA #$0a
-0fa7 : e0 02 __ CPX #$02
-0fa9 : 90 12 __ BCC $0fbd ; (getpch + 38)
-0fab : c9 41 __ CMP #$41
-0fad : 90 0e __ BCC $0fbd ; (getpch + 38)
-0faf : c9 7b __ CMP #$7b
-0fb1 : b0 0a __ BCS $0fbd ; (getpch + 38)
-0fb3 : c9 61 __ CMP #$61
-0fb5 : b0 04 __ BCS $0fbb ; (getpch + 36)
-0fb7 : c9 5b __ CMP #$5b
-0fb9 : b0 02 __ BCS $0fbd ; (getpch + 38)
-0fbb : 49 20 __ EOR #$20
-0fbd : 60 __ __ RTS
+0f53 : 20 e4 ff JSR $ffe4 
+0f56 : ae fd 14 LDX $14fd ; (giocharmap + 0)
+0f59 : e0 01 __ CPX #$01
+0f5b : 90 1c __ BCC $0f79 ; (getpch + 38)
+0f5d : c9 0d __ CMP #$0d
+0f5f : d0 02 __ BNE $0f63 ; (getpch + 16)
+0f61 : a9 0a __ LDA #$0a
+0f63 : e0 02 __ CPX #$02
+0f65 : 90 12 __ BCC $0f79 ; (getpch + 38)
+0f67 : c9 41 __ CMP #$41
+0f69 : 90 0e __ BCC $0f79 ; (getpch + 38)
+0f6b : c9 7b __ CMP #$7b
+0f6d : b0 0a __ BCS $0f79 ; (getpch + 38)
+0f6f : c9 61 __ CMP #$61
+0f71 : b0 04 __ BCS $0f77 ; (getpch + 36)
+0f73 : c9 5b __ CMP #$5b
+0f75 : b0 02 __ BCS $0f79 ; (getpch + 38)
+0f77 : 49 20 __ EOR #$20
+0f79 : 60 __ __ RTS
 --------------------------------------------------------------------
 giocharmap:
-5fe1 : __ __ __ BYT 01                                              : .
+14fd : __ __ __ BYT 01                                              : .
 --------------------------------------------------------------------
 zsm_irq_play:
 .s0:
-0fbe : 8d 9c 10 STA $109c ; (zsm_playing + 0)
+0f7a : 8d 58 10 STA $1058 ; (zsm_playing + 0)
 .s1001:
-0fc1 : 60 __ __ RTS
+0f7d : 60 __ __ RTS
 --------------------------------------------------------------------
 FrameCount:
-5fe2 : __ __ __ BYT 00 00                                           : ..
+14fe : __ __ __ BYT 00 00                                           : ..
 --------------------------------------------------------------------
 TestText2:
-6000 : __ __ __ BYT 43 4f 4e 43 45 50 54 20 43 52 49 53 50 53 20 43 : CONCEPT CRISPS C
-6010 : __ __ __ BYT 4f 44 49 4e 47 20 43 52 49 53 50 53 20 42 4c 55 : ODING CRISPS BLU
-6020 : __ __ __ BYT 4d 42 41 20 54 4f 42 41 43 48 00                : MBA TOBACH.
+1520 : __ __ __ BYT 43 4f 4e 43 45 50 54 20 43 52 49 53 50 53 20 43 : CONCEPT CRISPS C
+1530 : __ __ __ BYT 4f 44 49 4e 47 20 43 52 49 53 50 53 20 42 4c 55 : ODING CRISPS BLU
+1540 : __ __ __ BYT 4d 42 41 20 54 4f 42 41 43 48 00                : MBA TOBACH.
 --------------------------------------------------------------------
 off1:
-5ffb : __ __ __ BSS	1
+1962 : __ __ __ BSS	1
 --------------------------------------------------------------------
 frame_wait:
 .l1:
-0fc2 : ad 26 9f LDA $9f26 
-0fc5 : 29 40 __ AND #$40
-0fc7 : d0 f9 __ BNE $0fc2 ; (frame_wait.l1 + 0)
+0f7e : ad 26 9f LDA $9f26 
+0f81 : 29 40 __ AND #$40
+0f83 : d0 f9 __ BNE $0f7e ; (frame_wait.l1 + 0)
 .l4:
-0fc9 : ad 26 9f LDA $9f26 
-0fcc : 29 40 __ AND #$40
-0fce : f0 f9 __ BEQ $0fc9 ; (frame_wait.l4 + 0)
+0f85 : ad 26 9f LDA $9f26 
+0f88 : 29 40 __ AND #$40
+0f8a : f0 f9 __ BEQ $0f85 ; (frame_wait.l4 + 0)
 .s1001:
-0fd0 : 60 __ __ RTS
+0f8c : 60 __ __ RTS
 --------------------------------------------------------------------
 negaccu:
-0fd1 : 38 __ __ SEC
-0fd2 : a9 00 __ LDA #$00
-0fd4 : e5 3b __ SBC ACCU + 0 
-0fd6 : 85 3b __ STA ACCU + 0 
-0fd8 : a9 00 __ LDA #$00
-0fda : e5 3c __ SBC ACCU + 1 
-0fdc : 85 3c __ STA ACCU + 1 
-0fde : 60 __ __ RTS
+0f8d : 38 __ __ SEC
+0f8e : a9 00 __ LDA #$00
+0f90 : e5 3b __ SBC ACCU + 0 
+0f92 : 85 3b __ STA ACCU + 0 
+0f94 : a9 00 __ LDA #$00
+0f96 : e5 3c __ SBC ACCU + 1 
+0f98 : 85 3c __ STA ACCU + 1 
+0f9a : 60 __ __ RTS
 --------------------------------------------------------------------
 negtmp:
-0fdf : 38 __ __ SEC
-0fe0 : a9 00 __ LDA #$00
-0fe2 : e5 23 __ SBC WORK + 0 
-0fe4 : 85 23 __ STA WORK + 0 
-0fe6 : a9 00 __ LDA #$00
-0fe8 : e5 24 __ SBC WORK + 1 
-0fea : 85 24 __ STA WORK + 1 
-0fec : 60 __ __ RTS
+0f9b : 38 __ __ SEC
+0f9c : a9 00 __ LDA #$00
+0f9e : e5 23 __ SBC WORK + 0 
+0fa0 : 85 23 __ STA WORK + 0 
+0fa2 : a9 00 __ LDA #$00
+0fa4 : e5 24 __ SBC WORK + 1 
+0fa6 : 85 24 __ STA WORK + 1 
+0fa8 : 60 __ __ RTS
 --------------------------------------------------------------------
 divmod:
-0fed : a5 3c __ LDA ACCU + 1 
-0fef : d0 31 __ BNE $1022 ; (divmod + 53)
-0ff1 : a5 24 __ LDA WORK + 1 
-0ff3 : d0 1e __ BNE $1013 ; (divmod + 38)
-0ff5 : 85 26 __ STA WORK + 3 
-0ff7 : a2 04 __ LDX #$04
-0ff9 : 06 3b __ ASL ACCU + 0 
-0ffb : 2a __ __ ROL
-0ffc : c5 23 __ CMP WORK + 0 
-0ffe : 90 02 __ BCC $1002 ; (divmod + 21)
-1000 : e5 23 __ SBC WORK + 0 
-1002 : 26 3b __ ROL ACCU + 0 
-1004 : 2a __ __ ROL
-1005 : c5 23 __ CMP WORK + 0 
-1007 : 90 02 __ BCC $100b ; (divmod + 30)
-1009 : e5 23 __ SBC WORK + 0 
-100b : 26 3b __ ROL ACCU + 0 
-100d : ca __ __ DEX
-100e : d0 eb __ BNE $0ffb ; (divmod + 14)
-1010 : 85 25 __ STA WORK + 2 
-1012 : 60 __ __ RTS
-1013 : a5 3b __ LDA ACCU + 0 
-1015 : 85 25 __ STA WORK + 2 
-1017 : a5 3c __ LDA ACCU + 1 
-1019 : 85 26 __ STA WORK + 3 
-101b : a9 00 __ LDA #$00
-101d : 85 3b __ STA ACCU + 0 
-101f : 85 3c __ STA ACCU + 1 
-1021 : 60 __ __ RTS
-1022 : a5 24 __ LDA WORK + 1 
-1024 : d0 1f __ BNE $1045 ; (divmod + 88)
-1026 : a5 23 __ LDA WORK + 0 
-1028 : 30 1b __ BMI $1045 ; (divmod + 88)
-102a : a9 00 __ LDA #$00
-102c : 85 26 __ STA WORK + 3 
-102e : a2 10 __ LDX #$10
-1030 : 06 3b __ ASL ACCU + 0 
-1032 : 26 3c __ ROL ACCU + 1 
-1034 : 2a __ __ ROL
-1035 : c5 23 __ CMP WORK + 0 
-1037 : 90 02 __ BCC $103b ; (divmod + 78)
-1039 : e5 23 __ SBC WORK + 0 
-103b : 26 3b __ ROL ACCU + 0 
-103d : 26 3c __ ROL ACCU + 1 
-103f : ca __ __ DEX
-1040 : d0 f2 __ BNE $1034 ; (divmod + 71)
-1042 : 85 25 __ STA WORK + 2 
-1044 : 60 __ __ RTS
-1045 : a9 00 __ LDA #$00
-1047 : 85 25 __ STA WORK + 2 
-1049 : 85 26 __ STA WORK + 3 
-104b : 84 22 __ STY $22 
-104d : a0 10 __ LDY #$10
-104f : 18 __ __ CLC
-1050 : 26 3b __ ROL ACCU + 0 
-1052 : 26 3c __ ROL ACCU + 1 
-1054 : 26 25 __ ROL WORK + 2 
-1056 : 26 26 __ ROL WORK + 3 
-1058 : 38 __ __ SEC
-1059 : a5 25 __ LDA WORK + 2 
-105b : e5 23 __ SBC WORK + 0 
-105d : aa __ __ TAX
-105e : a5 26 __ LDA WORK + 3 
-1060 : e5 24 __ SBC WORK + 1 
-1062 : 90 04 __ BCC $1068 ; (divmod + 123)
-1064 : 86 25 __ STX WORK + 2 
-1066 : 85 26 __ STA WORK + 3 
-1068 : 88 __ __ DEY
-1069 : d0 e5 __ BNE $1050 ; (divmod + 99)
-106b : 26 3b __ ROL ACCU + 0 
-106d : 26 3c __ ROL ACCU + 1 
-106f : a4 22 __ LDY $22 
-1071 : 60 __ __ RTS
+0fa9 : a5 3c __ LDA ACCU + 1 
+0fab : d0 31 __ BNE $0fde ; (divmod + 53)
+0fad : a5 24 __ LDA WORK + 1 
+0faf : d0 1e __ BNE $0fcf ; (divmod + 38)
+0fb1 : 85 26 __ STA WORK + 3 
+0fb3 : a2 04 __ LDX #$04
+0fb5 : 06 3b __ ASL ACCU + 0 
+0fb7 : 2a __ __ ROL
+0fb8 : c5 23 __ CMP WORK + 0 
+0fba : 90 02 __ BCC $0fbe ; (divmod + 21)
+0fbc : e5 23 __ SBC WORK + 0 
+0fbe : 26 3b __ ROL ACCU + 0 
+0fc0 : 2a __ __ ROL
+0fc1 : c5 23 __ CMP WORK + 0 
+0fc3 : 90 02 __ BCC $0fc7 ; (divmod + 30)
+0fc5 : e5 23 __ SBC WORK + 0 
+0fc7 : 26 3b __ ROL ACCU + 0 
+0fc9 : ca __ __ DEX
+0fca : d0 eb __ BNE $0fb7 ; (divmod + 14)
+0fcc : 85 25 __ STA WORK + 2 
+0fce : 60 __ __ RTS
+0fcf : a5 3b __ LDA ACCU + 0 
+0fd1 : 85 25 __ STA WORK + 2 
+0fd3 : a5 3c __ LDA ACCU + 1 
+0fd5 : 85 26 __ STA WORK + 3 
+0fd7 : a9 00 __ LDA #$00
+0fd9 : 85 3b __ STA ACCU + 0 
+0fdb : 85 3c __ STA ACCU + 1 
+0fdd : 60 __ __ RTS
+0fde : a5 24 __ LDA WORK + 1 
+0fe0 : d0 1f __ BNE $1001 ; (divmod + 88)
+0fe2 : a5 23 __ LDA WORK + 0 
+0fe4 : 30 1b __ BMI $1001 ; (divmod + 88)
+0fe6 : a9 00 __ LDA #$00
+0fe8 : 85 26 __ STA WORK + 3 
+0fea : a2 10 __ LDX #$10
+0fec : 06 3b __ ASL ACCU + 0 
+0fee : 26 3c __ ROL ACCU + 1 
+0ff0 : 2a __ __ ROL
+0ff1 : c5 23 __ CMP WORK + 0 
+0ff3 : 90 02 __ BCC $0ff7 ; (divmod + 78)
+0ff5 : e5 23 __ SBC WORK + 0 
+0ff7 : 26 3b __ ROL ACCU + 0 
+0ff9 : 26 3c __ ROL ACCU + 1 
+0ffb : ca __ __ DEX
+0ffc : d0 f2 __ BNE $0ff0 ; (divmod + 71)
+0ffe : 85 25 __ STA WORK + 2 
+1000 : 60 __ __ RTS
+1001 : a9 00 __ LDA #$00
+1003 : 85 25 __ STA WORK + 2 
+1005 : 85 26 __ STA WORK + 3 
+1007 : 84 22 __ STY $22 
+1009 : a0 10 __ LDY #$10
+100b : 18 __ __ CLC
+100c : 26 3b __ ROL ACCU + 0 
+100e : 26 3c __ ROL ACCU + 1 
+1010 : 26 25 __ ROL WORK + 2 
+1012 : 26 26 __ ROL WORK + 3 
+1014 : 38 __ __ SEC
+1015 : a5 25 __ LDA WORK + 2 
+1017 : e5 23 __ SBC WORK + 0 
+1019 : aa __ __ TAX
+101a : a5 26 __ LDA WORK + 3 
+101c : e5 24 __ SBC WORK + 1 
+101e : 90 04 __ BCC $1024 ; (divmod + 123)
+1020 : 86 25 __ STX WORK + 2 
+1022 : 85 26 __ STA WORK + 3 
+1024 : 88 __ __ DEY
+1025 : d0 e5 __ BNE $100c ; (divmod + 99)
+1027 : 26 3b __ ROL ACCU + 0 
+1029 : 26 3c __ ROL ACCU + 1 
+102b : a4 22 __ LDY $22 
+102d : 60 __ __ RTS
 --------------------------------------------------------------------
 mods16:
-1072 : 24 3c __ BIT ACCU + 1 
-1074 : 10 0d __ BPL $1083 ; (mods16 + 17)
-1076 : 20 d1 0f JSR $0fd1 ; (negaccu + 0)
-1079 : 24 24 __ BIT WORK + 1 
-107b : 10 0d __ BPL $108a ; (mods16 + 24)
-107d : 20 df 0f JSR $0fdf ; (negtmp + 0)
-1080 : 4c ed 0f JMP $0fed ; (divmod + 0)
-1083 : 24 24 __ BIT WORK + 1 
-1085 : 10 f9 __ BPL $1080 ; (mods16 + 14)
-1087 : 20 df 0f JSR $0fdf ; (negtmp + 0)
-108a : 20 ed 0f JSR $0fed ; (divmod + 0)
-108d : 38 __ __ SEC
-108e : a9 00 __ LDA #$00
-1090 : e5 25 __ SBC WORK + 2 
-1092 : 85 25 __ STA WORK + 2 
-1094 : a9 00 __ LDA #$00
-1096 : e5 26 __ SBC WORK + 3 
-1098 : 85 26 __ STA WORK + 3 
-109a : 60 __ __ RTS
+102e : 24 3c __ BIT ACCU + 1 
+1030 : 10 0d __ BPL $103f ; (mods16 + 17)
+1032 : 20 8d 0f JSR $0f8d ; (negaccu + 0)
+1035 : 24 24 __ BIT WORK + 1 
+1037 : 10 0d __ BPL $1046 ; (mods16 + 24)
+1039 : 20 9b 0f JSR $0f9b ; (negtmp + 0)
+103c : 4c a9 0f JMP $0fa9 ; (divmod + 0)
+103f : 24 24 __ BIT WORK + 1 
+1041 : 10 f9 __ BPL $103c ; (mods16 + 14)
+1043 : 20 9b 0f JSR $0f9b ; (negtmp + 0)
+1046 : 20 a9 0f JSR $0fa9 ; (divmod + 0)
+1049 : 38 __ __ SEC
+104a : a9 00 __ LDA #$00
+104c : e5 25 __ SBC WORK + 2 
+104e : 85 25 __ STA WORK + 2 
+1050 : a9 00 __ LDA #$00
+1052 : e5 26 __ SBC WORK + 3 
+1054 : 85 26 __ STA WORK + 3 
+1056 : 60 __ __ RTS
