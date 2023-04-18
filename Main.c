@@ -22,7 +22,7 @@ char off1, off2;
 int p = 0;
 
 const char MainBG[] = {
-	#embed 512 "sprites/bin/MAINBG.BIN"
+	#embed 512 64 "sprites/bin/MAINBG.BIN"
 };
 
 
@@ -88,6 +88,7 @@ void SetUpSprites() {
 	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
 	const unsigned long BGAddr = 0x000;
+	const unsigned long BGMapAddr = 0x1000;
 
 	//Set up Background
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
@@ -97,13 +98,43 @@ void SetUpSprites() {
 	vera.dchscale = 128;
 	vera.l0config = VERA_LAYER_WIDTH_64 | VERA_LAYER_HEIGHT_32 | VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 | VERA_LAYER_DEPTH_2;
 	vera.l0tilebase = BGAddr;
-	vera.l0mapbase = BGAddr;
-	vram_putn(BGAddr, MainBG, sizeof(MainBG));
+	vera.l0mapbase = BGMapAddr;
+	//vram_putn(BGAddr, MainBG, sizeof(MainBG));
+
+	unsigned int R = 0;
+	unsigned int LW1 = 30;
+	unsigned int LW2 = 20;
+	unsigned int LW3 = 10;
 
 	for (unsigned i = 0; i < 80; i++)
 	{
-		for (unsigned j = 0; j < 60; j++)
+		if (i <= LW1)
 		{
+			for (unsigned j = 0; j < 60; j++)
+			{
+				vera.l0tilebase += 1;
+			}
+		}
+		else if (i > LW1 && i <= LW2)
+		{
+			for (unsigned j = 0; j < 60; j++)
+			{
+				vera.l0tilebase += 2;
+			}
+		}
+		else if (i > LW2 && i <= LW3)
+		{
+			for (unsigned j = 0; j < 60; j++)
+			{
+				vera.l0tilebase += 3;
+			}
+		}
+		else
+		{
+			for (unsigned j = 0; j < 60; j++)
+			{
+				vera.l0tilebase = 4;
+			}
 		}
 	}
 	
