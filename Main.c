@@ -4,7 +4,7 @@
 
 #include <c64/rasterirq.h>
 #include <conio.h>
-#include<math.h>
+#include <math.h>
 
 #include "ZSMPlayer.h"
 #include "Sprites.h"
@@ -15,16 +15,13 @@
 #define R_ARROW 0x1D
 #define SPACE 0x20
 
-#define Pal1 ()
-
 int FrameCount = 0;
 char off1, off2;
 int p = 0;
 
 const char MainBG[] = {
-	#embed 512 64 "sprites/bin/MAINBG.BIN"
+	#embed 512 "sprites/bin/MAINBG.BIN"
 };
-
 
 const char ScrollerOutline[] = {
 	#embed 1024 2 "sprites/bin/SCROLLEROUTLINE.BIN"
@@ -41,6 +38,7 @@ const char VolumeInd[] = {
 	#embed 64 "sprites/bin/VOLUMEBUTTON.BIN"
 
 };
+
 const char palette[] = {
 	0x00, 0x00, 0xFF, 0x0F,
 	0xEE, 0x0F, 0xFF, 0xEE,
@@ -54,15 +52,15 @@ const char palette[] = {
 };
 
 const char BGPal[] = {
-	0x00, 0x00, 0x88, 0x02,
-	0x44, 0x0C, 0x11, 0xEE,
-	0xAA, 0x0A, 0x88, 0x08,
-	0x66, 0x06, 0x44, 0x04,
+	0x00, 0x00, 0x11, 0x01,
+	0x22, 0x02, 0x33, 0x03,
+	0x44, 0x04, 0x55, 0x05,
+	0x66, 0x06, 0x77, 0x07,
 
-	0x00, 0x00, 0xFF, 0x0F,
-	0xEE, 0x0F, 0xFF, 0xEE,
-	0xAA, 0x0A, 0x88, 0x08,
-	0x66, 0x06, 0x44, 0x04
+	0x88, 0x08, 0x99, 0x09,
+	0xAA, 0x0A, 0xBB, 0x0B,
+	0xCC, 0x0C, 0xDD, 0x0D,
+	0xEE, 0x0E, 0xFF, 0x0F
 };
 
 const char TestText[] = s"Concept Crisps Coding Crisps Blumba, Tobach";
@@ -87,19 +85,20 @@ void SetUpSprites() {
 	const unsigned long PauseAddr = VERA_SPRITES;
 	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
-	const unsigned long BGAddr = 0x000;
-	const unsigned long BGMapAddr = 0x1000;
+	const unsigned long BGAddr = 0x0;
+	const unsigned long BGMapAddr = 0x2000;
 
 	//Set up Background
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
-	//vera.dcvideo &= ~VERA_DCVIDEO_LAYER0;
 	vera.dcvscale = 128;
 	vera.dchscale = 128;
 	vera.l0config = VERA_LAYER_WIDTH_64 | VERA_LAYER_HEIGHT_32 | VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 | VERA_LAYER_DEPTH_2;
 	vera.l0tilebase = BGAddr;
 	vera.l0mapbase = BGMapAddr;
-	//vram_putn(BGAddr, MainBG, sizeof(MainBG));
+	vera.addrh = 0x0000;
+	vera.addrl = 4;
+	vram_putn(BGAddr, MainBG, sizeof(MainBG));
 
 	unsigned int R = 0;
 	unsigned int LW1 = 30;
@@ -108,34 +107,36 @@ void SetUpSprites() {
 
 	for (unsigned i = 0; i < 80; i++)
 	{
+		
 		if (i <= LW1)
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.l0tilebase += 1;
+				vera.data0 += 0x00;
 			}
 		}
 		else if (i > LW1 && i <= LW2)
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.l0tilebase += 2;
+				vera.data0 += 0x10;
 			}
 		}
 		else if (i > LW2 && i <= LW3)
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.l0tilebase += 3;
+				vera.data0 += 0x20;
 			}
 		}
 		else
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.l0tilebase = 4;
+				vera.data0 += 0x30;
 			}
 		}
+		
 	}
 	
 	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FB20UL);

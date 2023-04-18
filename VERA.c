@@ -23,7 +23,7 @@ void ClearVERAScreen()
 	for (int i = 0; i < 60; i++)
 	{
 		vera.addr = 0xb000 + 256 * i;
-		for (int j = 0; j < 80; j++)
+		for (int j = 0; j < 120; j++)
 		{
 			vera.data0 = 0x20;
 			vera.data0 = 1;

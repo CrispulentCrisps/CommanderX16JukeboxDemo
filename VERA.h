@@ -69,6 +69,40 @@
 #define VERA_CHARSET		0x1F000
 #define VERA_INTERNAL		0x1F9C0
 
+#define VERA_INC_0			0
+#define VERA_INC_1			1
+#define VERA_INC_2			2
+#define VERA_INC_3			4
+#define VERA_INC_4			8
+#define VERA_INC_5			16
+#define VERA_INC_6			32
+#define VERA_INC_7			64
+#define VERA_INC_8			128
+#define VERA_INC_9			256
+#define VERA_INC_10			512
+#define VERA_INC_11			40
+#define VERA_INC_12			80
+#define VERA_INC_13			160
+#define VERA_INC_14			320
+#define VERA_INC_15			640
+
+#define VERA_DEC_0			0
+#define VERA_DEC_1			1
+#define VERA_DEC_2			2
+#define VERA_DEC_3			4
+#define VERA_DEC_4			8
+#define VERA_DEC_5			16
+#define VERA_DEC_6			32
+#define VERA_DEC_7			64
+#define VERA_DEC_8			128
+#define VERA_DEC_9			256
+#define VERA_DEC_10			512
+#define VERA_DEC_11			40
+#define VERA_DEC_12			80
+#define VERA_DEC_13			160
+#define VERA_DEC_14			320
+#define VERA_DEC_15			640
+
 //Video [x means todo, y means finished]
 void ResetVERA(); //y
 
