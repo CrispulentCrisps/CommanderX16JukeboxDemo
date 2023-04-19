@@ -86,7 +86,7 @@ void SetUpSprites() {
 	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
 	const unsigned long BGAddr = 0x0;
-	const unsigned long BGMapAddr = 0x2000;
+	const unsigned short BGMapAddr = 0x2000;
 
 	//Set up Background
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
@@ -98,17 +98,19 @@ void SetUpSprites() {
 	vera.l0config = VERA_LAYER_WIDTH_64 | VERA_LAYER_HEIGHT_32 | VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 | VERA_LAYER_DEPTH_2;
 	
 	vera.l0tilebase = BGAddr;
-	vera.l0mapbase = BGMapAddr;
+	vera.l0mapbase = memoryToMapMemoryAddress(BGAddr, BGMapAddr);
 	
 	vram_addr(0x0);
 
 	vram_putn(BGAddr, MainBG, sizeof(MainBG));
 
+	vera.addrh = vera.addrh | 0b00010000;
+
 	unsigned int R = 0;
 	unsigned int LW1 = 4;
 	unsigned int LW2 = 8;
 	unsigned int LW3 = 16;
-		
+	
 	for (unsigned i = 0; i < 32; i++)
 	{
 		if (i <= LW1)

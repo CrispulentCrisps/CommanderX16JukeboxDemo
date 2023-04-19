@@ -126,6 +126,8 @@ struct VERAInstrument {
 
 void PlayVERANote(VERAInstrument* inst, unsigned Length, char Waveform, char Panning, char Duty[4], char Arpeggio[]); //x
 
+unsigned char memoryToMapMemoryAddress(unsigned char bank, unsigned short mem);
+
 void SetPCMSettings(char SRate, char Vol);//y
 void PlayPCM(const char PCMData[], bool Loop);//x
 

@@ -82,3 +82,8 @@ void ScrollerText(const char Text[], unsigned x, unsigned y, int offset)
 	}
 */
 }
+
+unsigned char memoryToMapMemoryAddress(unsigned char bank, unsigned short mem) {
+	unsigned char mapMem = bank << 7 | mem >> 9;
+	return mapMem;
+}
