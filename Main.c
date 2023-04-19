@@ -91,49 +91,56 @@ void SetUpSprites() {
 	//Set up Background
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
+	
 	vera.dcvscale = 128;
 	vera.dchscale = 128;
+	
 	vera.l0config = VERA_LAYER_WIDTH_64 | VERA_LAYER_HEIGHT_32 | VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 | VERA_LAYER_DEPTH_2;
+	
 	vera.l0tilebase = BGAddr;
 	vera.l0mapbase = BGMapAddr;
-	vera.addrh = 0x0000;
-	vera.addrl = 4;
+	
+	vram_addr(0x0);
+
 	vram_putn(BGAddr, MainBG, sizeof(MainBG));
 
 	unsigned int R = 0;
-	unsigned int LW1 = 30;
-	unsigned int LW2 = 20;
-	unsigned int LW3 = 10;
-
-	for (unsigned i = 0; i < 80; i++)
-	{
+	unsigned int LW1 = 4;
+	unsigned int LW2 = 8;
+	unsigned int LW3 = 16;
 		
+	for (unsigned i = 0; i < 32; i++)
+	{
 		if (i <= LW1)
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.data0 += 0x00;
+				vera.data0 = 0x01;
+				vera.data0 = 0;
 			}
 		}
 		else if (i > LW1 && i <= LW2)
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.data0 += 0x10;
+				vera.data0 = 0x02;
+				vera.data0 = 0;
 			}
 		}
 		else if (i > LW2 && i <= LW3)
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.data0 += 0x20;
+				vera.data0 = 0x03;
+				vera.data0 = 0;
 			}
 		}
 		else
 		{
 			for (unsigned j = 0; j < 60; j++)
 			{
-				vera.data0 += 0x30;
+				vera.data0 = 0x04;
+				vera.data0 = 0;
 			}
 		}
 		
