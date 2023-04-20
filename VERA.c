@@ -87,3 +87,8 @@ unsigned char memoryToMapMemoryAddress(unsigned char bank, unsigned short mem) {
 	unsigned char mapMem = bank << 7 | mem >> 9;
 	return mapMem;
 }
+
+unsigned char tileBaseConfig(unsigned char bank, unsigned short mem, unsigned char height, unsigned char width) {
+    unsigned char tileConfig = bank << 7 | ((mem >> 11) << 2) | height << 1 | width;
+    return tileConfig;
+}
