@@ -20,10 +20,10 @@ void ClearVERAScreen()
 	putch(0x93);
 	vera.addrh = 0b00010001;
 
-	for (int i = 0; i < 60; i++)
+	for (int i = 0; i < 64; i++)
 	{
 		vera.addr = 0xb000 + 256 * i;
-		for (int j = 0; j < 120; j++)
+		for (int j = 0; j < 128; j++)
 		{
 			vera.data0 = 0x20;
 			vera.data0 = 1;

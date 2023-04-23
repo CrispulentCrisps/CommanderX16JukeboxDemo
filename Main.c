@@ -24,57 +24,47 @@ const char MainBG[] = {
 	// The MAINBG.BIN file isn't the correct size because it has 2 leading bytes
 	// This is a C64 convention where 2 leading bytes are used by the kernal as an optional loading address
 	// You need to trim them off or load with the kernal routine unless #embed removes them (which I don't think it is)
-	// #embed 512 "sprites/bin/MAINBG.BIN"
-	// These are just 4 sample tiles (solid colors) you can play with
- 	  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-	 85,  85,  85,  85,  85,  85,  85,  85,  85,  85,  85,  85,  85,  85,  85,  85,
-	170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170,
+	#embed 256 2 "sprites/bin/MAINBG.BIN"
 };
-
 const char ScrollerOutline[] = {
 	#embed 1024 2 "sprites/bin/SCROLLEROUTLINE.BIN"
 };
-
 const char Pause[] = {
-	#embed 1024 2 "sprites/bin/PAUSE.BIN"
+	#embed 256 2 "sprites/bin/PAUSE.BIN"
 };
-
 const char Arrow[] = {	
-	#embed 1024 30 "sprites/bin/ARROW.BIN"
+	#embed 256 2 "sprites/bin/ARROW.BIN"
 };
 const char VolumeInd[] = {
-	#embed 64 "sprites/bin/VOLUMEBUTTON.BIN"
-
+	#embed 64 2 "sprites/bin/VOLUMEBUTTON.BIN"
 };
 
 const char palette[] = {
-	0x00, 0x00, 0xFF, 0x0F,
-	0xEE, 0x0F, 0xFF, 0xEE,
-	0xAA, 0x0A, 0x88, 0x08,
-	0x66, 0x06, 0x44, 0x04,
 
-	0x00, 0x00, 0xFF, 0x0F,
-	0xEE, 0x0F, 0xFF, 0xEE,
-	0xAA, 0x0A, 0x88, 0x08,
-	0x66, 0x06, 0x44, 0x04
+	0xFF, 0x0F, 0xEF, 0x0E,
+	0xEE, 0x0E,	0xAA, 0x0A, 
+	0x88, 0x08, 0x66, 0x06, 
+	0x22, 0x02, 0x11, 0x01,
+
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00
 };
 
 const char BGPal[] = {
-	0x00, 0x00, 0x11, 0x01,
-	0x22, 0x02, 0x33, 0x03,
-	0x44, 0x04, 0x55, 0x05,
-	0x66, 0x06, 0x77, 0x07,
+	0x23, 0x02, 0x12, 0x01,
+	0x01, 0x11, 0x77, 0x07, 
+	0xFF, 0x0F, 0xAA, 0x0A,
+	0x66, 0x06, 0x22, 0x02,
 
-	0x88, 0x08, 0x99, 0x09,
-	0xAA, 0x0A, 0xBB, 0x0B,
-	0xCC, 0x0C, 0xDD, 0x0D,
-	0xEE, 0x0E, 0xFF, 0x0F
+
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00
 };
-
-const char TestText[] = s"Concept Crisps Coding Crisps Blumba, Tobach";
-
-const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH";
+const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH, MARK-BUG-SLAYER";
 
 bool Control(bool playing) {
 
@@ -107,8 +97,12 @@ void SetUpSprites() {
 	// In this mode, a tile width and height is 8 pixels, so
 	// Width: 640pixels / 8 = 80 tiles across = Need to set our width to 128
 	// Height: 480pixels / 8 = 60 tiles down = Need to set our height to 64
-	vera.l0config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_2;
+	vera.l0config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_4;
 	
+	vera.l1config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_T256C | VERA_LAYER_DEPTH_1;
+
+	//vera.l1mapbase = 0x04;
+
 	//  VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 aren't used on loconfig, they are for l0tilebase
 	// The tileBaseConfig helper doesn't need them but if you are manually setting bits you can use them
 
@@ -120,68 +114,68 @@ void SetUpSprites() {
 
 	vera.l0mapbase = memoryToMapMemoryAddress(0, BGMapAddr);
 
+	byte CharColour = vera.l1mapbase & ~0b00000001 | 0x00000001;
+	vera.l1mapbase = CharColour;
 	vram_putn(BGAddr, MainBG, sizeof(MainBG));
 
 	// Set address increment mode to 1 byte increments
 	vera.addrh = 0b00010000;
 
 	unsigned int R = 0;
-	unsigned int LW1 = 4;
-	unsigned int LW2 = 8;
-	unsigned int LW3 = 16;
+	unsigned int S = 0;
 
 	vera.addr = BGMapAddr;
 
-	// We only need to go from 0-59 because the last 4 are off the screen
+	S = 0;
 	for (unsigned i = 0; i < 60; i++)
 	{
-		if (i <= LW1)
-		{
-			// A row contains 80 tiles in this mode but we write all the way to 127
-			// so the data0 continues to increment.
-			// You can also stop after 79 and reset the address but that's complicated
-			// Usually easier to just write the tiles off screen too and don't worry about it.
-			for (unsigned j = 0; j < 128; j++)
+		for (unsigned j = 0; j < 128; j++) {
+			
+			R = rand() % 32;
+
+			if (R <= 30)
 			{
-				vera.data0 = 0x00;
-				vera.data0 = 0;
+				if (j < 10 || j > 70) {
+					vera.data0 = 0;
+				}
+				else if (j < 20 || j > 60) {
+					vera.data0 = 1;
+				}
+				else if (j < 30 || j > 50) {
+					vera.data0 = 2;
+				}
+				else {
+					vera.data0 = 3;
+				}
 			}
-		}
-		else if (i > LW1 && i <= LW2)
-		{
-			for (unsigned j = 0; j < 128; j++)
+			else
 			{
-				vera.data0 = 0x01;
-				vera.data0 = 0;
+				if (j < 10 || j > 70) {
+					vera.data0 = 4;
+				}
+				else if (j < 20 || j > 60) {
+					vera.data0 = 5;
+				}
+				else if (j < 30 || j > 50) {
+					vera.data0 = 6;
+				}
+				else {
+					vera.data0 = 7;
+				}
 			}
+			R = 0;
+			vera.data0 = 0;
 		}
-		else if (i > LW2 && i <= LW3)
-		{
-			for (unsigned j = 0; j < 128; j++)
-			{
-				vera.data0 = 0x02;
-				vera.data0 = 0;
-			}
-		}
-		else
-		{
-			for (unsigned j = 0; j < 128; j++)
-			{
-				vera.data0 = 0x03;
-				vera.data0 = 0;
-			}
-		}
-		
 	}
 
-	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FB20UL);
+	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FA00UL);
 
 	vram_putn(ScrollerOutlineAddr ,ScrollerOutline, sizeof(ScrollerOutline));
 
 	//Pause
 	vram_putn(PauseAddr, Pause, sizeof(Pause));
-	vera_spr_set(23, PauseAddr >> 5, false, 2, 2, 3, 1);
-	vera_spr_move(23, 282, 440);
+	vera_spr_set(22, PauseAddr >> 5, false, 1, 2, 3, 1);
+	vera_spr_move(22, 282, 440);
 
 	//Bottom bars around the text
 	for (unsigned long i = 0; i < 22; i+=2)
@@ -230,11 +224,9 @@ int main(){
 	{
 		vera.dcborder = 3;
 		if (zsm_check())
-			zsm_init("@0:zsmfiles/paperclip.zsm,P,R");	
+			zsm_init("@0:zsmfiles/Kraid.zsm,P,R");	
 
 		Playing = Control(Playing);
-
-		//ScrollerText(TestText2, 0, 0, FrameCount);
 
 		if (FrameCount % 4 == 1) {
 			vera.data0 = TestText2[off1] - 64;
