@@ -86,6 +86,7 @@ void SetUpSprites() {
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
+	const unsigned short TextAddr = 0x8000;
 
 	//Set up Background
 	vera.ctrl = 0; // &= ~VERA_CTRL_DCSEL;
@@ -114,8 +115,18 @@ void SetUpSprites() {
 
 	vera.l0mapbase = memoryToMapMemoryAddress(0, BGMapAddr);
 
-	byte CharColour = vera.l1mapbase & ~0b00000001 | 0x00000001;
-	vera.l1mapbase = CharColour;
+	vera.addrh = 1 | (2 << 4);
+	
+	for (unsigned i = 0; i < 128; i++)
+	{
+
+		for (unsigned j = 0; j < 80; j++)
+		{
+			vera.data1 = 0b00000000;
+			vera.data1 = 8 + (1 << 8);
+		}
+	}
+
 	vram_putn(BGAddr, MainBG, sizeof(MainBG));
 
 	// Set address increment mode to 1 byte increments

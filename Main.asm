@@ -11,7 +11,7 @@ startup:
 080b : 00 __ __ BRK
 080c : 00 __ __ BRK
 080d : ba __ __ TSX
-080e : 8e 61 11 STX $1161 ; (spentry + 0)
+080e : 8e 76 11 STX $1176 ; (spentry + 0)
 0811 : a9 00 __ LDA #$00
 0813 : 85 39 __ STA IP + 0 
 0815 : a9 16 __ LDA #$16
@@ -30,7 +30,7 @@ startup:
 082c : ca __ __ DEX
 082d : d0 f6 __ BNE $0825 ; (startup + 36)
 082f : 38 __ __ SEC
-0830 : a9 00 __ LDA #$00
+0830 : a9 13 __ LDA #$13
 0832 : e9 00 __ SBC #$00
 0834 : f0 08 __ BEQ $083e ; (startup + 61)
 0836 : a8 __ __ TAY
@@ -59,7 +59,7 @@ startup:
 0862 : 60 __ __ RTS
 --------------------------------------------------------------------
 spentry:
-1161 : __ __ __ BYT 00                                              : .
+1176 : __ __ __ BYT 00                                              : .
 --------------------------------------------------------------------
 main:
 .s0:
@@ -88,31 +88,31 @@ main:
 .l2:
 08b9 : a9 03 __ LDA #$03
 08bb : 8d 2c 9f STA $9f2c 
-08be : 20 ac 0e JSR $0eac ; (zsm_check.s0 + 0)
+08be : 20 c1 0e JSR $0ec1 ; (zsm_check.s0 + 0)
 08c1 : 09 00 __ ORA #$00
 08c3 : f0 0b __ BEQ $08d0 ; (main.s6 + 0)
 .s4:
-08c5 : a9 1d __ LDA #$1d
+08c5 : a9 32 __ LDA #$32
 08c7 : 85 30 __ STA P3 
 08c9 : a9 10 __ LDA #$10
 08cb : 85 31 __ STA P4 
-08cd : 20 b0 0e JSR $0eb0 ; (zsm_init.s0 + 0)
+08cd : 20 c5 0e JSR $0ec5 ; (zsm_init.s0 + 0)
 .s6:
 08d0 : a5 4d __ LDA T1 + 0 
 08d2 : 85 2e __ STA P1 
-08d4 : 20 37 10 JSR $1037 ; (Control.s0 + 0)
+08d4 : 20 4c 10 JSR $104c ; (Control.s0 + 0)
 08d7 : a5 3b __ LDA ACCU + 0 
 08d9 : 85 4d __ STA T1 + 0 
-08db : ad a8 11 LDA $11a8 ; (FrameCount + 0)
+08db : ad bd 11 LDA $11bd ; (FrameCount + 0)
 08de : 85 48 __ STA T3 + 0 
 08e0 : 85 3b __ STA ACCU + 0 
-08e2 : ad a9 11 LDA $11a9 ; (FrameCount + 1)
+08e2 : ad be 11 LDA $11be ; (FrameCount + 1)
 08e5 : 85 3c __ STA ACCU + 1 
 08e7 : a9 04 __ LDA #$04
 08e9 : 85 23 __ STA WORK + 0 
 08eb : a9 00 __ LDA #$00
 08ed : 85 24 __ STA WORK + 1 
-08ef : 20 38 11 JSR $1138 ; (mods16 + 0)
+08ef : 20 4d 11 JSR $114d ; (mods16 + 0)
 08f2 : a5 26 __ LDA WORK + 3 
 08f4 : d0 16 __ BNE $090c ; (main.s9 + 0)
 .s1002:
@@ -120,16 +120,16 @@ main:
 08f8 : c9 01 __ CMP #$01
 08fa : d0 10 __ BNE $090c ; (main.s9 + 0)
 .s7:
-08fc : ae fd 11 LDX $11fd ; (off1 + 0)
+08fc : ae 12 1a LDX $1a12 ; (off1 + 0)
 08ff : e8 __ __ INX
-0900 : 8e fd 11 STX $11fd ; (off1 + 0)
-0903 : bd a9 11 LDA $11a9,x ; (FrameCount + 1)
+0900 : 8e 12 1a STX $1a12 ; (off1 + 0)
+0903 : bd be 11 LDA $11be,x ; (FrameCount + 1)
 0906 : 38 __ __ SEC
 0907 : e9 40 __ SBC #$40
 0909 : 8d 23 9f STA $9f23 
 .s9:
 090c : 06 48 __ ASL T3 + 0 
-090e : ad a9 11 LDA $11a9 ; (FrameCount + 1)
+090e : ad be 11 LDA $11be ; (FrameCount + 1)
 0911 : 2a __ __ ROL
 0912 : 18 __ __ CLC
 0913 : 69 ff __ ADC #$ff
@@ -138,23 +138,23 @@ main:
 091a : 8d 37 9f STA $9f37 
 091d : a9 01 __ LDA #$01
 091f : 8d 2c 9f STA $9f2c 
-0922 : 20 4f 0f JSR $0f4f ; (zsm_fill.s0 + 0)
+0922 : 20 64 0f JSR $0f64 ; (zsm_fill.s0 + 0)
 0925 : a9 00 __ LDA #$00
 0927 : 8d 2c 9f STA $9f2c 
-092a : 20 88 10 JSR $1088 ; (frame_wait.l1 + 0)
-092d : ee a8 11 INC $11a8 ; (FrameCount + 0)
+092a : 20 9d 10 JSR $109d ; (frame_wait.l1 + 0)
+092d : ee bd 11 INC $11bd ; (FrameCount + 0)
 0930 : d0 87 __ BNE $08b9 ; (main.l2 + 0)
 .s1003:
-0932 : ee a9 11 INC $11a9 ; (FrameCount + 1)
+0932 : ee be 11 INC $11be ; (FrameCount + 1)
 0935 : 4c b9 08 JMP $08b9 ; (main.l2 + 0)
 --------------------------------------------------------------------
 zsm_irq_init:
 .s0:
 0938 : 78 __ __ SEI
 0939 : ad 14 03 LDA $0314 
-093c : 8d e6 11 STA $11e6 ; (oirq + 0)
+093c : 8d fb 11 STA $11fb ; (oirq + 0)
 093f : ad 15 03 LDA $0315 
-0942 : 8d e7 11 STA $11e7 ; (oirq + 1)
+0942 : 8d fc 11 STA $11fc ; (oirq + 1)
 0945 : a9 51 __ LDA #$51
 0947 : 8d 14 03 STA $0314 
 094a : a9 09 __ LDA #$09
@@ -164,11 +164,11 @@ zsm_irq_init:
 0950 : 60 __ __ RTS
 --------------------------------------------------------------------
 oirq:
-11e6 : __ __ __ BSS	2
+11fb : __ __ __ BSS	2
 --------------------------------------------------------------------
 irqt:
 0951 : 20 57 09 JSR $0957 ; (irq.s1000 + 0)
-0954 : 6c e6 11 JMP ($11e6)
+0954 : 6c fb 11 JMP ($11fb)
 --------------------------------------------------------------------
 irq:
 .s1000:
@@ -201,10 +201,10 @@ irq:
 097e : a5 50 __ LDA $50 
 0980 : 48 __ __ PHA
 .s0:
-0981 : ad 62 11 LDA $1162 ; (zsm_playing + 0)
+0981 : ad 77 11 LDA $1177 ; (zsm_playing + 0)
 0984 : f0 08 __ BEQ $098e ; (irq.s1001 + 0)
 .s4:
-0986 : ad 63 11 LDA $1163 ; (zsm_finished + 0)
+0986 : ad 78 11 LDA $1178 ; (zsm_finished + 0)
 0989 : d0 03 __ BNE $098e ; (irq.s1001 + 0)
 .s1:
 098b : 20 b9 09 JSR $09b9 ; (zsm_play.s0 + 0)
@@ -240,14 +240,14 @@ irq:
 09b8 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_playing:
-1162 : __ __ __ BYT 00                                              : .
+1177 : __ __ __ BYT 00                                              : .
 --------------------------------------------------------------------
 zsm_finished:
-1163 : __ __ __ BYT 01                                              : .
+1178 : __ __ __ BYT 01                                              : .
 --------------------------------------------------------------------
 zsm_play:
 .s0:
-09b9 : ad e8 11 LDA $11e8 ; (zsm_delay + 0)
+09b9 : ad fd 11 LDA $11fd ; (zsm_delay + 0)
 09bc : f0 03 __ BEQ $09c1 ; (zsm_play.s2 + 0)
 09be : 4c ee 0a JMP $0aee ; (zsm_play.s1 + 0)
 .s2:
@@ -263,17 +263,17 @@ zsm_play:
 09d8 : ad 22 9f LDA $9f22 
 09db : 85 48 __ STA T1 + 0 
 .l5:
-09dd : ad e9 11 LDA $11e9 ; (zsm_pos + 0)
+09dd : ad fe 11 LDA $11fe ; (zsm_pos + 0)
 09e0 : 85 4b __ STA T3 + 0 
 09e2 : 18 __ __ CLC
 09e3 : 69 01 __ ADC #$01
 09e5 : 85 4d __ STA T4 + 0 
-09e7 : 8d e9 11 STA $11e9 ; (zsm_pos + 0)
-09ea : ad ea 11 LDA $11ea ; (zsm_pos + 1)
+09e7 : 8d fe 11 STA $11fe ; (zsm_pos + 0)
+09ea : ad ff 11 LDA $11ff ; (zsm_pos + 1)
 09ed : aa __ __ TAX
 09ee : 69 00 __ ADC #$00
 09f0 : 85 4e __ STA T4 + 1 
-09f2 : 8d ea 11 STA $11ea ; (zsm_pos + 1)
+09f2 : 8d ff 11 STA $11ff ; (zsm_pos + 1)
 09f5 : 18 __ __ CLC
 09f6 : a9 00 __ LDA #$00
 09f8 : 65 4b __ ADC T3 + 0 
@@ -302,10 +302,10 @@ zsm_play:
 0a21 : 29 3f __ AND #$3f
 0a23 : 18 __ __ CLC
 0a24 : 65 4d __ ADC T4 + 0 
-0a26 : 8d e9 11 STA $11e9 ; (zsm_pos + 0)
+0a26 : 8d fe 11 STA $11fe ; (zsm_pos + 0)
 0a29 : 98 __ __ TYA
 0a2a : 65 4e __ ADC T4 + 1 
-0a2c : 8d ea 11 STA $11ea ; (zsm_pos + 1)
+0a2c : 8d ff 11 STA $11ff ; (zsm_pos + 1)
 0a2f : 4c dd 09 JMP $09dd ; (zsm_play.l5 + 0)
 .s12:
 0a32 : 09 00 __ ORA #$00
@@ -319,20 +319,20 @@ zsm_play:
 0a3e : 18 __ __ CLC
 .l1012:
 0a3f : a9 00 __ LDA #$00
-0a41 : 6d e9 11 ADC $11e9 ; (zsm_pos + 0)
+0a41 : 6d fe 11 ADC $11fe ; (zsm_pos + 0)
 0a44 : 85 4d __ STA T4 + 0 
-0a46 : ad ea 11 LDA $11ea ; (zsm_pos + 1)
+0a46 : ad ff 11 LDA $11ff ; (zsm_pos + 1)
 0a49 : 29 03 __ AND #$03
 0a4b : 69 16 __ ADC #$16
 0a4d : 85 4e __ STA T4 + 1 
 0a4f : a0 00 __ LDY #$00
 0a51 : b1 4d __ LDA (T4 + 0),y 
 0a53 : 85 2d __ STA P0 
-0a55 : ad e9 11 LDA $11e9 ; (zsm_pos + 0)
+0a55 : ad fe 11 LDA $11fe ; (zsm_pos + 0)
 0a58 : 18 __ __ CLC
 0a59 : 69 01 __ ADC #$01
 0a5b : aa __ __ TAX
-0a5c : ad ea 11 LDA $11ea ; (zsm_pos + 1)
+0a5c : ad ff 11 LDA $11ff ; (zsm_pos + 1)
 0a5f : 69 00 __ ADC #$00
 0a61 : 29 03 __ AND #$03
 0a63 : 85 4c __ STA T3 + 1 
@@ -346,13 +346,13 @@ zsm_play:
 0a71 : b1 4b __ LDA (T3 + 0),y 
 0a73 : 85 2e __ STA P1 
 0a75 : 20 f2 0a JSR $0af2 ; (sfx_put.l1 + 0)
-0a78 : ad e9 11 LDA $11e9 ; (zsm_pos + 0)
+0a78 : ad fe 11 LDA $11fe ; (zsm_pos + 0)
 0a7b : 18 __ __ CLC
 0a7c : 69 02 __ ADC #$02
-0a7e : 8d e9 11 STA $11e9 ; (zsm_pos + 0)
+0a7e : 8d fe 11 STA $11fe ; (zsm_pos + 0)
 0a81 : 90 03 __ BCC $0a86 ; (zsm_play.s1015 + 0)
 .s1014:
-0a83 : ee ea 11 INC $11ea ; (zsm_pos + 1)
+0a83 : ee ff 11 INC $11ff ; (zsm_pos + 1)
 .s1015:
 0a86 : e6 50 __ INC T7 + 0 
 0a88 : a5 50 __ LDA T7 + 0 
@@ -364,13 +364,13 @@ zsm_play:
 0a93 : d0 07 __ BNE $0a9c ; (zsm_play.s22 + 0)
 .s21:
 0a95 : a9 01 __ LDA #$01
-0a97 : 8d 63 11 STA $1163 ; (zsm_finished + 0)
+0a97 : 8d 78 11 STA $1178 ; (zsm_finished + 0)
 0a9a : d0 08 __ BNE $0aa4 ; (zsm_play.s7 + 0)
 .s22:
 0a9c : 29 7f __ AND #$7f
 0a9e : 38 __ __ SEC
 0a9f : e9 01 __ SBC #$01
-0aa1 : 8d e8 11 STA $11e8 ; (zsm_delay + 0)
+0aa1 : 8d fd 11 STA $11fd ; (zsm_delay + 0)
 .s7:
 0aa4 : a5 49 __ LDA T2 + 0 
 0aa6 : 8d 20 9f STA $9f20 
@@ -392,12 +392,12 @@ zsm_play:
 0ac7 : 8d 22 9f STA $9f22 
 0aca : a5 4b __ LDA T3 + 0 
 0acc : 69 02 __ ADC #$02
-0ace : 8d e9 11 STA $11e9 ; (zsm_pos + 0)
+0ace : 8d fe 11 STA $11fe ; (zsm_pos + 0)
 0ad1 : 90 01 __ BCC $0ad4 ; (zsm_play.s1017 + 0)
 .s1016:
 0ad3 : e8 __ __ INX
 .s1017:
-0ad4 : 8e ea 11 STX $11ea ; (zsm_pos + 1)
+0ad4 : 8e ff 11 STX $11ff ; (zsm_pos + 1)
 0ad7 : 18 __ __ CLC
 0ad8 : a9 00 __ LDA #$00
 0ada : 65 4d __ ADC T4 + 0 
@@ -410,17 +410,17 @@ zsm_play:
 0ae8 : 8d 23 9f STA $9f23 
 0aeb : 4c dd 09 JMP $09dd ; (zsm_play.l5 + 0)
 .s1:
-0aee : ce e8 11 DEC $11e8 ; (zsm_delay + 0)
+0aee : ce fd 11 DEC $11fd ; (zsm_delay + 0)
 0af1 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_delay:
-11e8 : __ __ __ BSS	1
+11fd : __ __ __ BSS	1
 --------------------------------------------------------------------
 zsm_buffer:
 1600 : __ __ __ BSS	1024
 --------------------------------------------------------------------
 zsm_pos:
-11e9 : __ __ __ BSS	2
+11fe : __ __ __ BSS	2
 --------------------------------------------------------------------
 sfx_put:
 .l1:
@@ -500,337 +500,352 @@ SetUpSprites:
 0b6a : 8d 2d 9f STA $9f2d 
 0b6d : a9 68 __ LDA #$68
 0b6f : 8d 34 9f STA $9f34 
-0b72 : 20 66 0d JSR $0d66 ; (tileBaseConfig.s0 + 0)
+0b72 : 20 7b 0d JSR $0d7b ; (tileBaseConfig.s0 + 0)
 0b75 : 8d 2f 9f STA $9f2f 
 0b78 : a9 20 __ LDA #$20
 0b7a : 85 2f __ STA P2 
-0b7c : 20 7f 0d JSR $0d7f ; (memoryToMapMemoryAddress.s0 + 0)
+0b7c : 20 94 0d JSR $0d94 ; (memoryToMapMemoryAddress.s0 + 0)
 0b7f : 8d 2e 9f STA $9f2e 
-0b82 : a9 00 __ LDA #$00
-0b84 : 85 2f __ STA P2 
-0b86 : 85 33 __ STA P6 
-0b88 : a9 01 __ LDA #$01
-0b8a : 85 34 __ STA P7 
-0b8c : ad 35 9f LDA $9f35 
-0b8f : 29 fe __ AND #$fe
-0b91 : 09 01 __ ORA #$01
-0b93 : 8d 35 9f STA $9f35 
-0b96 : a9 00 __ LDA #$00
-0b98 : 85 31 __ STA P4 
-0b9a : a9 12 __ LDA #$12
-0b9c : 85 32 __ STA P5 
-0b9e : 20 8d 0d JSR $0d8d ; (vram_putn.s0 + 0)
-0ba1 : a9 10 __ LDA #$10
-0ba3 : 8d 22 9f STA $9f22 
-0ba6 : a9 00 __ LDA #$00
-0ba8 : 8d 20 9f STA $9f20 
-0bab : a9 20 __ LDA #$20
-0bad : 8d 21 9f STA $9f21 
-0bb0 : a9 3c __ LDA #$3c
-0bb2 : 85 47 __ STA T1 + 0 
-.l2:
-0bb4 : a9 00 __ LDA #$00
-0bb6 : 85 48 __ STA T2 + 0 
+0b82 : a9 21 __ LDA #$21
+0b84 : 8d 22 9f STA $9f22 
+0b87 : a2 80 __ LDX #$80
 .l6:
-0bb8 : 20 c8 0d JSR $0dc8 ; (rand.s0 + 0)
-0bbb : a5 3b __ LDA ACCU + 0 
-0bbd : 29 1f __ AND #$1f
-0bbf : c9 1f __ CMP #$1f
-0bc1 : a5 48 __ LDA T2 + 0 
-0bc3 : 90 03 __ BCC $0bc8 ; (SetUpSprites.s1018 + 0)
-0bc5 : 4c 30 0d JMP $0d30 ; (SetUpSprites.s1012 + 0)
-.s1018:
-0bc8 : c9 0a __ CMP #$0a
-0bca : 90 06 __ BCC $0bd2 ; (SetUpSprites.s12 + 0)
-.s1017:
-0bcc : a9 46 __ LDA #$46
-0bce : c5 48 __ CMP T2 + 0 
-0bd0 : b0 04 __ BCS $0bd6 ; (SetUpSprites.s1016 + 0)
-.s12:
-0bd2 : a9 00 __ LDA #$00
-0bd4 : f0 2f __ BEQ $0c05 ; (SetUpSprites.s68 + 0)
-.s1016:
-0bd6 : a5 48 __ LDA T2 + 0 
-0bd8 : c9 14 __ CMP #$14
-0bda : 90 06 __ BCC $0be2 ; (SetUpSprites.s16 + 0)
-.s1015:
-0bdc : a9 3c __ LDA #$3c
-0bde : c5 48 __ CMP T2 + 0 
-0be0 : b0 04 __ BCS $0be6 ; (SetUpSprites.s1014 + 0)
-.s16:
-0be2 : a9 01 __ LDA #$01
-0be4 : d0 12 __ BNE $0bf8 ; (SetUpSprites.s72 + 0)
-.s1014:
-0be6 : a5 48 __ LDA T2 + 0 
-0be8 : c9 1e __ CMP #$1e
-0bea : 90 06 __ BCC $0bf2 ; (SetUpSprites.s20 + 0)
-.s1013:
-0bec : a9 32 __ LDA #$32
-0bee : c5 48 __ CMP T2 + 0 
-0bf0 : b0 04 __ BCS $0bf6 ; (SetUpSprites.s21 + 0)
-.s20:
-0bf2 : a9 02 __ LDA #$02
-0bf4 : d0 02 __ BNE $0bf8 ; (SetUpSprites.s72 + 0)
-.s21:
-0bf6 : a9 03 __ LDA #$03
-.s72:
-0bf8 : 8d 23 9f STA $9f23 
-0bfb : a9 00 __ LDA #$00
-0bfd : 8d 23 9f STA $9f23 
-0c00 : e6 48 __ INC T2 + 0 
-0c02 : 4c b8 0b JMP $0bb8 ; (SetUpSprites.l6 + 0)
-.s68:
-0c05 : 8d 23 9f STA $9f23 
-0c08 : a9 00 __ LDA #$00
-0c0a : 8d 23 9f STA $9f23 
-0c0d : e6 48 __ INC T2 + 0 
-0c0f : 10 a7 __ BPL $0bb8 ; (SetUpSprites.l6 + 0)
-.s3:
-0c11 : c6 47 __ DEC T1 + 0 
-0c13 : d0 9f __ BNE $0bb4 ; (SetUpSprites.l2 + 0)
+0b89 : a0 50 __ LDY #$50
+.l1020:
+0b8b : a9 00 __ LDA #$00
+0b8d : 8d 24 9f STA $9f24 
+0b90 : a9 08 __ LDA #$08
+0b92 : 8d 24 9f STA $9f24 
+0b95 : 88 __ __ DEY
+0b96 : d0 f3 __ BNE $0b8b ; (SetUpSprites.l1020 + 0)
+.s1021:
+0b98 : ca __ __ DEX
+0b99 : d0 ee __ BNE $0b89 ; (SetUpSprites.l6 + 0)
 .s4:
-0c15 : a9 20 __ LDA #$20
-0c17 : 85 37 __ STA P10 
-0c19 : a9 00 __ LDA #$00
-0c1b : 8d fc 9e STA $9efc ; (sstack + 0)
-0c1e : 8d ff 9e STA $9eff ; (sstack + 3)
-0c21 : a9 fa __ LDA #$fa
-0c23 : 8d fd 9e STA $9efd ; (sstack + 1)
-0c26 : a9 01 __ LDA #$01
-0c28 : 8d fe 9e STA $9efe ; (sstack + 2)
-0c2b : a9 66 __ LDA #$66
-0c2d : 85 35 __ STA P8 
-0c2f : a9 11 __ LDA #$11
-0c31 : 85 36 __ STA P9 
-0c33 : 20 ef 0d JSR $0def ; (SetPaletteColours.s0 + 0)
-0c36 : a9 00 __ LDA #$00
-0c38 : 85 2d __ STA P0 
-0c3a : 85 30 __ STA P3 
-0c3c : 85 33 __ STA P6 
-0c3e : a9 31 __ LDA #$31
-0c40 : 85 2e __ STA P1 
-0c42 : a9 01 __ LDA #$01
-0c44 : 85 2f __ STA P2 
-0c46 : a9 02 __ LDA #$02
-0c48 : 85 34 __ STA P7 
-0c4a : a9 00 __ LDA #$00
-0c4c : 85 31 __ STA P4 
-0c4e : a9 13 __ LDA #$13
-0c50 : 85 32 __ STA P5 
-0c52 : 20 8d 0d JSR $0d8d ; (vram_putn.s0 + 0)
-0c55 : a9 30 __ LDA #$30
-0c57 : 85 2e __ STA P1 
-0c59 : a9 01 __ LDA #$01
-0c5b : 85 34 __ STA P7 
-0c5d : a9 00 __ LDA #$00
-0c5f : 85 31 __ STA P4 
-0c61 : a9 15 __ LDA #$15
-0c63 : 85 32 __ STA P5 
-0c65 : 20 8d 0d JSR $0d8d ; (vram_putn.s0 + 0)
-0c68 : a9 16 __ LDA #$16
-0c6a : 85 2d __ STA P0 
-0c6c : a9 80 __ LDA #$80
-0c6e : 85 2e __ STA P1 
-0c70 : a9 09 __ LDA #$09
-0c72 : 85 2f __ STA P2 
-0c74 : a9 01 __ LDA #$01
-0c76 : 85 31 __ STA P4 
-0c78 : 85 34 __ STA P7 
-0c7a : a9 02 __ LDA #$02
-0c7c : 85 32 __ STA P5 
-0c7e : a9 03 __ LDA #$03
-0c80 : 85 33 __ STA P6 
-0c82 : 20 16 0e JSR $0e16 ; (vera_spr_set.s0 + 0)
-0c85 : a9 1a __ LDA #$1a
-0c87 : 85 2e __ STA P1 
-0c89 : a9 01 __ LDA #$01
-0c8b : 85 2f __ STA P2 
-0c8d : a9 b8 __ LDA #$b8
-0c8f : 85 30 __ STA P3 
-0c91 : 20 73 0e JSR $0e73 ; (vera_spr_move.s0 + 0)
-0c94 : a9 00 __ LDA #$00
-0c96 : 85 4b __ STA T5 + 0 
-0c98 : 85 4c __ STA T5 + 1 
-.l37:
-0c9a : 85 2d __ STA P0 
-0c9c : 18 __ __ CLC
-0c9d : 69 02 __ ADC #$02
-0c9f : 85 49 __ STA T4 + 0 
-0ca1 : a9 00 __ LDA #$00
-0ca3 : 2a __ __ ROL
-0ca4 : 85 4a __ STA T4 + 1 
-0ca6 : a9 88 __ LDA #$88
-0ca8 : 85 2e __ STA P1 
-0caa : a9 09 __ LDA #$09
-0cac : 85 2f __ STA P2 
-0cae : a9 00 __ LDA #$00
-0cb0 : 85 30 __ STA P3 
-0cb2 : a9 03 __ LDA #$03
-0cb4 : 85 31 __ STA P4 
-0cb6 : a9 01 __ LDA #$01
-0cb8 : 85 32 __ STA P5 
-0cba : 20 16 0e JSR $0e16 ; (vera_spr_set.s0 + 0)
-0cbd : a5 4b __ LDA T5 + 0 
-0cbf : 85 2e __ STA P1 
-0cc1 : a5 4c __ LDA T5 + 1 
-0cc3 : 85 2f __ STA P2 
-0cc5 : a9 a0 __ LDA #$a0
-0cc7 : 85 30 __ STA P3 
-0cc9 : a9 01 __ LDA #$01
-0ccb : 85 31 __ STA P4 
-0ccd : 20 73 0e JSR $0e73 ; (vera_spr_move.s0 + 0)
-0cd0 : a9 88 __ LDA #$88
-0cd2 : 85 2e __ STA P1 
-0cd4 : a9 09 __ LDA #$09
-0cd6 : 85 2f __ STA P2 
-0cd8 : a9 00 __ LDA #$00
-0cda : 85 30 __ STA P3 
-0cdc : a9 03 __ LDA #$03
-0cde : 85 31 __ STA P4 
-0ce0 : e6 2d __ INC P0 
-0ce2 : 20 16 0e JSR $0e16 ; (vera_spr_set.s0 + 0)
-0ce5 : a5 4b __ LDA T5 + 0 
-0ce7 : 85 2e __ STA P1 
-0ce9 : a5 4c __ LDA T5 + 1 
-0ceb : 85 2f __ STA P2 
-0ced : a9 70 __ LDA #$70
-0cef : 85 30 __ STA P3 
-0cf1 : a9 01 __ LDA #$01
-0cf3 : 85 31 __ STA P4 
-0cf5 : 20 73 0e JSR $0e73 ; (vera_spr_move.s0 + 0)
-0cf8 : a5 4a __ LDA T4 + 1 
-0cfa : d0 13 __ BNE $0d0f ; (SetUpSprites.s39 + 0)
-.s1008:
-0cfc : 18 __ __ CLC
-0cfd : a5 2e __ LDA P1 
-0cff : 69 40 __ ADC #$40
-0d01 : 85 4b __ STA T5 + 0 
-0d03 : a5 2f __ LDA P2 
-0d05 : 69 00 __ ADC #$00
-0d07 : 85 4c __ STA T5 + 1 
-0d09 : a5 49 __ LDA T4 + 0 
-0d0b : c9 16 __ CMP #$16
-0d0d : 90 8b __ BCC $0c9a ; (SetUpSprites.l37 + 0)
-.s39:
-0d0f : a9 20 __ LDA #$20
-0d11 : 85 37 __ STA P10 
-0d13 : 8d fc 9e STA $9efc ; (sstack + 0)
-0d16 : a9 fa __ LDA #$fa
-0d18 : 8d fd 9e STA $9efd ; (sstack + 1)
-0d1b : a9 01 __ LDA #$01
-0d1d : 8d fe 9e STA $9efe ; (sstack + 2)
-0d20 : a9 00 __ LDA #$00
-0d22 : 8d ff 9e STA $9eff ; (sstack + 3)
-0d25 : a9 86 __ LDA #$86
-0d27 : 85 35 __ STA P8 
-0d29 : a9 11 __ LDA #$11
-0d2b : 85 36 __ STA P9 
-0d2d : 4c ef 0d JMP $0def ; (SetPaletteColours.s0 + 0)
-.s1012:
-0d30 : c9 0a __ CMP #$0a
-0d32 : 90 06 __ BCC $0d3a ; (SetUpSprites.s24 + 0)
-.s1011:
-0d34 : a9 46 __ LDA #$46
-0d36 : c5 48 __ CMP T2 + 0 
-0d38 : b0 05 __ BCS $0d3f ; (SetUpSprites.s1005 + 0)
+0b9b : a9 00 __ LDA #$00
+0b9d : 85 2d __ STA P0 
+0b9f : 85 2e __ STA P1 
+0ba1 : 85 2f __ STA P2 
+0ba3 : 85 30 __ STA P3 
+0ba5 : 85 33 __ STA P6 
+0ba7 : a9 01 __ LDA #$01
+0ba9 : 85 34 __ STA P7 
+0bab : a9 00 __ LDA #$00
+0bad : 85 31 __ STA P4 
+0baf : a9 12 __ LDA #$12
+0bb1 : 85 32 __ STA P5 
+0bb3 : 20 a2 0d JSR $0da2 ; (vram_putn.s0 + 0)
+0bb6 : a9 10 __ LDA #$10
+0bb8 : 8d 22 9f STA $9f22 
+0bbb : a9 00 __ LDA #$00
+0bbd : 8d 20 9f STA $9f20 
+0bc0 : a9 20 __ LDA #$20
+0bc2 : 8d 21 9f STA $9f21 
+0bc5 : a9 3c __ LDA #$3c
+0bc7 : 85 47 __ STA T1 + 0 
+.l10:
+0bc9 : a9 00 __ LDA #$00
+0bcb : 85 48 __ STA T2 + 0 
+.l14:
+0bcd : 20 dd 0d JSR $0ddd ; (rand.s0 + 0)
+0bd0 : a5 3b __ LDA ACCU + 0 
+0bd2 : 29 1f __ AND #$1f
+0bd4 : c9 1f __ CMP #$1f
+0bd6 : a5 48 __ LDA T2 + 0 
+0bd8 : 90 03 __ BCC $0bdd ; (SetUpSprites.s1018 + 0)
+0bda : 4c 45 0d JMP $0d45 ; (SetUpSprites.s1012 + 0)
+.s1018:
+0bdd : c9 0a __ CMP #$0a
+0bdf : 90 06 __ BCC $0be7 ; (SetUpSprites.s20 + 0)
+.s1017:
+0be1 : a9 46 __ LDA #$46
+0be3 : c5 48 __ CMP T2 + 0 
+0be5 : b0 04 __ BCS $0beb ; (SetUpSprites.s1016 + 0)
+.s20:
+0be7 : a9 00 __ LDA #$00
+0be9 : f0 2f __ BEQ $0c1a ; (SetUpSprites.s96 + 0)
+.s1016:
+0beb : a5 48 __ LDA T2 + 0 
+0bed : c9 14 __ CMP #$14
+0bef : 90 06 __ BCC $0bf7 ; (SetUpSprites.s24 + 0)
+.s1015:
+0bf1 : a9 3c __ LDA #$3c
+0bf3 : c5 48 __ CMP T2 + 0 
+0bf5 : b0 04 __ BCS $0bfb ; (SetUpSprites.s1014 + 0)
 .s24:
-0d3a : a9 04 __ LDA #$04
-0d3c : 4c 05 0c JMP $0c05 ; (SetUpSprites.s68 + 0)
-.s1005:
-0d3f : a5 48 __ LDA T2 + 0 
-0d41 : c9 14 __ CMP #$14
-0d43 : 90 06 __ BCC $0d4b ; (SetUpSprites.s28 + 0)
-.s1004:
-0d45 : a9 3c __ LDA #$3c
-0d47 : c5 48 __ CMP T2 + 0 
-0d49 : b0 05 __ BCS $0d50 ; (SetUpSprites.s1003 + 0)
+0bf7 : a9 01 __ LDA #$01
+0bf9 : d0 12 __ BNE $0c0d ; (SetUpSprites.s100 + 0)
+.s1014:
+0bfb : a5 48 __ LDA T2 + 0 
+0bfd : c9 1e __ CMP #$1e
+0bff : 90 06 __ BCC $0c07 ; (SetUpSprites.s28 + 0)
+.s1013:
+0c01 : a9 32 __ LDA #$32
+0c03 : c5 48 __ CMP T2 + 0 
+0c05 : b0 04 __ BCS $0c0b ; (SetUpSprites.s29 + 0)
 .s28:
-0d4b : a9 05 __ LDA #$05
-0d4d : 4c f8 0b JMP $0bf8 ; (SetUpSprites.s72 + 0)
-.s1003:
-0d50 : a5 48 __ LDA T2 + 0 
-0d52 : c9 1e __ CMP #$1e
-0d54 : 90 06 __ BCC $0d5c ; (SetUpSprites.s32 + 0)
-.s1002:
-0d56 : a9 32 __ LDA #$32
-0d58 : c5 48 __ CMP T2 + 0 
-0d5a : b0 05 __ BCS $0d61 ; (SetUpSprites.s33 + 0)
+0c07 : a9 02 __ LDA #$02
+0c09 : d0 02 __ BNE $0c0d ; (SetUpSprites.s100 + 0)
+.s29:
+0c0b : a9 03 __ LDA #$03
+.s100:
+0c0d : 8d 23 9f STA $9f23 
+0c10 : a9 00 __ LDA #$00
+0c12 : 8d 23 9f STA $9f23 
+0c15 : e6 48 __ INC T2 + 0 
+0c17 : 4c cd 0b JMP $0bcd ; (SetUpSprites.l14 + 0)
+.s96:
+0c1a : 8d 23 9f STA $9f23 
+0c1d : a9 00 __ LDA #$00
+0c1f : 8d 23 9f STA $9f23 
+0c22 : e6 48 __ INC T2 + 0 
+0c24 : 10 a7 __ BPL $0bcd ; (SetUpSprites.l14 + 0)
+.s11:
+0c26 : c6 47 __ DEC T1 + 0 
+0c28 : d0 9f __ BNE $0bc9 ; (SetUpSprites.l10 + 0)
+.s12:
+0c2a : a9 20 __ LDA #$20
+0c2c : 85 37 __ STA P10 
+0c2e : a9 00 __ LDA #$00
+0c30 : 8d fc 9e STA $9efc ; (sstack + 0)
+0c33 : 8d ff 9e STA $9eff ; (sstack + 3)
+0c36 : a9 fa __ LDA #$fa
+0c38 : 8d fd 9e STA $9efd ; (sstack + 1)
+0c3b : a9 01 __ LDA #$01
+0c3d : 8d fe 9e STA $9efe ; (sstack + 2)
+0c40 : a9 7b __ LDA #$7b
+0c42 : 85 35 __ STA P8 
+0c44 : a9 11 __ LDA #$11
+0c46 : 85 36 __ STA P9 
+0c48 : 20 04 0e JSR $0e04 ; (SetPaletteColours.s0 + 0)
+0c4b : a9 00 __ LDA #$00
+0c4d : 85 2d __ STA P0 
+0c4f : 85 30 __ STA P3 
+0c51 : 85 33 __ STA P6 
+0c53 : a9 31 __ LDA #$31
+0c55 : 85 2e __ STA P1 
+0c57 : a9 01 __ LDA #$01
+0c59 : 85 2f __ STA P2 
+0c5b : a9 02 __ LDA #$02
+0c5d : 85 34 __ STA P7 
+0c5f : a9 00 __ LDA #$00
+0c61 : 85 31 __ STA P4 
+0c63 : a9 13 __ LDA #$13
+0c65 : 85 32 __ STA P5 
+0c67 : 20 a2 0d JSR $0da2 ; (vram_putn.s0 + 0)
+0c6a : a9 30 __ LDA #$30
+0c6c : 85 2e __ STA P1 
+0c6e : a9 01 __ LDA #$01
+0c70 : 85 34 __ STA P7 
+0c72 : a9 00 __ LDA #$00
+0c74 : 85 31 __ STA P4 
+0c76 : a9 15 __ LDA #$15
+0c78 : 85 32 __ STA P5 
+0c7a : 20 a2 0d JSR $0da2 ; (vram_putn.s0 + 0)
+0c7d : a9 16 __ LDA #$16
+0c7f : 85 2d __ STA P0 
+0c81 : a9 80 __ LDA #$80
+0c83 : 85 2e __ STA P1 
+0c85 : a9 09 __ LDA #$09
+0c87 : 85 2f __ STA P2 
+0c89 : a9 01 __ LDA #$01
+0c8b : 85 31 __ STA P4 
+0c8d : 85 34 __ STA P7 
+0c8f : a9 02 __ LDA #$02
+0c91 : 85 32 __ STA P5 
+0c93 : a9 03 __ LDA #$03
+0c95 : 85 33 __ STA P6 
+0c97 : 20 2b 0e JSR $0e2b ; (vera_spr_set.s0 + 0)
+0c9a : a9 1a __ LDA #$1a
+0c9c : 85 2e __ STA P1 
+0c9e : a9 01 __ LDA #$01
+0ca0 : 85 2f __ STA P2 
+0ca2 : a9 b8 __ LDA #$b8
+0ca4 : 85 30 __ STA P3 
+0ca6 : 20 88 0e JSR $0e88 ; (vera_spr_move.s0 + 0)
+0ca9 : a9 00 __ LDA #$00
+0cab : 85 4b __ STA T5 + 0 
+0cad : 85 4c __ STA T5 + 1 
+.l45:
+0caf : 85 2d __ STA P0 
+0cb1 : 18 __ __ CLC
+0cb2 : 69 02 __ ADC #$02
+0cb4 : 85 49 __ STA T4 + 0 
+0cb6 : a9 00 __ LDA #$00
+0cb8 : 2a __ __ ROL
+0cb9 : 85 4a __ STA T4 + 1 
+0cbb : a9 88 __ LDA #$88
+0cbd : 85 2e __ STA P1 
+0cbf : a9 09 __ LDA #$09
+0cc1 : 85 2f __ STA P2 
+0cc3 : a9 00 __ LDA #$00
+0cc5 : 85 30 __ STA P3 
+0cc7 : a9 03 __ LDA #$03
+0cc9 : 85 31 __ STA P4 
+0ccb : a9 01 __ LDA #$01
+0ccd : 85 32 __ STA P5 
+0ccf : 20 2b 0e JSR $0e2b ; (vera_spr_set.s0 + 0)
+0cd2 : a5 4b __ LDA T5 + 0 
+0cd4 : 85 2e __ STA P1 
+0cd6 : a5 4c __ LDA T5 + 1 
+0cd8 : 85 2f __ STA P2 
+0cda : a9 a0 __ LDA #$a0
+0cdc : 85 30 __ STA P3 
+0cde : a9 01 __ LDA #$01
+0ce0 : 85 31 __ STA P4 
+0ce2 : 20 88 0e JSR $0e88 ; (vera_spr_move.s0 + 0)
+0ce5 : a9 88 __ LDA #$88
+0ce7 : 85 2e __ STA P1 
+0ce9 : a9 09 __ LDA #$09
+0ceb : 85 2f __ STA P2 
+0ced : a9 00 __ LDA #$00
+0cef : 85 30 __ STA P3 
+0cf1 : a9 03 __ LDA #$03
+0cf3 : 85 31 __ STA P4 
+0cf5 : e6 2d __ INC P0 
+0cf7 : 20 2b 0e JSR $0e2b ; (vera_spr_set.s0 + 0)
+0cfa : a5 4b __ LDA T5 + 0 
+0cfc : 85 2e __ STA P1 
+0cfe : a5 4c __ LDA T5 + 1 
+0d00 : 85 2f __ STA P2 
+0d02 : a9 70 __ LDA #$70
+0d04 : 85 30 __ STA P3 
+0d06 : a9 01 __ LDA #$01
+0d08 : 85 31 __ STA P4 
+0d0a : 20 88 0e JSR $0e88 ; (vera_spr_move.s0 + 0)
+0d0d : a5 4a __ LDA T4 + 1 
+0d0f : d0 13 __ BNE $0d24 ; (SetUpSprites.s47 + 0)
+.s1008:
+0d11 : 18 __ __ CLC
+0d12 : a5 2e __ LDA P1 
+0d14 : 69 40 __ ADC #$40
+0d16 : 85 4b __ STA T5 + 0 
+0d18 : a5 2f __ LDA P2 
+0d1a : 69 00 __ ADC #$00
+0d1c : 85 4c __ STA T5 + 1 
+0d1e : a5 49 __ LDA T4 + 0 
+0d20 : c9 16 __ CMP #$16
+0d22 : 90 8b __ BCC $0caf ; (SetUpSprites.l45 + 0)
+.s47:
+0d24 : a9 20 __ LDA #$20
+0d26 : 85 37 __ STA P10 
+0d28 : 8d fc 9e STA $9efc ; (sstack + 0)
+0d2b : a9 fa __ LDA #$fa
+0d2d : 8d fd 9e STA $9efd ; (sstack + 1)
+0d30 : a9 01 __ LDA #$01
+0d32 : 8d fe 9e STA $9efe ; (sstack + 2)
+0d35 : a9 00 __ LDA #$00
+0d37 : 8d ff 9e STA $9eff ; (sstack + 3)
+0d3a : a9 9b __ LDA #$9b
+0d3c : 85 35 __ STA P8 
+0d3e : a9 11 __ LDA #$11
+0d40 : 85 36 __ STA P9 
+0d42 : 4c 04 0e JMP $0e04 ; (SetPaletteColours.s0 + 0)
+.s1012:
+0d45 : c9 0a __ CMP #$0a
+0d47 : 90 06 __ BCC $0d4f ; (SetUpSprites.s32 + 0)
+.s1011:
+0d49 : a9 46 __ LDA #$46
+0d4b : c5 48 __ CMP T2 + 0 
+0d4d : b0 05 __ BCS $0d54 ; (SetUpSprites.s1005 + 0)
 .s32:
-0d5c : a9 06 __ LDA #$06
-0d5e : 4c f8 0b JMP $0bf8 ; (SetUpSprites.s72 + 0)
-.s33:
-0d61 : a9 07 __ LDA #$07
-0d63 : 4c f8 0b JMP $0bf8 ; (SetUpSprites.s72 + 0)
+0d4f : a9 04 __ LDA #$04
+0d51 : 4c 1a 0c JMP $0c1a ; (SetUpSprites.s96 + 0)
+.s1005:
+0d54 : a5 48 __ LDA T2 + 0 
+0d56 : c9 14 __ CMP #$14
+0d58 : 90 06 __ BCC $0d60 ; (SetUpSprites.s36 + 0)
+.s1004:
+0d5a : a9 3c __ LDA #$3c
+0d5c : c5 48 __ CMP T2 + 0 
+0d5e : b0 05 __ BCS $0d65 ; (SetUpSprites.s1003 + 0)
+.s36:
+0d60 : a9 05 __ LDA #$05
+0d62 : 4c 0d 0c JMP $0c0d ; (SetUpSprites.s100 + 0)
+.s1003:
+0d65 : a5 48 __ LDA T2 + 0 
+0d67 : c9 1e __ CMP #$1e
+0d69 : 90 06 __ BCC $0d71 ; (SetUpSprites.s40 + 0)
+.s1002:
+0d6b : a9 32 __ LDA #$32
+0d6d : c5 48 __ CMP T2 + 0 
+0d6f : b0 05 __ BCS $0d76 ; (SetUpSprites.s41 + 0)
+.s40:
+0d71 : a9 06 __ LDA #$06
+0d73 : 4c 0d 0c JMP $0c0d ; (SetUpSprites.s100 + 0)
+.s41:
+0d76 : a9 07 __ LDA #$07
+0d78 : 4c 0d 0c JMP $0c0d ; (SetUpSprites.s100 + 0)
 --------------------------------------------------------------------
 tileBaseConfig:
 .s0:
-0d66 : a5 2d __ LDA P0 ; (bank + 0)
-0d68 : 4a __ __ LSR
-0d69 : a9 00 __ LDA #$00
-0d6b : 6a __ __ ROR
-0d6c : 85 3b __ STA ACCU + 0 
-0d6e : a5 2f __ LDA P2 ; (mem + 1)
-0d70 : 29 f8 __ AND #$f8
-0d72 : 4a __ __ LSR
-0d73 : 05 3b __ ORA ACCU + 0 
-0d75 : 85 3b __ STA ACCU + 0 
-0d77 : a5 30 __ LDA P3 ; (height + 0)
-0d79 : 0a __ __ ASL
-0d7a : 05 3b __ ORA ACCU + 0 
-0d7c : 05 31 __ ORA P4 ; (width + 0)
+0d7b : a5 2d __ LDA P0 ; (bank + 0)
+0d7d : 4a __ __ LSR
+0d7e : a9 00 __ LDA #$00
+0d80 : 6a __ __ ROR
+0d81 : 85 3b __ STA ACCU + 0 
+0d83 : a5 2f __ LDA P2 ; (mem + 1)
+0d85 : 29 f8 __ AND #$f8
+0d87 : 4a __ __ LSR
+0d88 : 05 3b __ ORA ACCU + 0 
+0d8a : 85 3b __ STA ACCU + 0 
+0d8c : a5 30 __ LDA P3 ; (height + 0)
+0d8e : 0a __ __ ASL
+0d8f : 05 3b __ ORA ACCU + 0 
+0d91 : 05 31 __ ORA P4 ; (width + 0)
 .s1001:
-0d7e : 60 __ __ RTS
+0d93 : 60 __ __ RTS
 --------------------------------------------------------------------
 memoryToMapMemoryAddress:
 .s0:
-0d7f : a5 2d __ LDA P0 ; (bank + 0)
-0d81 : 4a __ __ LSR
-0d82 : a9 00 __ LDA #$00
-0d84 : 6a __ __ ROR
-0d85 : 85 3b __ STA ACCU + 0 
-0d87 : a5 2f __ LDA P2 ; (mem + 1)
-0d89 : 4a __ __ LSR
-0d8a : 05 3b __ ORA ACCU + 0 
+0d94 : a5 2d __ LDA P0 ; (bank + 0)
+0d96 : 4a __ __ LSR
+0d97 : a9 00 __ LDA #$00
+0d99 : 6a __ __ ROR
+0d9a : 85 3b __ STA ACCU + 0 
+0d9c : a5 2f __ LDA P2 ; (mem + 1)
+0d9e : 4a __ __ LSR
+0d9f : 05 3b __ ORA ACCU + 0 
 .s1001:
-0d8c : 60 __ __ RTS
+0da1 : 60 __ __ RTS
 --------------------------------------------------------------------
 vram_putn:
 .s0:
-0d8d : ad 25 9f LDA $9f25 
-0d90 : 29 fe __ AND #$fe
-0d92 : 8d 25 9f STA $9f25 
-0d95 : a5 2d __ LDA P0 ; (addr + 0)
-0d97 : 8d 20 9f STA $9f20 
-0d9a : a5 2e __ LDA P1 ; (addr + 1)
-0d9c : 8d 21 9f STA $9f21 
-0d9f : a5 2f __ LDA P2 ; (addr + 2)
-0da1 : 29 01 __ AND #$01
-0da3 : 09 10 __ ORA #$10
-0da5 : 8d 22 9f STA $9f22 
-0da8 : a5 33 __ LDA P6 ; (size + 0)
-0daa : 05 34 __ ORA P7 ; (size + 1)
-0dac : f0 19 __ BEQ $0dc7 ; (vram_putn.s1001 + 0)
+0da2 : ad 25 9f LDA $9f25 
+0da5 : 29 fe __ AND #$fe
+0da7 : 8d 25 9f STA $9f25 
+0daa : a5 2d __ LDA P0 ; (addr + 0)
+0dac : 8d 20 9f STA $9f20 
+0daf : a5 2e __ LDA P1 ; (addr + 1)
+0db1 : 8d 21 9f STA $9f21 
+0db4 : a5 2f __ LDA P2 ; (addr + 2)
+0db6 : 29 01 __ AND #$01
+0db8 : 09 10 __ ORA #$10
+0dba : 8d 22 9f STA $9f22 
+0dbd : a5 33 __ LDA P6 ; (size + 0)
+0dbf : 05 34 __ ORA P7 ; (size + 1)
+0dc1 : f0 19 __ BEQ $0ddc ; (vram_putn.s1001 + 0)
 .s6:
-0dae : a0 00 __ LDY #$00
-0db0 : a6 33 __ LDX P6 ; (size + 0)
-0db2 : f0 02 __ BEQ $0db6 ; (vram_putn.l1002 + 0)
+0dc3 : a0 00 __ LDY #$00
+0dc5 : a6 33 __ LDX P6 ; (size + 0)
+0dc7 : f0 02 __ BEQ $0dcb ; (vram_putn.l1002 + 0)
 .s1005:
-0db4 : e6 34 __ INC P7 ; (size + 1)
+0dc9 : e6 34 __ INC P7 ; (size + 1)
 .l1002:
-0db6 : b1 31 __ LDA (P4),y ; (data + 0)
-0db8 : 8d 23 9f STA $9f23 
-0dbb : c8 __ __ INY
-0dbc : d0 02 __ BNE $0dc0 ; (vram_putn.s1009 + 0)
+0dcb : b1 31 __ LDA (P4),y ; (data + 0)
+0dcd : 8d 23 9f STA $9f23 
+0dd0 : c8 __ __ INY
+0dd1 : d0 02 __ BNE $0dd5 ; (vram_putn.s1009 + 0)
 .s1008:
-0dbe : e6 32 __ INC P5 ; (data + 1)
+0dd3 : e6 32 __ INC P5 ; (data + 1)
 .s1009:
-0dc0 : ca __ __ DEX
-0dc1 : d0 f3 __ BNE $0db6 ; (vram_putn.l1002 + 0)
+0dd5 : ca __ __ DEX
+0dd6 : d0 f3 __ BNE $0dcb ; (vram_putn.l1002 + 0)
 .s1004:
-0dc3 : c6 34 __ DEC P7 ; (size + 1)
-0dc5 : d0 ef __ BNE $0db6 ; (vram_putn.l1002 + 0)
+0dd8 : c6 34 __ DEC P7 ; (size + 1)
+0dda : d0 ef __ BNE $0dcb ; (vram_putn.l1002 + 0)
 .s1001:
-0dc7 : 60 __ __ RTS
+0ddc : 60 __ __ RTS
 --------------------------------------------------------------------
 MainBG:
 1200 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
@@ -852,54 +867,54 @@ MainBG:
 --------------------------------------------------------------------
 rand:
 .s0:
-0dc8 : ad 65 11 LDA $1165 ; (seed + 1)
-0dcb : 4a __ __ LSR
-0dcc : ad 64 11 LDA $1164 ; (seed + 0)
-0dcf : 6a __ __ ROR
-0dd0 : aa __ __ TAX
-0dd1 : a9 00 __ LDA #$00
-0dd3 : 6a __ __ ROR
-0dd4 : 4d 64 11 EOR $1164 ; (seed + 0)
-0dd7 : 85 3b __ STA ACCU + 0 
-0dd9 : 8a __ __ TXA
-0dda : 4d 65 11 EOR $1165 ; (seed + 1)
-0ddd : 85 3c __ STA ACCU + 1 
-0ddf : 4a __ __ LSR
-0de0 : 45 3b __ EOR ACCU + 0 
-0de2 : 8d 64 11 STA $1164 ; (seed + 0)
-0de5 : 85 3b __ STA ACCU + 0 
-0de7 : 45 3c __ EOR ACCU + 1 
-0de9 : 8d 65 11 STA $1165 ; (seed + 1)
-0dec : 85 3c __ STA ACCU + 1 
+0ddd : ad 7a 11 LDA $117a ; (seed + 1)
+0de0 : 4a __ __ LSR
+0de1 : ad 79 11 LDA $1179 ; (seed + 0)
+0de4 : 6a __ __ ROR
+0de5 : aa __ __ TAX
+0de6 : a9 00 __ LDA #$00
+0de8 : 6a __ __ ROR
+0de9 : 4d 79 11 EOR $1179 ; (seed + 0)
+0dec : 85 3b __ STA ACCU + 0 
+0dee : 8a __ __ TXA
+0def : 4d 7a 11 EOR $117a ; (seed + 1)
+0df2 : 85 3c __ STA ACCU + 1 
+0df4 : 4a __ __ LSR
+0df5 : 45 3b __ EOR ACCU + 0 
+0df7 : 8d 79 11 STA $1179 ; (seed + 0)
+0dfa : 85 3b __ STA ACCU + 0 
+0dfc : 45 3c __ EOR ACCU + 1 
+0dfe : 8d 7a 11 STA $117a ; (seed + 1)
+0e01 : 85 3c __ STA ACCU + 1 
 .s1001:
-0dee : 60 __ __ RTS
+0e03 : 60 __ __ RTS
 --------------------------------------------------------------------
 seed:
-1164 : __ __ __ BYT 00 7a                                           : .z
+1179 : __ __ __ BYT 00 7a                                           : .z
 --------------------------------------------------------------------
 SetPaletteColours:
 .s0:
-0def : ad fc 9e LDA $9efc ; (sstack + 0)
-0df2 : 85 2d __ STA P0 
-0df4 : ad fd 9e LDA $9efd ; (sstack + 1)
-0df7 : 85 2e __ STA P1 
-0df9 : ad fe 9e LDA $9efe ; (sstack + 2)
-0dfc : 85 2f __ STA P2 
-0dfe : ad ff 9e LDA $9eff ; (sstack + 3)
-0e01 : 85 30 __ STA P3 
-0e03 : a5 35 __ LDA P8 ; (input + 0)
-0e05 : 85 31 __ STA P4 
-0e07 : a5 36 __ LDA P9 ; (input + 1)
-0e09 : 85 32 __ STA P5 
-0e0b : a5 37 __ LDA P10 ; (inputsize + 0)
-0e0d : 85 33 __ STA P6 
-0e0f : a9 00 __ LDA #$00
-0e11 : 85 34 __ STA P7 
-0e13 : 4c 8d 0d JMP $0d8d ; (vram_putn.s0 + 0)
+0e04 : ad fc 9e LDA $9efc ; (sstack + 0)
+0e07 : 85 2d __ STA P0 
+0e09 : ad fd 9e LDA $9efd ; (sstack + 1)
+0e0c : 85 2e __ STA P1 
+0e0e : ad fe 9e LDA $9efe ; (sstack + 2)
+0e11 : 85 2f __ STA P2 
+0e13 : ad ff 9e LDA $9eff ; (sstack + 3)
+0e16 : 85 30 __ STA P3 
+0e18 : a5 35 __ LDA P8 ; (input + 0)
+0e1a : 85 31 __ STA P4 
+0e1c : a5 36 __ LDA P9 ; (input + 1)
+0e1e : 85 32 __ STA P5 
+0e20 : a5 37 __ LDA P10 ; (inputsize + 0)
+0e22 : 85 33 __ STA P6 
+0e24 : a9 00 __ LDA #$00
+0e26 : 85 34 __ STA P7 
+0e28 : 4c a2 0d JMP $0da2 ; (vram_putn.s0 + 0)
 --------------------------------------------------------------------
 BGPal:
-1166 : __ __ __ BYT 23 02 12 01 01 11 77 07 ff 0f aa 0a 66 06 22 02 : #.....w.....f.".
-1176 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+117b : __ __ __ BYT 23 02 12 01 01 11 77 07 ff 0f aa 0a 66 06 22 02 : #.....w.....f.".
+118b : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
 --------------------------------------------------------------------
 ScrollerOutline:
 1300 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
@@ -955,530 +970,530 @@ Pause:
 --------------------------------------------------------------------
 vera_spr_set:
 .s0:
-0e16 : ad 25 9f LDA $9f25 
-0e19 : 29 fe __ AND #$fe
-0e1b : 8d 25 9f STA $9f25 
-0e1e : a5 2d __ LDA P0 ; (spr + 0)
-0e20 : 0a __ __ ASL
-0e21 : 0a __ __ ASL
-0e22 : 85 3b __ STA ACCU + 0 
-0e24 : a9 3f __ LDA #$3f
-0e26 : 2a __ __ ROL
-0e27 : 06 3b __ ASL ACCU + 0 
-0e29 : 2a __ __ ROL
-0e2a : 8d 21 9f STA $9f21 
-0e2d : a5 3b __ LDA ACCU + 0 
-0e2f : 8d 20 9f STA $9f20 
-0e32 : a9 11 __ LDA #$11
-0e34 : 8d 22 9f STA $9f22 
-0e37 : a5 30 __ LDA P3 ; (mode8 + 0)
-0e39 : f0 02 __ BEQ $0e3d ; (vera_spr_set.s11 + 0)
+0e2b : ad 25 9f LDA $9f25 
+0e2e : 29 fe __ AND #$fe
+0e30 : 8d 25 9f STA $9f25 
+0e33 : a5 2d __ LDA P0 ; (spr + 0)
+0e35 : 0a __ __ ASL
+0e36 : 0a __ __ ASL
+0e37 : 85 3b __ STA ACCU + 0 
+0e39 : a9 3f __ LDA #$3f
+0e3b : 2a __ __ ROL
+0e3c : 06 3b __ ASL ACCU + 0 
+0e3e : 2a __ __ ROL
+0e3f : 8d 21 9f STA $9f21 
+0e42 : a5 3b __ LDA ACCU + 0 
+0e44 : 8d 20 9f STA $9f20 
+0e47 : a9 11 __ LDA #$11
+0e49 : 8d 22 9f STA $9f22 
+0e4c : a5 30 __ LDA P3 ; (mode8 + 0)
+0e4e : f0 02 __ BEQ $0e52 ; (vera_spr_set.s11 + 0)
 .s9:
-0e3b : a9 80 __ LDA #$80
+0e50 : a9 80 __ LDA #$80
 .s11:
-0e3d : 05 2f __ ORA P2 ; (addr32 + 1)
-0e3f : a6 2e __ LDX P1 ; (addr32 + 0)
-0e41 : 8e 23 9f STX $9f23 
-0e44 : 8d 23 9f STA $9f23 
-0e47 : a9 00 __ LDA #$00
-0e49 : 8d 23 9f STA $9f23 
-0e4c : 8d 23 9f STA $9f23 
-0e4f : 8d 23 9f STA $9f23 
-0e52 : 8d 23 9f STA $9f23 
-0e55 : a5 33 __ LDA P6 ; (z + 0)
-0e57 : 0a __ __ ASL
-0e58 : 0a __ __ ASL
+0e52 : 05 2f __ ORA P2 ; (addr32 + 1)
+0e54 : a6 2e __ LDX P1 ; (addr32 + 0)
+0e56 : 8e 23 9f STX $9f23 
 0e59 : 8d 23 9f STA $9f23 
-0e5c : a5 32 __ LDA P5 ; (h + 0)
-0e5e : 4a __ __ LSR
-0e5f : 6a __ __ ROR
-0e60 : 29 80 __ AND #$80
-0e62 : 6a __ __ ROR
-0e63 : 85 3b __ STA ACCU + 0 
-0e65 : a5 31 __ LDA P4 ; (w + 0)
-0e67 : 0a __ __ ASL
-0e68 : 0a __ __ ASL
-0e69 : 0a __ __ ASL
-0e6a : 0a __ __ ASL
-0e6b : 05 3b __ ORA ACCU + 0 
-0e6d : 05 34 __ ORA P7 ; (pal + 0)
-0e6f : 8d 23 9f STA $9f23 
+0e5c : a9 00 __ LDA #$00
+0e5e : 8d 23 9f STA $9f23 
+0e61 : 8d 23 9f STA $9f23 
+0e64 : 8d 23 9f STA $9f23 
+0e67 : 8d 23 9f STA $9f23 
+0e6a : a5 33 __ LDA P6 ; (z + 0)
+0e6c : 0a __ __ ASL
+0e6d : 0a __ __ ASL
+0e6e : 8d 23 9f STA $9f23 
+0e71 : a5 32 __ LDA P5 ; (h + 0)
+0e73 : 4a __ __ LSR
+0e74 : 6a __ __ ROR
+0e75 : 29 80 __ AND #$80
+0e77 : 6a __ __ ROR
+0e78 : 85 3b __ STA ACCU + 0 
+0e7a : a5 31 __ LDA P4 ; (w + 0)
+0e7c : 0a __ __ ASL
+0e7d : 0a __ __ ASL
+0e7e : 0a __ __ ASL
+0e7f : 0a __ __ ASL
+0e80 : 05 3b __ ORA ACCU + 0 
+0e82 : 05 34 __ ORA P7 ; (pal + 0)
+0e84 : 8d 23 9f STA $9f23 
 .s1001:
-0e72 : 60 __ __ RTS
+0e87 : 60 __ __ RTS
 --------------------------------------------------------------------
 vera_spr_move:
 .s0:
-0e73 : ad 25 9f LDA $9f25 
-0e76 : 29 fe __ AND #$fe
-0e78 : 8d 25 9f STA $9f25 
-0e7b : a5 2d __ LDA P0 ; (spr + 0)
-0e7d : 0a __ __ ASL
-0e7e : 0a __ __ ASL
-0e7f : 85 3b __ STA ACCU + 0 
-0e81 : a9 3f __ LDA #$3f
-0e83 : 2a __ __ ROL
-0e84 : 06 3b __ ASL ACCU + 0 
-0e86 : 2a __ __ ROL
-0e87 : aa __ __ TAX
-0e88 : a5 3b __ LDA ACCU + 0 
-0e8a : 09 02 __ ORA #$02
-0e8c : 8d 20 9f STA $9f20 
-0e8f : 8e 21 9f STX $9f21 
-0e92 : a9 11 __ LDA #$11
-0e94 : 8d 22 9f STA $9f22 
-0e97 : a5 2e __ LDA P1 ; (x + 0)
-0e99 : 8d 23 9f STA $9f23 
-0e9c : a5 2f __ LDA P2 ; (x + 1)
-0e9e : 8d 23 9f STA $9f23 
-0ea1 : a5 30 __ LDA P3 ; (y + 0)
-0ea3 : 8d 23 9f STA $9f23 
-0ea6 : a5 31 __ LDA P4 ; (y + 1)
-0ea8 : 8d 23 9f STA $9f23 
+0e88 : ad 25 9f LDA $9f25 
+0e8b : 29 fe __ AND #$fe
+0e8d : 8d 25 9f STA $9f25 
+0e90 : a5 2d __ LDA P0 ; (spr + 0)
+0e92 : 0a __ __ ASL
+0e93 : 0a __ __ ASL
+0e94 : 85 3b __ STA ACCU + 0 
+0e96 : a9 3f __ LDA #$3f
+0e98 : 2a __ __ ROL
+0e99 : 06 3b __ ASL ACCU + 0 
+0e9b : 2a __ __ ROL
+0e9c : aa __ __ TAX
+0e9d : a5 3b __ LDA ACCU + 0 
+0e9f : 09 02 __ ORA #$02
+0ea1 : 8d 20 9f STA $9f20 
+0ea4 : 8e 21 9f STX $9f21 
+0ea7 : a9 11 __ LDA #$11
+0ea9 : 8d 22 9f STA $9f22 
+0eac : a5 2e __ LDA P1 ; (x + 0)
+0eae : 8d 23 9f STA $9f23 
+0eb1 : a5 2f __ LDA P2 ; (x + 1)
+0eb3 : 8d 23 9f STA $9f23 
+0eb6 : a5 30 __ LDA P3 ; (y + 0)
+0eb8 : 8d 23 9f STA $9f23 
+0ebb : a5 31 __ LDA P4 ; (y + 1)
+0ebd : 8d 23 9f STA $9f23 
 .s1001:
-0eab : 60 __ __ RTS
+0ec0 : 60 __ __ RTS
 --------------------------------------------------------------------
 palette:
-1186 : __ __ __ BYT ff 0f ef 0e ee 0e aa 0a 88 08 66 06 22 02 11 01 : ..........f."...
-1196 : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
+119b : __ __ __ BYT ff 0f ef 0e ee 0e aa 0a 88 08 66 06 22 02 11 01 : ..........f."...
+11ab : __ __ __ BYT 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 : ................
 --------------------------------------------------------------------
 zsm_check:
 .s0:
-0eac : ad 63 11 LDA $1163 ; (zsm_finished + 0)
+0ec1 : ad 78 11 LDA $1178 ; (zsm_finished + 0)
 .s1001:
-0eaf : 60 __ __ RTS
+0ec4 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_init:
 .s0:
-0eb0 : a9 01 __ LDA #$01
-0eb2 : 8d 63 11 STA $1163 ; (zsm_finished + 0)
-0eb5 : ad a6 11 LDA $11a6 ; (zsm_reading + 0)
-0eb8 : f0 0a __ BEQ $0ec4 ; (zsm_init.s3 + 0)
+0ec5 : a9 01 __ LDA #$01
+0ec7 : 8d 78 11 STA $1178 ; (zsm_finished + 0)
+0eca : ad bb 11 LDA $11bb ; (zsm_reading + 0)
+0ecd : f0 0a __ BEQ $0ed9 ; (zsm_init.s3 + 0)
 .s1:
-0eba : a9 02 __ LDA #$02
-0ebc : 20 09 0f JSR $0f09 ; (krnio_close.s1000 + 0)
-0ebf : a9 00 __ LDA #$00
-0ec1 : 8d a6 11 STA $11a6 ; (zsm_reading + 0)
+0ecf : a9 02 __ LDA #$02
+0ed1 : 20 1e 0f JSR $0f1e ; (krnio_close.s1000 + 0)
+0ed4 : a9 00 __ LDA #$00
+0ed6 : 8d bb 11 STA $11bb ; (zsm_reading + 0)
 .s3:
-0ec4 : 8d e9 11 STA $11e9 ; (zsm_pos + 0)
-0ec7 : 8d ea 11 STA $11ea ; (zsm_pos + 1)
-0eca : 8d eb 11 STA $11eb ; (zsm_wpos + 0)
-0ecd : 8d ec 11 STA $11ec ; (zsm_wpos + 1)
-0ed0 : 8d e8 11 STA $11e8 ; (zsm_delay + 0)
-0ed3 : a5 30 __ LDA P3 ; (fname + 0)
-0ed5 : 85 2d __ STA P0 
-0ed7 : a5 31 __ LDA P4 ; (fname + 1)
-0ed9 : 85 2e __ STA P1 
-0edb : 20 11 0f JSR $0f11 ; (krnio_setnam.s0 + 0)
-0ede : a9 02 __ LDA #$02
-0ee0 : 85 2d __ STA P0 
-0ee2 : 85 2f __ STA P2 
-0ee4 : a9 08 __ LDA #$08
-0ee6 : 85 2e __ STA P1 
-0ee8 : 20 27 0f JSR $0f27 ; (krnio_open.s0 + 0)
-0eeb : a5 3b __ LDA ACCU + 0 
-0eed : f0 19 __ BEQ $0f08 ; (zsm_init.s1001 + 0)
+0ed9 : 8d fe 11 STA $11fe ; (zsm_pos + 0)
+0edc : 8d ff 11 STA $11ff ; (zsm_pos + 1)
+0edf : 8d 00 1a STA $1a00 ; (zsm_wpos + 0)
+0ee2 : 8d 01 1a STA $1a01 ; (zsm_wpos + 1)
+0ee5 : 8d fd 11 STA $11fd ; (zsm_delay + 0)
+0ee8 : a5 30 __ LDA P3 ; (fname + 0)
+0eea : 85 2d __ STA P0 
+0eec : a5 31 __ LDA P4 ; (fname + 1)
+0eee : 85 2e __ STA P1 
+0ef0 : 20 26 0f JSR $0f26 ; (krnio_setnam.s0 + 0)
+0ef3 : a9 02 __ LDA #$02
+0ef5 : 85 2d __ STA P0 
+0ef7 : 85 2f __ STA P2 
+0ef9 : a9 08 __ LDA #$08
+0efb : 85 2e __ STA P1 
+0efd : 20 3c 0f JSR $0f3c ; (krnio_open.s0 + 0)
+0f00 : a5 3b __ LDA ACCU + 0 
+0f02 : f0 19 __ BEQ $0f1d ; (zsm_init.s1001 + 0)
 .s4:
-0eef : a9 01 __ LDA #$01
-0ef1 : 8d a6 11 STA $11a6 ; (zsm_reading + 0)
-0ef4 : 20 4f 0f JSR $0f4f ; (zsm_fill.s0 + 0)
-0ef7 : a9 10 __ LDA #$10
-0ef9 : 8d e9 11 STA $11e9 ; (zsm_pos + 0)
-0efc : a9 00 __ LDA #$00
-0efe : 8d ea 11 STA $11ea ; (zsm_pos + 1)
-0f01 : 8d 63 11 STA $1163 ; (zsm_finished + 0)
 0f04 : a9 01 __ LDA #$01
-0f06 : 85 3b __ STA ACCU + 0 
+0f06 : 8d bb 11 STA $11bb ; (zsm_reading + 0)
+0f09 : 20 64 0f JSR $0f64 ; (zsm_fill.s0 + 0)
+0f0c : a9 10 __ LDA #$10
+0f0e : 8d fe 11 STA $11fe ; (zsm_pos + 0)
+0f11 : a9 00 __ LDA #$00
+0f13 : 8d ff 11 STA $11ff ; (zsm_pos + 1)
+0f16 : 8d 78 11 STA $1178 ; (zsm_finished + 0)
+0f19 : a9 01 __ LDA #$01
+0f1b : 85 3b __ STA ACCU + 0 
 .s1001:
-0f08 : 60 __ __ RTS
+0f1d : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_reading:
-11a6 : __ __ __ BYT 00                                              : .
+11bb : __ __ __ BYT 00                                              : .
 --------------------------------------------------------------------
 krnio_close:
 .s1000:
-0f09 : 85 2d __ STA P0 
+0f1e : 85 2d __ STA P0 
 .s0:
-0f0b : a5 2d __ LDA P0 
-0f0d : 20 c3 ff JSR $ffc3 
+0f20 : a5 2d __ LDA P0 
+0f22 : 20 c3 ff JSR $ffc3 
 .s1001:
-0f10 : 60 __ __ RTS
+0f25 : 60 __ __ RTS
 --------------------------------------------------------------------
 zsm_wpos:
-11eb : __ __ __ BSS	2
+1a00 : __ __ __ BSS	2
 --------------------------------------------------------------------
 krnio_setnam:
 .s0:
-0f11 : a5 2d __ LDA P0 
-0f13 : 05 2e __ ORA P1 
-0f15 : f0 08 __ BEQ $0f1f ; (krnio_setnam.s0 + 14)
-0f17 : a0 ff __ LDY #$ff
-0f19 : c8 __ __ INY
-0f1a : b1 2d __ LDA (P0),y 
-0f1c : d0 fb __ BNE $0f19 ; (krnio_setnam.s0 + 8)
-0f1e : 98 __ __ TYA
-0f1f : a6 2d __ LDX P0 
-0f21 : a4 2e __ LDY P1 
-0f23 : 20 bd ff JSR $ffbd 
+0f26 : a5 2d __ LDA P0 
+0f28 : 05 2e __ ORA P1 
+0f2a : f0 08 __ BEQ $0f34 ; (krnio_setnam.s0 + 14)
+0f2c : a0 ff __ LDY #$ff
+0f2e : c8 __ __ INY
+0f2f : b1 2d __ LDA (P0),y 
+0f31 : d0 fb __ BNE $0f2e ; (krnio_setnam.s0 + 8)
+0f33 : 98 __ __ TYA
+0f34 : a6 2d __ LDX P0 
+0f36 : a4 2e __ LDY P1 
+0f38 : 20 bd ff JSR $ffbd 
 .s1001:
-0f26 : 60 __ __ RTS
+0f3b : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_open:
 .s0:
-0f27 : a9 00 __ LDA #$00
-0f29 : a6 2d __ LDX P0 ; (fnum + 0)
-0f2b : 9d ed 11 STA $11ed,x ; (krnio_pstatus + 0)
-0f2e : a9 00 __ LDA #$00
-0f30 : 85 3b __ STA ACCU + 0 
-0f32 : 85 3c __ STA ACCU + 1 
-0f34 : a5 2d __ LDA P0 ; (fnum + 0)
-0f36 : a6 2e __ LDX P1 
-0f38 : a4 2f __ LDY P2 
-0f3a : 20 ba ff JSR $ffba 
-0f3d : 20 c0 ff JSR $ffc0 
-0f40 : 90 08 __ BCC $0f4a ; (krnio_open.s0 + 35)
-0f42 : a5 2d __ LDA P0 ; (fnum + 0)
-0f44 : 20 c3 ff JSR $ffc3 
-0f47 : 4c 4e 0f JMP $0f4e ; (krnio_open.s1001 + 0)
-0f4a : a9 01 __ LDA #$01
-0f4c : 85 3b __ STA ACCU + 0 
+0f3c : a9 00 __ LDA #$00
+0f3e : a6 2d __ LDX P0 ; (fnum + 0)
+0f40 : 9d 02 1a STA $1a02,x ; (krnio_pstatus + 0)
+0f43 : a9 00 __ LDA #$00
+0f45 : 85 3b __ STA ACCU + 0 
+0f47 : 85 3c __ STA ACCU + 1 
+0f49 : a5 2d __ LDA P0 ; (fnum + 0)
+0f4b : a6 2e __ LDX P1 
+0f4d : a4 2f __ LDY P2 
+0f4f : 20 ba ff JSR $ffba 
+0f52 : 20 c0 ff JSR $ffc0 
+0f55 : 90 08 __ BCC $0f5f ; (krnio_open.s0 + 35)
+0f57 : a5 2d __ LDA P0 ; (fnum + 0)
+0f59 : 20 c3 ff JSR $ffc3 
+0f5c : 4c 63 0f JMP $0f63 ; (krnio_open.s1001 + 0)
+0f5f : a9 01 __ LDA #$01
+0f61 : 85 3b __ STA ACCU + 0 
 .s1001:
-0f4e : 60 __ __ RTS
+0f63 : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_pstatus:
-11ed : __ __ __ BSS	16
+1a02 : __ __ __ BSS	16
 --------------------------------------------------------------------
 zsm_fill:
 .s0:
-0f4f : ad a6 11 LDA $11a6 ; (zsm_reading + 0)
-0f52 : f0 20 __ BEQ $0f74 ; (zsm_fill.s1 + 0)
+0f64 : ad bb 11 LDA $11bb ; (zsm_reading + 0)
+0f67 : f0 20 __ BEQ $0f89 ; (zsm_fill.s1 + 0)
 .s2:
-0f54 : ad ea 11 LDA $11ea ; (zsm_pos + 1)
-0f57 : 18 __ __ CLC
-0f58 : 69 04 __ ADC #$04
-0f5a : cd ec 11 CMP $11ec ; (zsm_wpos + 1)
-0f5d : d0 0c __ BNE $0f6b ; (zsm_fill.s6 + 0)
+0f69 : ad ff 11 LDA $11ff ; (zsm_pos + 1)
+0f6c : 18 __ __ CLC
+0f6d : 69 04 __ ADC #$04
+0f6f : cd 01 1a CMP $1a01 ; (zsm_wpos + 1)
+0f72 : d0 0c __ BNE $0f80 ; (zsm_fill.s6 + 0)
 .s1006:
-0f5f : ad eb 11 LDA $11eb ; (zsm_wpos + 0)
-0f62 : cd e9 11 CMP $11e9 ; (zsm_pos + 0)
-0f65 : d0 04 __ BNE $0f6b ; (zsm_fill.s6 + 0)
+0f74 : ad 00 1a LDA $1a00 ; (zsm_wpos + 0)
+0f77 : cd fe 11 CMP $11fe ; (zsm_pos + 0)
+0f7a : d0 04 __ BNE $0f80 ; (zsm_fill.s6 + 0)
 .s5:
-0f67 : a9 00 __ LDA #$00
-0f69 : f0 0b __ BEQ $0f76 ; (zsm_fill.s1008 + 0)
+0f7c : a9 00 __ LDA #$00
+0f7e : f0 0b __ BEQ $0f8b ; (zsm_fill.s1008 + 0)
 .s6:
-0f6b : a9 02 __ LDA #$02
-0f6d : 20 f3 0f JSR $0ff3 ; (krnio_chkin.s1000 + 0)
-0f70 : a5 3b __ LDA ACCU + 0 
-0f72 : d0 07 __ BNE $0f7b ; (zsm_fill.s9 + 0)
+0f80 : a9 02 __ LDA #$02
+0f82 : 20 08 10 JSR $1008 ; (krnio_chkin.s1000 + 0)
+0f85 : a5 3b __ LDA ACCU + 0 
+0f87 : d0 07 __ BNE $0f90 ; (zsm_fill.s9 + 0)
 .s1:
-0f74 : a9 ff __ LDA #$ff
+0f89 : a9 ff __ LDA #$ff
 .s1008:
-0f76 : 85 3b __ STA ACCU + 0 
+0f8b : 85 3b __ STA ACCU + 0 
 .s1001:
-0f78 : 85 3c __ STA ACCU + 1 
-0f7a : 60 __ __ RTS
+0f8d : 85 3c __ STA ACCU + 1 
+0f8f : 60 __ __ RTS
 .s9:
-0f7b : a9 00 __ LDA #$00
-0f7d : 85 47 __ STA T1 + 0 
-0f7f : 85 48 __ STA T1 + 1 
-0f81 : ad ea 11 LDA $11ea ; (zsm_pos + 1)
-0f84 : 18 __ __ CLC
-0f85 : 69 04 __ ADC #$04
-0f87 : cd ec 11 CMP $11ec ; (zsm_wpos + 1)
-0f8a : d0 08 __ BNE $0f94 ; (zsm_fill.l13 + 0)
+0f90 : a9 00 __ LDA #$00
+0f92 : 85 47 __ STA T1 + 0 
+0f94 : 85 48 __ STA T1 + 1 
+0f96 : ad ff 11 LDA $11ff ; (zsm_pos + 1)
+0f99 : 18 __ __ CLC
+0f9a : 69 04 __ ADC #$04
+0f9c : cd 01 1a CMP $1a01 ; (zsm_wpos + 1)
+0f9f : d0 08 __ BNE $0fa9 ; (zsm_fill.l13 + 0)
 .s1002:
-0f8c : ad eb 11 LDA $11eb ; (zsm_wpos + 0)
-0f8f : cd e9 11 CMP $11e9 ; (zsm_pos + 0)
-0f92 : f0 49 __ BEQ $0fdd ; (zsm_fill.s37 + 0)
+0fa1 : ad 00 1a LDA $1a00 ; (zsm_wpos + 0)
+0fa4 : cd fe 11 CMP $11fe ; (zsm_pos + 0)
+0fa7 : f0 49 __ BEQ $0ff2 ; (zsm_fill.s37 + 0)
 .l13:
-0f94 : 20 05 10 JSR $1005 ; (krnio_chrin.s0 + 0)
-0f97 : ad eb 11 LDA $11eb ; (zsm_wpos + 0)
-0f9a : aa __ __ TAX
-0f9b : 18 __ __ CLC
-0f9c : 69 01 __ ADC #$01
-0f9e : 8d eb 11 STA $11eb ; (zsm_wpos + 0)
-0fa1 : ad ec 11 LDA $11ec ; (zsm_wpos + 1)
-0fa4 : a8 __ __ TAY
-0fa5 : 69 00 __ ADC #$00
-0fa7 : 8d ec 11 STA $11ec ; (zsm_wpos + 1)
-0faa : 8a __ __ TXA
-0fab : 18 __ __ CLC
-0fac : 69 00 __ ADC #$00
-0fae : 85 49 __ STA T3 + 0 
-0fb0 : 98 __ __ TYA
-0fb1 : 29 03 __ AND #$03
-0fb3 : 69 16 __ ADC #$16
-0fb5 : 85 4a __ STA T3 + 1 
-0fb7 : a5 3b __ LDA ACCU + 0 
-0fb9 : a0 00 __ LDY #$00
-0fbb : 91 49 __ STA (T3 + 0),y 
-0fbd : e6 47 __ INC T1 + 0 
-0fbf : d0 02 __ BNE $0fc3 ; (zsm_fill.s1010 + 0)
+0fa9 : 20 1a 10 JSR $101a ; (krnio_chrin.s0 + 0)
+0fac : ad 00 1a LDA $1a00 ; (zsm_wpos + 0)
+0faf : aa __ __ TAX
+0fb0 : 18 __ __ CLC
+0fb1 : 69 01 __ ADC #$01
+0fb3 : 8d 00 1a STA $1a00 ; (zsm_wpos + 0)
+0fb6 : ad 01 1a LDA $1a01 ; (zsm_wpos + 1)
+0fb9 : a8 __ __ TAY
+0fba : 69 00 __ ADC #$00
+0fbc : 8d 01 1a STA $1a01 ; (zsm_wpos + 1)
+0fbf : 8a __ __ TXA
+0fc0 : 18 __ __ CLC
+0fc1 : 69 00 __ ADC #$00
+0fc3 : 85 49 __ STA T3 + 0 
+0fc5 : 98 __ __ TYA
+0fc6 : 29 03 __ AND #$03
+0fc8 : 69 16 __ ADC #$16
+0fca : 85 4a __ STA T3 + 1 
+0fcc : a5 3b __ LDA ACCU + 0 
+0fce : a0 00 __ LDY #$00
+0fd0 : 91 49 __ STA (T3 + 0),y 
+0fd2 : e6 47 __ INC T1 + 0 
+0fd4 : d0 02 __ BNE $0fd8 ; (zsm_fill.s1010 + 0)
 .s1009:
-0fc1 : e6 48 __ INC T1 + 1 
+0fd6 : e6 48 __ INC T1 + 1 
 .s1010:
-0fc3 : 20 0f 10 JSR $100f ; (krnio_status.s0 + 0)
-0fc6 : a5 3b __ LDA ACCU + 0 
-0fc8 : d0 0e __ BNE $0fd8 ; (zsm_fill.s15 + 0)
+0fd8 : 20 24 10 JSR $1024 ; (krnio_status.s0 + 0)
+0fdb : a5 3b __ LDA ACCU + 0 
+0fdd : d0 0e __ BNE $0fed ; (zsm_fill.s15 + 0)
 .s12:
-0fca : ad ea 11 LDA $11ea ; (zsm_pos + 1)
-0fcd : 18 __ __ CLC
-0fce : 69 04 __ ADC #$04
-0fd0 : cd ec 11 CMP $11ec ; (zsm_wpos + 1)
-0fd3 : d0 bf __ BNE $0f94 ; (zsm_fill.l13 + 0)
-0fd5 : 4c 8c 0f JMP $0f8c ; (zsm_fill.s1002 + 0)
+0fdf : ad ff 11 LDA $11ff ; (zsm_pos + 1)
+0fe2 : 18 __ __ CLC
+0fe3 : 69 04 __ ADC #$04
+0fe5 : cd 01 1a CMP $1a01 ; (zsm_wpos + 1)
+0fe8 : d0 bf __ BNE $0fa9 ; (zsm_fill.l13 + 0)
+0fea : 4c a1 0f JMP $0fa1 ; (zsm_fill.s1002 + 0)
 .s15:
-0fd8 : a9 00 __ LDA #$00
-0fda : 8d a6 11 STA $11a6 ; (zsm_reading + 0)
+0fed : a9 00 __ LDA #$00
+0fef : 8d bb 11 STA $11bb ; (zsm_reading + 0)
 .s37:
-0fdd : 20 19 10 JSR $1019 ; (krnio_clrchn.s0 + 0)
-0fe0 : ad a6 11 LDA $11a6 ; (zsm_reading + 0)
-0fe3 : d0 05 __ BNE $0fea ; (zsm_fill.s21 + 0)
+0ff2 : 20 2e 10 JSR $102e ; (krnio_clrchn.s0 + 0)
+0ff5 : ad bb 11 LDA $11bb ; (zsm_reading + 0)
+0ff8 : d0 05 __ BNE $0fff ; (zsm_fill.s21 + 0)
 .s19:
-0fe5 : a9 02 __ LDA #$02
-0fe7 : 20 09 0f JSR $0f09 ; (krnio_close.s1000 + 0)
+0ffa : a9 02 __ LDA #$02
+0ffc : 20 1e 0f JSR $0f1e ; (krnio_close.s1000 + 0)
 .s21:
-0fea : a5 47 __ LDA T1 + 0 
-0fec : 85 3b __ STA ACCU + 0 
-0fee : a5 48 __ LDA T1 + 1 
-0ff0 : 4c 78 0f JMP $0f78 ; (zsm_fill.s1001 + 0)
+0fff : a5 47 __ LDA T1 + 0 
+1001 : 85 3b __ STA ACCU + 0 
+1003 : a5 48 __ LDA T1 + 1 
+1005 : 4c 8d 0f JMP $0f8d ; (zsm_fill.s1001 + 0)
 --------------------------------------------------------------------
 krnio_chkin:
 .s1000:
-0ff3 : 85 2d __ STA P0 
+1008 : 85 2d __ STA P0 
 .s0:
-0ff5 : a6 2d __ LDX P0 
-0ff7 : 20 c6 ff JSR $ffc6 
-0ffa : a9 00 __ LDA #$00
-0ffc : 85 3c __ STA ACCU + 1 
-0ffe : b0 02 __ BCS $1002 ; (krnio_chkin.s0 + 13)
-1000 : a9 01 __ LDA #$01
-1002 : 85 3b __ STA ACCU + 0 
+100a : a6 2d __ LDX P0 
+100c : 20 c6 ff JSR $ffc6 
+100f : a9 00 __ LDA #$00
+1011 : 85 3c __ STA ACCU + 1 
+1013 : b0 02 __ BCS $1017 ; (krnio_chkin.s0 + 13)
+1015 : a9 01 __ LDA #$01
+1017 : 85 3b __ STA ACCU + 0 
 .s1001:
-1004 : 60 __ __ RTS
+1019 : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_chrin:
 .s0:
-1005 : 20 cf ff JSR $ffcf 
-1008 : 85 3b __ STA ACCU + 0 
-100a : a9 00 __ LDA #$00
-100c : 85 3c __ STA ACCU + 1 
+101a : 20 cf ff JSR $ffcf 
+101d : 85 3b __ STA ACCU + 0 
+101f : a9 00 __ LDA #$00
+1021 : 85 3c __ STA ACCU + 1 
 .s1001:
-100e : 60 __ __ RTS
+1023 : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_status:
 .s0:
-100f : 20 b7 ff JSR $ffb7 
-1012 : 85 3b __ STA ACCU + 0 
-1014 : a9 00 __ LDA #$00
-1016 : 85 3c __ STA ACCU + 1 
+1024 : 20 b7 ff JSR $ffb7 
+1027 : 85 3b __ STA ACCU + 0 
+1029 : a9 00 __ LDA #$00
+102b : 85 3c __ STA ACCU + 1 
 .s1001:
-1018 : 60 __ __ RTS
+102d : 60 __ __ RTS
 --------------------------------------------------------------------
 krnio_clrchn:
 .s0:
-1019 : 20 cc ff JSR $ffcc 
+102e : 20 cc ff JSR $ffcc 
 .s1001:
-101c : 60 __ __ RTS
+1031 : 60 __ __ RTS
 --------------------------------------------------------------------
-101d : __ __ __ BYT 40 30 3a 7a 73 6d 66 69 6c 65 73 2f 4b 72 61 69 : @0:zsmfiles/Krai
-102d : __ __ __ BYT 64 2e 7a 73 6d 2c 50 2c 52 00                   : d.zsm,P,R.
+1032 : __ __ __ BYT 40 30 3a 7a 73 6d 66 69 6c 65 73 2f 4b 72 61 69 : @0:zsmfiles/Krai
+1042 : __ __ __ BYT 64 2e 7a 73 6d 2c 50 2c 52 00                   : d.zsm,P,R.
 --------------------------------------------------------------------
 Control:
 .s0:
-1037 : 20 53 10 JSR $1053 ; (getchx.s0 + 0)
-103a : a5 3c __ LDA ACCU + 1 
-103c : d0 10 __ BNE $104e ; (Control.s3 + 0)
+104c : 20 68 10 JSR $1068 ; (getchx.s0 + 0)
+104f : a5 3c __ LDA ACCU + 1 
+1051 : d0 10 __ BNE $1063 ; (Control.s3 + 0)
 .s1005:
-103e : a5 3b __ LDA ACCU + 0 
-1040 : c9 20 __ CMP #$20
-1042 : d0 0a __ BNE $104e ; (Control.s3 + 0)
+1053 : a5 3b __ LDA ACCU + 0 
+1055 : c9 20 __ CMP #$20
+1057 : d0 0a __ BNE $1063 ; (Control.s3 + 0)
 .s1:
-1044 : a9 00 __ LDA #$00
-1046 : c5 2e __ CMP P1 ; (playing + 0)
-1048 : 2a __ __ ROL
-1049 : 85 2e __ STA P1 ; (playing + 0)
-104b : 20 84 10 JSR $1084 ; (zsm_irq_play.s0 + 0)
+1059 : a9 00 __ LDA #$00
+105b : c5 2e __ CMP P1 ; (playing + 0)
+105d : 2a __ __ ROL
+105e : 85 2e __ STA P1 ; (playing + 0)
+1060 : 20 99 10 JSR $1099 ; (zsm_irq_play.s0 + 0)
 .s3:
-104e : a5 2e __ LDA P1 ; (playing + 0)
-1050 : 85 3b __ STA ACCU + 0 
+1063 : a5 2e __ LDA P1 ; (playing + 0)
+1065 : 85 3b __ STA ACCU + 0 
 .s1001:
-1052 : 60 __ __ RTS
+1067 : 60 __ __ RTS
 --------------------------------------------------------------------
 getchx:
 .s0:
-1053 : 20 5d 10 JSR $105d ; (getpch + 0)
-1056 : 85 3b __ STA ACCU + 0 
-1058 : a9 00 __ LDA #$00
-105a : 85 3c __ STA ACCU + 1 
+1068 : 20 72 10 JSR $1072 ; (getpch + 0)
+106b : 85 3b __ STA ACCU + 0 
+106d : a9 00 __ LDA #$00
+106f : 85 3c __ STA ACCU + 1 
 .s1001:
-105c : 60 __ __ RTS
+1071 : 60 __ __ RTS
 --------------------------------------------------------------------
 getpch:
-105d : 20 e4 ff JSR $ffe4 
-1060 : ae a7 11 LDX $11a7 ; (giocharmap + 0)
-1063 : e0 01 __ CPX #$01
-1065 : 90 1c __ BCC $1083 ; (getpch + 38)
-1067 : c9 0d __ CMP #$0d
-1069 : d0 02 __ BNE $106d ; (getpch + 16)
-106b : a9 0a __ LDA #$0a
-106d : e0 02 __ CPX #$02
-106f : 90 12 __ BCC $1083 ; (getpch + 38)
-1071 : c9 41 __ CMP #$41
-1073 : 90 0e __ BCC $1083 ; (getpch + 38)
-1075 : c9 7b __ CMP #$7b
-1077 : b0 0a __ BCS $1083 ; (getpch + 38)
-1079 : c9 61 __ CMP #$61
-107b : b0 04 __ BCS $1081 ; (getpch + 36)
-107d : c9 5b __ CMP #$5b
-107f : b0 02 __ BCS $1083 ; (getpch + 38)
-1081 : 49 20 __ EOR #$20
-1083 : 60 __ __ RTS
+1072 : 20 e4 ff JSR $ffe4 
+1075 : ae bc 11 LDX $11bc ; (giocharmap + 0)
+1078 : e0 01 __ CPX #$01
+107a : 90 1c __ BCC $1098 ; (getpch + 38)
+107c : c9 0d __ CMP #$0d
+107e : d0 02 __ BNE $1082 ; (getpch + 16)
+1080 : a9 0a __ LDA #$0a
+1082 : e0 02 __ CPX #$02
+1084 : 90 12 __ BCC $1098 ; (getpch + 38)
+1086 : c9 41 __ CMP #$41
+1088 : 90 0e __ BCC $1098 ; (getpch + 38)
+108a : c9 7b __ CMP #$7b
+108c : b0 0a __ BCS $1098 ; (getpch + 38)
+108e : c9 61 __ CMP #$61
+1090 : b0 04 __ BCS $1096 ; (getpch + 36)
+1092 : c9 5b __ CMP #$5b
+1094 : b0 02 __ BCS $1098 ; (getpch + 38)
+1096 : 49 20 __ EOR #$20
+1098 : 60 __ __ RTS
 --------------------------------------------------------------------
 giocharmap:
-11a7 : __ __ __ BYT 01                                              : .
+11bc : __ __ __ BYT 01                                              : .
 --------------------------------------------------------------------
 zsm_irq_play:
 .s0:
-1084 : 8d 62 11 STA $1162 ; (zsm_playing + 0)
+1099 : 8d 77 11 STA $1177 ; (zsm_playing + 0)
 .s1001:
-1087 : 60 __ __ RTS
+109c : 60 __ __ RTS
 --------------------------------------------------------------------
 FrameCount:
-11a8 : __ __ __ BYT 00 00                                           : ..
+11bd : __ __ __ BYT 00 00                                           : ..
 --------------------------------------------------------------------
 TestText2:
-11aa : __ __ __ BYT 43 4f 4e 43 45 50 54 20 43 52 49 53 50 53 20 43 : CONCEPT CRISPS C
-11ba : __ __ __ BYT 4f 44 49 4e 47 20 43 52 49 53 50 53 20 42 4c 55 : ODING CRISPS BLU
-11ca : __ __ __ BYT 4d 42 41 20 54 4f 42 41 43 48 2c 20 4d 41 52 4b : MBA TOBACH, MARK
-11da : __ __ __ BYT 2d 42 55 47 2d 53 4c 41 59 45 52 00             : -BUG-SLAYER.
+11bf : __ __ __ BYT 43 4f 4e 43 45 50 54 20 43 52 49 53 50 53 20 43 : CONCEPT CRISPS C
+11cf : __ __ __ BYT 4f 44 49 4e 47 20 43 52 49 53 50 53 20 42 4c 55 : ODING CRISPS BLU
+11df : __ __ __ BYT 4d 42 41 20 54 4f 42 41 43 48 2c 20 4d 41 52 4b : MBA TOBACH, MARK
+11ef : __ __ __ BYT 2d 42 55 47 2d 53 4c 41 59 45 52 00             : -BUG-SLAYER.
 --------------------------------------------------------------------
 off1:
-11fd : __ __ __ BSS	1
+1a12 : __ __ __ BSS	1
 --------------------------------------------------------------------
 frame_wait:
 .l1:
-1088 : ad 26 9f LDA $9f26 
-108b : 29 40 __ AND #$40
-108d : d0 f9 __ BNE $1088 ; (frame_wait.l1 + 0)
+109d : ad 26 9f LDA $9f26 
+10a0 : 29 40 __ AND #$40
+10a2 : d0 f9 __ BNE $109d ; (frame_wait.l1 + 0)
 .l4:
-108f : ad 26 9f LDA $9f26 
-1092 : 29 40 __ AND #$40
-1094 : f0 f9 __ BEQ $108f ; (frame_wait.l4 + 0)
+10a4 : ad 26 9f LDA $9f26 
+10a7 : 29 40 __ AND #$40
+10a9 : f0 f9 __ BEQ $10a4 ; (frame_wait.l4 + 0)
 .s1001:
-1096 : 60 __ __ RTS
+10ab : 60 __ __ RTS
 --------------------------------------------------------------------
 negaccu:
-1097 : 38 __ __ SEC
-1098 : a9 00 __ LDA #$00
-109a : e5 3b __ SBC ACCU + 0 
-109c : 85 3b __ STA ACCU + 0 
-109e : a9 00 __ LDA #$00
-10a0 : e5 3c __ SBC ACCU + 1 
-10a2 : 85 3c __ STA ACCU + 1 
-10a4 : 60 __ __ RTS
+10ac : 38 __ __ SEC
+10ad : a9 00 __ LDA #$00
+10af : e5 3b __ SBC ACCU + 0 
+10b1 : 85 3b __ STA ACCU + 0 
+10b3 : a9 00 __ LDA #$00
+10b5 : e5 3c __ SBC ACCU + 1 
+10b7 : 85 3c __ STA ACCU + 1 
+10b9 : 60 __ __ RTS
 --------------------------------------------------------------------
 negtmp:
-10a5 : 38 __ __ SEC
-10a6 : a9 00 __ LDA #$00
-10a8 : e5 23 __ SBC WORK + 0 
-10aa : 85 23 __ STA WORK + 0 
-10ac : a9 00 __ LDA #$00
-10ae : e5 24 __ SBC WORK + 1 
-10b0 : 85 24 __ STA WORK + 1 
-10b2 : 60 __ __ RTS
+10ba : 38 __ __ SEC
+10bb : a9 00 __ LDA #$00
+10bd : e5 23 __ SBC WORK + 0 
+10bf : 85 23 __ STA WORK + 0 
+10c1 : a9 00 __ LDA #$00
+10c3 : e5 24 __ SBC WORK + 1 
+10c5 : 85 24 __ STA WORK + 1 
+10c7 : 60 __ __ RTS
 --------------------------------------------------------------------
 divmod:
-10b3 : a5 3c __ LDA ACCU + 1 
-10b5 : d0 31 __ BNE $10e8 ; (divmod + 53)
-10b7 : a5 24 __ LDA WORK + 1 
-10b9 : d0 1e __ BNE $10d9 ; (divmod + 38)
-10bb : 85 26 __ STA WORK + 3 
-10bd : a2 04 __ LDX #$04
-10bf : 06 3b __ ASL ACCU + 0 
-10c1 : 2a __ __ ROL
-10c2 : c5 23 __ CMP WORK + 0 
-10c4 : 90 02 __ BCC $10c8 ; (divmod + 21)
-10c6 : e5 23 __ SBC WORK + 0 
-10c8 : 26 3b __ ROL ACCU + 0 
-10ca : 2a __ __ ROL
-10cb : c5 23 __ CMP WORK + 0 
-10cd : 90 02 __ BCC $10d1 ; (divmod + 30)
-10cf : e5 23 __ SBC WORK + 0 
-10d1 : 26 3b __ ROL ACCU + 0 
-10d3 : ca __ __ DEX
-10d4 : d0 eb __ BNE $10c1 ; (divmod + 14)
-10d6 : 85 25 __ STA WORK + 2 
-10d8 : 60 __ __ RTS
-10d9 : a5 3b __ LDA ACCU + 0 
-10db : 85 25 __ STA WORK + 2 
-10dd : a5 3c __ LDA ACCU + 1 
-10df : 85 26 __ STA WORK + 3 
-10e1 : a9 00 __ LDA #$00
-10e3 : 85 3b __ STA ACCU + 0 
-10e5 : 85 3c __ STA ACCU + 1 
-10e7 : 60 __ __ RTS
-10e8 : a5 24 __ LDA WORK + 1 
-10ea : d0 1f __ BNE $110b ; (divmod + 88)
-10ec : a5 23 __ LDA WORK + 0 
-10ee : 30 1b __ BMI $110b ; (divmod + 88)
-10f0 : a9 00 __ LDA #$00
-10f2 : 85 26 __ STA WORK + 3 
-10f4 : a2 10 __ LDX #$10
-10f6 : 06 3b __ ASL ACCU + 0 
-10f8 : 26 3c __ ROL ACCU + 1 
-10fa : 2a __ __ ROL
-10fb : c5 23 __ CMP WORK + 0 
-10fd : 90 02 __ BCC $1101 ; (divmod + 78)
-10ff : e5 23 __ SBC WORK + 0 
-1101 : 26 3b __ ROL ACCU + 0 
-1103 : 26 3c __ ROL ACCU + 1 
-1105 : ca __ __ DEX
-1106 : d0 f2 __ BNE $10fa ; (divmod + 71)
-1108 : 85 25 __ STA WORK + 2 
-110a : 60 __ __ RTS
-110b : a9 00 __ LDA #$00
-110d : 85 25 __ STA WORK + 2 
-110f : 85 26 __ STA WORK + 3 
-1111 : 84 22 __ STY $22 
-1113 : a0 10 __ LDY #$10
-1115 : 18 __ __ CLC
+10c8 : a5 3c __ LDA ACCU + 1 
+10ca : d0 31 __ BNE $10fd ; (divmod + 53)
+10cc : a5 24 __ LDA WORK + 1 
+10ce : d0 1e __ BNE $10ee ; (divmod + 38)
+10d0 : 85 26 __ STA WORK + 3 
+10d2 : a2 04 __ LDX #$04
+10d4 : 06 3b __ ASL ACCU + 0 
+10d6 : 2a __ __ ROL
+10d7 : c5 23 __ CMP WORK + 0 
+10d9 : 90 02 __ BCC $10dd ; (divmod + 21)
+10db : e5 23 __ SBC WORK + 0 
+10dd : 26 3b __ ROL ACCU + 0 
+10df : 2a __ __ ROL
+10e0 : c5 23 __ CMP WORK + 0 
+10e2 : 90 02 __ BCC $10e6 ; (divmod + 30)
+10e4 : e5 23 __ SBC WORK + 0 
+10e6 : 26 3b __ ROL ACCU + 0 
+10e8 : ca __ __ DEX
+10e9 : d0 eb __ BNE $10d6 ; (divmod + 14)
+10eb : 85 25 __ STA WORK + 2 
+10ed : 60 __ __ RTS
+10ee : a5 3b __ LDA ACCU + 0 
+10f0 : 85 25 __ STA WORK + 2 
+10f2 : a5 3c __ LDA ACCU + 1 
+10f4 : 85 26 __ STA WORK + 3 
+10f6 : a9 00 __ LDA #$00
+10f8 : 85 3b __ STA ACCU + 0 
+10fa : 85 3c __ STA ACCU + 1 
+10fc : 60 __ __ RTS
+10fd : a5 24 __ LDA WORK + 1 
+10ff : d0 1f __ BNE $1120 ; (divmod + 88)
+1101 : a5 23 __ LDA WORK + 0 
+1103 : 30 1b __ BMI $1120 ; (divmod + 88)
+1105 : a9 00 __ LDA #$00
+1107 : 85 26 __ STA WORK + 3 
+1109 : a2 10 __ LDX #$10
+110b : 06 3b __ ASL ACCU + 0 
+110d : 26 3c __ ROL ACCU + 1 
+110f : 2a __ __ ROL
+1110 : c5 23 __ CMP WORK + 0 
+1112 : 90 02 __ BCC $1116 ; (divmod + 78)
+1114 : e5 23 __ SBC WORK + 0 
 1116 : 26 3b __ ROL ACCU + 0 
 1118 : 26 3c __ ROL ACCU + 1 
-111a : 26 25 __ ROL WORK + 2 
-111c : 26 26 __ ROL WORK + 3 
-111e : 38 __ __ SEC
-111f : a5 25 __ LDA WORK + 2 
-1121 : e5 23 __ SBC WORK + 0 
-1123 : aa __ __ TAX
-1124 : a5 26 __ LDA WORK + 3 
-1126 : e5 24 __ SBC WORK + 1 
-1128 : 90 04 __ BCC $112e ; (divmod + 123)
-112a : 86 25 __ STX WORK + 2 
-112c : 85 26 __ STA WORK + 3 
-112e : 88 __ __ DEY
-112f : d0 e5 __ BNE $1116 ; (divmod + 99)
-1131 : 26 3b __ ROL ACCU + 0 
-1133 : 26 3c __ ROL ACCU + 1 
-1135 : a4 22 __ LDY $22 
-1137 : 60 __ __ RTS
+111a : ca __ __ DEX
+111b : d0 f2 __ BNE $110f ; (divmod + 71)
+111d : 85 25 __ STA WORK + 2 
+111f : 60 __ __ RTS
+1120 : a9 00 __ LDA #$00
+1122 : 85 25 __ STA WORK + 2 
+1124 : 85 26 __ STA WORK + 3 
+1126 : 84 22 __ STY $22 
+1128 : a0 10 __ LDY #$10
+112a : 18 __ __ CLC
+112b : 26 3b __ ROL ACCU + 0 
+112d : 26 3c __ ROL ACCU + 1 
+112f : 26 25 __ ROL WORK + 2 
+1131 : 26 26 __ ROL WORK + 3 
+1133 : 38 __ __ SEC
+1134 : a5 25 __ LDA WORK + 2 
+1136 : e5 23 __ SBC WORK + 0 
+1138 : aa __ __ TAX
+1139 : a5 26 __ LDA WORK + 3 
+113b : e5 24 __ SBC WORK + 1 
+113d : 90 04 __ BCC $1143 ; (divmod + 123)
+113f : 86 25 __ STX WORK + 2 
+1141 : 85 26 __ STA WORK + 3 
+1143 : 88 __ __ DEY
+1144 : d0 e5 __ BNE $112b ; (divmod + 99)
+1146 : 26 3b __ ROL ACCU + 0 
+1148 : 26 3c __ ROL ACCU + 1 
+114a : a4 22 __ LDY $22 
+114c : 60 __ __ RTS
 --------------------------------------------------------------------
 mods16:
-1138 : 24 3c __ BIT ACCU + 1 
-113a : 10 0d __ BPL $1149 ; (mods16 + 17)
-113c : 20 97 10 JSR $1097 ; (negaccu + 0)
-113f : 24 24 __ BIT WORK + 1 
-1141 : 10 0d __ BPL $1150 ; (mods16 + 24)
-1143 : 20 a5 10 JSR $10a5 ; (negtmp + 0)
-1146 : 4c b3 10 JMP $10b3 ; (divmod + 0)
-1149 : 24 24 __ BIT WORK + 1 
-114b : 10 f9 __ BPL $1146 ; (mods16 + 14)
-114d : 20 a5 10 JSR $10a5 ; (negtmp + 0)
-1150 : 20 b3 10 JSR $10b3 ; (divmod + 0)
-1153 : 38 __ __ SEC
-1154 : a9 00 __ LDA #$00
-1156 : e5 25 __ SBC WORK + 2 
-1158 : 85 25 __ STA WORK + 2 
-115a : a9 00 __ LDA #$00
-115c : e5 26 __ SBC WORK + 3 
-115e : 85 26 __ STA WORK + 3 
-1160 : 60 __ __ RTS
+114d : 24 3c __ BIT ACCU + 1 
+114f : 10 0d __ BPL $115e ; (mods16 + 17)
+1151 : 20 ac 10 JSR $10ac ; (negaccu + 0)
+1154 : 24 24 __ BIT WORK + 1 
+1156 : 10 0d __ BPL $1165 ; (mods16 + 24)
+1158 : 20 ba 10 JSR $10ba ; (negtmp + 0)
+115b : 4c c8 10 JMP $10c8 ; (divmod + 0)
+115e : 24 24 __ BIT WORK + 1 
+1160 : 10 f9 __ BPL $115b ; (mods16 + 14)
+1162 : 20 ba 10 JSR $10ba ; (negtmp + 0)
+1165 : 20 c8 10 JSR $10c8 ; (divmod + 0)
+1168 : 38 __ __ SEC
+1169 : a9 00 __ LDA #$00
+116b : e5 25 __ SBC WORK + 2 
+116d : 85 25 __ STA WORK + 2 
+116f : a9 00 __ LDA #$00
+1171 : e5 26 __ SBC WORK + 3 
+1173 : 85 26 __ STA WORK + 3 
+1175 : 60 __ __ RTS
