@@ -49,17 +49,35 @@ const char EyeTri[] = {
 	#embed 1024 2 "sprites/bin/EYETRI.BIN"
 };
 
+const char MainEyeBack[] = {
+	#embed 1024 2 "sprites/bin/MAINEYEBACK.BIN"
+};
+
+const char MainPupil[] = {
+	#embed 256 2 "sprites/bin/MAINPUPIL.BIN"
+};
+
 const char palette[] = {
 
-	0xFF, 0x0F, 0xEF, 0x0E,
-	0xEE, 0x0E,	0xAA, 0x0A, 
-	0x88, 0x08, 0x66, 0x06, 
-	0x22, 0x02, 0x11, 0x01,
+	0xFF, 0x0F,
+	0xBB, 0x0B,
+	0x99, 0x09,	
+	0x66, 0x06, 
+	
+	0x44, 0x04, 
+	0x22, 0x02, 
+	0x00, 0x00, 
+	0x00, 0x00,
 
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00
+	0x00, 0x00, 
+	0x00, 0x00,
+	0x00, 0x00, 
+	0x00, 0x00,
+	
+	0x00, 0x00, 
+	0x00, 0x00,
+	0x00, 0x00, 
+	0x00, 0x00
 };
 
 const char BGPal[] = {
@@ -411,6 +429,7 @@ const char TowerPalFD[] = {
 	0xDD, 0x0D
 
 };
+
 const char TowerPalFE[] = {
 	0xDD, 0x0D,
 	0xCC, 0x0C,
@@ -450,6 +469,27 @@ const char TowerPalFF[] = {
 	0xFF, 0x0F
 
 };
+
+const char TowerPalFBlank[] = {
+	0x00, 0x00,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08,
+	0x88, 0x08
+
+};
+
 const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH MARK-BUG-SLAYER";
 
 bool Control(bool playing) {
@@ -471,7 +511,9 @@ void SetUpSprites() {
 	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
 	const unsigned long ArrowAddr = VolumeIndAddr + ((sizeof(VolumeIndAddr) + 31) & ~31);
-	const unsigned long TowerBaseAddr = ArrowAddr + ((sizeof(ArrowAddr) + 31) & ~31) + 464;
+	const unsigned long TowerBaseAddr = ArrowAddr + ((sizeof(Arrow) + 31) & ~31);
+	const unsigned long MainEyeBackAddr = TowerBaseAddr + ((sizeof(MainEyeBack) + 31) & ~31);
+	const unsigned long TowerTriAddr = MainEyeBackAddr + ((sizeof(EyeTri) + 31) & ~31);
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
@@ -480,15 +522,15 @@ void SetUpSprites() {
 	//Set up Background
 	vera.ctrl = 0; // &= ~VERA_CTRL_DCSEL;
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
-	
+
 	vera.dcvscale = 128;
 	vera.dchscale = 128;
-	
+
 	// In this mode, a tile width and height is 8 pixels, so
 	// Width: 640pixels / 8 = 80 tiles across = Need to set our width to 128
 	// Height: 480pixels / 8 = 60 tiles down = Need to set our height to 64
 	vera.l0config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_4;
-	
+
 	vera.l1config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_T256C | VERA_LAYER_DEPTH_1;
 
 	//vera.l1mapbase = 0x04;
@@ -505,7 +547,7 @@ void SetUpSprites() {
 	vera.l0mapbase = memoryToMapMemoryAddress(0, BGMapAddr);
 
 	vera.addrh = 1 | (2 << 4);
-	
+
 	for (unsigned i = 0; i < 128; i++)
 	{
 		for (unsigned j = 0; j < 80; j++)
@@ -529,7 +571,7 @@ void SetUpSprites() {
 	for (unsigned i = 0; i < 60; i++)
 	{
 		for (unsigned j = 0; j < 128; j++) {
-			
+
 			R = rand() % 32;
 
 			if (R <= 30)
@@ -569,7 +611,7 @@ void SetUpSprites() {
 
 	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FA00UL);
 
-	vram_putn(ScrollerOutlineAddr ,ScrollerOutline, sizeof(ScrollerOutline));
+	vram_putn(ScrollerOutlineAddr, ScrollerOutline, sizeof(ScrollerOutline));
 
 	//Pause
 	vram_putn(PauseAddr, Pause, sizeof(Pause));
@@ -577,14 +619,14 @@ void SetUpSprites() {
 	vera_spr_move(22, 304, 440);
 
 	//Bottom bars around the text
-	for (unsigned long i = 0; i < 22; i+=2)
+	for (unsigned long i = 0; i < 22; i += 2)
 	{
-		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
-		vera_spr_move(i, 32 * i, 432-16);
-		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
-		vera_spr_move(i + 1, 32 * i, 384 - 16);
+		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 2, 3, 1);
+		vera_spr_move(i, 32 * i, 416);
+		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 2, 3, 1);
+		vera_spr_move(i + 1, 32 * i, 368);
 	}
-	
+
 	vram_putn(ArrowAddr, Arrow, sizeof(Arrow));
 	vera_spr_set(23, ArrowAddr >> 5, false, 2, 2, 3, 1);
 	vera_spr_move(23, 252, 440);
@@ -599,7 +641,7 @@ void SetUpSprites() {
 	{
 		vera_spr_set(25 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 2);
 		vera_spr_move(25 + i, 4 + i * 12, 440);
-	}	
+	}
 	for (unsigned i = 0; i < 8; i++)
 	{
 		vera_spr_set(33 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 3);
@@ -611,9 +653,19 @@ void SetUpSprites() {
 		vera_spr_move(41 + i, 620 - i * 12, 440);
 	}
 
+	vram_putn(MainEyeBackAddr, MainEyeBack, sizeof(MainEyeBack));
+	vera_spr_set(49, MainEyeBackAddr >> 5, false, 3, 3, 3, 5);
+	vera_spr_move(49, 284, 120);
+
 	vram_putn(TowerBaseAddr, TowerBase, sizeof(TowerBase));
-	vera_spr_set(49, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
-	vera_spr_move(49, 288, 208);
+	for (unsigned i = 0; i < 7; i++)
+	{
+		vera_spr_set(50 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
+		vera_spr_move(50 + i, 308 - 64, i * 64 - 32);
+		vera_spr_set(57 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
+		vera_spr_move(57 + i, 320, i * 64 - 32);
+	}
+
 
 	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
 	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
@@ -650,11 +702,19 @@ int main(){
 	while (Running)
 	{
 		p++;
-		PalTimer++;
+		if (Playing)
+		{
+			PalTimer++;
+		}
+		else
+		{
+			PalTimer = 0;
+			SetPaletteColours(TowerPalFBlank, sizeof(TowerPalFBlank), 0x1FAA0UL);
+		}
 
 		vera.dcborder = 60;
 		
-		if (PalTimer > 4)
+		if (PalTimer > 3)
 		{
 			PalIndex++;
 			if (PalIndex == 0)
@@ -740,12 +800,12 @@ int main(){
 		}
 		vera.dcborder = 3;
 		if (zsm_check())
-			zsm_init("@0:zsmfiles/Kraid.zsm,P,R");	
+			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");	
 
 		Playing = Control(Playing);
 
 		if (FrameCount % 4 == 1) {
-			if (off1 > sizeof(TestText2))
+			if (off1+16 < sizeof(TestText2))
 			{
 				vera.data0 = TestText2[off1];
 			}
