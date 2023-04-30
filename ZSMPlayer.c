@@ -28,10 +28,35 @@ static unsigned zsm_pos, zsm_wpos;
 static char zsm_delay;
 static volatile bool zsm_playing = false, zsm_reading = false, zsm_finished = true;
 static char zsm_buffer[1024];
+static volatile bool zsm_paused = false;
+static char vera_volumes[16];
+
+void zsm_save_volume(void)
+{
+	for(char i=0; i<16; i++)
+	{
+		vera.addr = (i * 4 + 2) | 0xf9c0;
+		vera.addrh = 0x01;
+		vera_volumes[i] = vera.data0;
+		vera.data0 = 0;
+	}
+}
+
+void zsm_restore_volume(void)
+{
+	for(char i=0; i<16; i++)
+	{
+		vera.addr = (i * 4 + 2) | 0xf9c0;
+		vera.addrh = 0x01;
+		vera.data0 = vera_volumes[i];
+	}	
+}
 
 void zsm_play(void)
 {
-	if (zsm_delay)
+	if (zsm_paused)
+		;
+	else if (zsm_delay)
 		zsm_delay--;
 	else
 	{
@@ -79,6 +104,7 @@ void zsm_play(void)
 		vera.ctrl = vc;
 	}
 }
+
 __interrupt void irq(void)
 {
 	if (zsm_playing && !zsm_finished)
@@ -180,3 +206,16 @@ void zsm_irq_play(bool play)
 }
 
 
+void zsm_pause(bool pause)
+{
+	if (pause && !zsm_paused)
+	{
+		zsm_paused = true;
+		zsm_save_volume();
+	}
+	else if (!pause && zsm_paused)
+	{
+		zsm_restore_volume();
+		zsm_paused = false;
+	}
+}

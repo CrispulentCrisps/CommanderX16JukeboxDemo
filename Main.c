@@ -186,14 +186,24 @@ char TowerPalFBlank[] = {
 
 const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH MARK-BUG-SLAYER";
 
+static bool paused = false;
+
 bool Control(bool playing) {
 
 	//Tune Playing
 
 	if (getchx() == SPACE)
 	{
-		playing = !playing;
-		zsm_irq_play(playing);
+		if (playing)
+		{
+		paused = !paused;
+		zsm_pause(paused);			
+		}
+		else
+		{
+			playing = !playing;
+			zsm_irq_play(playing);
+		}
 	}
 
 	return playing;

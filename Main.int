@@ -1,5 +1,5 @@
 --------------------------------------------------------------------
-main: C:/Users/david/Documents/Games/CoolDemo/Main.c:381
+main: E:/Projects/C64Repo/CommanderX16JukeboxDemo/Main.c:391
 $00 R0(C), $0a R1(B), $0b R2(I), $00 R3(I), $02 R4(B), $03 R5(I), $05 R6(B), 
 L0: <= D-1: (1)  P-1
 0000		CALLN		<-	V1+0	{}
@@ -21,16 +21,16 @@ L0: <= D-1: (1)  P-1
 0010		JUMP		<-		{}
 		==> 2
 L2: <= D-1: (2) Head P82
-0000		LOADG2	R3(I)[-32768..65534]	<-	V47+0	{}
+0000		LOADG2	R3(I)[-32768..65534]	<-	V48+0	{}
 0001		BINOP1	R3(I)[-32767..65535]	<-	R3(IF)[-32768..65534], CI:1	{}
-0002		STOREG2		<-	V47+0, R3(IF)[-32767..65535]	{}
+0002		STOREG2		<-	V48+0, R3(IF)[-32767..65535]	{}
 0003		BRANCH		<-	R1(B)[~0..~1]	{}
 		==> 4
 		==> 5
 L4: <= D-1: (1)  P-1
-0000		LOADG2	R3(I)[-32768..65534]	<-	V48+0	{}
+0000		LOADG2	R3(I)[-32768..65534]	<-	V49+0	{}
 0001		BINOP1	R3(I)[-32767..65535]	<-	R3(IF)[-32768..65534], CI:1	{}
-0002		STOREG2		<-	V48+0, R3(IF)[-32767..65535]	{}
+0002		STOREG2		<-	V49+0, R3(IF)[-32767..65535]	{}
 0003		JUMP		<-		{}
 		==> 6
 L6: <= D-1: (2)  P-1
@@ -44,14 +44,14 @@ L7: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V7+0, CL:16	{}
 0001		STOREG2		<-	V12+0, CI:6	{}
 0002		STOREG2		<-	V14+2, CI:10	{}
-0003		CONST	R2(P)	<-	CG32(36:0)	{S}
+0003		CONST	R2(P)	<-	CG32(37:0)	{S}
 0004		STOREZ2		<-	V5+0, R2(PF)	{}
 0005		CALLN		<-	V17+0	{}
 0006		CONST	R2(I)[0..0]	<-	CI:0	{}
 0007		JUMP		<-		{}
 		==> 39
 L39: <= D-1: (2)  P-1
-0000		LOADG2	R3(I)[-32768..65535]	<-	V48+0	{}
+0000		LOADG2	R3(I)[-32768..65535]	<-	V49+0	{}
 0001		RELOP23	R4(B)	<-	R3(IF)[-32768..65535], CI:3	{}
 0002		BRANCH		<-	R4(BF)	{}
 		==> 10
@@ -60,17 +60,17 @@ L10: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V7+0, CL:80	{}
 0001		STOREG2		<-	V12+0, CI:0	{}
 0002		STOREG2		<-	V14+2, CI:16	{}
-0003		LOADG2	R3(I)[-32768..65534]	<-	V50+0	{}
+0003		LOADG2	R3(I)[-32768..65534]	<-	V51+0	{}
 0004		BINOP1	R3(I)[-32767..65535]	<-	R3(IF)[-32768..65534], CI:1	{}
-0005		STOREG2		<-	V50+0, R3(IF)[-32767..65535]	{}
-0006		CONST	R3(P)	<-	CG32(51:0)	{S}
+0005		STOREG2		<-	V51+0, R3(IF)[-32767..65535]	{}
+0006		CONST	R3(P)	<-	CG32(52:0)	{S}
 0007		STOREZ2		<-	V5+0, R3(PF)	{}
 0008		CALLN		<-	V17+0	{}
-0009		STOREG2		<-	V48+0, CI:0	{}
+0009		STOREG2		<-	V49+0, CI:0	{}
 000a		JUMP		<-		{}
 		==> 40
 L40: <= D-1: (2)  P-1
-0000		LOADG2	R3(I)[-32768..65535]	<-	V47+0	{}
+0000		LOADG2	R3(I)[-32768..65535]	<-	V48+0	{}
 0001		RELOP19	R4(B)	<-	R3(IF)[-32768..65535], CI:3	{}
 0002		BRANCH		<-	R4(BF)	{}
 		==> 13
@@ -78,20 +78,20 @@ L40: <= D-1: (2)  P-1
 L13: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V10+0, CC:32	{}
 0001		STOREG4		<-	V12+0, CL:129536	{}
-0002		LOADG1	R4(B)	<-	V52+0	{}
+0002		LOADG1	R4(B)	<-	V53+0	{}
 0003		RELOP19	R4(B)	<-	R4(BF), CB:0	{}
-0004		STOREG1		<-	V52+0, R4(B)	{}
+0004		STOREG1		<-	V53+0, R4(B)	{}
 0005		BRANCH		<-	R4(BF)	{}
 		==> 16
 		==> 17
 L16: <= D-1: (1)  P-1
-0000		CONST	R3(P)	<-	CG32(18:0)	{S}
+0000		CONST	R3(P)	<-	CG32(19:0)	{S}
 0001		JUMP		<-		{}
 		==> 51
 L51: <= D-1: (2)  P-1
 0000		STOREZ2		<-	V8+0, R3(PF)	{}
 0001		CALLN		<-	V12+0	{}
-0002		STOREG2		<-	V47+0, CI:0	{}
+0002		STOREG2		<-	V48+0, CI:0	{}
 0003		JUMP		<-		{}
 		==> 42
 L42: <= D-1: (2)  P-1
@@ -101,7 +101,7 @@ L42: <= D-1: (2)  P-1
 		==> 19
 		==> 21
 L19: <= D-1: (1)  P-1
-0000		CONST	R3(P)	<-	CG0(58:0)	{S}
+0000		CONST	R3(P)	<-	CG0(59:0)	{S}
 0001		STOREZ2		<-	V3+0, R3(PF)	{}
 0002		CALLN		<-	V19+0	{}
 0003		JUMP		<-		{}
@@ -109,28 +109,28 @@ L19: <= D-1: (1)  P-1
 L21: <= D-1: (2)  P-1
 0000		STOREZ1		<-	V1+0, R1(BF)[0..1]	{}
 0001		CALLN	R1(B)	<-	V28+0	{}
-0002		LOADG2	R3(I)[-32768..65535]	<-	V60+0	{}
+0002		LOADG2	R3(I)[-32768..65535]	<-	V63+0	{}
 0003		BINOP7	R5(I)	<-	R3(I)[-32768..65535], CI:4	{}
 0004		RELOP19	R4(B)	<-	R5(IF), CI:1	{}
 0005		BRANCH		<-	R4(BF)	{}
 		==> 22
 		==> 24
 L22: <= D-1: (1)  P-1
-0000		LOADG1	R4(C)[-128..254]	<-	V61+0	{}
+0000		LOADG1	R4(C)[-128..254]	<-	V64+0	{}
 0001		CONV33	R5(I)[0..255]	<-	R4(C)[-128..254]	{}
 0002		RELOP28	R6(B)	<-	R5(I)[0..255], CI:43	{}
 0003		BRANCH		<-	R6(BF)	{}
 		==> 25
 		==> 50
 L25: <= D-1: (1)  P-1
-0000		LEAG	R5(P)	<-	V62+0, R5(IF)[0..42]	{}
+0000		LEAG	R5(P)	<-	V65+0, R5(IF)[0..42]	{}
 0001		LOADI1	R6(C)[0..89]	<-	R5(PF)+0	{}
 0002		STOREA1		<-	V-1+40739, R6(CF)[0..89]	{V}
 0003		JUMP		<-		{}
 		==> 50
 L50: <= D-1: (2)  P-1
 0000		BINOP1	R4(C)[-127..255]	<-	R4(CF)[-128..254], CI:1	{}
-0001		STOREG1		<-	V61+0, R4(CF)[-127..255]	{}
+0001		STOREG1		<-	V64+0, R4(CF)[-127..255]	{}
 0002		JUMP		<-		{}
 		==> 24
 L24: <= D-1: (2)  P-1
@@ -140,30 +140,30 @@ L24: <= D-1: (2)  P-1
 0003		STOREA1		<-	V-1+40748, CC:1	{V}
 0004		CALLN		<-	V23+0	{}
 0005		STOREA1		<-	V-1+40748, CC:0	{V}
-0006		CALLN		<-	V31+0	{E}
-0007		LOADG2	R3(I)[-32768..65534]	<-	V60+0	{}
+0006		CALLN		<-	V34+0	{E}
+0007		LOADG2	R3(I)[-32768..65534]	<-	V63+0	{}
 0008		BINOP1	R3(I)[-32767..65535]	<-	R3(IF)[-32768..65534], CI:1	{}
-0009		STOREG2		<-	V60+0, R3(IF)[-32767..65535]	{}
+0009		STOREG2		<-	V63+0, R3(IF)[-32767..65535]	{}
 000a		BRANCH		<-	R0(B)[~1..~1]	{}
 		==> 2
 		==> 3
 L3: <= D-1: (1)  P-1
 0000		RETV		<-	CI:0	{}
 L17: <= D-1: (1)  P-1
-0000		CONST	R3(P)	<-	CG32(53:0)	{S}
+0000		CONST	R3(P)	<-	CG32(54:0)	{S}
 0001		JUMP		<-		{}
 		==> 51
 L5: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V10+0, CC:32	{}
 0001		STOREG4		<-	V12+0, CL:129696	{}
-0002		STOREG2		<-	V48+0, CI:0	{}
-0003		CONST	R3(P)	<-	CG32(49:0)	{S}
+0002		STOREG2		<-	V49+0, CI:0	{}
+0003		CONST	R3(P)	<-	CG32(50:0)	{S}
 0004		STOREZ2		<-	V8+0, R3(PF)	{}
 0005		CALLN		<-	V12+0	{}
 0006		JUMP		<-		{}
 		==> 6
 --------------------------------------------------------------------
-zsm_irq_init: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:20
+zsm_irq_init: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:20
 $00 R0(P), 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
@@ -174,7 +174,7 @@ L0: <= D-1: (1)  P-1
 0005		JSR		<-	V-1+0	{}
 0006		RET		<-		{}
 --------------------------------------------------------------------
-irq: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.c:82
+irq: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.c:108
 $00 R0(B), 
 L0: <= D-1: (1)  P-1
 0000		LOADG1	R0(B)	<-	V7+0	{V}
@@ -193,21 +193,26 @@ L1: <= D-1: (1)  P-1
 0001		JUMP		<-		{}
 		==> 3
 --------------------------------------------------------------------
-zsm_play: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.c:32
-$00 R0(C), $01 R1(C), $02 R2(I), $04 R3(I), $06 R4(I), $00 R5(I), $08 R6(C), $09 R7(B), $00 R8(C), 
+zsm_play: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.c:55
+$00 R0(B), $01 R1(C), $02 R2(I), $04 R3(I), $06 R4(I), $00 R5(I), $08 R6(C), $09 R7(B), $00 R8(C), 
 L0: <= D-1: (1)  P-1
-0000		LOADG1	R0(C)[-128..255]	<-	V9+0	{}
-0001		BRANCH		<-	R0(C)[-128..255]	{}
-		==> 1
-		==> 2
-L1: <= D-1: (1)  P-1
-0000		BINOP1	R0(C)[-128..254]	<-	R0(CF)[-127..255], CI:-1	{}
-0001		STOREG1		<-	V9+0, R0(CF)[-128..254]	{}
-0002		JUMP		<-		{}
+0000		LOADG1	R0(B)	<-	V9+0	{V}
+0001		BRANCH		<-	R0(BF)	{}
 		==> 3
-L3: <= D-1: (2)  P-1
+		==> 2
+L3: <= D-1: (3)  P-1
 0000		RET		<-		{}
 L2: <= D-1: (1)  P-1
+0000		LOADG1	R0(C)[-128..255]	<-	V10+0	{}
+0001		BRANCH		<-	R0(C)[-128..255]	{}
+		==> 4
+		==> 5
+L4: <= D-1: (1)  P-1
+0000		BINOP1	R0(C)[-128..254]	<-	R0(CF)[-127..255], CI:-1	{}
+0001		STOREG1		<-	V10+0, R0(CF)[-128..254]	{}
+0002		JUMP		<-		{}
+		==> 3
+L5: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
 0001		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
 0002		BINOP9	R1(C)[0..254]	<-	R1(CF)[-128..255], CC:254	{}
@@ -215,105 +220,105 @@ L2: <= D-1: (1)  P-1
 0004		LOADA2	R2(I)[-32768..65535]	<-	V-1+40736	{V}
 0005		LOADA1	R1(C)[-128..255]	<-	V-1+40738	{V}
 0006		JUMP		<-		{}
-		==> 5
-L5: <= D-1: (5) Head P73
-0000		LOADG2	R3(I)[-32768..65534]	<-	V11+0	{}
+		==> 8
+L8: <= D-1: (5) Head P80
+0000		LOADG2	R3(I)[-32768..65534]	<-	V12+0	{}
 0001		BINOP1	R4(I)[-32767..65535]	<-	R3(I)[-32768..65534], CI:1	{}
-0002		STOREG2		<-	V11+0, R4(I)[-32767..65535]	{}
+0002		STOREG2		<-	V12+0, R4(I)[-32767..65535]	{}
 0003		BINOP9	R5(I)[0..1023]	<-	R3(I)[-32768..65534], CI:1023	{}
-0004		LEAG	R5(P)	<-	V10+0, R5(IF)[0..1023]	{}
+0004		LEAG	R5(P)	<-	V11+0, R5(IF)[0..1023]	{}
 0005		LOADI1	R6(C)[-128..255]	<-	R5(PF)+0	{}
 0006		CONV33	R5(I)[0..255]	<-	R6(C)[-128..255]	{}
 0007		RELOP28	R7(B)	<-	R6(C)[-128..255], CC:64	{}
 0008		BRANCH		<-	R7(BF)	{}
-		==> 8
-		==> 9
-L8: <= D-1: (1)  P-1
+		==> 11
+		==> 12
+L11: <= D-1: (1)  P-1
 0000		BINOP9	R5(I)[0..63]	<-	R5(IF)[0..255], CI:63	{}
 0001		BINOP8	R5(I)[0..63999]	<-	R5(IF)[0..63], CI:63936	{}
 0002		STOREA2		<-	V-1+40736, R5(IF)[0..63999]	{V}
 0003		STOREA1		<-	V-1+40738, CC:1	{V}
 0004		BINOP1	R3(I)[-32766..65535]	<-	R3(IF)[-32768..65533], CI:2	{}
-0005		STOREG2		<-	V11+0, R3(IF)[-32766..65535]	{}
+0005		STOREG2		<-	V12+0, R3(IF)[-32766..65535]	{}
 0006		BINOP9	R3(I)[0..1023]	<-	R4(IF)[-32767..65535], CI:1023	{}
-0007		LEAG	R3(P)	<-	V10+0, R3(IF)[0..1023]	{}
+0007		LEAG	R3(P)	<-	V11+0, R3(IF)[0..1023]	{}
 0008		LOADI1	R6(C)[-128..255]	<-	R3(PF)+0	{}
 0009		STOREA1		<-	V-1+40739, R6(CF)[-128..255]	{V}
 000a		JUMP		<-		{}
-		==> 5
-L9: <= D-1: (1)  P-1
-0000		RELOP19	R7(B)	<-	R6(C)[-128..255], CC:64	{}
-0001		BRANCH		<-	R7(BF)	{}
-		==> 11
-		==> 12
-L11: <= D-1: (1)  P-1
-0000		BINOP9	R3(I)[0..1023]	<-	R4(I)[-32767..65535], CI:1023	{}
-0001		LEAG	R3(P)	<-	V10+0, R3(IF)[0..1023]	{}
-0002		LOADI1	R6(C)[-128..255]	<-	R3(PF)+0	{}
-0003		CONV33	R3(I)[0..255]	<-	R6(CF)[-128..255]	{}
-0004		BINOP9	R3(I)[0..63]	<-	R3(IF)[0..255], CI:63	{}
-0005		BINOP1	R3(I)[-32767..65535]	<-	R3(IF)[0..63], R4(IF)[-32767..65535]	{}
-0006		STOREG2		<-	V11+0, R3(IF)[-32767..65535]	{}
-0007		JUMP		<-		{}
-		==> 5
+		==> 8
 L12: <= D-1: (1)  P-1
-0000		RELOP28	R7(B)	<-	R6(C)[-128..255], CC:128	{}
+0000		RELOP19	R7(B)	<-	R6(C)[-128..255], CC:64	{}
 0001		BRANCH		<-	R7(BF)	{}
 		==> 14
 		==> 15
 L14: <= D-1: (1)  P-1
+0000		BINOP9	R3(I)[0..1023]	<-	R4(I)[-32767..65535], CI:1023	{}
+0001		LEAG	R3(P)	<-	V11+0, R3(IF)[0..1023]	{}
+0002		LOADI1	R6(C)[-128..255]	<-	R3(PF)+0	{}
+0003		CONV33	R3(I)[0..255]	<-	R6(CF)[-128..255]	{}
+0004		BINOP9	R3(I)[0..63]	<-	R3(IF)[0..255], CI:63	{}
+0005		BINOP1	R3(I)[-32767..65535]	<-	R3(IF)[0..63], R4(IF)[-32767..65535]	{}
+0006		STOREG2		<-	V12+0, R3(IF)[-32767..65535]	{}
+0007		JUMP		<-		{}
+		==> 8
+L15: <= D-1: (1)  P-1
+0000		RELOP28	R7(B)	<-	R6(C)[-128..255], CC:128	{}
+0001		BRANCH		<-	R7(BF)	{}
+		==> 17
+		==> 18
+L17: <= D-1: (1)  P-1
 0000		BINOP9	R6(C)[0..63]	<-	R6(CF)[0..127], CC:63	{}
 0001		RELOP28	R7(B)	<-	CC:0, R6(C)[0..63]	{}
 0002		BRANCH		<-	R7(BF)	{}
-		==> 26
-		==> 5
-L26: <= D-1: (1)  P-1
+		==> 29
+		==> 8
+L29: <= D-1: (1)  P-1
 0000		CONST	R7(C)[0..0]	<-	CI:0	{}
 0001		JUMP		<-		{}
-		==> 18
-L18: <= D-1: (2) Head P72
-0000		LOADG2	R3(I)[-32768..65534]	<-	V11+0	{}
+		==> 21
+L21: <= D-1: (2) Head P79
+0000		LOADG2	R3(I)[-32768..65534]	<-	V12+0	{}
 0001		BINOP9	R4(I)[0..1023]	<-	R3(I)[-32768..65534], CI:1023	{}
-0002		LEAG	R4(P)	<-	V10+0, R4(IF)[0..1023]	{}
+0002		LEAG	R4(P)	<-	V11+0, R4(IF)[0..1023]	{}
 0003		LOADI1	R8(C)[-128..255]	<-	R4(PF)+0	{}
 0004		STOREZ1		<-	V0+0, R8(CF)[-128..255]	{}
 0005		BINOP1	R3(I)[-32767..65535]	<-	R3(IF)[-32768..65534], CI:1	{}
 0006		BINOP9	R3(I)[0..1023]	<-	R3(IF)[-32767..65535], CI:1023	{}
-0007		LEAG	R3(P)	<-	V10+0, R3(IF)[0..1023]	{}
+0007		LEAG	R3(P)	<-	V11+0, R3(IF)[0..1023]	{}
 0008		LOADI1	R8(C)[-128..255]	<-	R3(PF)+0	{}
 0009		STOREZ1		<-	V1+0, R8(CF)[-128..255]	{}
 000a		CALLN		<-	V4+0	{}
-000b		LOADG2	R3(I)[-32768..65533]	<-	V11+0	{}
+000b		LOADG2	R3(I)[-32768..65533]	<-	V12+0	{}
 000c		BINOP1	R3(I)[-32766..65535]	<-	R3(IF)[-32768..65533], CI:2	{}
-000d		STOREG2		<-	V11+0, R3(IF)[-32766..65535]	{}
+000d		STOREG2		<-	V12+0, R3(IF)[-32766..65535]	{}
 000e		BINOP1	R7(C)[1..63]	<-	R7(CF)[0..62], CI:1	{}
 000f		RELOP28	R8(B)	<-	R7(C)[1..63], R6(C)[0..63]	{}
 0010		BRANCH		<-	R8(BF)	{}
-		==> 18
-		==> 5
-L15: <= D-1: (1)  P-1
+		==> 21
+		==> 8
+L18: <= D-1: (1)  P-1
 0000		RELOP19	R6(B)	<-	R6(CF)[-128..255], CC:128	{}
 0001		BRANCH		<-	R6(BF)	{}
-		==> 21
-		==> 22
-L21: <= D-1: (1)  P-1
+		==> 24
+		==> 25
+L24: <= D-1: (1)  P-1
 0000		STOREG1		<-	V8+0, CB:1	{V}
 0001		JUMP		<-		{}
-		==> 7
-L7: <= D-1: (2)  P-1
+		==> 10
+L10: <= D-1: (2)  P-1
 0000		STOREA2		<-	V-1+40736, R2(IF)[-32768..65535]	{V}
 0001		STOREA1		<-	V-1+40738, R1(CF)[-128..255]	{V}
 0002		STOREA1		<-	V-1+40741, R0(CF)[-128..255]	{V}
 0003		JUMP		<-		{}
 		==> 3
-L22: <= D-1: (1)  P-1
+L25: <= D-1: (1)  P-1
 0000		BINOP9	R3(I)[0..127]	<-	R5(IF)[0..255], CI:127	{}
 0001		BINOP2	R3(I)[-1..126]	<-	R3(IF)[0..127], CI:1	{}
-0002		STOREG1		<-	V9+0, R3(CF)[-1..126]	{}
+0002		STOREG1		<-	V10+0, R3(CF)[-1..126]	{}
 0003		JUMP		<-		{}
-		==> 7
+		==> 10
 --------------------------------------------------------------------
-sfx_put: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:11
+sfx_put: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:11
 $00 R0(C), $00 R1(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40769	{V}
@@ -337,7 +342,7 @@ L3: <= D-1: (2)  P-1
 0004		STOREA1		<-	V-1+40769, R0(CF)[-128..255]	{V}
 0005		RET		<-		{}
 --------------------------------------------------------------------
-ClearVERAScreen: C:/Users/david/Documents/Games/CoolDemo/VERA.h:126
+ClearVERAScreen: E:/Projects/C64Repo/CommanderX16JukeboxDemo/VERA.h:126
 $00 R0(I), $00 R1(I), $00 R2(B), 
 L0: <= D-1: (1)  P-1
 0000		STOREZ2		<-	V0+0, CI:147	{}
@@ -372,13 +377,13 @@ L3: <= D-1: (1)  P-1
 L4: <= D-1: (1)  P-1
 0000		RET		<-		{}
 --------------------------------------------------------------------
-putch: C:/Program Files/oscar64/include/conio.h:32
+putch: e:/projects/c64repo/oscar64/include/conio.h:32
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V0+0, V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-SetUpSprites: C:/Users/david/Documents/Games/CoolDemo/Main.c:202
+SetUpSprites: E:/Projects/C64Repo/CommanderX16JukeboxDemo/Main.c:212
 $00 R0(C), $00 R1(I), $01 R2(I), $03 R3(I), $05 R4(L), $07 R5(L), $00 R6(L), $09 R7(I), 
 L0: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V0+0, CC:0	{}
@@ -424,7 +429,7 @@ L3: <= D-1: (1)  P-1
 L4: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V0+0, CL:0	{}
 0001		STOREZ2		<-	V6+0, CI:256	{}
-0002		CONST	R1(P)	<-	CG256(16:0)	{S}
+0002		CONST	R1(P)	<-	CG256(17:0)	{S}
 0003		STOREZ2		<-	V4+0, R1(PF)	{}
 0004		CALLN		<-	V10+0	{}
 0005		STOREA1		<-	V-1+40738, CC:16	{V}
@@ -468,12 +473,12 @@ L11: <= D-1: (1)  P-1
 L12: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V10+0, CC:32	{}
 0001		STOREG4		<-	V12+0, CL:129536	{}
-0002		CONST	R1(P)	<-	CG32(18:0)	{S}
+0002		CONST	R1(P)	<-	CG32(19:0)	{S}
 0003		STOREZ2		<-	V8+0, R1(PF)	{}
 0004		CALLN		<-	V12+0	{}
 0005		STOREZ4		<-	V0+0, CL:78080	{}
 0006		STOREZ2		<-	V6+0, CI:1024	{}
-0007		CONST	R1(P)	<-	CG1024(19:0)	{S}
+0007		CONST	R1(P)	<-	CG1024(20:0)	{S}
 0008		STOREZ2		<-	V4+0, R1(PF)	{}
 0009		CALLN		<-	V10+0	{}
 000a		CONST	R4(L)[0..0]	<-	CI:0	{}
@@ -519,7 +524,7 @@ L45: <= D-1: (2) Head P260
 L47: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V0+0, CL:77824	{}
 0001		STOREZ2		<-	V6+0, CI:256	{}
-0002		CONST	R1(P)	<-	CG256(32:0)	{S}
+0002		CONST	R1(P)	<-	CG256(33:0)	{S}
 0003		STOREZ2		<-	V4+0, R1(PF)	{}
 0004		CALLN		<-	V10+0	{}
 0005		STOREZ1		<-	V0+0, CC:22	{}
@@ -536,7 +541,7 @@ L47: <= D-1: (1)  P-1
 0010		CALLN		<-	V14+0	{}
 0011		STOREZ4		<-	V0+0, CL:79136	{}
 0012		STOREZ2		<-	V6+0, CI:512	{}
-0013		CONST	R1(P)	<-	CG512(33:0)	{S}
+0013		CONST	R1(P)	<-	CG512(34:0)	{S}
 0014		STOREZ2		<-	V4+0, R1(PF)	{}
 0015		CALLN		<-	V10+0	{}
 0016		STOREZ1		<-	V0+0, CC:23	{}
@@ -565,12 +570,12 @@ L47: <= D-1: (1)  P-1
 002d		CALLN		<-	V14+0	{}
 002e		STOREZ1		<-	V0+0, CC:16	{}
 002f		STOREZ2		<-	V3+0, CI:32	{}
-0030		CONST	R1(P)	<-	CG32(36:0)	{S}
+0030		CONST	R1(P)	<-	CG32(37:0)	{S}
 0031		STOREZ2		<-	V1+0, R1(PF)	{}
 0032		CALLN		<-	V16+0	{}
 0033		STOREZ4		<-	V0+0, CL:79104	{}
 0034		STOREZ2		<-	V6+0, CI:32	{}
-0035		CONST	R1(P)	<-	CG32(37:0)	{S}
+0035		CONST	R1(P)	<-	CG32(38:0)	{S}
 0036		STOREZ2		<-	V4+0, R1(PF)	{}
 0037		CALLN		<-	V10+0	{}
 0038		CONST	R1(I)[0..0]	<-	CI:0	{}
@@ -689,7 +694,7 @@ L62: <= D-1: (1)  P-1
 L63: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V0+0, CL:81696	{}
 0001		STOREZ2		<-	V6+0, CI:1024	{}
-0002		CONST	R1(P)	<-	CG1024(38:0)	{S}
+0002		CONST	R1(P)	<-	CG1024(39:0)	{S}
 0003		STOREZ2		<-	V4+0, R1(PF)	{}
 0004		CALLN		<-	V10+0	{}
 0005		STOREZ1		<-	V0+0, CC:51	{}
@@ -706,7 +711,7 @@ L63: <= D-1: (1)  P-1
 0010		CALLN		<-	V14+0	{}
 0011		STOREZ4		<-	V0+0, CL:79648	{}
 0012		STOREZ2		<-	V6+0, CI:2048	{}
-0013		CONST	R1(P)	<-	CG2048(39:0)	{S}
+0013		CONST	R1(P)	<-	CG2048(40:0)	{S}
 0014		STOREZ2		<-	V4+0, R1(PF)	{}
 0015		CALLN		<-	V10+0	{}
 0016		CONST	R1(I)[0..0]	<-	CI:0	{}
@@ -750,17 +755,17 @@ L69: <= D-1: (2) Head P254
 L71: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V10+0, CC:32	{}
 0001		STOREG4		<-	V12+0, CL:129600	{}
-0002		CONST	R1(P)	<-	CG32(40:0)	{S}
+0002		CONST	R1(P)	<-	CG32(41:0)	{S}
 0003		STOREZ2		<-	V8+0, R1(PF)	{}
 0004		CALLN		<-	V12+0	{}
 0005		STOREZ1		<-	V10+0, CC:32	{}
 0006		STOREG4		<-	V12+0, CL:129632	{}
-0007		CONST	R1(P)	<-	CG32(41:0)	{S}
+0007		CONST	R1(P)	<-	CG32(42:0)	{S}
 0008		STOREZ2		<-	V8+0, R1(PF)	{}
 0009		CALLN		<-	V12+0	{}
 000a		STOREZ1		<-	V10+0, CC:32	{}
 000b		STOREG4		<-	V12+0, CL:129664	{}
-000c		CONST	R1(P)	<-	CG32(42:0)	{S}
+000c		CONST	R1(P)	<-	CG32(43:0)	{S}
 000d		STOREZ2		<-	V8+0, R1(PF)	{}
 000e		CALLN		<-	V12+0	{}
 000f		RET		<-		{}
@@ -853,7 +858,7 @@ L41: <= D-1: (1)  P-1
 0001		JUMP		<-		{}
 		==> 184
 --------------------------------------------------------------------
-tileBaseConfig: C:/Users/david/Documents/Games/CoolDemo/VERA.h:147
+tileBaseConfig: E:/Projects/C64Repo/CommanderX16JukeboxDemo/VERA.h:147
 $00 R0(C), $00 R1(I), $00 R2(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADZ1	R0(C)[-128..255]	<-	V0+0	{S}
@@ -872,7 +877,7 @@ L0: <= D-1: (1)  P-1
 000d		BINOP8	R1(I)[0..32767]	<-	R2(IF)[0..255], R1(IF)[0..32767]	{S}
 000e		RETV		<-	R1(CF)[0..32767]	{}
 --------------------------------------------------------------------
-memoryToMapMemoryAddress: C:/Users/david/Documents/Games/CoolDemo/VERA.h:146
+memoryToMapMemoryAddress: E:/Projects/C64Repo/CommanderX16JukeboxDemo/VERA.h:146
 $00 R0(C), $00 R1(I), $00 R2(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADZ1	R0(C)[-128..255]	<-	V0+0	{S}
@@ -883,7 +888,7 @@ L0: <= D-1: (1)  P-1
 0005		BINOP8	R1(I)[0..32767]	<-	R2(IF)[0..127], R1(IF)[0..32640]	{S}
 0006		RETV		<-	R1(CF)[0..32767]	{}
 --------------------------------------------------------------------
-vram_putn: C:/Program Files/oscar64/include/cx16/vera.h:133
+vram_putn: e:/projects/c64repo/oscar64/include/cx16/vera.h:133
 $00 R0(C), $00 R1(L), $00 R2(I), $00 R3(P), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
@@ -917,20 +922,20 @@ L3: <= D-1: (2) Head P32
 L4: <= D-1: (2)  P-1
 0000		RET		<-		{}
 --------------------------------------------------------------------
-rand: C:/Program Files/oscar64/include/stdlib.h:46
+rand: e:/projects/c64repo/oscar64/include/stdlib.h:46
 $00 R0(I), $00 R1(I), 
 L0: <= D-1: (1)  P-1
-0000		LOADG2	R0(I)[-256..511]	<-	V17+0	{}
+0000		LOADG2	R0(I)[-256..511]	<-	V18+0	{}
 0001		BINOP16	R1(I)[-32768..65408]	<-	R0(I)[-256..511], CI:7	{}
 0002		BINOP10	R0(I)	<-	R1(IF)[-32768..65408], R0(IF)[-256..511]	{}
 0003		BINOP17	R1(I)	<-	R0(I), CI:9	{}
 0004		BINOP10	R0(I)	<-	R1(IF), R0(IF)	{}
 0005		BINOP16	R1(I)	<-	R0(I), CI:8	{}
 0006		BINOP10	R0(I)	<-	R1(IF), R0(IF)	{}
-0007		STOREG2		<-	V17+0, R0(I)	{}
+0007		STOREG2		<-	V18+0, R0(I)	{}
 0008		RETV		<-	R0(IF)	{}
 --------------------------------------------------------------------
-SetPaletteColours: C:/Users/david/Documents/Games/CoolDemo/Sprites.h:8
+SetPaletteColours: E:/Projects/C64Repo/CommanderX16JukeboxDemo/Sprites.h:8
 $00 R0(L), $00 R1(P), $00 R2(C), 
 L0: <= D-1: (1)  P-1
 0000		LOADG4	R0(L)	<-	V12+0	{S}
@@ -943,7 +948,7 @@ L0: <= D-1: (1)  P-1
 0007		CALLN		<-	V10+0	{}
 0008		RET		<-		{}
 --------------------------------------------------------------------
-vera_spr_set: C:/Program Files/oscar64/include/cx16/vera.h:139
+vera_spr_set: e:/projects/c64repo/oscar64/include/cx16/vera.h:139
 $00 R0(C), $00 R1(I), $00 R2(L), $00 R3(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
@@ -1000,7 +1005,7 @@ L10: <= D-1: (1)  P-1
 0001		JUMP		<-		{}
 		==> 11
 --------------------------------------------------------------------
-vera_spr_move: C:/Program Files/oscar64/include/cx16/vera.h:143
+vera_spr_move: e:/projects/c64repo/oscar64/include/cx16/vera.h:143
 $00 R0(C), $00 R1(I), $00 R2(L), $00 R3(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
@@ -1029,7 +1034,7 @@ L0: <= D-1: (1)  P-1
 0017		STOREA1		<-	V-1+40739, R1(CF)[0..255]	{V}
 0018		RET		<-		{}
 --------------------------------------------------------------------
-vera_spr_flip: C:/Program Files/oscar64/include/cx16/vera.h:141
+vera_spr_flip: e:/projects/c64repo/oscar64/include/cx16/vera.h:141
 $00 R0(C), $00 R1(I), $00 R2(L), $00 R3(B), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
@@ -1073,7 +1078,7 @@ L8: <= D-1: (1)  P-1
 0001		JUMP		<-		{}
 		==> 14
 --------------------------------------------------------------------
-vera_pal_putn: C:/Program Files/oscar64/include/cx16/vera.h:151
+vera_pal_putn: e:/projects/c64repo/oscar64/include/cx16/vera.h:151
 $00 R0(C), $00 R1(I), $00 R2(L), $00 R3(P), $00 R4(I), $00 R5(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
@@ -1114,7 +1119,7 @@ L3: <= D-1: (2) Head P32
 L4: <= D-1: (2)  P-1
 0000		RET		<-		{}
 --------------------------------------------------------------------
-SetPaletteIndex: C:/Users/david/Documents/Games/CoolDemo/Sprites.h:9
+SetPaletteIndex: E:/Projects/C64Repo/CommanderX16JukeboxDemo/Sprites.h:9
 $00 R0(P), $00 R1(I), $02 R2(I), $00 R3(I), $04 R4(I), $06 R5(I), $00 R6(B), $00 R7(I), $00 R8(L), 
 L0: <= D-1: (1)  P-1
 0000		STOREZ2		<-	V3+0, CI:16	{}
@@ -1156,30 +1161,30 @@ L4: <= D-1: (2)  P-1
 0006		CALLN		<-	V16+0	{}
 0007		RET		<-		{}
 --------------------------------------------------------------------
-zsm_check: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:18
+zsm_check: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:18
 $00 R0(B), 
 L0: <= D-1: (1)  P-1
 0000		LOADG1	R0(B)	<-	V8+0	{V}
 0001		RETV		<-	R0(BF)	{}
 --------------------------------------------------------------------
-zsm_init: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:14
+zsm_init: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:14
 $00 R0(B), $01 R1(P), 
 L0: <= D-1: (1)  P-1
 0000		STOREG1		<-	V8+0, CB:1	{V}
-0001		LOADG1	R0(B)	<-	V54+0	{V}
+0001		LOADG1	R0(B)	<-	V55+0	{V}
 0002		BRANCH		<-	R0(BF)	{}
 		==> 1
 		==> 3
 L1: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V0+0, CC:2	{}
 0001		CALLN		<-	V20+0	{}
-0002		STOREG1		<-	V54+0, CB:0	{V}
+0002		STOREG1		<-	V55+0, CB:0	{V}
 0003		JUMP		<-		{}
 		==> 3
 L3: <= D-1: (2)  P-1
-0000		STOREG2		<-	V11+0, CI:0	{}
-0001		STOREG2		<-	V55+0, CI:0	{}
-0002		STOREG1		<-	V9+0, CC:0	{}
+0000		STOREG2		<-	V12+0, CI:0	{}
+0001		STOREG2		<-	V56+0, CI:0	{}
+0002		STOREG1		<-	V10+0, CC:0	{}
 0003		LOADZ2	R1(P)	<-	V3+0	{S}
 0004		STOREZ2		<-	V0+0, R1(PF)	{}
 0005		CALLN		<-	V21+0	{}
@@ -1191,47 +1196,47 @@ L3: <= D-1: (2)  P-1
 		==> 4
 		==> 5
 L4: <= D-1: (1)  P-1
-0000		STOREG1		<-	V54+0, CB:1	{V}
+0000		STOREG1		<-	V55+0, CB:1	{V}
 0001		CALLN		<-	V23+0	{}
-0002		STOREG2		<-	V11+0, CI:16	{}
+0002		STOREG2		<-	V12+0, CI:16	{}
 0003		STOREG1		<-	V8+0, CB:0	{V}
 0004		RETV		<-	CB:1	{}
 L5: <= D-1: (1)  P-1
 0000		RETV		<-	CB:0	{}
 --------------------------------------------------------------------
-krnio_close: C:/Program Files/oscar64/include/c64/kernalio.h:32
+krnio_close: e:/projects/c64repo/oscar64/include/c64/kernalio.h:32
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V0+0, V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-krnio_setnam: C:/Program Files/oscar64/include/c64/kernalio.h:24
+krnio_setnam: e:/projects/c64repo/oscar64/include/c64/kernalio.h:24
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V0+0, V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-krnio_open: C:/Program Files/oscar64/include/c64/kernalio.h:28
+krnio_open: e:/projects/c64repo/oscar64/include/c64/kernalio.h:28
 $00 R0(C), $00 R1(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADZ1	R0(C)[0..15]	<-	V0+0	{S}
 0001		CONV33	R1(I)[0..15]	<-	R0(CF)[0..15]	{S}
-0002		LEAG	R1(P)	<-	V56+0, R1(IF)[0..15]	{S}
+0002		LEAG	R1(P)	<-	V57+0, R1(IF)[0..15]	{S}
 0003		STOREI1		<-	R1(PF)+0, CC:0	{}
 0004		JSR		<-	V2+0, V1+0, V0+0, V-1+0	{}
 0005		RET		<-		{}
 --------------------------------------------------------------------
-zsm_fill: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:16
+zsm_fill: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:16
 $00 R0(B), $00 R1(I), $00 R2(I), $02 R3(I), $00 R4(I), 
 L0: <= D-1: (1)  P-1
-0000		LOADG1	R0(B)	<-	V54+0	{V}
+0000		LOADG1	R0(B)	<-	V55+0	{V}
 0001		BRANCH		<-	R0(BF)	{}
 		==> 2
 		==> 1
 L2: <= D-1: (1)  P-1
-0000		LOADG2	R1(I)[-32768..64511]	<-	V11+0	{}
+0000		LOADG2	R1(I)[-32768..64511]	<-	V12+0	{}
 0001		BINOP1	R1(I)[-31744..65535]	<-	R1(IF)[-32768..64511], CI:1024	{}
-0002		LOADG2	R2(I)[-32768..65535]	<-	V55+0	{}
+0002		LOADG2	R2(I)[-32768..65535]	<-	V56+0	{}
 0003		RELOP19	R0(B)	<-	R2(IF)[-32768..65535], R1(IF)[-31744..65535]	{}
 0004		BRANCH		<-	R0(BF)	{}
 		==> 5
@@ -1246,20 +1251,20 @@ L6: <= D-1: (1)  P-1
 		==> 1
 L9: <= D-1: (1)  P-1
 0000		CONST	R1(I)[0..0]	<-	CI:0	{}
-0001		LOADG2	R2(I)[-32768..64511]	<-	V11+0	{}
+0001		LOADG2	R2(I)[-32768..64511]	<-	V12+0	{}
 0002		BINOP1	R2(I)[-31744..65535]	<-	R2(IF)[-32768..64511], CI:1024	{}
-0003		LOADG2	R3(I)[-32768..65535]	<-	V55+0	{}
+0003		LOADG2	R3(I)[-32768..65535]	<-	V56+0	{}
 0004		RELOP20	R0(B)	<-	R3(IF)[-32768..65535], R2(IF)[-31744..65535]	{}
 0005		BRANCH		<-	R0(BF)	{}
 		==> 13
 		==> 37
 L13: <= D-1: (2) Head P64
 0000		CALLN	R2(I)	<-	V25+0	{}
-0001		LOADG2	R3(I)[-32768..65534]	<-	V55+0	{}
+0001		LOADG2	R3(I)[-32768..65534]	<-	V56+0	{}
 0002		BINOP1	R4(I)[-32767..65535]	<-	R3(I)[-32768..65534], CI:1	{}
-0003		STOREG2		<-	V55+0, R4(IF)[-32767..65535]	{}
+0003		STOREG2		<-	V56+0, R4(IF)[-32767..65535]	{}
 0004		BINOP9	R3(I)[0..1023]	<-	R3(IF)[-32768..65534], CI:1023	{}
-0005		LEAG	R3(P)	<-	V10+0, R3(IF)[0..1023]	{}
+0005		LEAG	R3(P)	<-	V11+0, R3(IF)[0..1023]	{}
 0006		STOREI1		<-	R3(PF)+0, R2(CF)	{}
 0007		BINOP1	R1(I)[1..]	<-	R1(IF)[0..], CI:1	{}
 0008		CALLN	R0(C)	<-	V26+0	{}
@@ -1267,12 +1272,12 @@ L13: <= D-1: (2) Head P64
 		==> 15
 		==> 12
 L15: <= D-1: (1)  P-1
-0000		STOREG1		<-	V54+0, CB:0	{V}
+0000		STOREG1		<-	V55+0, CB:0	{V}
 0001		JUMP		<-		{}
 		==> 37
 L37: <= D-1: (3)  P-1
 0000		CALLN		<-	V27+0	{}
-0001		LOADG1	R0(B)	<-	V54+0	{V}
+0001		LOADG1	R0(B)	<-	V55+0	{V}
 0002		BRANCH		<-	R0(BF)	{}
 		==> 21
 		==> 19
@@ -1283,9 +1288,9 @@ L19: <= D-1: (1)  P-1
 0001		CALLN		<-	V20+0	{}
 0002		RETV		<-	R1(IF)[0..]	{}
 L12: <= D-1: (1)  P-1
-0000		LOADG2	R2(I)[-32768..64511]	<-	V11+0	{}
+0000		LOADG2	R2(I)[-32768..64511]	<-	V12+0	{}
 0001		BINOP1	R2(I)[-31744..65535]	<-	R2(IF)[-32768..64511], CI:1024	{}
-0002		LOADG2	R3(I)[-32768..65535]	<-	V55+0	{}
+0002		LOADG2	R3(I)[-32768..65535]	<-	V56+0	{}
 0003		RELOP20	R0(B)	<-	R3(IF)[-32768..65535], R2(IF)[-31744..65535]	{}
 0004		BRANCH		<-	R0(BF)	{}
 		==> 13
@@ -1293,63 +1298,155 @@ L12: <= D-1: (1)  P-1
 L1: <= D-1: (2)  P-1
 0000		RETV		<-	CI:-1	{}
 --------------------------------------------------------------------
-krnio_chkin: C:/Program Files/oscar64/include/c64/kernalio.h:46
+krnio_chkin: e:/projects/c64repo/oscar64/include/c64/kernalio.h:46
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V0+0, V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-krnio_chrin: C:/Program Files/oscar64/include/c64/kernalio.h:58
+krnio_chrin: e:/projects/c64repo/oscar64/include/c64/kernalio.h:58
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-krnio_status: C:/Program Files/oscar64/include/c64/kernalio.h:36
+krnio_status: e:/projects/c64repo/oscar64/include/c64/kernalio.h:36
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-krnio_clrchn: C:/Program Files/oscar64/include/c64/kernalio.h:50
+krnio_clrchn: e:/projects/c64repo/oscar64/include/c64/kernalio.h:50
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:189
-$00 R0(I), $00 R1(B), $00 R2(B), 
+Control: E:/Projects/C64Repo/CommanderX16JukeboxDemo/Main.c:191
+$00 R0(I), $00 R1(B), 
 L0: <= D-1: (1)  P-1
 0000		CALLN	R0(I)	<-	V29+0	{}
-0001		LOADZ1	R1(B)	<-	V1+0	{}
-0002		RELOP19	R2(B)	<-	R0(IF), CI:32	{}
-0003		BRANCH		<-	R2(BF)	{}
+0001		RELOP19	R1(B)	<-	R0(IF), CI:32	{}
+0002		BRANCH		<-	R1(BF)	{}
 		==> 1
 		==> 3
 L1: <= D-1: (1)  P-1
-0000		RELOP19	R1(B)	<-	R1(BF), CB:0	{}
+0000		LOADZ1	R1(B)	<-	V1+0	{}
+0001		BRANCH		<-	R1(BF)	{}
+		==> 4
+		==> 5
+L4: <= D-1: (1)  P-1
+0000		LOADG1	R1(B)	<-	V61+0	{}
+0001		RELOP19	R1(B)	<-	R1(BF), CB:0	{}
+0002		STOREZ1		<-	V0+0, R1(B)	{}
+0003		STOREG1		<-	V61+0, R1(BF)	{}
+0004		CALLN		<-	V30+0	{}
+0005		LOADZ1	R1(B)	<-	V1+0	{}
+0006		RETV		<-	R1(BF)	{}
+L5: <= D-1: (1)  P-1
+0000		CONST	R1(B)	<-	CI:1	{}
 0001		STOREZ1		<-	V1+0, R1(B)	{}
 0002		STOREZ1		<-	V0+0, R1(BF)	{}
-0003		CALLN		<-	V30+0	{}
+0003		CALLN		<-	V33+0	{}
 0004		LOADZ1	R1(B)	<-	V1+0	{}
 0005		RETV		<-	R1(BF)	{}
 L3: <= D-1: (1)  P-1
-0000		RETV		<-	R1(BF)	{}
+0000		LOADZ1	R1(B)	<-	V1+0	{}
+0001		RETV		<-	R1(BF)	{}
 --------------------------------------------------------------------
-getchx: C:/Program Files/oscar64/include/conio.h:30
+getchx: e:/projects/c64repo/oscar64/include/conio.h:30
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-zsm_irq_play: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:22
+zsm_pause: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:24
+$00 R0(B), 
+L0: <= D-1: (1)  P-1
+0000		LOADZ1	R0(B)	<-	V0+0	{S}
+0001		BRANCH		<-	R0(BF)	{}
+		==> 4
+		==> 8
+L4: <= D-1: (1)  P-1
+0000		LOADG1	R0(B)	<-	V9+0	{V}
+0001		BRANCH		<-	R0(BF)	{}
+		==> 3
+		==> 1
+L3: <= D-1: (4)  P-1
+0000		RET		<-		{}
+L1: <= D-1: (1)  P-1
+0000		STOREG1		<-	V9+0, CB:1	{V}
+0001		CALLN		<-	V31+0	{}
+0002		JUMP		<-		{}
+		==> 3
+L8: <= D-1: (1)  P-1
+0000		LOADG1	R0(B)	<-	V9+0	{V}
+0001		BRANCH		<-	R0(BF)	{}
+		==> 5
+		==> 3
+L5: <= D-1: (1)  P-1
+0000		CALLN		<-	V32+0	{}
+0001		STOREG1		<-	V9+0, CB:0	{V}
+0002		JUMP		<-		{}
+		==> 3
+--------------------------------------------------------------------
+zsm_save_volume: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.c:34
+$00 R0(C), $00 R1(I), $00 R2(I), $00 R3(C), 
+L0: <= D-1: (1)  P-1
+0000		CONST	R0(C)[0..0]	<-	CI:0	{}
+0001		CONST	R1(I)[2..2]	<-	CI:2	{}
+0002		JUMP		<-		{}
+		==> 2
+L2: <= D-1: (2) Head P20
+0000		BINOP8	R2(I)[2..]	<-	R1(I)[2..], CI:63936	{}
+0001		STOREA2		<-	V-1+40736, R2(IF)[2..]	{V}
+0002		STOREA1		<-	V-1+40738, CC:1	{V}
+0003		CONV33	R2(I)[0..15]	<-	R0(C)[0..15]	{}
+0004		LEAG	R2(P)	<-	V62+0, R2(IF)[0..15]	{}
+0005		LOADA1	R3(C)[-128..255]	<-	V-1+40739	{V}
+0006		STOREI1		<-	R2(PF)+0, R3(CF)[-128..255]	{}
+0007		STOREA1		<-	V-1+40739, CC:0	{V}
+0008		BINOP1	R1(I)[6..]	<-	CI:4, R1(IF)[2..]	{}
+0009		BINOP1	R0(C)[1..16]	<-	R0(CF)[0..15], CI:1	{}
+000a		RELOP28	R3(B)	<-	R0(C)[1..16], CC:16	{}
+000b		BRANCH		<-	R3(BF)	{}
+		==> 2
+		==> 4
+L4: <= D-1: (1)  P-1
+0000		RET		<-		{}
+--------------------------------------------------------------------
+zsm_restore_volume: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.c:45
+$00 R0(C), $00 R1(I), $00 R2(I), $00 R3(C), 
+L0: <= D-1: (1)  P-1
+0000		CONST	R0(C)[0..0]	<-	CI:0	{}
+0001		CONST	R1(I)[2..2]	<-	CI:2	{}
+0002		JUMP		<-		{}
+		==> 2
+L2: <= D-1: (2) Head P20
+0000		BINOP8	R2(I)[2..]	<-	R1(I)[2..], CI:63936	{}
+0001		STOREA2		<-	V-1+40736, R2(IF)[2..]	{V}
+0002		STOREA1		<-	V-1+40738, CC:1	{V}
+0003		CONV33	R2(I)[0..15]	<-	R0(C)[0..15]	{}
+0004		LEAG	R2(P)	<-	V62+0, R2(IF)[0..15]	{}
+0005		LOADI1	R3(C)[-128..255]	<-	R2(PF)+0	{}
+0006		STOREA1		<-	V-1+40739, R3(CF)[-128..255]	{V}
+0007		BINOP1	R1(I)[6..]	<-	CI:4, R1(IF)[2..]	{}
+0008		BINOP1	R0(C)[1..16]	<-	R0(CF)[0..15], CI:1	{}
+0009		RELOP28	R3(B)	<-	R0(C)[1..16], CC:16	{}
+000a		BRANCH		<-	R3(BF)	{}
+		==> 2
+		==> 4
+L4: <= D-1: (1)  P-1
+0000		RET		<-		{}
+--------------------------------------------------------------------
+zsm_irq_play: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:22
 $00 R0(B), 
 L0: <= D-1: (1)  P-1
 0000		LOADZ1	R0(B)	<-	V0+0	{S}
 0001		STOREG1		<-	V7+0, R0(BF)	{V}
 0002		RET		<-		{}
 --------------------------------------------------------------------
-frame_wait: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:10
+frame_wait: E:/Projects/C64Repo/CommanderX16JukeboxDemo/ZSMPlayer.h:10
 $00 R0(C), $00 R1(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40742	{V}
