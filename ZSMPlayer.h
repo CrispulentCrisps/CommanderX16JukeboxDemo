@@ -21,6 +21,8 @@ void zsm_irq_init(void);
 
 void zsm_irq_play(bool play);
 
+void zsm_pause(bool pause);
+
 #pragma compile("ZSMPlayer.c");
 
 #endif

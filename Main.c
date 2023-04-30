@@ -57,27 +57,27 @@ const char MainPupil[] = {
 	#embed 256 2 "sprites/bin/MAINPUPIL.BIN"
 };
 
-const char palette[] = {
+unsigned palette[] = {
 
-	0xFF, 0x0F,
-	0xBB, 0x0B,
-	0x99, 0x09,	
-	0x66, 0x06, 
+	0xFFF,
+	0xBBB,
+	0x999,	
+	0x666, 
 	
-	0x44, 0x04, 
-	0x22, 0x02, 
-	0x00, 0x00, 
-	0x00, 0x00,
+	0x444, 
+	0x222, 
+	0x292, 
+	0x161,
 
-	0x00, 0x00, 
-	0x00, 0x00,
-	0x00, 0x00, 
-	0x00, 0x00,
+	0x030, 
+	0x2C2,
+	0x000, 
+	0x000,
 	
-	0x00, 0x00, 
-	0x00, 0x00,
-	0x00, 0x00, 
-	0x00, 0x00
+	0x000, 
+	0x000,
+	0x000, 
+	0x000
 };
 
 const char BGPal[] = {
@@ -145,333 +145,27 @@ const char ButtonStageMin[] = {
 	0x00, 0x00, 0x00, 0x00
 };
 
-const char TowerPalF1[] = {
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
+unsigned TowerPalF1[] = {
+	0x000,
+	0xFFF,
+	0xEEE,
+	0xDDD,
+	0xCCC,
+	0xBBB,
+	0xAAA,
+	0x999,
+	0x888,
+	0x777,
+	0x666,
+	0x555,
+	0x444,
+	0x333,
+	0x222,
+	0x111
+};
 
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
+char TowerPalFBlank[] = {
 	0x88, 0x08,
-	0x77, 0x07,
-
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-
-	0x11, 0x01
-};
-
-const char TowerPalF2[] = {
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-
-	0x22, 0x02
-
-};
-
-const char TowerPalF3[] = {
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-
-	0x33, 0x03
-
-};
-
-const char TowerPalF4[] = {
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-
-	0x66, 0x06,
-	0x55, 0x05,
-
-	0x44, 0x04
-
-};
-
-const char TowerPalF5[] = {
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-
-	0x66, 0x06,
-
-	0x55, 0x05
-
-};
-
-const char TowerPalF6[] = {
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-
-	0x66, 0x06
-
-};
-
-const char TowerPalF7[] = {
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-
-	0x77, 0x07
-
-};
-
-const char TowerPalF8[] = {
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-
-	0x88, 0x08
-
-};
-
-const char TowerPalF9[] = {
-	0x88, 0x08,
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-
-	0x99, 0x09
-
-};
-
-const char TowerPalFA[] = {
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B,
-
-	0xAA, 0x0A
-
-};
-
-const char TowerPalFB[] = {
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-
-	0xBB, 0x0B
-
-};
-
-const char TowerPalFC[] = {
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C
-
-};
-
-const char TowerPalFD[] = {
-	0xCC, 0x0C,
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E,
-	0xDD, 0x0D
-
-};
-
-const char TowerPalFE[] = {
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F,
-	0xEE, 0x0E
-
-};
-
-const char TowerPalFF[] = {
-	0xEE, 0x0E,
-	0xDD, 0x0D,
-	0xCC, 0x0C,
-	0xBB, 0x0B,
-	0xAA, 0x0A,
-	0x99, 0x09,
-	0x88, 0x08,
-	0x77, 0x07,
-	0x66, 0x06,
-	0x55, 0x05,
-	0x44, 0x04,
-	0x33, 0x03,
-	0x22, 0x02,
-	0x11, 0x01,
-	0x00, 0x00,
-	0xFF, 0x0F
-
-};
-
-const char TowerPalFBlank[] = {
-	0x00, 0x00,
 	0x88, 0x08,
 	0x88, 0x08,
 	0x88, 0x08,
@@ -510,10 +204,10 @@ void SetUpSprites() {
 	const unsigned long PauseAddr = VERA_SPRITES;
 	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
-	const unsigned long ArrowAddr = VolumeIndAddr + ((sizeof(VolumeIndAddr) + 31) & ~31);
+	const unsigned long ArrowAddr = VolumeIndAddr + ((sizeof(VolumeInd) + 31) & ~31);
 	const unsigned long TowerBaseAddr = ArrowAddr + ((sizeof(Arrow) + 31) & ~31);
-	const unsigned long MainEyeBackAddr = TowerBaseAddr + ((sizeof(MainEyeBack) + 31) & ~31);
-	const unsigned long TowerTriAddr = MainEyeBackAddr + ((sizeof(EyeTri) + 31) & ~31);
+	const unsigned long MainEyeBackAddr = TowerBaseAddr + ((sizeof(TowerBase) + 31) & ~31);
+	const unsigned long TowerTriAddr = MainEyeBackAddr + ((sizeof(MainEyeBack) + 31) & ~31);
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
@@ -548,6 +242,7 @@ void SetUpSprites() {
 
 	vera.addrh = 1 | (2 << 4);
 
+	//Clear L1
 	for (unsigned i = 0; i < 128; i++)
 	{
 		for (unsigned j = 0; j < 80; j++)
@@ -566,7 +261,7 @@ void SetUpSprites() {
 	unsigned int S = 0;
 
 	vera.addr = BGMapAddr;
-
+	//Make BG
 	S = 0;
 	for (unsigned i = 0; i < 60; i++)
 	{
@@ -613,19 +308,21 @@ void SetUpSprites() {
 
 	vram_putn(ScrollerOutlineAddr, ScrollerOutline, sizeof(ScrollerOutline));
 
-	//Pause
-	vram_putn(PauseAddr, Pause, sizeof(Pause));
-	vera_spr_set(22, PauseAddr >> 5, false, 1, 2, 3, 1);
-	vera_spr_move(22, 304, 440);
-
 	//Bottom bars around the text
 	for (unsigned long i = 0; i < 22; i += 2)
 	{
 		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 2, 3, 1);
-		vera_spr_move(i, 32 * i, 416);
+		vera_spr_move(i, 32 * i, 400);
+		vera_spr_flip(i, false, true);
+
 		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 2, 3, 1);
 		vera_spr_move(i + 1, 32 * i, 368);
 	}
+
+	//Pause
+	vram_putn(PauseAddr, Pause, sizeof(Pause));
+	vera_spr_set(22, PauseAddr >> 5, false, 1, 2, 3, 1);
+	vera_spr_move(22, 304, 440);
 
 	vram_putn(ArrowAddr, Arrow, sizeof(Arrow));
 	vera_spr_set(23, ArrowAddr >> 5, false, 2, 2, 3, 1);
@@ -633,44 +330,52 @@ void SetUpSprites() {
 	vera_spr_set(24, ArrowAddr >> 5, false, 2, 2, 3, 1);
 	vera_spr_move(24, 332, 440);
 
-	SetPaletteColours(palette, sizeof(palette), 0x1FA20UL);
+	vera_pal_putn(16, palette, sizeof(palette));
 
 
 	vram_putn(VolumeIndAddr, VolumeInd, sizeof(VolumeInd));
 	for (unsigned i = 0; i < 8; i++)
 	{
 		vera_spr_set(25 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 2);
-		vera_spr_move(25 + i, 4 + i * 12, 440);
+		vera_spr_move(25 + i, 4 + i * 12 - 1024, 440);
 	}
 	for (unsigned i = 0; i < 8; i++)
 	{
 		vera_spr_set(33 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 3);
-		vera_spr_move(33 + i, 4 + i * 12, 452);
+		vera_spr_move(33 + i, 4 + i * 12 - 1024, 452);
 	}
 	for (unsigned i = 0; i < 8; i++)
 	{
 		vera_spr_set(41 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 4);
-		vera_spr_move(41 + i, 620 - i * 12, 440);
+		vera_spr_move(41 + i, 620 - i * 12 - 1024, 440);
+	}
+
+	for (unsigned i = 0; i < 2; i++)
+	{
+		for (unsigned j = 0; j < 2; j++)
+		{
+			vera_spr_set(49 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 4);
+			vera_spr_move(49 + i, 620 - i * 12, 440);
+		}
 	}
 
 	vram_putn(MainEyeBackAddr, MainEyeBack, sizeof(MainEyeBack));
-	vera_spr_set(49, MainEyeBackAddr >> 5, false, 3, 3, 3, 5);
-	vera_spr_move(49, 284, 120);
+	vera_spr_set(51, MainEyeBackAddr >> 5, false, 3, 2, 3, 5);
+	vera_spr_move(51, 284, 120);
 
 	vram_putn(TowerBaseAddr, TowerBase, sizeof(TowerBase));
 	for (unsigned i = 0; i < 7; i++)
 	{
-		vera_spr_set(50 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
-		vera_spr_move(50 + i, 308 - 64, i * 64 - 32);
-		vera_spr_set(57 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
-		vera_spr_move(57 + i, 320, i * 64 - 32);
+		vera_spr_set(52 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
+		vera_spr_move(52 + i, 308 - 64, i * 64 - 32);
+		vera_spr_set(59 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
+		vera_spr_move(59 + i, 320, i * 64 - 32);
 	}
 
 
 	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
 	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
 	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
-	SetPaletteColours(TowerPalF1, sizeof(TowerPalF1), 0x1FAA0UL);
 }
 
 int main(){
@@ -682,7 +387,6 @@ int main(){
 	bool Playing = false;
 
 	zsm_irq_init();
-//	zsm_init("@0:zsmfiles/ArkanoidFM.zsm,P,R");	
 
 	ClearVERAScreen();
 
@@ -698,10 +402,12 @@ int main(){
 
 	//sets scroller position
 	vera.l1vscroll = 115;
+	unsigned PalTime2 = 0;
 
 	while (Running)
 	{
 		p++;
+		PalTime2++;
 		if (Playing)
 		{
 			PalTimer++;
@@ -713,75 +419,16 @@ int main(){
 		}
 
 		vera.dcborder = 60;
-		
+		if (PalTime2 > 2)
+		{
+			SetPaletteIndex(palette, 16, 6, 10);
+			PalTime2 = 0;
+		}
+
 		if (PalTimer > 3)
 		{
 			PalIndex++;
-			if (PalIndex == 0)
-			{
-				SetPaletteColours(TowerPalFF, sizeof(TowerPalF1), 0x1FAA0UL);
-			}
-			else if (PalIndex == 1)
-			{
-				SetPaletteColours(TowerPalFE, sizeof(TowerPalF1), 0x1FAA0UL);
-			}
-			else if (PalIndex == 2)
-			{
-				SetPaletteColours(TowerPalFD, sizeof(TowerPalF3), 0x1FAA0UL);
-			}
-			else if (PalIndex == 3)
-			{
-				SetPaletteColours(TowerPalFC, sizeof(TowerPalF4), 0x1FAA0UL);
-			}
-			else if (PalIndex == 4)
-			{
-				SetPaletteColours(TowerPalFB, sizeof(TowerPalF5), 0x1FAA0UL);
-			}
-			else if (PalIndex == 5)
-			{
-				SetPaletteColours(TowerPalFA, sizeof(TowerPalF6), 0x1FAA0UL);
-			}
-			else if (PalIndex == 6)
-			{
-				SetPaletteColours(TowerPalF9, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 7)
-			{
-				SetPaletteColours(TowerPalF8, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 8)
-			{
-				SetPaletteColours(TowerPalF7, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 9)
-			{
-				SetPaletteColours(TowerPalF6, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 10)
-			{
-				SetPaletteColours(TowerPalF5, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 11)
-			{
-				SetPaletteColours(TowerPalF4, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 12)
-			{
-				SetPaletteColours(TowerPalF3, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 13)
-			{
-				SetPaletteColours(TowerPalF2, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else if (PalIndex == 14)
-			{
-				SetPaletteColours(TowerPalF1, sizeof(TowerPalF7), 0x1FAA0UL);
-			}
-			else 
-			{
-				PalIndex = 0;
-				SetPaletteColours(TowerPalFF, sizeof(TowerPalF1), 0x1FAA0UL);
-			}
+			SetPaletteIndex(TowerPalF1, 80, 0, 16);
 			PalTimer = 0;
 		}
 		

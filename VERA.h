@@ -103,6 +103,23 @@
 #define VERA_DEC_14			320
 #define VERA_DEC_15			640
 
+#define VERA_PAL_0			0x1FA00UL
+#define VERA_PAL_1			0x1FA20UL
+#define VERA_PAL_2			0x1FA40UL
+#define VERA_PAL_3			0x1FA60UL
+#define VERA_PAL_4			0x1FA80UL
+#define VERA_PAL_5			0x1FAA0UL
+#define VERA_PAL_6			0x1FAC0UL
+#define VERA_PAL_7			0x1FAE0UL
+#define VERA_PAL_8			0x1FB00UL
+#define VERA_PAL_9			0x1FB20UL
+#define VERA_PAL_A			0x1FB40UL
+#define VERA_PAL_B			0x1FB60UL
+#define VERA_PAL_C			0x1FB80UL
+#define VERA_PAL_D			0x1FBA0UL
+#define VERA_PAL_E			0x1FBC0UL
+#define VERA_PAL_F			0x1FBE0UL
+
 //Video [x means todo, y means finished]
 void ResetVERA(); //y
 
