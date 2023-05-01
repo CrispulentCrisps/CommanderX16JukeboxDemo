@@ -57,20 +57,24 @@ const char MainPupil[] = {
 	#embed 256 2 "sprites/bin/MAINPUPIL.BIN"
 };
 
+const char CharBox[] = {
+	#embed 2048 2 "sprites/bin/CHARBOX.BIN"
+};
+
 unsigned palette[] = {
 
 	0xFFF,
 	0xBBB,
-	0x999,	
-	0x666, 
+	0x999,
+	0x666,
 	
 	0x444, 
 	0x222, 
-	0x292, 
+	0x292,
+	0x2C2,
 	0x161,
 
-	0x030, 
-	0x2C2,
+	0x030,
 	0x000, 
 	0x000,
 	
@@ -81,16 +85,23 @@ unsigned palette[] = {
 };
 
 const char BGPal[] = {
-	0x23, 0x02, 0x12, 0x01,
-	0x01, 0x11, 0x77, 0x07,//Stars at this
-	0xFF, 0x0F, 0xAA, 0x0A,
-	0x66, 0x06, 0x22, 0x02,
+	0x23, 0x02, 
+	0x12, 0x01,
+	0x01, 0x01, 
+	0x77, 0x07,//Stars at this
+	0xFF, 0x0F, 
+	0xAA, 0x0A,
+	0x66, 0x06,
+	0x22, 0x02,
 
-
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00
+	0xFF, 0x0F,//Building Colours
+	0xDD, 0x0D,
+	0xBB, 0x0B,
+	0x99, 0x09,
+	0x77, 0x07,
+	0x55, 0x05,
+	0x33, 0x03,
+	0x11, 0x01
 };
 
 const char BGPalShimmer[] = {
@@ -100,10 +111,14 @@ const char BGPalShimmer[] = {
 	0x44, 0x04, 0x11, 0x01,
 
 
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00
+	0xFF, 0x0F,//Building Colours
+	0xDD, 0x0D,
+	0xBB, 0x0B,
+	0x99, 0x09,
+	0x77, 0x07,
+	0x55, 0x05,
+	0x33, 0x03,
+	0x11, 0x01
 };
 
 const char ButtonStageMax[] = {
@@ -184,11 +199,20 @@ char TowerPalFBlank[] = {
 
 };
 
+unsigned CharBoxPalette[] = {
+	 0x99F,
+	 0x66D,
+	 0x44D,
+	 0x229,
+	 0x22B,
+	 0x22D
+};
+
 const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH MARK-BUG-SLAYER";
 
 static bool paused = false;
 
-bool Control(bool playing) {
+bool Control(bool playing)	 {
 
 	//Tune Playing
 
@@ -209,6 +233,15 @@ bool Control(bool playing) {
 	return playing;
 }
 
+struct BuildStruct {
+	unsigned short Depth;
+	unsigned short CenterX;
+	unsigned short CenterY;
+	unsigned short width;
+	unsigned short height;
+};
+
+
 void SetUpSprites() {
 
 	const unsigned long PauseAddr = VERA_SPRITES;
@@ -218,6 +251,7 @@ void SetUpSprites() {
 	const unsigned long TowerBaseAddr = ArrowAddr + ((sizeof(Arrow) + 31) & ~31);
 	const unsigned long MainEyeBackAddr = TowerBaseAddr + ((sizeof(TowerBase) + 31) & ~31);
 	const unsigned long TowerTriAddr = MainEyeBackAddr + ((sizeof(MainEyeBack) + 31) & ~31);
+	const unsigned long CharBoxAddr = TowerTriAddr + ((sizeof(EyeTri) + 31) & ~31);
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
@@ -314,8 +348,6 @@ void SetUpSprites() {
 		}
 	}
 
-	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FA00UL);
-
 	vram_putn(ScrollerOutlineAddr, ScrollerOutline, sizeof(ScrollerOutline));
 
 	//Bottom bars around the text
@@ -339,6 +371,7 @@ void SetUpSprites() {
 	vera_spr_move(23, 252, 440);
 	vera_spr_set(24, ArrowAddr >> 5, false, 2, 2, 3, 1);
 	vera_spr_move(24, 332, 440);
+	vera_spr_flip(24, true, false);
 
 	vera_pal_putn(16, palette, sizeof(palette));
 
@@ -382,14 +415,47 @@ void SetUpSprites() {
 		vera_spr_move(59 + i, 320, i * 64 - 32);
 	}
 
+	//Tl Box
+	vram_putn(CharBoxAddr, CharBox, sizeof(CharBox));
+	vera_spr_set(66, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(66,8,8);
+
+	vera_spr_set(67, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(67, 64+8, 8);
+	vera_spr_flip(67, true, false);
+
+	vera_spr_set(68, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(68, 64+8, 64+8);
+	vera_spr_flip(68, true, true);
+
+	vera_spr_set(69, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(69, 8, 64+8);
+	vera_spr_flip(69, false, true);
+
+	//Tr Box
+	vram_putn(CharBoxAddr, CharBox, sizeof(CharBox));
+	vera_spr_set(70, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(70, 640- 128 - 8, 8);
+
+	vera_spr_set(71, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(71, 640 - 64-8, 8);
+	vera_spr_flip(71, true, false);
+
+	vera_spr_set(72, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(72, 640 - 64 - 8, 64+8);
+	vera_spr_flip(72, true, true);
+
+	vera_spr_set(73, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(73, 640 - 128 - 8, 64+8);
+	vera_spr_flip(73, false, true);
 
 	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
 	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
 	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
+	vera_pal_putn(96, CharBoxPalette, sizeof(CharBoxPalette));
 }
 
 int main(){
-
 	const unsigned SCREEN_WIDTH = 640;
 	const unsigned SCREEN_HEIGHT = 480;
 
@@ -413,6 +479,8 @@ int main(){
 	//sets scroller position
 	vera.l1vscroll = 115;
 	unsigned PalTime2 = 0;
+
+	struct BuildStruct Buildings[8];
 
 	while (Running)
 	{
