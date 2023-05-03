@@ -43,7 +43,7 @@ const char VolumeInd[] = {
 };
 
 const char TowerBase[] = {
-	#embed 2048 2 "sprites/bin/EYETOWER.BIN"
+	#embed 2048 2 "sprites/bin/EYETOWERVASR.BIN"
 };
 const char EyeTri[] = {
 	#embed 1024 2 "sprites/bin/EYETRI.BIN"
@@ -235,8 +235,8 @@ bool Control(bool playing)	 {
 
 struct BuildStruct {
 	unsigned short Depth;
-	unsigned short CenterX;
-	unsigned short CenterY;
+	unsigned short X;
+	unsigned short Y;
 	unsigned short width;
 	unsigned short height;
 };
@@ -455,11 +455,11 @@ void SetUpSprites() {
 	vera_pal_putn(96, CharBoxPalette, sizeof(CharBoxPalette));
 }
 
-int main(){
+int main() {
 	const unsigned SCREEN_WIDTH = 640;
 	const unsigned SCREEN_HEIGHT = 480;
 
-    bool Running = true;
+	bool Running = true;
 	bool Playing = false;
 
 	zsm_irq_init();
@@ -482,34 +482,69 @@ int main(){
 
 	struct BuildStruct Buildings[8];
 
+	vera.addr = 0x0;
+
+	Buildings[0].Depth = 0;
+	Buildings[0].X = 48;
+	Buildings[0].Y = 32;
+	Buildings[0].width = 16;
+	Buildings[0].height = 32;
+
+	Buildings[1].Depth = 0;
+	Buildings[1].X = 96;
+	Buildings[1].Y = 32;
+	Buildings[1].width = 16;
+	Buildings[1].height = 32;
+
 	while (Running)
 	{
+		vera.dcborder = 48;
 		p++;
 		PalTime2++;
 		if (Playing)
 		{
 			PalTimer++;
 		}
-		else
+		else if (Playing == false)
 		{
 			PalTimer = 0;
 			SetPaletteColours(TowerPalFBlank, sizeof(TowerPalFBlank), 0x1FAA0UL);
 		}
 
-		vera.dcborder = 60;
 		if (PalTime2 > 2)
 		{
 			SetPaletteIndex(palette, 16, 6, 10);
 			PalTime2 = 0;
+
+			//Buildings AI
+			for (char i = 0; i < 8; i++)
+			{
+				long TilePos = Buildings[i].Y * 128 + Buildings[i].X + ((long)vera.l0mapbase << 9);
+				switch (Buildings[i].Depth)
+				{
+					case 0:
+						for (char j = 0; j < Buildings[i].height; j++)
+						{
+							vram_addr(TilePos + 1);
+							for (char k = 0; k < Buildings[i].width; k++)
+							{
+								vram_put(3 << 3);
+							}
+							TilePos += 128;
+						}
+					break;
+					}
+			}
 		}
 
 		if (PalTimer > 3)
 		{
 			PalIndex++;
+			SetPaletteIndex(CharBoxPalette, 96, 0, 5);
 			SetPaletteIndex(TowerPalF1, 80, 0, 16);
 			PalTimer = 0;
 		}
-		
+
 		if (p == 3)
 		{
 			ShimmerState = !ShimmerState;
@@ -525,12 +560,12 @@ int main(){
 		}
 		vera.dcborder = 3;
 		if (zsm_check())
-			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");	
+			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");
 
 		Playing = Control(Playing);
 
 		if (FrameCount % 4 == 1) {
-			if (off1+16 < sizeof(TestText2))
+			if (off1 + 16 < sizeof(TestText2))
 			{
 				vera.data0 = TestText2[off1];
 			}
@@ -547,5 +582,5 @@ int main(){
 		FrameCount++;
 	}
 
-    return 0;
+	return 0;
 }
