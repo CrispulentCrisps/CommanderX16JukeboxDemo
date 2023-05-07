@@ -9,11 +9,11 @@
 #include "ZSMPlayer.h"
 #include "Sprites.h"
 
-#define A 0x41
-#define D 0x44
-#define L_ARROW 0x9D
-#define R_ARROW 0x1D
-#define SPACE 0x20
+#define KEY_A 0x41
+#define KEY_D 0x44
+#define KEY_L_ARROW 0x9D
+#define KEY_R_ARROW 0x1D
+#define KEY_SPACE 0x20
 
 int FrameCount = 0;
 char off1, off2;
@@ -23,10 +23,6 @@ int PalIndex = 0;
 bool ShimmerState = false;
 
 const char MainBG[] = {
-	// In 8x8 pixel tiles with 2bits per pixel, each tile is 16 bytes
-	// The MAINBG.BIN file isn't the correct size because it has 2 leading bytes
-	// This is a C64 convention where 2 leading bytes are used by the kernal as an optional loading address
-	// You need to trim them off or load with the kernal routine unless #embed removes them (which I don't think it is)
 	#embed 256 2 "sprites/bin/MAINBG.BIN"
 };
 const char ScrollerOutline[] = {
@@ -212,16 +208,26 @@ const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH MARK-BUG-S
 
 static bool paused = false;
 
+static const sbyte sintab[256] = {
+	0, 2, 4, 7, 9, 11, 13, 15, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 55, 57, 59, 60,
+	62, 64, 65, 67, 68, 70, 71, 72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 85, 86, 87, 87, 88, 88, 89, 89, 89, 90, 90, 90, 90,
+	90, 90, 90, 90, 90, 89, 89, 89, 88, 88, 87, 87, 86, 85, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 72, 71, 70, 68, 67, 65, 64,
+	62, 60, 59, 57, 55, 54, 52, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18, 15, 13, 11, 9, 7, 4, 2,
+	0, -2, -4, -7, -9, -11, -13, -15, -18, -20, -22, -24, -26, -28, -30, -32, -34, -36, -38, -40, -42, -44, -46, -48, -50, -52, -54, -55, -57, -59, -60,
+	-62, -64, -65, -67, -68, -70, -71, -72, -74, -75, -76, -77, -78, -79, -80, -81, -82, -83, -84, -85, -85, -86, -87, -87, -88, -88, -89, -89, -89, -90, -90, -90, -90,
+	-90, -90, -90, -90, -90, -89, -89, -89, -88, -88, -87, -87, -86, -85, -85, -84, -83, -82, -81, -80, -79, -78, -77, -76, -75, -74, -72, -71, -70, -68, -67, -65, -64,
+	-62, -60, -59, -57, -55, -54, -52, -50, -48, -46, -44, -42, -40, -38, -36, -34, -32, -30, -28, -26, -24, -22, -20, -18, -15, -13, -11, -9, -7, -4, -2
+};
 bool Control(bool playing)	 {
 
 	//Tune Playing
 
-	if (getchx() == SPACE)
+	if (getchx() == KEY_SPACE)
 	{
 		if (playing)
 		{
-		paused = !paused;
-		zsm_pause(paused);			
+			paused = !paused;
+			zsm_pause(paused);		
 		}
 		else
 		{
@@ -252,6 +258,7 @@ void SetUpSprites() {
 	const unsigned long MainEyeBackAddr = TowerBaseAddr + ((sizeof(TowerBase) + 31) & ~31);
 	const unsigned long TowerTriAddr = MainEyeBackAddr + ((sizeof(MainEyeBack) + 31) & ~31);
 	const unsigned long CharBoxAddr = TowerTriAddr + ((sizeof(EyeTri) + 31) & ~31);
+	const unsigned long PupilAddr = CharBoxAddr + ((sizeof(CharBox) + 31) & ~31) + 64;
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
@@ -351,13 +358,13 @@ void SetUpSprites() {
 	vram_putn(ScrollerOutlineAddr, ScrollerOutline, sizeof(ScrollerOutline));
 
 	//Bottom bars around the text
-	for (unsigned long i = 0; i < 22; i += 2)
+	for (unsigned long i = 0; i < 20; i += 2)
 	{
-		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 2, 3, 1);
+		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 2, 2, 1);
 		vera_spr_move(i, 32 * i, 400);
 		vera_spr_flip(i, false, true);
 
-		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 2, 3, 1);
+		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 2, 2, 1);
 		vera_spr_move(i + 1, 32 * i, 368);
 	}
 
@@ -402,62 +409,114 @@ void SetUpSprites() {
 		}
 	}
 
+	//Eye
+	vram_putn(PupilAddr, MainPupil, sizeof(MainPupil));
+	vera_spr_set(51, PupilAddr >> 5, false, 1, 2, 3, 3);
+	vera_spr_move(51, 308, 120);
+
 	vram_putn(MainEyeBackAddr, MainEyeBack, sizeof(MainEyeBack));
-	vera_spr_set(51, MainEyeBackAddr >> 5, false, 3, 2, 3, 5);
-	vera_spr_move(51, 284, 120);
+	vera_spr_set(52, MainEyeBackAddr >> 5, false, 3, 2, 3, 5);
+	vera_spr_move(52, 284, 120);
+
+	vera_spr_set(53, TowerTriAddr >> 5, false, 2, 3, 7, 6);
+	vera_spr_move(53, 320 - 48, 240 - 24);
+
+	vera_spr_set(54, TowerTriAddr >> 5, false, 2, 3, 7, 6);
+	vera_spr_move(54, 320 + 48, 240 - 24);
+	vera_spr_flip(54, true, false);
+
+	vera_spr_set(55, TowerTriAddr >> 5, false, 2, 3, 7, 6);
+	vera_spr_move(55, 320 - 48, 240 + 24);
+	vera_spr_flip(55, false, true);
+	
+	vera_spr_set(56, TowerTriAddr >> 5, false, 2, 3, 7, 6);
+	vera_spr_move(56, 320 + 48, 240 + 24);
+	vera_spr_flip(56, true, true);
+
 
 	vram_putn(TowerBaseAddr, TowerBase, sizeof(TowerBase));
 	for (unsigned i = 0; i < 7; i++)
 	{
-		vera_spr_set(52 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
-		vera_spr_move(52 + i, 308 - 64, i * 64 - 32);
-		vera_spr_set(59 + i, TowerBaseAddr >> 5, false, 3, 3, 3, 5);
-		vera_spr_move(59 + i, 320, i * 64 - 32);
+		vera_spr_set(57 + i, TowerBaseAddr >> 5, false, 3, 3, 2, 5);
+		vera_spr_move(57 + i, 314 - 64, i * 64 - 32);
+		vera_spr_set(64 + i, TowerBaseAddr >> 5, false, 3, 3, 2, 5);
+		vera_spr_move(64 + i, 314, i * 64 - 32);
+		vera_spr_flip(64 + i, true, false);
 	}
 
 	//Tl Box
 	vram_putn(CharBoxAddr, CharBox, sizeof(CharBox));
-	vera_spr_set(66, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(66,8,8);
+	vera_spr_set(71, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(71,8,8);
 
-	vera_spr_set(67, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(67, 64+8, 8);
-	vera_spr_flip(67, true, false);
+	vera_spr_set(72, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(72, 64+8, 8);
+	vera_spr_flip(72, true, false);
 
-	vera_spr_set(68, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(68, 64+8, 64+8);
-	vera_spr_flip(68, true, true);
+	vera_spr_set(73, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(73, 64+8, 64+8);
+	vera_spr_flip(73, true, true);
 
-	vera_spr_set(69, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(69, 8, 64+8);
-	vera_spr_flip(69, false, true);
+	vera_spr_set(74, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(74, 8, 64+8);
+	vera_spr_flip(74, false, true);
 
 	//Tr Box
 	vram_putn(CharBoxAddr, CharBox, sizeof(CharBox));
-	vera_spr_set(70, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(70, 640- 128 - 8, 8);
+	vera_spr_set(75, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(75, 640- 128 - 8, 8);
 
-	vera_spr_set(71, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(71, 640 - 64-8, 8);
-	vera_spr_flip(71, true, false);
+	vera_spr_set(76, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(76, 640 - 64-8, 8);
+	vera_spr_flip(76, true, false);
 
-	vera_spr_set(72, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(72, 640 - 64 - 8, 64+8);
-	vera_spr_flip(72, true, true);
+	vera_spr_set(77, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(77, 640 - 64 - 8, 64+8);
+	vera_spr_flip(77, true, true);
 
-	vera_spr_set(73, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(73, 640 - 128 - 8, 64+8);
-	vera_spr_flip(73, false, true);
+	vera_spr_set(78, CharBoxAddr >> 5, false, 3, 3, 7, 6);
+	vera_spr_move(78, 640 - 128 - 8, 64+8);
+	vera_spr_flip(78, false, true);
 
 	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
 	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
 	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
 	vera_pal_putn(96, CharBoxPalette, sizeof(CharBoxPalette));
+
+	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 }
 
+void MoveSprites(int p, int p2) {
+	const unsigned PupilInd = 51;
+	const unsigned MainEyeBackInd = 52;
+
+	vera_spr_move(PupilInd, 308, 180 + (sintab[p] >> 3));
+	vera_spr_move(MainEyeBackInd, 284, 180 + (sintab[p2] >> 3));
+}
+
+void PlayZSM(int TuneSelection) {
+	if (zsm_check()) {
+		switch (TuneSelection)
+		{
+		default:
+			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");
+			break;
+		case 0:
+			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");
+			break;
+		case 1:
+			zsm_init("@0:zsmfiles/CrystalDimension.zsm,P,R");
+			break;
+		}
+	}
+}
+
+unsigned Phase = 16;
+unsigned Phase2 = 0;
+
 int main() {
-	const unsigned SCREEN_WIDTH = 640;
-	const unsigned SCREEN_HEIGHT = 480;
+
+	int SelectedSong = 0;
 
 	bool Running = true;
 	bool Playing = false;
@@ -469,7 +528,7 @@ int main() {
 	SetUpSprites();
 
 	vera.ctrl |= VERA_CTRL_DCSEL;
-	vera.dchscale = 158;
+	vera.dchscale = 159;
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 
 	vera.addrh = 0b00100001;
@@ -485,7 +544,7 @@ int main() {
 	vera.addr = 0x0;
 
 	Buildings[0].Depth = 0;
-	Buildings[0].X = 48;
+	Buildings[0].X = 40;
 	Buildings[0].Y = 32;
 	Buildings[0].width = 16;
 	Buildings[0].height = 32;
@@ -501,8 +560,14 @@ int main() {
 		vera.dcborder = 48;
 		p++;
 		PalTime2++;
+
+		Phase++ % 256;
+		Phase2++ % 256;
+		MoveSprites(Phase, Phase2);
+		
 		if (Playing)
 		{
+			PlayZSM(SelectedSong);
 			PalTimer++;
 		}
 		else if (Playing == false)
@@ -559,13 +624,20 @@ int main() {
 			p = 0;
 		}
 		vera.dcborder = 3;
-		if (zsm_check())
-			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");
-
+		
+		if (getchx() == KEY_A)
+		{
+			SelectedSong = 0;
+		}
+		else if (getchx() == KEY_D)
+		{
+			SelectedSong = 1;
+		}
+		
 		Playing = Control(Playing);
-
+		PlayZSM(SelectedSong);
 		if (FrameCount % 4 == 1) {
-			if (off1 + 16 < sizeof(TestText2))
+			if (off1 < sizeof(TestText2))
 			{
 				vera.data0 = TestText2[off1];
 			}

@@ -6,8 +6,40 @@ void frame_wait(void)
 	while (vera.ien & 0x40);
 	while (!(vera.ien & 0x40));
 }
+//Do later [like yo mama]
+void YMWriteSYSRom(char index, char data)
+{
+	__asm {
+		pha
+		txa
+		pha
+		tya
+		pha
+		lda #$0a
+		sta bank
+		lda #$8a
+		sta target
+		lda #$c0
+		sta target + 1
+		lda data
+		ldx index
+		jsr 0xff6c
+		target:
+		nop
+			nop
+			bank :
+		nop
+			pla
+			tay
+			pla
+			tax
+			pla
+	}
+}
+
 void sfx_put(char index, char data)
 {
+	//YM Write
 	while (sfx.data & 0x80);
 	sfx.index = index;
 	__asm {
@@ -70,6 +102,7 @@ void zsm_play(void)
 			char c = zsm_buffer[zsm_pos++ & 0x3ff];
 			if (c < 0x40)
 			{
+				//Vera write
 				vera.addr = (c & 0x3f) | 0xf9c0;
 				vera.addrh = 0x01;
 				vera.data0 = zsm_buffer[zsm_pos++ & 0x3ff];
@@ -127,6 +160,7 @@ int zsm_fill(void)
 		return 0;
 	else if (krnio_chkin(2))
 	{
+		//Reading in from disc
 		int n = 0;
 		while (zsm_wpos != zsm_pos + 1024)
 		{
@@ -139,6 +173,7 @@ int zsm_fill(void)
 				break;
 			}
 		}
+		//Read from keyboard
 		krnio_clrchn();
 
 		if (!zsm_reading)

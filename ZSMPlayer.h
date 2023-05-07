@@ -8,6 +8,7 @@ struct SFX
 };
 #define sfx	(*(SFX*)0x9f40)
 void frame_wait(void);
+void YMWriteSYSRom(char index, char data);
 void sfx_put(char index, char data);
 void interpret(const char sound[]);
 
