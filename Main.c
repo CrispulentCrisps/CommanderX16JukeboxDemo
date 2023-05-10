@@ -5,6 +5,7 @@
 #include <c64/rasterirq.h>
 #include <conio.h>
 #include <math.h>
+#include <stdarg.h>
 
 #include "ZSMPlayer.h"
 #include "Sprites.h"
@@ -218,16 +219,15 @@ static const sbyte sintab[256] = {
 	-90, -90, -90, -90, -90, -89, -89, -89, -88, -88, -87, -87, -86, -85, -85, -84, -83, -82, -81, -80, -79, -78, -77, -76, -75, -74, -72, -71, -70, -68, -67, -65, -64,
 	-62, -60, -59, -57, -55, -54, -52, -50, -48, -46, -44, -42, -40, -38, -36, -34, -32, -30, -28, -26, -24, -22, -20, -18, -15, -13, -11, -9, -7, -4, -2
 };
-bool Control(bool playing)	 {
 
+bool Control(bool playing, char Input)	 {
 	//Tune Playing
-
-	if (getchx() == KEY_SPACE)
+	if (Input == KEY_SPACE)
 	{
 		if (playing)
 		{
 			paused = !paused;
-			zsm_pause(paused);		
+			zsm_pause(paused);
 		}
 		else
 		{
@@ -415,7 +415,7 @@ void SetUpSprites() {
 	vera_spr_move(51, 308, 120);
 
 	vram_putn(MainEyeBackAddr, MainEyeBack, sizeof(MainEyeBack));
-	vera_spr_set(52, MainEyeBackAddr >> 5, false, 3, 2, 3, 5);
+	vera_spr_set(52, MainEyeBackAddr >> 5, false, 3, 2, 3, 6);
 	vera_spr_move(52, 284, 120);
 
 	vera_spr_set(53, TowerTriAddr >> 5, false, 2, 3, 7, 6);
@@ -513,6 +513,7 @@ void PlayZSM(int TuneSelection) {
 
 unsigned Phase = 16;
 unsigned Phase2 = 0;
+char MaxSong = 2;
 
 int main() {
 
@@ -555,8 +556,10 @@ int main() {
 	Buildings[1].width = 16;
 	Buildings[1].height = 32;
 
+	char Input = 0;
 	while (Running)
 	{
+		Input = getchx();
 		vera.dcborder = 48;
 		p++;
 		PalTime2++;
@@ -590,10 +593,10 @@ int main() {
 					case 0:
 						for (char j = 0; j < Buildings[i].height; j++)
 						{
-							vram_addr(TilePos + 1);
+							vram_addr2(TilePos + 1);
 							for (char k = 0; k < Buildings[i].width; k++)
 							{
-								vram_put(3 << 3);
+								vram_put(2 << 3);
 							}
 							TilePos += 128;
 						}
@@ -624,18 +627,19 @@ int main() {
 			p = 0;
 		}
 		vera.dcborder = 3;
-		
-		if (getchx() == KEY_A)
+
+		//Tune Selection
+		if (Input == KEY_D)
 		{
-			SelectedSong = 0;
+			SelectedSong++% MaxSong;
 		}
-		else if (getchx() == KEY_D)
+		else if (Input == KEY_A && SelectedSong > 0)
 		{
-			SelectedSong = 1;
+			SelectedSong--;
 		}
-		
-		Playing = Control(Playing);
-		PlayZSM(SelectedSong);
+
+		Playing = Control(Playing, Input);
+
 		if (FrameCount % 4 == 1) {
 			if (off1 < sizeof(TestText2))
 			{
