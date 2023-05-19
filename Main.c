@@ -17,14 +17,14 @@
 #define KEY_SPACE 0x20
 
 int FrameCount = 0;
-char off1, off2;
+char off1 = 0;
 int p = 0;
 int PalTimer = 0;
 int PalIndex = 0;
 bool ShimmerState = false;
 
 const char MainBG[] = {
-	#embed 256 2 "sprites/bin/MAINBG.BIN"
+	#embed 320 2 "sprites/bin/MAINBG.BIN"
 };
 const char ScrollerOutline[] = {
 	#embed 1024 2 "sprites/bin/SCROLLEROUTLINE.BIN"
@@ -58,6 +58,11 @@ const char CharBox[] = {
 	#embed 2048 2 "sprites/bin/CHARBOX.BIN"
 };
 
+const char WavySprite[] = {
+	#embed 512 2 "sprites/bin/WAVY.BIN"
+};
+
+
 unsigned palette[] = {
 
 	0xFFF,
@@ -79,6 +84,17 @@ unsigned palette[] = {
 	0x000,
 	0x000, 
 	0x000
+};
+
+unsigned WavyPal[] = {
+
+	0xD00,
+	0x900,
+	0xDD0,
+	0x099,
+
+	0x0D0,
+	0x090
 };
 
 const char BGPal[] = {
@@ -259,6 +275,7 @@ void SetUpSprites() {
 	const unsigned long TowerTriAddr = MainEyeBackAddr + ((sizeof(MainEyeBack) + 31) & ~31);
 	const unsigned long CharBoxAddr = TowerTriAddr + ((sizeof(EyeTri) + 31) & ~31);
 	const unsigned long PupilAddr = CharBoxAddr + ((sizeof(CharBox) + 31) & ~31) + 64;
+	const unsigned long WavyAddr = PupilAddr + ((sizeof(MainPupil) + 31) & ~31) + 64;
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
@@ -319,35 +336,41 @@ void SetUpSprites() {
 		for (unsigned j = 0; j < 128; j++) {
 
 			R = rand() % 32;
-
-			if (R <= 30)
+			if (i < 52 && i >= 48)
 			{
-				if (j < 9 || j > 69) {
-					vera.data0 = 0;
-				}
-				else if (j < 19 || j > 59) {
-					vera.data0 = 1;
-				}
-				else if (j < 29 || j > 49) {
-					vera.data0 = 2;
-				}
-				else {
-					vera.data0 = 3;
-				}
+				vera.data0 = 9;
 			}
 			else
 			{
-				if (j < 9 || j > 69) {
-					vera.data0 = 4;
+				if (R <= 30)
+				{
+					if (j < 9 || j > 69) {
+						vera.data0 = 0;
+					}
+					else if (j < 19 || j > 59) {
+						vera.data0 = 1;
+					}
+					else if (j < 29 || j > 49) {
+						vera.data0 = 2;
+					}
+					else {
+						vera.data0 = 3;
+					}
 				}
-				else if (j < 19 || j > 59) {
-					vera.data0 = 5;
-				}
-				else if (j < 29 || j > 49) {
-					vera.data0 = 6;
-				}
-				else {
-					vera.data0 = 7;
+				else
+				{
+					if (j < 9 || j > 69) {
+						vera.data0 = 5;
+					}
+					else if (j < 19 || j > 59) {
+						vera.data0 = 6;
+					}
+					else if (j < 29 || j > 49) {
+						vera.data0 = 7;
+					}
+					else {
+						vera.data0 = 8;
+					}
 				}
 			}
 			R = 0;
@@ -360,11 +383,11 @@ void SetUpSprites() {
 	//Bottom bars around the text
 	for (unsigned long i = 0; i < 20; i += 2)
 	{
-		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 2, 2, 1);
+		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
 		vera_spr_move(i, 32 * i, 400);
 		vera_spr_flip(i, false, true);
 
-		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 2, 2, 1);
+		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
 		vera_spr_move(i + 1, 32 * i, 368);
 	}
 
@@ -401,7 +424,7 @@ void SetUpSprites() {
 	}
 
 	for (unsigned i = 0; i < 2; i++)
-	{
+	{	
 		for (unsigned j = 0; j < 2; j++)
 		{
 			vera_spr_set(49 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 4);
@@ -411,26 +434,26 @@ void SetUpSprites() {
 
 	//Eye
 	vram_putn(PupilAddr, MainPupil, sizeof(MainPupil));
-	vera_spr_set(51, PupilAddr >> 5, false, 1, 2, 3, 3);
-	vera_spr_move(51, 308, 120);
+	vera_spr_set(51, PupilAddr >> 5, false, 1, 2, 3, 6);
+	vera_spr_move(51, 320 - 64, 120);
 
 	vram_putn(MainEyeBackAddr, MainEyeBack, sizeof(MainEyeBack));
-	vera_spr_set(52, MainEyeBackAddr >> 5, false, 3, 2, 3, 6);
-	vera_spr_move(52, 284, 120);
+	vera_spr_set(52, MainEyeBackAddr >> 5, false, 3, 2, 3, 5);
+	vera_spr_move(52, 320 - 64, 120);
 
-	vera_spr_set(53, TowerTriAddr >> 5, false, 2, 3, 7, 6);
-	vera_spr_move(53, 320 - 48, 240 - 24);
+	vera_spr_set(53, TowerTriAddr >> 5, false, 3, 2, 7, 6);
+	vera_spr_move(53, 320 - 64, 240-8);
 
-	vera_spr_set(54, TowerTriAddr >> 5, false, 2, 3, 7, 6);
-	vera_spr_move(54, 320 + 48, 240 - 24);
+	vera_spr_set(54, TowerTriAddr >> 5, false, 3, 2, 7, 6);
+	vera_spr_move(54, 320, 240 - 8);
 	vera_spr_flip(54, true, false);
 
-	vera_spr_set(55, TowerTriAddr >> 5, false, 2, 3, 7, 6);
-	vera_spr_move(55, 320 - 48, 240 + 24);
+	vera_spr_set(55, TowerTriAddr >> 5, false, 3, 2, 7, 6);
+	vera_spr_move(55, 320- 64, 240 + 24);
 	vera_spr_flip(55, false, true);
 	
-	vera_spr_set(56, TowerTriAddr >> 5, false, 2, 3, 7, 6);
-	vera_spr_move(56, 320 + 48, 240 + 24);
+	vera_spr_set(56, TowerTriAddr >> 5, false, 3, 2, 7, 6);
+	vera_spr_move(56, 320, 240 + 24);
 	vera_spr_flip(56, true, true);
 
 
@@ -438,10 +461,7 @@ void SetUpSprites() {
 	for (unsigned i = 0; i < 7; i++)
 	{
 		vera_spr_set(57 + i, TowerBaseAddr >> 5, false, 3, 3, 2, 5);
-		vera_spr_move(57 + i, 314 - 64, i * 64 - 32);
-		vera_spr_set(64 + i, TowerBaseAddr >> 5, false, 3, 3, 2, 5);
-		vera_spr_move(64 + i, 314, i * 64 - 32);
-		vera_spr_flip(64 + i, true, false);
+		vera_spr_move(57 + i, 320-32, i * 64 - 32);
 	}
 
 	//Tl Box
@@ -478,23 +498,51 @@ void SetUpSprites() {
 	vera_spr_move(78, 640 - 128 - 8, 64+8);
 	vera_spr_flip(78, false, true);
 
+
+	vram_putn(WavyAddr, WavySprite, sizeof(WavySprite));
+	for (char i = 0; i < 16; i++)
+	{
+		vera_spr_set(79+i, WavyAddr >> 5, false, 2, 2, 3, 7);
+	}
+
 	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
 	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
 	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
-	vera_pal_putn(96, CharBoxPalette, sizeof(CharBoxPalette));
+	vera_pal_putn(96, CharBoxPalette, sizeof(ButtonStageMin));
+	vera_pal_putn(112, WavyPal, sizeof(WavyPal));
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 }
 
-void MoveSprites(int p, int p2) {
+void MoveSprites(int p, int p2, int p3) {
 	const unsigned PupilInd = 51;
 	const unsigned MainEyeBackInd = 52;
 
-	vera_spr_move(PupilInd, 308, 180 + (sintab[p] >> 3));
-	vera_spr_move(MainEyeBackInd, 284, 180 + (sintab[p2] >> 3));
+	vera_spr_move(PupilInd, 312, 180 + (sintab[p] >> 3));
+	vera_spr_move(MainEyeBackInd, 288, 180 + (sintab[p2] >> 3));
+
+	vera_spr_move(53, 320 - 64, 180 - 16 + (sintab[p3] >> 3));
+	vera_spr_move(54, 320, 180 - 16 + (sintab[p3] >> 3));
+
+	vera_spr_move(55, 320 - 64, 180 + 16 + (sintab[p3] >> 3));
+	vera_spr_move(56, 320, 180 + 16 + (sintab[p3] >> 3));
+
+	//Moves boxes
+	for (char i = 0; i < 18; i++)
+	{
+		if (i < 9)
+		{
+			vera_spr_move(79 + i, i * 32, 344 + (sintab[FrameCount + i * 32 % 256] >> 4));
+		}
+		else
+		{
+			vera_spr_move(79 + i,64 + i * 32, 344 + (sintab[FrameCount - (i-8) * 32 % 256] >> 4));
+		}
+	}
 }
 
 void PlayZSM(int TuneSelection) {
+	vera.dcborder = 8;
 	if (zsm_check()) {
 		switch (TuneSelection)
 		{
@@ -511,8 +559,9 @@ void PlayZSM(int TuneSelection) {
 	}
 }
 
-unsigned Phase = 16;
+unsigned Phase = 8;
 unsigned Phase2 = 0;
+unsigned Phase3 = 16;
 char MaxSong = 2;
 
 int main() {
@@ -540,21 +589,7 @@ int main() {
 	vera.l1vscroll = 115;
 	unsigned PalTime2 = 0;
 
-	struct BuildStruct Buildings[8];
-
 	vera.addr = 0x0;
-
-	Buildings[0].Depth = 0;
-	Buildings[0].X = 40;
-	Buildings[0].Y = 32;
-	Buildings[0].width = 16;
-	Buildings[0].height = 32;
-
-	Buildings[1].Depth = 0;
-	Buildings[1].X = 96;
-	Buildings[1].Y = 32;
-	Buildings[1].width = 16;
-	Buildings[1].height = 32;
 
 	char Input = 0;
 	while (Running)
@@ -566,7 +601,8 @@ int main() {
 
 		Phase++ % 256;
 		Phase2++ % 256;
-		MoveSprites(Phase, Phase2);
+		Phase3++ % 256;
+		MoveSprites(Phase, Phase2, Phase3);
 		
 		if (Playing)
 		{
@@ -583,26 +619,6 @@ int main() {
 		{
 			SetPaletteIndex(palette, 16, 6, 10);
 			PalTime2 = 0;
-
-			//Buildings AI
-			for (char i = 0; i < 8; i++)
-			{
-				long TilePos = Buildings[i].Y * 128 + Buildings[i].X + ((long)vera.l0mapbase << 9);
-				switch (Buildings[i].Depth)
-				{
-					case 0:
-						for (char j = 0; j < Buildings[i].height; j++)
-						{
-							vram_addr2(TilePos + 1);
-							for (char k = 0; k < Buildings[i].width; k++)
-							{
-								vram_put(2 << 3);
-							}
-							TilePos += 128;
-						}
-					break;
-					}
-			}
 		}
 
 		if (PalTimer > 3)
@@ -641,14 +657,11 @@ int main() {
 		Playing = Control(Playing, Input);
 
 		if (FrameCount % 4 == 1) {
-			if (off1 < sizeof(TestText2))
-			{
-				vera.data0 = TestText2[off1];
-			}
+			vera.data0 += TestText2[off1];
 			off1++;
 		}
 
-		vera.l1hscroll = -256 + FrameCount * 2;
+		vera.l1hscroll = FrameCount * 2;
 
 		vera.dcborder = 1;
 		int n = zsm_fill();

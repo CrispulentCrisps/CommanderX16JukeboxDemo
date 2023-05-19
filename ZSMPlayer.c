@@ -84,6 +84,12 @@ void zsm_restore_volume(void)
 	}	
 }
 
+void zsm_silence(void)
+{
+	for(char i=0; i<8; i++)
+		sfx_put(0x08, i);
+}
+
 void zsm_play(void)
 {
 	if (zsm_paused)
@@ -246,6 +252,7 @@ void zsm_pause(bool pause)
 	if (pause && !zsm_paused)
 	{
 		zsm_paused = true;
+		zsm_silence();
 		zsm_save_volume();
 	}
 	else if (!pause && zsm_paused)
