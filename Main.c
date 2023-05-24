@@ -59,9 +59,12 @@ const char CharBox[] = {
 };
 
 const char WavySprite[] = {
-	#embed 512 2 "sprites/bin/WAVY.BIN"
+	#embed 256 2 "sprites/bin/DRAGONBODY.BIN"
 };
 
+const char WavyHead[] = {
+	#embed 512 2 "sprites/bin/DRAGONHEAD.BIN"
+};
 
 unsigned palette[] = {
 
@@ -276,6 +279,7 @@ void SetUpSprites() {
 	const unsigned long CharBoxAddr = TowerTriAddr + ((sizeof(EyeTri) + 31) & ~31);
 	const unsigned long PupilAddr = CharBoxAddr + ((sizeof(CharBox) + 31) & ~31) + 64;
 	const unsigned long WavyAddr = PupilAddr + ((sizeof(MainPupil) + 31) & ~31) + 64;
+	const unsigned long HeadAddr = WavyAddr + ((sizeof(WavySprite) + 31) & ~31) + 64;
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
@@ -293,7 +297,7 @@ void SetUpSprites() {
 	// Height: 480pixels / 8 = 60 tiles down = Need to set our height to 64
 	vera.l0config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_4;
 
-	vera.l1config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_T256C | VERA_LAYER_DEPTH_1;
+	vera.l1config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_1;
 
 	//vera.l1mapbase = 0x04;
 
@@ -308,7 +312,7 @@ void SetUpSprites() {
 
 	vera.l0mapbase = memoryToMapMemoryAddress(0, BGMapAddr);
 
-	vera.addrh = 1 | (2 << 4);
+	vera.addrh = 1; //| (2 << 4);
 
 	//Clear L1
 	for (unsigned i = 0; i < 128; i++)
@@ -384,7 +388,7 @@ void SetUpSprites() {
 	for (unsigned long i = 0; i < 20; i += 2)
 	{
 		vera_spr_set(i, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
-		vera_spr_move(i, 32 * i, 400);
+		vera_spr_move(i, 32 * i, 416);
 		vera_spr_flip(i, false, true);
 
 		vera_spr_set(i + 1, ScrollerOutlineAddr >> 5, false, 3, 1, 3, 1);
@@ -461,7 +465,7 @@ void SetUpSprites() {
 	for (unsigned i = 0; i < 7; i++)
 	{
 		vera_spr_set(57 + i, TowerBaseAddr >> 5, false, 3, 3, 2, 5);
-		vera_spr_move(57 + i, 320-32, i * 64 - 32);
+		vera_spr_move(57 + i, 320-32, i * 64 - 64);
 	}
 
 	//Tl Box
@@ -498,13 +502,18 @@ void SetUpSprites() {
 	vera_spr_move(78, 640 - 128 - 8, 64+8);
 	vera_spr_flip(78, false, true);
 
-
+	vram_putn(HeadAddr, WavyHead, sizeof(WavyHead));
 	vram_putn(WavyAddr, WavySprite, sizeof(WavySprite));
-	for (char i = 0; i < 16; i++)
+	char DragonSize = 16;
+	for (char i = 0; i < DragonSize; i++)
 	{
-		vera_spr_set(79+i, WavyAddr >> 5, false, 2, 2, 3, 7);
+		vera_spr_set(79+i, WavyAddr >> 5, false, 1, 1, 2, 8);
+		if (i == DragonSize-1)
+		{
+			vera_spr_set(79 + i, HeadAddr >> 5, false, 2, 2, 2, 8);
+		}
 	}
-
+	
 	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
 	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
 	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
@@ -528,15 +537,19 @@ void MoveSprites(int p, int p2, int p3) {
 	vera_spr_move(56, 320, 180 + 16 + (sintab[p3] >> 3));
 
 	//Moves boxes
-	for (char i = 0; i < 18; i++)
+	for (char i = 0; i < 16; i++)
 	{
-		if (i < 9)
+		if (i == 15)
 		{
-			vera_spr_move(79 + i, i * 32, 344 + (sintab[FrameCount + i * 32 % 256] >> 4));
+			vera_spr_move(
+				79 + i, (sintab[FrameCount + i * 12 % 256]) + FrameCount + i * 4 % 640,
+				56 + (sintab[FrameCount - 64 + i * 3 % 256]) + (sintab[FrameCount + i * 12 % 256] >> 4) + i * 3);
 		}
 		else
 		{
-			vera_spr_move(79 + i,64 + i * 32, 344 + (sintab[FrameCount - (i-8) * 32 % 256] >> 4));
+			vera_spr_move(
+				79 + i, (sintab[FrameCount + i * 12 % 256]) + FrameCount + i * 4 % 640,
+				64 + (sintab[FrameCount - 64 + i * 3 % 256]) + (sintab[FrameCount + i * 12 % 256] >> 4) + i * 3);
 		}
 	}
 }
@@ -589,8 +602,6 @@ int main() {
 	vera.l1vscroll = 115;
 	unsigned PalTime2 = 0;
 
-	vera.addr = 0x0;
-
 	char Input = 0;
 	while (Running)
 	{
@@ -604,7 +615,7 @@ int main() {
 		Phase3++ % 256;
 		MoveSprites(Phase, Phase2, Phase3);
 		
-		if (Playing)
+		if (Playing)	
 		{
 			PlayZSM(SelectedSong);
 			PalTimer++;
@@ -657,11 +668,13 @@ int main() {
 		Playing = Control(Playing, Input);
 
 		if (FrameCount % 4 == 1) {
-			vera.data0 += TestText2[off1];
+			vera.data0 = TestText2[off1]; // the character, which means addr0 is pointing at an even address.
+			vera.data0 = 0x16; // blue on white
 			off1++;
+
 		}
 
-		vera.l1hscroll = FrameCount * 2;
+		vera.l1hscroll = FrameCount;
 
 		vera.dcborder = 1;
 		int n = zsm_fill();

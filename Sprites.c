@@ -17,6 +17,7 @@ void SetPaletteColours(const char* input, char inputsize, unsigned long addr)
 
 void SetPaletteIndex(unsigned Palette[], unsigned long index, unsigned short MinVal, unsigned short MaxVal)
 {
+
 	unsigned c0 = Palette[MinVal];
 	for (char i = MinVal; i < MaxVal-1; i++)
 	{
