@@ -101,40 +101,41 @@ unsigned WavyPal[] = {
 };
 
 const char BGPal[] = {
-	0x23, 0x02, 
+	0x25, 0x02,
 	0x12, 0x01,
-	0x01, 0x01, 
-	0x77, 0x07,//Stars at this
-	0xFF, 0x0F, 
+	0x11, 0x01,
 	0xAA, 0x0A,
-	0x66, 0x06,
-	0x22, 0x02,
-
-	0xFF, 0x0F,//Building Colours
+	0x26, 0x02,
+	0xFF, 0x0F,
 	0xDD, 0x0D,
-	0xBB, 0x0B,
-	0x99, 0x09,
-	0x77, 0x07,
-	0x55, 0x05,
-	0x33, 0x03,
-	0x11, 0x01
+	0x66, 0x06,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F
 };
 
 const char BGPalShimmer[] = {
-	0x23, 0x02, 0x12, 0x01,
-	0x01, 0x11, 0x55, 0x05,
-	0xDD, 0x0D, 0x88, 0x08,//Stars at this
-	0x44, 0x04, 0x11, 0x01,
-
-
-	0xFF, 0x0F,//Building Colours
+	0x25, 0x02,
+	0x12, 0x01,
+	0x11, 0x01,
+	0xAA, 0x0A,
+	0x26, 0x02,
 	0xDD, 0x0D,
 	0xBB, 0x0B,
-	0x99, 0x09,
-	0x77, 0x07,
-	0x55, 0x05,
-	0x33, 0x03,
-	0x11, 0x01
+	0x66, 0x06,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F,
+	0xFF, 0x0F
 };
 
 const char ButtonStageMax[] = {
@@ -224,7 +225,7 @@ unsigned CharBoxPalette[] = {
 	 0x22D
 };
 
-const char TestText2[] = s"CONCEPT CRISPS CODING CRISPS BLUMBA TOBACH MARK-BUG-SLAYER";
+const char TestText2[] = s"abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 static bool paused = false;
 
@@ -258,15 +259,6 @@ bool Control(bool playing, char Input)	 {
 	return playing;
 }
 
-struct BuildStruct {
-	unsigned short Depth;
-	unsigned short X;
-	unsigned short Y;
-	unsigned short width;
-	unsigned short height;
-};
-
-
 void SetUpSprites() {
 
 	const unsigned long PauseAddr = VERA_SPRITES;
@@ -283,7 +275,6 @@ void SetUpSprites() {
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
-	const unsigned short TextAddr = 0x8000;
 
 	//Set up Background
 	vera.ctrl = 0; // &= ~VERA_CTRL_DCSEL;
@@ -342,6 +333,10 @@ void SetUpSprites() {
 			R = rand() % 32;
 			if (i < 52 && i >= 48)
 			{
+				vera.data0 = 4;
+			}
+			else if (i >= 52)
+			{
 				vera.data0 = 9;
 			}
 			else
@@ -357,7 +352,7 @@ void SetUpSprites() {
 					else if (j < 29 || j > 49) {
 						vera.data0 = 2;
 					}
-					else {
+					else { 
 						vera.data0 = 3;
 					}
 				}
@@ -543,13 +538,14 @@ void MoveSprites(int p, int p2, int p3) {
 		{
 			vera_spr_move(
 				79 + i, (sintab[FrameCount + i * 12 % 256]) + FrameCount + i * 4 % 640,
-				56 + (sintab[FrameCount - 64 + i * 3 % 256]) + (sintab[FrameCount + i * 12 % 256] >> 4) + i * 3);
+				120 + (sintab[FrameCount - 64 + i * 5 % 256]) + (sintab[FrameCount - 32 + (i * 8) % 256] >> 4) + i * 3);
 		}
 		else
 		{
 			vera_spr_move(
-				79 + i, (sintab[FrameCount + i * 12 % 256]) + FrameCount + i * 4 % 640,
-				64 + (sintab[FrameCount - 64 + i * 3 % 256]) + (sintab[FrameCount + i * 12 % 256] >> 4) + i * 3);
+				79 + i, (sintab[FrameCount + i * 12 % 256]) +
+				FrameCount + (i * 4) % 640,
+				128 + (sintab[FrameCount - 64 + i * 5 % 256]) + (sintab[FrameCount-32 + (i * 8) % 256] >> 4) + i * 3);
 		}
 	}
 }
@@ -594,13 +590,14 @@ int main() {
 	vera.dchscale = 159;
 	vera.ctrl &= ~VERA_CTRL_DCSEL;
 
-	vera.addrh = 0b00100001;
-
-	vera.addr = 0xb000;
-
 	//sets scroller position
 	vera.l1vscroll = 115;
 	unsigned PalTime2 = 0;
+
+	vera.addr = VERA_TEXT_MODE;
+	vera.addrh = VERA_TEXT_MODE >> 16;
+
+	vera.addrh |= 0b000000;
 
 	char Input = 0;
 	while (Running)
@@ -668,10 +665,9 @@ int main() {
 		Playing = Control(Playing, Input);
 
 		if (FrameCount % 4 == 1) {
-			vera.data0 = TestText2[off1]; // the character, which means addr0 is pointing at an even address.
-			vera.data0 = 0x16; // blue on white
+			vera.data1 = TestText2[off1];
+			vera.data1 = 0b01001111;
 			off1++;
-
 		}
 
 		vera.l1hscroll = FrameCount;
