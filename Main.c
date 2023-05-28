@@ -32,6 +32,9 @@ const char ScrollerOutline[] = {
 const char Pause[] = {
 	#embed 256 2 "sprites/bin/PAUSE.BIN"
 };
+const char Playing[] = {
+	#embed 256 2 "sprites/bin/PLAYING.BIN"
+};
 const char Arrow[] = {	
 	#embed 512 2 "sprites/bin/ARROW.BIN"
 };
@@ -225,7 +228,40 @@ unsigned CharBoxPalette[] = {
 	 0x22D
 };
 
-const char TestText2[] = s"abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+unsigned TextPal[] = {
+	 0xEEF,
+	 0xDDF,
+	 0xCCF,
+	 0xBBF,
+
+	 0xAAF,
+	 0x99F,
+	 0x88F,
+	 0x77F,
+
+	 0x66F,
+	 0x77F,
+	 0x88F,
+	 0x99F, 
+	 
+	 0xAAF,
+	 0xBBF,
+	 0xCCF,
+	 0xDDF,
+};
+
+const char TestText2[] = s" - - = = credits: code: blumba, mark-bugslayer, crisps. musicians: abstract64, aleksi winston, fade, kole-o-black, mega-sparky, the-real-hedgehog-sonic = = - -";
+//4430 addr
+const char* Song1[] = s" - - = = song name: - \"paperclip\" - artist: \"kole-o-black\" - length: 2:59 - comment: originally called \"destroy\", i made this track a few months back primarily as means to study 2151 sound design, and also as a starting point for my cx16 music work in general. "
+					  s"if you're from the sharp x68k scene, you might be able to spot the semblance between this track and hizmi's \"mutsuradaiko\"/\"mutzrad\" track from their drum daemon album. that's not a coincidence; one of my goals in the cx16 scene *is* to be (to an extent) its hizmi. (or really any of the x68k hardcore techno afficionados) the name? i suppose it's a song to reopen old david murray wounds to. the clipping and the loudness ? it's intentional. "
+					  s"i recall sheepishly showing a preview this track to my extracurricular sound arts activity professor while doing an introduction to generating sound objects after he asked us if any of us did anything in terms of composition. suffice to say, he did like it despite the fact that it was mostly adjacent to techno(particularly houseand hardcore), while most of the stylings being taught were mostly in the field of avantgarde. "
+					  s"another particularly funny story about this track was how it even got onto this musicdisk: i first posted it in the music sharing channel of the commander x16 discords, which then caught the ears and eyes of crisps, who then asked me if he could use it for this musicdisk. "
+					  s"this actually motivated me to finish it, though i hit one major roadblock when i couldn't optimize it enough to ensure no banking would be needed because the zsm format is an utter fucking joke. (no shit it's quite literally just vgm all over again) "
+					  s"either way, i'm looking forward to doing more 2151 sound in the future, as this was definitely a fun experience. (except for crisps' ridiculous debugging time sink, but i can forgive that since it's his first time i think) = = - -";
+
+const char* Song2[] = s"- - = =  song name: - \"the gem infested terra-tory\" - artist: \"the-real-hedgehog-sonic\" - length: 1:35 - comment: crisps never fulfilled my wish for that fake game ost, so i did it myself. = = - - ";
+
+const char* Song3[] = s"- - = =  song name: - \"the radiant radioactive rockslide\" - artist: \"the-real-hedgehog-sonic\" - length: 1:36 - comment: crisps never fulfilled my wish for that fake game ost, so i did it myself.the crystal dimension was so nice, you get to experience it twice! = = - - ";
 
 static bool paused = false;
 
@@ -259,6 +295,10 @@ bool Control(bool playing, char Input)	 {
 	return playing;
 }
 
+
+unsigned long FrameAddr1;
+unsigned long FrameAddr2;
+
 void SetUpSprites() {
 
 	const unsigned long PauseAddr = VERA_SPRITES;
@@ -272,7 +312,10 @@ void SetUpSprites() {
 	const unsigned long PupilAddr = CharBoxAddr + ((sizeof(CharBox) + 31) & ~31) + 64;
 	const unsigned long WavyAddr = PupilAddr + ((sizeof(MainPupil) + 31) & ~31) + 64;
 	const unsigned long HeadAddr = WavyAddr + ((sizeof(WavySprite) + 31) & ~31) + 64;
+	const unsigned long PlayingAddr = HeadAddr + ((sizeof(WavyHead) + 31) & ~31) + 64;
 
+	FrameAddr1 = PauseAddr;
+	FrameAddr2 = PlayingAddr;
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
 
@@ -288,7 +331,7 @@ void SetUpSprites() {
 	// Height: 480pixels / 8 = 60 tiles down = Need to set our height to 64
 	vera.l0config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_4;
 
-	vera.l1config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_1;
+	vera.l1config = VERA_LAYER_WIDTH_128 | VERA_LAYER_HEIGHT_64 | VERA_LAYER_DEPTH_1 | VERA_LAYER_T256C;
 
 	//vera.l1mapbase = 0x04;
 
@@ -499,7 +542,7 @@ void SetUpSprites() {
 
 	vram_putn(HeadAddr, WavyHead, sizeof(WavyHead));
 	vram_putn(WavyAddr, WavySprite, sizeof(WavySprite));
-	char DragonSize = 16;
+	char DragonSize = 32;
 	for (char i = 0; i < DragonSize; i++)
 	{
 		vera_spr_set(79+i, WavyAddr >> 5, false, 1, 1, 2, 8);
@@ -514,6 +557,7 @@ void SetUpSprites() {
 	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
 	vera_pal_putn(96, CharBoxPalette, sizeof(ButtonStageMin));
 	vera_pal_putn(112, WavyPal, sizeof(WavyPal));
+	vera_pal_putn(144, TextPal, sizeof(TextPal));
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 }
@@ -532,9 +576,9 @@ void MoveSprites(int p, int p2, int p3) {
 	vera_spr_move(56, 320, 180 + 16 + (sintab[p3] >> 3));
 
 	//Moves boxes
-	for (char i = 0; i < 16; i++)
+	for (char i = 0; i < 32; i++)
 	{
-		if (i == 15)
+		if (i == 31)
 		{
 			vera_spr_move(
 				79 + i, (sintab[FrameCount + i * 12 % 256]) + FrameCount + i * 4 % 640,
@@ -555,11 +599,9 @@ void PlayZSM(int TuneSelection) {
 	if (zsm_check()) {
 		switch (TuneSelection)
 		{
-		default:
-			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");
 			break;
 		case 0:
-			zsm_init("@0:zsmfiles/ThiccFile.zsm,P,R");
+			zsm_init("@0:zsmfiles/paperclip.zsm,P,R");
 			break;
 		case 1:
 			zsm_init("@0:zsmfiles/CrystalDimension.zsm,P,R");
@@ -571,11 +613,11 @@ void PlayZSM(int TuneSelection) {
 unsigned Phase = 8;
 unsigned Phase2 = 0;
 unsigned Phase3 = 16;
-char MaxSong = 2;
+char MaxSong = 4;
 
 int main() {
 
-	int SelectedSong = 0;
+	int SelectedSong = 1;
 
 	bool Running = true;
 	bool Playing = false;
@@ -594,10 +636,10 @@ int main() {
 	vera.l1vscroll = 115;
 	unsigned PalTime2 = 0;
 
-	vera.addr = VERA_TEXT_MODE;
+	vram_addr(VERA_TEXT_MODE);
 	vera.addrh = VERA_TEXT_MODE >> 16;
 
-	vera.addrh |= 0b000000;
+	vera.addrh |= 0b100000;
 
 	char Input = 0;
 	while (Running)
@@ -612,13 +654,15 @@ int main() {
 		Phase3++ % 256;
 		MoveSprites(Phase, Phase2, Phase3);
 		
-		if (Playing)	
+		if (Playing == true)	
 		{
+			//vera_spr_set(22, FrameAddr1 >> 5, false, 1, 2, 3, 1);
 			PlayZSM(SelectedSong);
 			PalTimer++;
 		}
-		else if (Playing == false)
+		else
 		{
+			//vera_spr_set(22, FrameAddr2 >> 5, false, 1, 2, 3, 1);
 			PalTimer = 0;
 			SetPaletteColours(TowerPalFBlank, sizeof(TowerPalFBlank), 0x1FAA0UL);
 		}
@@ -656,21 +700,56 @@ int main() {
 		if (Input == KEY_D)
 		{
 			SelectedSong++% MaxSong;
+			off1 = 0;
 		}
 		else if (Input == KEY_A && SelectedSong > 0)
 		{
 			SelectedSong--;
+			off1 = 0;
 		}
 
 		Playing = Control(Playing, Input);
 
-		if (FrameCount % 4 == 1) {
-			vera.data1 = TestText2[off1];
-			vera.data1 = 0b01001111;
+		if (FrameCount % 8 == 1)
+		{
+			vram_addr(VERA_TEXT_MODE + 2 * (off1 % 128));
+			switch (SelectedSong)
+			{
+			case 0:
+				if (Song1[off1 % (sizeof(Song1) - 1)] != 0x00)
+				{
+					//character
+					vera.data0 = Song1[off1 % (sizeof(Song1) - 1)];
+					//colour
+					vera.data0 = (off1 % 16) + 144;
+				}
+				break;
+			case 1:
+				if (Song2[off1 % (sizeof(Song2) - 1)] != 0x00)
+				{
+					//character
+					vera.data0 = Song2[off1 % (sizeof(Song2) - 1)];
+					//colour
+					vera.data0 = (off1 % 16) + 144;
+				}
+				break;
+
+			case 2:
+				if (Song3[off1 % (sizeof(Song3) - 1)] != 0x00)
+				{
+					//character
+					vera.data0 = Song3[off1 % (sizeof(Song3) - 1)];
+					//colour
+					vera.data0 = (off1 % 16) + 144;
+				}
+				break;
+			}
 			off1++;
+			SetPaletteIndex(TextPal, 144, 0, 16);
+
 		}
 
-		vera.l1hscroll = FrameCount;
+		vera.l1hscroll = FrameCount-640;
 
 		vera.dcborder = 1;
 		int n = zsm_fill();
