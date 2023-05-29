@@ -196,7 +196,6 @@ bool zsm_check(void)
 	return zsm_finished;
 }
 
-
 bool zsm_init(const char* fname)
 {
 	zsm_finished = true;
