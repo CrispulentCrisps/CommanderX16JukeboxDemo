@@ -309,7 +309,7 @@ static const sbyte sintab[256] = {
 	-62, -60, -59, -57, -55, -54, -52, -50, -48, -46, -44, -42, -40, -38, -36, -34, -32, -30, -28, -26, -24, -22, -20, -18, -15, -13, -11, -9, -7, -4, -2
 };
 
-bool Control(bool playing, char Input, int SelectedSong, int LastSong)	 {
+bool Control(bool playing, char Input)	 {
 	//Tune Playing
 	if (Input == KEY_SPACE /*&& SelectedSong == LastSong*/)
 	{
@@ -325,8 +325,6 @@ bool Control(bool playing, char Input, int SelectedSong, int LastSong)	 {
 		}
 	}
 
-	LastSong = SelectedSong;
-
 	return playing;
 }
 
@@ -340,7 +338,7 @@ unsigned Phase = 8;
 unsigned Phase2 = 0;
 unsigned Phase3 = 16;
 char MaxSong = 3;
-char LastSelectedSong = 0;
+char LastSelectedSong = 255;
 char SelectedSong = 0;
 
 void SetUpSprites() {
@@ -662,23 +660,21 @@ void MoveSprites(int p, int p2, int p3) {
 
 void PlayZSM(int TuneSelection, int LastSong) {
 	vera.dcborder = 8;
-	//if (TuneSelection != LastSong)
-	//{
-		if (zsm_check()) {
-			switch (TuneSelection)
-			{
-			case 1:
-				zsm_init("@0:zsmfiles/paperclip.zsm,P,R");
-				break;
-			case 2:
-				zsm_init("@0:zsmfiles/CrystalDimension.zsm,P,R");
-				break;
-			case 3:
-				zsm_init("@0:zsmfiles/CrystalDimensionP2.zsm,P,R");
-				break;
-			}
+	if (TuneSelection != LastSong || zsm_check())
+	{
+		switch (TuneSelection)
+		{
+		case 1:
+			zsm_init("@0:zsmfiles/paperclip.zsm,P,R");
+			break;
+		case 2:
+			zsm_init("@0:zsmfiles/CrystalDimension.zsm,P,R");
+			break;
+		case 3:
+			zsm_init("@0:zsmfiles/CrystalDimensionP2.zsm,P,R");
+			break;
 		}
-	//}
+	}
 }
 void ResetChars() {
 	vram_addr(VERA_TEXT_MODE);
@@ -734,6 +730,8 @@ int main() {
 		{
 			//vera_spr_set(22, FrameAddr1 >> 5, false, 1, 2, 3, 1);
 			PlayZSM(SelectedSong, LastSelectedSong);
+			LastSelectedSong = SelectedSong;
+
 			PalTimer++;
 		}
 		else
@@ -768,7 +766,7 @@ int main() {
 			ScrollerCount = 0;
 			vera.l1hscroll = -640;
 		}
-		else if (Input == KEY_A && SelectedSong > 0)
+		else if (Input == KEY_A && SelectedSong > 1)
 		{
 			ResetChars();
 			SelectedSong--;
@@ -777,7 +775,7 @@ int main() {
 			vera.l1hscroll = -640;
 		}
 
-		Playing = Control(Playing, Input, SelectedSong, LastSelectedSong);
+		Playing = Control(Playing, Input);
 
 		vera.l1hscroll = ScrollerCount - 640;
 

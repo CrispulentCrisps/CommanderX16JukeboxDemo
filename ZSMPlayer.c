@@ -206,6 +206,9 @@ bool zsm_init(const char* fname)
 		zsm_reading = false;
 	}
 
+	zsm_silence();
+	zsm_save_volume();
+
 	zsm_pos = 0;
 	zsm_wpos = 0;
 	zsm_delay = 0;
