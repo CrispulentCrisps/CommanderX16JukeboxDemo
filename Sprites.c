@@ -28,7 +28,23 @@ void SetPaletteIndex(unsigned Palette[], unsigned long index, unsigned short Min
 	vera_pal_putn(index, Palette, 16);
 }
 
-void Update()
+void LoadSprite(const char* name, char fnum, char device, char channel, unsigned long Addr, const int DataSize)
 {
+	krnio_setnam(name);
+	if (krnio_setnam(name))
+	{
+		krnio_open(fnum, device, channel);
+		char Data[];
+		for (unsigned i = 0; i < DataSize; i++)
+		{
+			Data[i] += krnio_getch(2);
+		}
+		vram_putn(Addr, Data, sizeof(Data));
 
+		krnio_close(fnum);
+	}
+	else
+	{
+		break;
+	}
 }

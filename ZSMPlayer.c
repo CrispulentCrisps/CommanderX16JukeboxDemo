@@ -48,6 +48,7 @@ void sfx_put(char index, char data)
 		nop
 		nop
 	}
+	vera_fm_s_regs[index] = data;
 	sfx.data = data;
 }
 void delay(unsigned t)
@@ -62,6 +63,7 @@ static volatile bool zsm_playing = false, zsm_reading = false, zsm_finished = tr
 static char zsm_buffer[1024];
 static volatile bool zsm_paused = false;
 static char vera_volumes[16];
+	
 
 void zsm_save_volume(void)
 {
@@ -206,6 +208,9 @@ bool zsm_init(const char* fname)
 		zsm_reading = false;
 	}
 
+	zsm_silence();
+	zsm_save_volume();
+
 	zsm_pos = 0;
 	zsm_wpos = 0;
 	zsm_delay = 0;
@@ -259,4 +264,19 @@ void zsm_pause(bool pause)
 		zsm_restore_volume();
 		zsm_paused = false;
 	}
+}
+
+void zsm_get_volumes(char vera_v, char fm_v, int id) {
+	vera_v = vera_volumes[(id * 8) + 2];
+	fm_v = vera_fm_s_regs[(id * 8) + 2];
+}
+
+char zsm_return_volume(int ChannelID) {
+	char VolumeData = 0;
+	VolumeData = zsm_save_volume();
+	return vera_volumes[(ChannelID * 8) + 2];
+}
+
+char zsm_return_fm_volume(int ChannelID) {
+	return vera_fm_s_regs[(ChannelID * 8) + 2];
 }

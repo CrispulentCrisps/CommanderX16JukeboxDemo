@@ -7,6 +7,7 @@ struct SFX
 	volatile byte		data;
 };
 #define sfx	(*(SFX*)0x9f40)
+static char vera_fm_s_regs[128];
 void frame_wait(void);
 void YMWriteSYSRom(char index, char data);
 void sfx_put(char index, char data);
@@ -23,6 +24,8 @@ void zsm_irq_init(void);
 void zsm_irq_play(bool play);
 
 void zsm_pause(bool pause);
+
+void zsm_get_volumes(char vera_v, char fm_v, int id);
 
 #pragma compile("ZSMPlayer.c");
 

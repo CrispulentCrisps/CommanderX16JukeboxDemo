@@ -32,7 +32,7 @@ const char Arrow[] = {
 	#embed 512 2 "sprites/bin/ARROW.BIN"
 };
 const char VolumeInd[] = {
-	#embed 32 2 "sprites/bin/VOLUMEBUTTON.BIN"
+	#embed 512 2 "sprites/bin/VOLUMEBUTTON.BIN"
 };
 
 const char TowerBase[] = {
@@ -68,6 +68,13 @@ const char VERASprite[] = {
 const char YMSprite[] = {
 	#embed 512 2 "sprites/bin/YM-2151.BIN"
 };
+const char CrispySprites[] = {
+	#embed 16382 2 "sprites/bin/Crispy.BIN"
+};
+const char Font[] = {
+	#embed 1920 2 "sprites/bin/16X16-F6.BIN"
+};
+
 unsigned palette[] = {
 
 	0xFFF,
@@ -260,6 +267,7 @@ unsigned YMPal[] = {
 	 0x666,
 	 0x111,
 };
+
 unsigned VERAPal[] = {
 	 0x000,
 	 0xFFF,
@@ -276,6 +284,24 @@ unsigned VERAPal[] = {
 	 0x44F,
 	 0x13F,
 	 0x0FD,
+};
+
+unsigned CrispyPal[] = {
+	0x000,
+	0x000,
+	0x112,
+	0x222,
+	0xFFF,
+	0x70B,
+	0xA0F,
+	0x224,
+	0x610,
+	0x339,
+	0x400,
+	0xDD9,
+	0x0BF,
+	0xDDD,
+	0xAAA,
 };
 
 const char TestText2[] =	s" - - = = credits: code: blumba, mark-bugslayer, crisps. musicians: abstract64, aleksi winston, fade, kole-o-black, mega-sparky, the-real-hedgehog-sonic"
@@ -309,7 +335,7 @@ static const sbyte sintab[256] = {
 	-62, -60, -59, -57, -55, -54, -52, -50, -48, -46, -44, -42, -40, -38, -36, -34, -32, -30, -28, -26, -24, -22, -20, -18, -15, -13, -11, -9, -7, -4, -2
 };
 
-bool Control(bool playing, char Input, int SelectedSong, int LastSong)	 {
+bool Control(bool playing, char Input)	 {
 	//Tune Playing
 	if (Input == KEY_SPACE /*&& SelectedSong == LastSong*/)
 	{
@@ -325,8 +351,6 @@ bool Control(bool playing, char Input, int SelectedSong, int LastSong)	 {
 		}
 	}
 
-	LastSong = SelectedSong;
-
 	return playing;
 }
 
@@ -340,8 +364,15 @@ unsigned Phase = 8;
 unsigned Phase2 = 0;
 unsigned Phase3 = 16;
 char MaxSong = 3;
-char LastSelectedSong = 0;
+char LastSelectedSong = 255;
 char SelectedSong = 0;
+unsigned long VolAddr = 0;
+
+struct AristImage {
+	char SprImg[4];
+	char X;
+	char Y;
+};
 
 void SetUpSprites() {
 
@@ -359,13 +390,17 @@ void SetUpSprites() {
 	const unsigned long PlayingAddr = HeadAddr + ((sizeof(WavyHead) + 31) & ~31) + 64;
 	const unsigned long VERAAddr = PlayingAddr + ((sizeof(Playing) + 31) & ~31) + 64;
 	const unsigned long YMAddr = VERAAddr + ((sizeof(VERASprite) + 31) & ~31) + 64;
+	const unsigned long CrispyAddr = YMAddr + ((sizeof(YMSprite) + 31) & ~31) + 64;
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
+	const unsigned short TextAddr = 0x1B000;
+
+	VolAddr = VolumeIndAddr;
 
 	//Set up Background
 	vera.ctrl = 0; // &= ~VERA_CTRL_DCSEL;
-	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
+	//vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
 
 	vera.dcvscale = 128;
 	vera.dchscale = 128;
@@ -379,13 +414,6 @@ void SetUpSprites() {
 
 	//vera.l1mapbase = 0x04;
 
-	//  VERA_TILE_WIDTH_8 | VERA_TILE_HEIGHT_8 aren't used on loconfig, they are for l0tilebase
-	// The tileBaseConfig helper doesn't need them but if you are manually setting bits you can use them
-
-	// height and width = 0 means 8x8 pixel tiles. Setting either to 1 makes that direction 16 pixels.
-	// tilebase only uses 6 bits for address (which includes bank)
-	// This helper takes care of that and also takes in the tile width/height since they are on same register
-	// For W/H, 0=8 pixels, 1=16 pixels
 	vera.l0tilebase = tileBaseConfig(0, BGAddr, 0, 0);
 
 	vera.l0mapbase = memoryToMapMemoryAddress(0, BGMapAddr);
@@ -417,7 +445,7 @@ void SetUpSprites() {
 	{
 		for (unsigned j = 0; j < 128; j++) {
 
-			R = rand() % 48;
+			R = rand() % 49;
 			if (i < 54 && i >= 44)
 			{
 				if (i == 44 || i == 52)
@@ -454,7 +482,7 @@ void SetUpSprites() {
 						vera.data0 = 3;
 					}
 				}
-				else if (R >= 45)
+				else if (R >= 45 && R <= 47)
 				{
 					if (j < 9 || j > 69) {
 						vera.data0 = 5;
@@ -626,6 +654,10 @@ void SetUpSprites() {
 	vera_pal_putn(160, VERAPal, sizeof(VERAPal));
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
+
+	LoadSprite("@:/sprites/bin/CRISPY.bin,P,R",0,0,3, CrispyAddr, 16382);
+
+	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
 }
 
 void MoveSprites(int p, int p2, int p3) {
@@ -636,10 +668,13 @@ void MoveSprites(int p, int p2, int p3) {
 	vera_spr_move(MainEyeBackInd, 288, 180 + (sintab[p2] >> 3));
 
 	vera_spr_move(53, 320 - 64, 180 - 16 + (sintab[p3] >> 3));
-	vera_spr_move(54, 320, 180 - 16 + (sintab[p3] >> 3));
+	vera_spr_move(54, 320, 180 - 16 + (sintab[p3] >> 3));	 
 
 	vera_spr_move(55, 320 - 64, 180 + 16 + (sintab[p3] >> 3));
 	vera_spr_move(56, 320, 180 + 16 + (sintab[p3] >> 3));
+
+	vera_spr_move(0, 104,	438 - (sintab[p3] >> 4));
+	vera_spr_move(1, 640-144, 438 + (sintab[p3] >> 4));
 
 	//Moves boxes
 	for (char i = 0; i < 32; i++)
@@ -662,24 +697,23 @@ void MoveSprites(int p, int p2, int p3) {
 
 void PlayZSM(int TuneSelection, int LastSong) {
 	vera.dcborder = 8;
-	//if (TuneSelection != LastSong)
-	//{
-		if (zsm_check()) {
-			switch (TuneSelection)
-			{
-			case 1:
-				zsm_init("@0:zsmfiles/paperclip.zsm,P,R");
-				break;
-			case 2:
-				zsm_init("@0:zsmfiles/CrystalDimension.zsm,P,R");
-				break;
-			case 3:
-				zsm_init("@0:zsmfiles/CrystalDimensionP2.zsm,P,R");
-				break;
-			}
+	if (TuneSelection != LastSong || zsm_check())
+	{
+		switch (TuneSelection)
+		{
+		case 1:
+			zsm_init("@0:zsmfiles/paperclip.zsm,P,R");
+			break;
+		case 2:
+			zsm_init("@0:zsmfiles/CrystalDimension.zsm,P,R");
+			break;
+		case 3:
+			zsm_init("@0:zsmfiles/CrystalDimensionP2.zsm,P,R");
+			break;
 		}
-	//}
+	}
 }
+
 void ResetChars() {
 	vram_addr(VERA_TEXT_MODE);
 	for (char i = 0; i < 128; i++) {
@@ -689,6 +723,22 @@ void ResetChars() {
 		vera.data0 = 0;
 	}
 }
+
+void UpdateVolume() {
+	vera.dcborder = 33;
+	//Vera Volume
+	char VeraVolume = 0;
+	char FMVolume = 0;
+	for (char i = 0; i < 16; i++)
+	{
+		zsm_get_volumes(VeraVolume, FMVolume, i);
+	}
+	for (char i = 0; i < 8; i++)
+	{
+		zsm_get_volumes(VeraVolume, FMVolume, i);
+	}
+}
+
 int main() {
 	unsigned ScrollerCount = 0;
 	int SelectedSong = 0;
@@ -734,6 +784,8 @@ int main() {
 		{
 			//vera_spr_set(22, FrameAddr1 >> 5, false, 1, 2, 3, 1);
 			PlayZSM(SelectedSong, LastSelectedSong);
+			LastSelectedSong = SelectedSong;
+
 			PalTimer++;
 		}
 		else
@@ -768,7 +820,7 @@ int main() {
 			ScrollerCount = 0;
 			vera.l1hscroll = -640;
 		}
-		else if (Input == KEY_A && SelectedSong > 0)
+		else if (Input == KEY_A && SelectedSong > 1)
 		{
 			ResetChars();
 			SelectedSong--;
@@ -777,9 +829,11 @@ int main() {
 			vera.l1hscroll = -640;
 		}
 
-		Playing = Control(Playing, Input, SelectedSong, LastSelectedSong);
+		Playing = Control(Playing, Input);
 
 		vera.l1hscroll = ScrollerCount - 640;
+
+		//UpdateVolume();
 
 		if (FrameCount % 8 == 1)	
 		{
