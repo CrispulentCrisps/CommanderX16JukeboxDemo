@@ -655,7 +655,7 @@ void SetUpSprites() {
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 
-	LoadSprite("@:/sprites/bin/CRISPY.bin,P,R",0,0,3, CrispyAddr, 16382);
+	LoadSprite("@0:sprites/bin/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 16382);
 
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
 }
