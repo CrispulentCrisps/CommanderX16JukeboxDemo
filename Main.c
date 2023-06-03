@@ -309,7 +309,7 @@ const char TestText2[] =	s" - - = = credits: code: blumba, mark-bugslayer, crisp
 							s"either way, this is existing and i do wanna thank everyone who's helped out with this.without a group of musicians (and especially coders) this wouldn't exist in any capacity. in terms of why, well, i wanted be in a music disc / demo and since i couldn't find a coder who'd do it for me i just said \" f u c k  i t  i'll do it myself.\" and since you're reading this it was a success."
 							s"i did find that going to the x16 music wise was very easy. since the vera chip's music capabilites are so sid-like i could bring sound design from that to the vera. fm wise, i'd already been working on music on the megadrive for a long-ass time beforehand so that was a smooth jump as well, since starting i've also tried improving the sound design, to vary degrees of success..."
 							s"i also didn't expect this to take so long, as my original plan was two weeks. as of writing this it's been over two months. oops. ah well, could be worse."
-							s"NMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNM = = - -";
+							s"NMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNMNM = = - -";
 
 const char Song1[] =  s" - - = = song name: - \"paperclip\" - artist: \"kole-o-black\" - length: 2:59 - comment: originally called \"destroy\", i made this track a few months back primarily as means to study 2151 sound design, and also as a starting point for my cx16 music work in general. "
 					  s"if you're from the sharp x68k scene, you might be able to spot the semblance between this track and hizmi's \"mutsuradaiko\" / \"mutzrad\" track from their drum daemon album. that's not a coincidence; one of my goals in the cx16 scene *is* to be (to an extent) its hizmi. (or really any of the x68k hardcore techno afficionados) the name? i suppose it's a song to reopen old david murray wounds to. the clipping and the loudness ? it's intentional. "
@@ -321,6 +321,8 @@ const char Song1[] =  s" - - = = song name: - \"paperclip\" - artist: \"kole-o-b
 const char Song2[] = s"- - = =  song name: - \"the gem infested terra-tory\" - artist: \"the-real-hedgehog-sonic\" - length: 1:35 - comment: crisps never fulfilled my wish for that fake game ost, so i did it myself. = = - - ";
 
 const char Song3[] = s"- - = =  song name: - \"the radiant radioactive rockslide\" - artist: \"the-real-hedgehog-sonic\" - length: 1:36 - comment: the crystal dimension was so nice, you get to experience it twice! = = - - ";
+
+const char Song4[] = s"- - = =  song name: - \"gobsmacked\" - artist: \"fade\" - length: 3:23 - comment: i bet you didn't think the warmth of vinyl could be replicated in anything digital, but here we are :3 = = - - ";
 
 static bool paused = false;
 
@@ -363,7 +365,7 @@ bool ShimmerState = false;
 unsigned Phase = 8;
 unsigned Phase2 = 0;
 unsigned Phase3 = 16;
-char MaxSong = 3;
+char MaxSong = 4;
 char LastSelectedSong = 255;
 char SelectedSong = 0;
 unsigned long VolAddr = 0;
@@ -710,6 +712,9 @@ void PlayZSM(int TuneSelection, int LastSong) {
 		case 3:
 			zsm_init("@0:zsmfiles/CrystalDimensionP2.zsm,P,R");
 			break;
+		case 4:
+			zsm_init("@0:zsmfiles/gsfinal.zsm,P,R");
+			break;
 		}
 	}
 }
@@ -873,6 +878,15 @@ int main() {
 				{
 					//character
 					vera.data0 = Song3[off1 % (sizeof(Song3) - 1)];
+					//colour
+					vera.data0 = (off1 % 16) + 128;
+				}
+				break;
+			case 4:
+				if (Song4[off1 % (sizeof(Song3) - 1)] != 0x00)
+				{
+					//character
+					vera.data0 = Song4[off1 % (sizeof(Song4) - 1)];
 					//colour
 					vera.data0 = (off1 % 16) + 128;
 				}
