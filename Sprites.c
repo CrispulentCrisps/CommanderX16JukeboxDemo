@@ -32,6 +32,8 @@ void LoadSprite(const char* name, char fnum, char device, char channel, unsigned
 {
 	krnio_setnam(name);
 	krnio_open(fnum, device, channel);
+	krnio_getch(fnum);
+	krnio_getch(fnum);
 	for (unsigned i = 0; i < DataSize; i++)
 	{
 		vram_put_at(Addr + i, krnio_getch(fnum));

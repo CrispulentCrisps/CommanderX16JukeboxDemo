@@ -68,9 +68,6 @@ const char VERASprite[] = {
 const char YMSprite[] = {
 	#embed 512 2 "sprites/bin/YM-2151.BIN"
 };
-const char CrispySprites[] = {
-	#embed 16382 2 "sprites/bin/Crispy.BIN"
-};
 const char Font[] = {
 	#embed 1920 2 "sprites/bin/16X16-F6.BIN"
 };
@@ -370,12 +367,6 @@ char LastSelectedSong = 255;
 char SelectedSong = 0;
 unsigned long VolAddr = 0;
 
-struct AristImage {
-	char SprImg[4];
-	char X;
-	char Y;
-};
-
 void SetUpSprites() {
 
 	const unsigned long PauseAddr = VERA_SPRITES;
@@ -654,10 +645,20 @@ void SetUpSprites() {
 	vera_pal_putn(128, TextPal, sizeof(TextPal));
 	vera_pal_putn(144, YMPal, sizeof(YMPal));
 	vera_pal_putn(160, VERAPal, sizeof(VERAPal));
+	vera_pal_putn(172, CrispyPal, sizeof(CrispyPal));
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 
-	LoadSprite("@0:sprites/bin/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 16382);
+	LoadSprite("@0:/sprites/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 8192);
+
+	vera_spr_set(3, CrispyAddr >> 5, false, 3, 3, 7, 11);
+	vera_spr_move(3, 8,8);
+	vera_spr_set(4, (CrispyAddr+2048) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
+	vera_spr_move(4, 72, 8);
+	vera_spr_set(5, (CrispyAddr + 4096) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
+	vera_spr_move(5, 72, 72);
+	vera_spr_set(6, (CrispyAddr + 6144) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
+	vera_spr_move(6, 8, 72);
 
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
 }
