@@ -649,16 +649,16 @@ void SetUpSprites() {
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 
-	LoadSprite("@0:/sprites/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 8192);
+	LoadSprite("@0:/sprites/bin/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 8192);
 
 	vera_spr_set(3, CrispyAddr >> 5, false, 3, 3, 7, 11);
 	vera_spr_move(3, 8,8);
 	vera_spr_set(4, (CrispyAddr+2048) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
 	vera_spr_move(4, 72, 8);
 	vera_spr_set(5, (CrispyAddr + 4096) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
-	vera_spr_move(5, 72, 72);
+	vera_spr_move(5, 8, 72);
 	vera_spr_set(6, (CrispyAddr + 6144) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
-	vera_spr_move(6, 8, 72);
+	vera_spr_move(6, 72, 72);
 
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
 }
