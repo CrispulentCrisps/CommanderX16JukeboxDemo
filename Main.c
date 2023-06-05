@@ -17,7 +17,7 @@
 #define KEY_SPACE 0x20
 
 const char MainBG[] = {
-	#embed 480 2 "sprites/bin/MAINBG.BIN"
+	#embed 800 2 "sprites/bin/MAINBG.BIN"
 };
 const char ScrollerOutline[] = {
 	#embed 1024 2 "sprites/bin/SCROLLEROUTLINE.BIN"
@@ -106,42 +106,26 @@ unsigned WavyPal[] = {
 	0x090
 };
 
-const char BGPal[] = {
-	0x25, 0x02,
-	0x12, 0x01,
-	0x11, 0x01,
-	0xAA, 0x0A,
-	0x26, 0x02,
-	0xFF, 0x0F,
-	0xDD, 0x0D,
-	0x66, 0x06,
-	0x99, 0x09,
-	0x9B, 0x0F,
-	0xBB, 0x0B,
-	0xEE, 0x0F,
-	0x44, 0x04,
-	0xFF, 0x0F,
-	0xFF, 0x0F,
-	0xFF, 0x0F
-};
+unsigned BGPal[] = {
+	0x224,
+	0x112,
+	0x111,
+	0xAAA,
 
-const char BGPalShimmer[] = {
-	0x25, 0x02,
-	0x12, 0x01,
-	0x11, 0x01,
-	0xAA, 0x0A,
-	0x26, 0x02,
-	0xDD, 0x0D,
-	0xBB, 0x0B,
-	0x66, 0x06,
-	0xFF, 0x0F,
-	0xFF, 0x0F,
-	0xFF, 0x0F,
-	0xFF, 0x0F,
-	0xFF, 0x0F,
-	0xFF, 0x0F,
-	0xFF, 0x0F,
-	0xFF, 0x0F
+	0x226,
+	0xFFF,
+	0xDDD,
+	0x666,
+
+	0xB9F,
+	0xEEF,
+	0x99F,
+	0x66D,
+	
+	0x44D,
+	0x229,
+	0x22B,
+	0x22D,
 };
 
 const char ButtonStageMax[] = {
@@ -227,8 +211,21 @@ unsigned CharBoxPalette[] = {
 	 0x66D,
 	 0x44D,
 	 0x229,
+
 	 0x22B,
-	 0x22D
+	 0x22D,
+	 0x000,
+	 0x000,
+
+	 0x000,
+	 0x000,
+	 0x000,
+	 0x000,
+
+	 0x000,
+	 0x000,
+	 0x000,
+	 0x000,
 };
 
 unsigned TextPal[] = {
@@ -289,15 +286,16 @@ unsigned CrispyPal[] = {
 	0x112,
 	0x222,
 	0xFFF,
-	0x70B,
-	0xA0F,
+	0x90F,
 	0x224,
 	0x610,
 	0x339,
 	0x400,
-	0xDD9,
-	0x0BF,
+	0xDD9,//Skin shading
 	0xDDD,
+	0x08C,
+	0x0AF,//Main shirt colour
+	0xCCC,
 	0xAAA,
 };
 
@@ -431,15 +429,69 @@ void SetUpSprites() {
 	unsigned int R = 0;
 	unsigned int S = 0;
 
+	char bar1Range = 8;
+	char bar2Range = 12;
+	char bar3Range = 24;
+	char BoxSize = 16;
+
 	vera.addr = BGMapAddr;
 	//Make BG
 	S = 0;
-	for (unsigned i = 0; i < 60; i++)
+	for (unsigned i = 0; i < 64; i++)
 	{
 		for (unsigned j = 0; j < 128; j++) {
-
+			
 			R = rand() % 49;
-			if (i < 54 && i >= 44)
+			if (i >= 1 && i <= BoxSize && j >= 1 && j <= BoxSize || i >= 1 && i <= BoxSize && j >= 78 - BoxSize && j <= 78)
+			{
+				if (i == 1 && j == 1 || i == 1 && j == 78 - BoxSize)
+				{
+					//TLCorner
+					vera.data0 = 15;
+				}
+				else if (i == 1 && j < BoxSize || i == 1 && j > 78 - BoxSize && j < 78)
+				{
+					//T Bar
+					vera.data0 = 16;
+				}
+				else if (i == 1 && j == BoxSize || i == 1 && j == 78)
+				{
+					//TRCorner
+					vera.data0 = 17;
+				}
+				else if (i == BoxSize && j == 1 || i == BoxSize && j == 78 - BoxSize)
+				{
+					//BLCorner
+					vera.data0 = 20;
+				}
+				else if (i == BoxSize && j < BoxSize || i == BoxSize && j > 78 - BoxSize && j < 78)
+				{
+					//B Bar
+					vera.data0 = 21;
+				}
+				else if (i == BoxSize && j == BoxSize || i == BoxSize && j == 78)
+				{
+					//BRCorner
+					vera.data0 = 22;
+				}
+				else if (j == 1 && i < BoxSize || j == 78 - BoxSize)
+				{
+					//LS BAR
+					vera.data0 = 18;
+				}
+				else if (j == BoxSize && i < BoxSize || j == 78 && i < BoxSize && i > 1)
+				{
+					//LS BAR
+					vera.data0 = 23;
+				}
+				else 
+				{
+					//Blank
+					vera.data0 = 19;
+				}
+			}
+			//Bottom UI 
+			else if (i < 54 && i >= 44)
 			{
 				if (i == 44 || i == 52)
 				{
@@ -458,17 +510,19 @@ void SetUpSprites() {
 			{
 				vera.data0 = 9;
 			}
+			//Main Star BG
 			else
 			{
 				if (R <= 44)
 				{
-					if (j < 9 || j > 69) {
+					//Blank tiles
+					if (j < bar1Range || j > 80 - bar1Range) {
 						vera.data0 = 0;
 					}
-					else if (j < 19 || j > 59) {
+					else if (j < bar2Range || j > 80 - bar2Range) {
 						vera.data0 = 1;
 					}
-					else if (j < 29 || j > 49) {
+					else if (j < bar3Range || j > 80 - bar3Range) {
 						vera.data0 = 2;
 					}
 					else { 
@@ -477,13 +531,14 @@ void SetUpSprites() {
 				}
 				else if (R >= 45 && R <= 47)
 				{
-					if (j < 9 || j > 69) {
+					//Starry tiles
+					if (j < bar1Range || j > 80 - bar1Range) {
 						vera.data0 = 5;
 					}
-					else if (j < 19 || j > 59) {
+					else if (j < bar2Range || j > 80 - bar2Range) {
 						vera.data0 = 6;
 					}
-					else if (j < 29 || j > 49) {
+					else if (j < bar3Range || j > 80 - bar3Range) {
 						vera.data0 = 7;
 					}
 					else {
@@ -492,13 +547,14 @@ void SetUpSprites() {
 				}
 				else
 				{
-					if (j < 9 || j > 69) {
+					//Big stars
+					if (j < bar1Range || j > 80 - bar1Range) {
 						vera.data0 = 12;
 					}
-					else if (j < 19 || j > 59) {
+					else if (j < bar2Range || j > 80 - bar2Range) {
 						vera.data0 = 13;
 					}
-					else if (j < 29 || j > 49) {
+					else if (j < bar3Range || j > 7802 - bar3Range) {
 						vera.data0 = 14;
 					}
 					else {
@@ -510,6 +566,7 @@ void SetUpSprites() {
 			vera.data0 = 0;
 		}
 	}
+	
 	//Vera + YM graphics
 	vram_putn(VERAAddr, VERASprite, sizeof(VERASprite));
 	vram_putn(YMAddr, YMSprite, sizeof(YMSprite));
@@ -591,43 +648,9 @@ void SetUpSprites() {
 		vera_spr_move(57 + i, 320-32, i * 64 - 96);
 	}
 
-	//Tl Box
-	vram_putn(CharBoxAddr, CharBox, sizeof(CharBox));
-	vera_spr_set(71, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(71,8,8);
-
-	vera_spr_set(72, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(72, 64+8, 8);
-	vera_spr_flip(72, true, false);
-
-	vera_spr_set(73, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(73, 64+8, 64+8);
-	vera_spr_flip(73, true, true);
-
-	vera_spr_set(74, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(74, 8, 64+8);
-	vera_spr_flip(74, false, true);
-
-	//Tr Box
-	vram_putn(CharBoxAddr, CharBox, sizeof(CharBox));
-	vera_spr_set(75, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(75, 640- 128 - 8, 8);
-
-	vera_spr_set(76, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(76, 640 - 64-8, 8);
-	vera_spr_flip(76, true, false);
-
-	vera_spr_set(77, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(77, 640 - 64 - 8, 64+8);
-	vera_spr_flip(77, true, true);
-
-	vera_spr_set(78, CharBoxAddr >> 5, false, 3, 3, 7, 6);
-	vera_spr_move(78, 640 - 128 - 8, 64+8);
-	vera_spr_flip(78, false, true);
-
 	vram_putn(HeadAddr, WavyHead, sizeof(WavyHead));
 	vram_putn(WavyAddr, WavySprite, sizeof(WavySprite));
-	char DragonSize = 32;
+	char DragonSize = 24;
 	for (char i = 0; i < DragonSize; i++)
 	{
 		vera_spr_set(79+i, WavyAddr >> 5, false, 1, 1, 2, 8);
@@ -640,25 +663,35 @@ void SetUpSprites() {
 	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
 	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
 	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
+	vera_pal_putn(0, BGPal, sizeof(BGPal));
 	vera_pal_putn(96, CharBoxPalette, sizeof(ButtonStageMin));
 	vera_pal_putn(112, WavyPal, sizeof(WavyPal));
 	vera_pal_putn(128, TextPal, sizeof(TextPal));
 	vera_pal_putn(144, YMPal, sizeof(YMPal));
 	vera_pal_putn(160, VERAPal, sizeof(VERAPal));
-	vera_pal_putn(172, CrispyPal, sizeof(CrispyPal));
+	vera_pal_putn(176, CrispyPal, sizeof(CrispyPal));
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 
-	LoadSprite("@0:/sprites/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 8192);
+	LoadSprite("@0:/sprites/bin/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 8192);
 
 	vera_spr_set(3, CrispyAddr >> 5, false, 3, 3, 7, 11);
 	vera_spr_move(3, 8,8);
 	vera_spr_set(4, (CrispyAddr+2048) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
 	vera_spr_move(4, 72, 8);
 	vera_spr_set(5, (CrispyAddr + 4096) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
-	vera_spr_move(5, 72, 72);
+	vera_spr_move(5, 8, 72);
 	vera_spr_set(6, (CrispyAddr + 6144) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
-	vera_spr_move(6, 8, 72);
+	vera_spr_move(6, 72, 72);
+
+	vera_spr_set(7, CrispyAddr >> 5, false, 3, 3, 7, 11);
+	vera_spr_move(7, 640 - 136, 8);
+	vera_spr_set(8, (CrispyAddr + 2048) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
+	vera_spr_move(8, 640 -  72, 8);
+	vera_spr_set(9, (CrispyAddr + 4096) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
+	vera_spr_move(9, 640 - 136, 72);
+	vera_spr_set(10, (CrispyAddr + 6144) >> 5, false, 3, 3, VSPRPRI_FRONT, 11);
+	vera_spr_move(10, 640 - 72, 72);
 
 	vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
 }
@@ -680,20 +713,20 @@ void MoveSprites(int p, int p2, int p3) {
 	vera_spr_move(1, 640-144, 438 + (sintab[p3] >> 4));
 
 	//Moves boxes
-	for (char i = 0; i < 32; i++)
+	for (char i = 0; i < 24; i++)
 	{
-		if (i == 31)
+		if (i == 23)
 		{
 			vera_spr_move(
 				79 + i, (sintab[FrameCount + i * 12 % 256]) + FrameCount + i * 4 % 640,
-				120 + (sintab[FrameCount - 64 + i * 5 % 256]) + (sintab[FrameCount - 32 + (i * 8) % 256] >> 4) + i * 3);
+				188 + (sintab[FrameCount - 64 + i * 5 % 256] >> 1) + (sintab[FrameCount - 32 + (i * 8) % 256] >> 4) + i * 3);
 		}
 		else
 		{
 			vera_spr_move(
 				79 + i, (sintab[FrameCount + i * 12 % 256]) +
 				FrameCount + (i * 4) % 640,
-				128 + (sintab[FrameCount - 64 + i * 5 % 256]) + (sintab[FrameCount-32 + (i * 8) % 256] >> 4) + i * 3);
+				196 + (sintab[FrameCount - 64 + i * 5 % 256] >> 1) + (sintab[FrameCount-32 + (i * 8) % 256] >> 4) + i * 3);
 		}
 	}
 }
@@ -770,8 +803,6 @@ int main() {
 	vera.addrh = VERA_TEXT_MODE >> 16;
 
 	vera.addrh |= 0b100000;
-
-	SetPaletteColours(BGPal, sizeof(BGPal), 0x1FA00UL);
 
 	char Input = 0;
 	while (Running)
