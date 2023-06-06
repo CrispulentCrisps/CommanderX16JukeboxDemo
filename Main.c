@@ -19,9 +19,6 @@
 const char MainBG[] = {
 	#embed 800 2 "sprites/bin/MAINBG.BIN"
 };
-const char ScrollerOutline[] = {
-	#embed 1024 2 "sprites/bin/SCROLLEROUTLINE.BIN"
-};
 const char Pause[] = {
 	#embed 256 2 "sprites/bin/PAUSE.BIN"
 };
@@ -67,9 +64,6 @@ const char VERASprite[] = {
 };
 const char YMSprite[] = {
 	#embed 512 2 "sprites/bin/YM-2151.BIN"
-};
-const char Font[] = {
-	#embed 1920 2 "sprites/bin/16X16-F6.BIN"
 };
 
 unsigned palette[] = {
@@ -128,43 +122,23 @@ unsigned BGPal[] = {
 	0x22D,
 };
 
-const char ButtonStageMax[] = {
-	0xC2, 0x02, 0x82, 0x02,
-	0x62, 0x02, 0x50, 0x00,
-	0x00, 0x00, 0x00, 0x00,//Stars at this
-	0x00, 0x00, 0x00, 0x00,
-
-
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00
-};
-
-const char ButtonStageMed[] = {
-	0x82, 0x02, 0x62, 0x02,
-	0x43, 0x03, 0x33, 0x03,
-	0x00, 0x00, 0x00, 0x00,//Stars at this
-	0x00, 0x00, 0x00, 0x00,
-
-
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00
-};
-
-const char ButtonStageMin[] = {
-	0x53, 0x03, 0x53, 0x03,
-	0x44, 0x04, 0x33, 0x03,
-	0x00, 0x00, 0x00, 0x00,//Stars at this
-	0x00, 0x00, 0x00, 0x00,
-
-
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00
+unsigned ButtonStageMax[] = {
+	0x4F4,
+	0x4E4,
+	0x4D4,
+	0x4C4,
+	0x3B3,
+	0x3A3,
+	0x393,
+	0x383,
+	0x272,
+	0x262,
+	0x252,
+	0x141,
+	0x131,
+	0x121,
+	0x010,
+	0x000,
 };
 
 unsigned TowerPalF1[] = {
@@ -299,6 +273,80 @@ unsigned CrispyPal[] = {
 	0xAAA,
 };
 
+unsigned FldePal[] = {
+	0x000,
+	0x000,
+	0xDDD,
+	0xFFF,
+	0x23E,
+	0x0CF,
+	0x0AD,
+	0x45F,
+	0x227,
+	0x000,
+	0x000,
+	0x000,
+	0x000,
+	0x000,
+	0x000,
+	0x000,
+};
+
+unsigned KolePal[] = {
+	0x000,
+	0x279,
+	0x000,
+	0xA40,
+	0x730,
+	0xFFF,
+	0xF00,
+	0x06C,
+	0x0BF,
+	0x999,
+	0xCCC,
+	0x60F,
+	0x7BE,
+	0x208,
+	0x333,
+	0x000,
+};
+
+unsigned CoderPal[] = {
+	0x000,
+	0x000,
+	0xFFF,
+	0xDDD,
+	0x2B2,
+	0x4D4,
+	0x5E5,
+	0x0FB,
+	0x0BF,
+	0xC10,
+	0xF22,
+	0x11B,
+	0x000,
+	0x000,
+};
+
+unsigned RealPal[] = {
+	0x000,
+	0x000,
+	0x420,
+	0x446,
+	0x669,
+	0x940,
+	0x0FF,
+	0x444,
+	0xBBB,
+	0xDDD,
+	0xC75,
+	0xEA7,
+	0xFFF,
+	0xDDF,
+	0x333,
+	0x999,
+};
+
 const char TestText2[] =	s" - - = = credits: code: blumba, mark-bugslayer, crisps. musicians: abstract64, aleksi winston, fade, kole-o-black, mega-sparky, the-real-hedgehog-sonic"
 							s". crisps here, this was the first time working on any 8 bit machine. thanks to the coders listed i managed to finish this with the oscar64 compiler. most folk  told me to use cc65 however i was interested in having the program actually compile than give me cryptic errors and permission issues (despite the fact i own the computer) >:[. "
 							s"either way, this is existing and i do wanna thank everyone who's helped out with this.without a group of musicians (and especially coders) this wouldn't exist in any capacity. in terms of why, well, i wanted be in a music disc / demo and since i couldn't find a coder who'd do it for me i just said \" f u c k  i t  i'll do it myself.\" and since you're reading this it was a success."
@@ -364,12 +412,11 @@ char MaxSong = 4;
 char LastSelectedSong = 255;
 char SelectedSong = 0;
 unsigned long VolAddr = 0;
-
+unsigned long IndAddr = 0;
 void SetUpSprites() {
 
 	const unsigned long PauseAddr = VERA_SPRITES;
-	const unsigned long ScrollerOutlineAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
-	const unsigned long VolumeIndAddr = ScrollerOutlineAddr + ((sizeof(ScrollerOutline) + 31) & ~31);
+	const unsigned long VolumeIndAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long ArrowAddr = VolumeIndAddr + ((sizeof(VolumeInd) + 31) & ~31);
 	const unsigned long TowerBaseAddr = ArrowAddr + ((sizeof(Arrow) + 31) & ~31);
 	const unsigned long MainEyeBackAddr = TowerBaseAddr + ((sizeof(TowerBase) + 31) & ~31);
@@ -387,8 +434,8 @@ void SetUpSprites() {
 	const unsigned short BGMapAddr = 0x2000;
 	const unsigned short TextAddr = 0x1B000;
 
-	VolAddr = VolumeIndAddr;
-
+	VolAddr = CrispyAddr;
+	IndAddr = 0x13100;
 	//Set up Background
 	vera.ctrl = 0; // &= ~VERA_CTRL_DCSEL;
 	//vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
@@ -598,12 +645,12 @@ void SetUpSprites() {
 	}
 	for (unsigned i = 0; i < 8; i++)
 	{
-		vera_spr_set(33 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 3);
+		vera_spr_set(33 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 2);
 		vera_spr_move(33 + i, 4 + i * 12 - 1024, 452);
 	}
 	for (unsigned i = 0; i < 8; i++)
 	{
-		vera_spr_set(41 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 4);
+		vera_spr_set(41 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 2);
 		vera_spr_move(41 + i, 620 - i * 12 - 1024, 440);
 	}
 
@@ -611,7 +658,7 @@ void SetUpSprites() {
 	{	
 		for (unsigned j = 0; j < 2; j++)
 		{
-			vera_spr_set(49 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 4);
+			vera_spr_set(49 + i, VolumeIndAddr >> 5, false, 0, 0, 3, 2);
 			vera_spr_move(49 + i, 620 - i * 12, 440);
 		}
 	}
@@ -660,20 +707,18 @@ void SetUpSprites() {
 		}
 	}
 	
-	SetPaletteColours(ButtonStageMax, sizeof(ButtonStageMax), 0x1FA40UL);
-	SetPaletteColours(ButtonStageMed, sizeof(ButtonStageMed), 0x1FA60UL);
-	SetPaletteColours(ButtonStageMin, sizeof(ButtonStageMin), 0x1FA80UL);
 	vera_pal_putn(0, BGPal, sizeof(BGPal));
-	vera_pal_putn(96, CharBoxPalette, sizeof(ButtonStageMin));
+	vera_pal_putn(32, ButtonStageMax, sizeof(ButtonStageMax));
+	vera_pal_putn(96, CharBoxPalette, sizeof(CharBoxPalette));
 	vera_pal_putn(112, WavyPal, sizeof(WavyPal));
 	vera_pal_putn(128, TextPal, sizeof(TextPal));
 	vera_pal_putn(144, YMPal, sizeof(YMPal));
 	vera_pal_putn(160, VERAPal, sizeof(VERAPal));
-	vera_pal_putn(176, CrispyPal, sizeof(CrispyPal));
+	vera_pal_putn(176, CoderPal, sizeof(CoderPal));
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 
-	LoadSprite("@0:/sprites/bin/CRISPY.BIN,P,R",3,8,3, CrispyAddr, 8192);
+	LoadSprite("@0:/sprites/bin/CODERS.BIN,P,R",3,8,3, CrispyAddr, 8192);
 
 	vera_spr_set(3, CrispyAddr >> 5, false, 3, 3, 7, 11);
 	vera_spr_move(3, 8,8);
@@ -737,17 +782,29 @@ void PlayZSM(int TuneSelection, int LastSong) {
 	{
 		switch (TuneSelection)
 		{
+		case 0:
+			LoadSprite("@0:/sprites/bin/CODERS.BIN,P,R", 3, 8, 3, VolAddr, 8192);
+			vera_pal_putn(176, CoderPal, sizeof(CoderPal));
+			break;
 		case 1:
 			zsm_init("@0:zsmfiles/paperclip.zsm,P,R");
+			LoadSprite("@0:/sprites/bin/KOLE.BIN,P,R", 3, 8, 3, VolAddr, 8192);
+			vera_pal_putn(176, KolePal, sizeof(KolePal));
 			break;
 		case 2:
 			zsm_init("@0:zsmfiles/CrystalDimension.zsm,P,R");
+			LoadSprite("@0:/sprites/bin/REALHEDGEHOGSONIC.BIN,P,R", 3, 8, 3, VolAddr, 8192);
+			vera_pal_putn(176, RealPal, sizeof(RealPal));
 			break;
 		case 3:
 			zsm_init("@0:zsmfiles/CrystalDimensionP2.zsm,P,R");
+			LoadSprite("@0:/sprites/bin/REALHEDGEHOGSONIC.BIN,P,R", 3, 8, 3, VolAddr, 8192);
+			vera_pal_putn(176, RealPal, sizeof(RealPal));
 			break;
 		case 4:
 			zsm_init("@0:zsmfiles/gsfinal.zsm,P,R");
+			LoadSprite("@0:/sprites/bin/FLDE.BIN,P,R", 3, 8, 3, VolAddr, 8192);
+			vera_pal_putn(176, FldePal, sizeof(FldePal));
 			break;
 		}
 	}
@@ -770,11 +827,14 @@ void UpdateVolume() {
 	char FMVolume = 0;
 	for (char i = 0; i < 16; i++)
 	{
-		zsm_get_volumes(VeraVolume, FMVolume, i);
+		zsm_get_volumes(&VeraVolume, &FMVolume, i);
+		vera_spr_image(25 + i, (IndAddr)+VeraVolume>>5+40);
 	}
+	//FM Volume
 	for (char i = 0; i < 8; i++)
 	{
-		zsm_get_volumes(VeraVolume, FMVolume, i);
+		zsm_get_volumes(&VeraVolume, &FMVolume, i);
+		vera_spr_image(41 + i, (IndAddr)+FMVolume>>5 + 40);
 	}
 }
 
@@ -829,7 +889,6 @@ int main() {
 		{
 			//vera_spr_set(22, FrameAddr2 >> 5, false, 1, 2, 3, 1);
 			PalTimer = 0;
-			SetPaletteColours(TowerPalFBlank, sizeof(TowerPalFBlank), 0x1FAA0UL);
 		}
 
 		if (PalTime2 > 2)
@@ -857,7 +916,7 @@ int main() {
 			ScrollerCount = 0;
 			vera.l1hscroll = -640;
 		}
-		else if (Input == KEY_A && SelectedSong > 1)
+		else if (Input == KEY_A && SelectedSong > 0)
 		{
 			ResetChars();
 			SelectedSong--;
@@ -870,7 +929,7 @@ int main() {
 
 		vera.l1hscroll = ScrollerCount - 640;
 
-		//UpdateVolume();
+		UpdateVolume();
 
 		if (FrameCount % 8 == 1)	
 		{

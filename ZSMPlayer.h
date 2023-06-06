@@ -25,7 +25,7 @@ void zsm_irq_play(bool play);
 
 void zsm_pause(bool pause);
 
-void zsm_get_volumes(char vera_v, char fm_v, int id);
+void zsm_get_volumes(char* vera_v, char* fm_v, int id);
 
 #pragma compile("ZSMPlayer.c");
 

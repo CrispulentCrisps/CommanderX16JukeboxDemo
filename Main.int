@@ -1,6 +1,6 @@
 --------------------------------------------------------------------
-main: C:/Users/david/Documents/Games/CoolDemo/Main.c:781
-$00 R0(C), $0b R1(I), $0d R2(I), $0e R3(B), $0f R4(I), $10 R5(I), $00 R6(I), $02 R7(B), $03 R8(L), $07 R9(B), 
+main: C:/Users/david/Documents/Games/CoolDemo/Main.c:841
+$00 R0(C), $09 R1(I), $0b R2(I), $0c R3(B), $0d R4(I), $0e R5(I), $00 R6(I), $02 R7(B), $03 R8(L), $07 R9(B), 
 L0: <= D-1: (1)  P-1
 0000		CALLN		<-	V1+0	{}
 0001		CALLN		<-	V5+0	{}
@@ -30,38 +30,38 @@ L0: <= D-1: (1)  P-1
 0019		JUMP		<-		{}
 		==> 3
 L3: <= D-1: (2) Head P115
-0000		CALLN	R5(I)	<-	V26+0	{}
+0000		CALLN	R5(I)	<-	V23+0	{}
 0001		STOREA1		<-	V-1+40748, CC:48	{V}
-0002		LOADG2	R6(I)[-32768..65534]	<-	V71+0	{}
+0002		LOADG2	R6(I)[-32768..65534]	<-	V68+0	{}
 0003		BINOP1	R6(I)[-32767..65535]	<-	R6(IF)[-32768..65534], CI:1	{}
-0004		STOREG2		<-	V71+0, R6(IF)[-32767..65535]	{}
-0005		LOADG2	R6(I)[-32768..65534]	<-	V72+0	{}
+0004		STOREG2		<-	V68+0, R6(IF)[-32767..65535]	{}
+0005		LOADG2	R6(I)[-32768..65534]	<-	V69+0	{}
 0006		BINOP1	R6(I)[-32767..65535]	<-	R6(IF)[-32768..65534], CI:1	{}
-0007		STOREG2		<-	V72+0, R6(I)[-32767..65535]	{}
+0007		STOREG2		<-	V69+0, R6(I)[-32767..65535]	{}
 0008		STOREZ2		<-	V5+0, R6(IF)[-32767..65535]	{}
-0009		LOADG2	R6(I)[-32768..65534]	<-	V73+0	{}
+0009		LOADG2	R6(I)[-32768..65534]	<-	V70+0	{}
 000a		BINOP1	R6(I)[-32767..65535]	<-	R6(IF)[-32768..65534], CI:1	{}
-000b		STOREG2		<-	V73+0, R6(I)[-32767..65535]	{}
+000b		STOREG2		<-	V70+0, R6(I)[-32767..65535]	{}
 000c		STOREZ2		<-	V7+0, R6(IF)[-32767..65535]	{}
-000d		LOADG2	R6(I)[-32768..65534]	<-	V74+0	{}
+000d		LOADG2	R6(I)[-32768..65534]	<-	V71+0	{}
 000e		BINOP1	R6(I)[-32767..65535]	<-	R6(IF)[-32768..65534], CI:1	{}
-000f		STOREG2		<-	V74+0, R6(I)[-32767..65535]	{}
+000f		STOREG2		<-	V71+0, R6(I)[-32767..65535]	{}
 0010		STOREZ2		<-	V9+0, R6(IF)[-32767..65535]	{}
-0011		CALLN		<-	V27+0	{}
+0011		CALLN		<-	V24+0	{}
 0012		RELOP19	R7(B)	<-	R3(C), CC:1	{}
 0013		BRANCH		<-	R7(BF)	{}
 		==> 5
 		==> 6
 L5: <= D-1: (1)  P-1
-0000		STOREZ2		<-	V5+0, R2(I)[0..255]	{}
-0001		LOADG1	R7(C)[-128..255]	<-	V87+0	{}
+0000		STOREG2		<-	V14+2, R2(I)[0..255]	{}
+0001		LOADG1	R7(C)[-128..255]	<-	V92+0	{}
 0002		CONV33	R6(I)[0..255]	<-	R7(CF)[-128..255]	{}
-0003		STOREZ2		<-	V7+0, R6(IF)[0..255]	{}
-0004		CALLN		<-	V28+0	{}
-0005		STOREG1		<-	V87+0, R2(C)[0..255]	{}
-0006		LOADG2	R6(I)[-32768..65534]	<-	V88+0	{}
+0003		STOREG2		<-	V16+4, R6(IF)[0..255]	{}
+0004		CALLN		<-	V25+0	{}
+0005		STOREG1		<-	V92+0, R2(C)[0..255]	{}
+0006		LOADG2	R6(I)[-32768..65534]	<-	V93+0	{}
 0007		BINOP1	R6(I)[-32767..65535]	<-	R6(IF)[-32768..65534], CI:1	{}
-0008		STOREG2		<-	V88+0, R6(IF)[-32767..65535]	{}
+0008		STOREG2		<-	V93+0, R6(IF)[-32767..65535]	{}
 0009		JUMP		<-		{}
 		==> 69
 L69: <= D-1: (2)  P-1
@@ -74,14 +74,14 @@ L8: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V7+0, CL:16	{}
 0001		STOREG2		<-	V12+0, CI:6	{}
 0002		STOREG2		<-	V14+2, CI:10	{}
-0003		CONST	R4(P)	<-	CG32(39:0)	{S}
+0003		CONST	R4(P)	<-	CG32(40:0)	{S}
 0004		STOREZ2		<-	V5+0, R4(PF)	{}
-0005		CALLN		<-	V34+0	{}
+0005		CALLN		<-	V32+0	{}
 0006		CONST	R4(I)[0..0]	<-	CI:0	{}
 0007		JUMP		<-		{}
 		==> 70
 L70: <= D-1: (2)  P-1
-0000		LOADG2	R6(I)[-32768..65535]	<-	V88+0	{}
+0000		LOADG2	R6(I)[-32768..65535]	<-	V93+0	{}
 0001		RELOP23	R7(B)	<-	R6(IF)[-32768..65535], CI:3	{}
 0002		BRANCH		<-	R7(BF)	{}
 		==> 11
@@ -90,19 +90,19 @@ L11: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V7+0, CL:96	{}
 0001		STOREG2		<-	V12+0, CI:0	{}
 0002		STOREG2		<-	V14+2, CI:5	{}
-0003		LOADG2	R6(I)[-32768..65534]	<-	V90+0	{}
+0003		LOADG2	R6(I)[-32768..65534]	<-	V94+0	{}
 0004		BINOP1	R6(I)[-32767..65535]	<-	R6(IF)[-32768..65534], CI:1	{}
-0005		STOREG2		<-	V90+0, R6(IF)[-32767..65535]	{}
-0006		CONST	R6(P)	<-	CG32(50:0)	{S}
+0005		STOREG2		<-	V94+0, R6(IF)[-32767..65535]	{}
+0006		CONST	R6(P)	<-	CG32(49:0)	{S}
 0007		STOREZ2		<-	V5+0, R6(PF)	{}
-0008		CALLN		<-	V34+0	{}
+0008		CALLN		<-	V32+0	{}
 0009		STOREZ4		<-	V7+0, CL:80	{}
 000a		STOREG2		<-	V12+0, CI:0	{}
 000b		STOREG2		<-	V14+2, CI:16	{}
-000c		CONST	R6(P)	<-	CG32(91:0)	{S}
+000c		CONST	R6(P)	<-	CG32(95:0)	{S}
 000d		STOREZ2		<-	V5+0, R6(PF)	{}
-000e		CALLN		<-	V34+0	{}
-000f		STOREG2		<-	V88+0, CI:0	{}
+000e		CALLN		<-	V32+0	{}
+000f		STOREG2		<-	V93+0, CI:0	{}
 0010		JUMP		<-		{}
 		==> 13
 L13: <= D-1: (2)  P-1
@@ -112,7 +112,7 @@ L13: <= D-1: (2)  P-1
 		==> 17
 		==> 15
 L17: <= D-1: (1)  P-1
-0000		LOADG1	R7(C)[-128..255]	<-	V92+0	{}
+0000		LOADG1	R7(C)[-128..255]	<-	V96+0	{}
 0001		CONV33	R6(I)[0..255]	<-	R7(CF)[-128..255]	{}
 0002		RELOP28	R7(B)	<-	R2(I)[0..255], R6(IF)[0..255]	{}
 0003		BRANCH		<-	R7(BF)	{}
@@ -123,8 +123,8 @@ L14: <= D-1: (1)  P-1
 0001		JUMP		<-		{}
 		==> 83
 L83: <= D-1: (2)  P-1
-0000		CALLN		<-	V35+0	{}
-0001		STOREG2		<-	V94+0, CI:0	{}
+0000		CALLN		<-	V33+0	{}
+0001		STOREG2		<-	V98+0, CI:0	{}
 0002		STOREA2		<-	V-1+40759, CI:-640	{V}
 0003		CONST	R1(I)[0..0]	<-	CI:0	{}
 0004		JUMP		<-		{}
@@ -132,17 +132,18 @@ L83: <= D-1: (2)  P-1
 L16: <= D-1: (3)  P-1
 0000		STOREZ1		<-	V3+0, R3(BF)	{}
 0001		STOREZ1		<-	V4+0, R5(CF)	{}
-0002		CALLN	R3(B)	<-	V36+0	{}
+0002		CALLN	R3(B)	<-	V34+0	{}
 0003		BINOP2	R5(I)[-640..]	<-	R1(I)[0..], CI:640	{}
 0004		STOREA2		<-	V-1+40759, R5(IF)[-640..]	{V}
-0005		LOADG2	R5(I)[-32768..65535]	<-	V76+0	{}
-0006		BINOP7	R5(I)	<-	R5(IF)[-32768..65535], CI:8	{}
-0007		RELOP19	R7(B)	<-	R5(IF), CI:1	{}
-0008		BRANCH		<-	R7(BF)	{}
+0005		CALLN		<-	V38+0	{}
+0006		LOADG2	R5(I)[-32768..65535]	<-	V73+0	{}
+0007		BINOP7	R5(I)	<-	R5(IF)[-32768..65535], CI:8	{}
+0008		RELOP19	R7(B)	<-	R5(IF), CI:1	{}
+0009		BRANCH		<-	R7(BF)	{}
 		==> 22
 		==> 24
 L22: <= D-1: (1)  P-1
-0000		LOADG2	R5(I)[-32768..65535]	<-	V94+0	{}
+0000		LOADG2	R5(I)[-32768..65535]	<-	V98+0	{}
 0001		LOADA1	R7(C)[-128..255]	<-	V-1+40741	{V}
 0002		BINOP9	R7(C)[-128..255]	<-	R7(CF)[-128..255], CC:-2	{}
 0003		STOREA1		<-	V-1+40741, R7(CF)[-128..255]	{V}
@@ -162,7 +163,7 @@ L22: <= D-1: (1)  P-1
 		==> 52
 L42: <= D-1: (1)  P-1
 0000		BINOP6	R6(I)[0..194]	<-	R5(I)[-32768..65535], CI:195	{}
-0001		LEAG	R6(P)	<-	V99+0, R6(IF)[0..194]	{}
+0001		LEAG	R6(P)	<-	V110+0, R6(IF)[0..194]	{}
 0002		LOADI1	R7(C)[0..61]	<-	R6(PF)+0	{}
 0003		JUMP		<-		{}
 		==> 75
@@ -183,20 +184,20 @@ L26: <= D-1: (5)  P-1
 0001		STOREG2		<-	V12+0, CI:0	{}
 0002		STOREG2		<-	V14+2, CI:16	{}
 0003		BINOP1	R5(I)[-32767..65535]	<-	R5(IF)[-32768..65534], CI:1	{}
-0004		STOREG2		<-	V94+0, R5(IF)[-32767..65535]	{}
-0005		CONST	R5(P)	<-	CG32(52:0)	{S}
+0004		STOREG2		<-	V98+0, R5(IF)[-32767..65535]	{}
+0005		CONST	R5(P)	<-	CG32(51:0)	{S}
 0006		STOREZ2		<-	V5+0, R5(PF)	{}
-0007		CALLN		<-	V34+0	{}
+0007		CALLN		<-	V32+0	{}
 0008		JUMP		<-		{}
 		==> 24
 L24: <= D-1: (2)  P-1
 0000		STOREA1		<-	V-1+40748, CC:1	{V}
-0001		CALLN		<-	V33+0	{}
+0001		CALLN		<-	V30+0	{}
 0002		STOREA1		<-	V-1+40748, CC:0	{V}
-0003		CALLN		<-	V40+0	{E}
-0004		LOADG2	R5(I)[-32768..65534]	<-	V76+0	{}
+0003		CALLN		<-	V41+0	{E}
+0004		LOADG2	R5(I)[-32768..65534]	<-	V73+0	{}
 0005		BINOP1	R5(I)[-32767..65535]	<-	R5(IF)[-32768..65534], CI:1	{}
-0006		STOREG2		<-	V76+0, R5(IF)[-32767..65535]	{}
+0006		STOREG2		<-	V73+0, R5(IF)[-32767..65535]	{}
 0007		BINOP1	R1(I)[1..]	<-	R1(IF)[0..], CI:1	{}
 0008		BRANCH		<-	R0(B)[~1..~1]	{}
 		==> 3
@@ -215,7 +216,7 @@ L54: <= D-1: (1)  P-1
 		==> 55
 L27: <= D-1: (1)  P-1
 0000		BINOP6	R6(I)[0..1564]	<-	R5(I)[-32768..65535], CI:1565	{}
-0001		LEAG	R6(P)	<-	V96+0, R6(IF)[0..1564]	{}
+0001		LEAG	R6(P)	<-	V107+0, R6(IF)[0..1564]	{}
 0002		LOADI1	R7(C)[0..78]	<-	R6(PF)+0	{}
 0003		JUMP		<-		{}
 		==> 75
@@ -226,7 +227,7 @@ L55: <= D-1: (1)  P-1
 		==> 56
 L32: <= D-1: (1)  P-1
 0000		BINOP6	R6(I)[0..1883]	<-	R5(I)[-32768..65535], CI:1884	{}
-0001		LEAG	R6(P)	<-	V97+0, R6(IF)[0..1883]	{}
+0001		LEAG	R6(P)	<-	V108+0, R6(IF)[0..1883]	{}
 0002		LOADI1	R7(C)[0..63]	<-	R6(PF)+0	{}
 0003		JUMP		<-		{}
 		==> 75
@@ -237,7 +238,7 @@ L56: <= D-1: (1)  P-1
 		==> 26
 L37: <= D-1: (1)  P-1
 0000		BINOP6	R6(I)[0..196]	<-	R5(I)[-32768..65535], CI:197	{}
-0001		LEAG	R6(P)	<-	V98+0, R6(IF)[0..196]	{}
+0001		LEAG	R6(P)	<-	V109+0, R6(IF)[0..196]	{}
 0002		LOADI1	R7(C)[0..61]	<-	R6(PF)+0	{}
 0003		JUMP		<-		{}
 		==> 75
@@ -248,7 +249,7 @@ L53: <= D-1: (1)  P-1
 		==> 26
 L47: <= D-1: (1)  P-1
 0000		BINOP6	R6(I)[0..189]	<-	R5(I)[-32768..65535], CI:195	{}
-0001		LEAG	R6(P)	<-	V100+0, R6(IF)[0..189]	{}
+0001		LEAG	R6(P)	<-	V111+0, R6(IF)[0..189]	{}
 0002		LOADI1	R7(C)[0..61]	<-	R6(PF)+0	{}
 0003		RELOP20	R7(B)	<-	R7(CF)[0..61], CC:0	{}
 0004		BRANCH		<-	R7(BF)	{}
@@ -256,7 +257,7 @@ L47: <= D-1: (1)  P-1
 		==> 26
 L48: <= D-1: (1)  P-1
 0000		BINOP6	R6(I)[0..188]	<-	R5(I)[-32768..65535], CI:189	{}
-0001		LEAG	R6(P)	<-	V100+0, R6(IF)[0..188]	{}
+0001		LEAG	R6(P)	<-	V111+0, R6(IF)[0..188]	{}
 0002		LOADI1	R7(C)[0..61]	<-	R6(PF)+0	{}
 0003		JUMP		<-		{}
 		==> 84
@@ -266,22 +267,17 @@ L15: <= D-1: (2)  P-1
 		==> 21
 		==> 16
 L21: <= D-1: (1)  P-1
-0000		RELOP27	R7(B)	<-	R2(I)[0..255], CI:1	{}
+0000		RELOP27	R7(B)	<-	R2(I)[0..255], CI:0	{}
 0001		BRANCH		<-	R7(BF)	{}
 		==> 18
 		==> 16
 L18: <= D-1: (1)  P-1
-0000		BINOP1	R2(I)[1..254]	<-	R2(IF)[2..255], CI:-1	{}
+0000		BINOP1	R2(I)[0..254]	<-	R2(IF)[1..255], CI:-1	{}
 0001		JUMP		<-		{}
 		==> 83
 L6: <= D-1: (1)  P-1
-0000		STOREG2		<-	V88+0, CI:0	{}
-0001		STOREZ1		<-	V10+0, CC:32	{}
-0002		STOREG4		<-	V12+0, CL:129696	{}
-0003		CONST	R6(P)	<-	CG32(89:0)	{S}
-0004		STOREZ2		<-	V8+0, R6(PF)	{}
-0005		CALLN		<-	V16+0	{}
-0006		JUMP		<-		{}
+0000		STOREG2		<-	V93+0, CI:0	{}
+0001		JUMP		<-		{}
 		==> 69
 --------------------------------------------------------------------
 zsm_irq_init: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:22
@@ -507,27 +503,29 @@ L0: <= D-1: (1)  P-1
 0000		JSR		<-	V0+0, V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-SetUpSprites: C:/Users/david/Documents/Games/CoolDemo/Main.c:368
-$06 R0(C), $07 R1(I), $08 R2(I), $00 R3(I), $00 R4(B), $0a R5(I), 
+SetUpSprites: C:/Users/david/Documents/Games/CoolDemo/Main.c:416
+$04 R0(C), $05 R1(I), $06 R2(I), $00 R3(I), $00 R4(B), $08 R5(I), 
 L0: <= D-1: (1)  P-1
-0001		STOREA1		<-	V-1+40741, CC:0	{V}
-0002		STOREA1		<-	V-1+40747, CC:128	{V}
-0003		STOREA1		<-	V-1+40746, CC:128	{V}
-0004		STOREA1		<-	V-1+40749, CC:98	{V}
-0005		STOREA1		<-	V-1+40756, CC:104	{V}
-0006		STOREZ1		<-	V0+0, CC:0	{}
-0007		STOREZ2		<-	V1+0, CI:0	{}
-0008		STOREZ1		<-	V3+0, CC:0	{}
-0009		STOREZ1		<-	V4+0, CC:0	{}
-000a		CALLN	R0(C)	<-	V8+0	{EC}
-000b		STOREA1		<-	V-1+40751, R0(CF)	{V}
-000c		STOREZ1		<-	V0+0, CC:0	{}
-000d		STOREZ2		<-	V1+0, CI:8192	{}
-000e		CALLN	R0(C)	<-	V9+0	{EC}
-000f		STOREA1		<-	V-1+40750, R0(CF)	{V}
-0010		STOREA1		<-	V-1+40738, CC:1	{V}
-0011		CONST	R1(I)[1..128]	<-	CI:128	{}
-0012		JUMP		<-		{}
+0000		STOREG4		<-	V14+0, CL:87872	{}
+0001		STOREG4		<-	V15+0, CL:12544	{}
+0002		STOREA1		<-	V-1+40741, CC:0	{V}
+0003		STOREA1		<-	V-1+40747, CC:128	{V}
+0004		STOREA1		<-	V-1+40746, CC:128	{V}
+0005		STOREA1		<-	V-1+40749, CC:98	{V}
+0006		STOREA1		<-	V-1+40756, CC:104	{V}
+0007		STOREZ1		<-	V0+0, CC:0	{}
+0008		STOREZ2		<-	V1+0, CI:0	{}
+0009		STOREZ1		<-	V3+0, CC:0	{}
+000a		STOREZ1		<-	V4+0, CC:0	{}
+000b		CALLN	R0(C)	<-	V8+0	{EC}
+000c		STOREA1		<-	V-1+40751, R0(CF)	{V}
+000d		STOREZ1		<-	V0+0, CC:0	{}
+000e		STOREZ2		<-	V1+0, CI:8192	{}
+000f		CALLN	R0(C)	<-	V9+0	{EC}
+0010		STOREA1		<-	V-1+40750, R0(CF)	{V}
+0011		STOREA1		<-	V-1+40738, CC:1	{V}
+0012		CONST	R1(I)[1..128]	<-	CI:128	{}
+0013		JUMP		<-		{}
 		==> 2
 L2: <= D-1: (2) Head P379
 0000		CONST	R2(I)[1..80]	<-	CI:80	{}
@@ -550,7 +548,7 @@ L3: <= D-1: (1)  P-1
 L4: <= D-1: (1)  P-1
 0000		STOREZ4		<-	V0+0, CL:0	{}
 0001		STOREZ2		<-	V6+0, CI:800	{}
-0002		CONST	R1(P)	<-	CG800(19:0)	{S}
+0002		CONST	R1(P)	<-	CG800(20:0)	{S}
 0003		STOREZ2		<-	V4+0, R1(PF)	{}
 0004		CALLN		<-	V10+0	{}
 0005		STOREA1		<-	V-1+40738, CC:16	{V}
@@ -792,18 +790,18 @@ L11: <= D-1: (1)  P-1
 		==> 10
 		==> 12
 L12: <= D-1: (1)  P-1
-0000		STOREZ4		<-	V0+0, CL:87744	{}
+0000		STOREZ4		<-	V0+0, CL:86720	{}
 0001		STOREZ2		<-	V6+0, CI:512	{}
-0002		CONST	R1(P)	<-	CG512(21:0)	{S}
+0002		CONST	R1(P)	<-	CG512(22:0)	{S}
 0003		STOREZ2		<-	V4+0, R1(PF)	{}
 0004		CALLN		<-	V10+0	{}
-0005		STOREZ4		<-	V0+0, CL:88320	{}
+0005		STOREZ4		<-	V0+0, CL:87296	{}
 0006		STOREZ2		<-	V6+0, CI:512	{}
-0007		CONST	R1(P)	<-	CG512(22:0)	{S}
+0007		CONST	R1(P)	<-	CG512(23:0)	{S}
 0008		STOREZ2		<-	V4+0, R1(PF)	{}
 0009		CALLN		<-	V10+0	{}
 000a		STOREZ1		<-	V0+0, CC:0	{}
-000b		STOREZ2		<-	V1+0, CI:2742	{}
+000b		STOREZ2		<-	V1+0, CI:2710	{}
 000c		STOREZ1		<-	V3+0, CC:0	{}
 000d		STOREZ1		<-	V4+0, CC:2	{}
 000e		STOREZ1		<-	V5+0, CC:2	{}
@@ -815,7 +813,7 @@ L12: <= D-1: (1)  P-1
 0014		STOREZ2		<-	V3+0, CI:438	{}
 0015		CALLN		<-	V13+0	{}
 0016		STOREZ1		<-	V0+0, CC:1	{}
-0017		STOREZ2		<-	V1+0, CI:2760	{}
+0017		STOREZ2		<-	V1+0, CI:2728	{}
 0018		STOREZ1		<-	V3+0, CC:0	{}
 0019		STOREZ1		<-	V4+0, CC:2	{}
 001a		STOREZ1		<-	V5+0, CC:2	{}
@@ -828,7 +826,7 @@ L12: <= D-1: (1)  P-1
 0021		CALLN		<-	V13+0	{}
 0022		STOREZ4		<-	V0+0, CL:77824	{}
 0023		STOREZ2		<-	V6+0, CI:256	{}
-0024		CONST	R1(P)	<-	CG256(32:0)	{S}
+0024		CONST	R1(P)	<-	CG256(33:0)	{S}
 0025		STOREZ2		<-	V4+0, R1(PF)	{}
 0026		CALLN		<-	V10+0	{}
 0027		STOREZ1		<-	V0+0, CC:22	{}
@@ -843,13 +841,13 @@ L12: <= D-1: (1)  P-1
 0030		STOREZ2		<-	V1+0, CI:304	{}
 0031		STOREZ2		<-	V3+0, CI:440	{}
 0032		CALLN		<-	V13+0	{}
-0033		STOREZ4		<-	V0+0, CL:79616	{}
+0033		STOREZ4		<-	V0+0, CL:78592	{}
 0034		STOREZ2		<-	V6+0, CI:512	{}
-0035		CONST	R1(P)	<-	CG512(33:0)	{S}
+0035		CONST	R1(P)	<-	CG512(34:0)	{S}
 0036		STOREZ2		<-	V4+0, R1(PF)	{}
 0037		CALLN		<-	V10+0	{}
 0038		STOREZ1		<-	V0+0, CC:23	{}
-0039		STOREZ2		<-	V1+0, CI:2488	{}
+0039		STOREZ2		<-	V1+0, CI:2456	{}
 003a		STOREZ1		<-	V3+0, CC:0	{}
 003b		STOREZ1		<-	V4+0, CC:2	{}
 003c		STOREZ1		<-	V5+0, CC:2	{}
@@ -861,7 +859,7 @@ L12: <= D-1: (1)  P-1
 0042		STOREZ2		<-	V3+0, CI:440	{}
 0043		CALLN		<-	V13+0	{}
 0044		STOREZ1		<-	V0+0, CC:24	{}
-0045		STOREZ2		<-	V1+0, CI:2488	{}
+0045		STOREZ2		<-	V1+0, CI:2456	{}
 0046		STOREZ1		<-	V3+0, CC:0	{}
 0047		STOREZ1		<-	V4+0, CC:2	{}
 0048		STOREZ1		<-	V5+0, CC:2	{}
@@ -878,12 +876,12 @@ L12: <= D-1: (1)  P-1
 0053		CALLN		<-	V14+0	{}
 0054		STOREZ1		<-	V0+0, CC:16	{}
 0055		STOREZ2		<-	V3+0, CI:32	{}
-0056		CONST	R1(P)	<-	CG32(39:0)	{S}
+0056		CONST	R1(P)	<-	CG32(40:0)	{S}
 0057		STOREZ2		<-	V1+0, R1(PF)	{}
 0058		CALLN		<-	V15+0	{}
-0059		STOREZ4		<-	V0+0, CL:79104	{}
+0059		STOREZ4		<-	V0+0, CL:78080	{}
 005a		STOREZ2		<-	V6+0, CI:512	{}
-005b		CONST	R1(P)	<-	CG512(40:0)	{S}
+005b		CONST	R1(P)	<-	CG512(41:0)	{S}
 005c		STOREZ2		<-	V4+0, R1(PF)	{}
 005d		CALLN		<-	V10+0	{}
 005e		CONST	R1(I)[0..0]	<-	CI:0	{}
@@ -891,7 +889,7 @@ L12: <= D-1: (1)  P-1
 0060		JUMP		<-		{}
 		==> 136
 L136: <= D-1: (2) Head P375
-0000		STOREZ2		<-	V1+0, CI:2472	{}
+0000		STOREZ2		<-	V1+0, CI:2440	{}
 0001		STOREZ1		<-	V3+0, CC:0	{}
 0002		STOREZ1		<-	V4+0, CC:0	{}
 0003		STOREZ1		<-	V5+0, CC:0	{}
@@ -917,12 +915,12 @@ L138: <= D-1: (1)  P-1
 0002		JUMP		<-		{}
 		==> 140
 L140: <= D-1: (2) Head P374
-0000		STOREZ2		<-	V1+0, CI:2472	{}
+0000		STOREZ2		<-	V1+0, CI:2440	{}
 0001		STOREZ1		<-	V3+0, CC:0	{}
 0002		STOREZ1		<-	V4+0, CC:0	{}
 0003		STOREZ1		<-	V5+0, CC:0	{}
 0004		STOREZ1		<-	V6+0, CC:3	{}
-0005		STOREZ1		<-	V7+0, CC:3	{}
+0005		STOREZ1		<-	V7+0, CC:2	{}
 0006		BINOP1	R3(I)[33..40]	<-	R1(I)[0..7], CI:33	{}
 0007		STOREZ1		<-	V0+0, R3(C)[33..40]	{}
 0008		CALLN		<-	V12+0	{}
@@ -943,12 +941,12 @@ L142: <= D-1: (1)  P-1
 0002		JUMP		<-		{}
 		==> 144
 L144: <= D-1: (2) Head P373
-0000		STOREZ2		<-	V1+0, CI:2472	{}
+0000		STOREZ2		<-	V1+0, CI:2440	{}
 0001		STOREZ1		<-	V3+0, CC:0	{}
 0002		STOREZ1		<-	V4+0, CC:0	{}
 0003		STOREZ1		<-	V5+0, CC:0	{}
 0004		STOREZ1		<-	V6+0, CC:3	{}
-0005		STOREZ1		<-	V7+0, CC:4	{}
+0005		STOREZ1		<-	V7+0, CC:2	{}
 0006		BINOP1	R3(I)[41..48]	<-	R1(I)[0..7], CI:41	{}
 0007		STOREZ1		<-	V0+0, R3(C)[41..48]	{}
 0008		CALLN		<-	V12+0	{}
@@ -977,12 +975,12 @@ L148: <= D-1: (2) Head P372
 		==> 152
 L152: <= D-1: (2) Head P371
 0000		STOREZ1		<-	V0+0, R3(C)[49..50]	{}
-0001		STOREZ2		<-	V1+0, CI:2472	{}
+0001		STOREZ2		<-	V1+0, CI:2440	{}
 0002		STOREZ1		<-	V3+0, CC:0	{}
 0003		STOREZ1		<-	V4+0, CC:0	{}
 0004		STOREZ1		<-	V5+0, CC:0	{}
 0005		STOREZ1		<-	V6+0, CC:3	{}
-0006		STOREZ1		<-	V7+0, CC:4	{}
+0006		STOREZ1		<-	V7+0, CC:2	{}
 0007		CALLN		<-	V12+0	{}
 0008		STOREZ1		<-	V0+0, R3(C)[49..50]	{}
 0009		STOREZ2		<-	V1+0, R2(I)[608..620]	{}
@@ -1000,13 +998,13 @@ L149: <= D-1: (1)  P-1
 		==> 148
 		==> 150
 L150: <= D-1: (1)  P-1
-0000		STOREZ4		<-	V0+0, CL:86336	{}
+0000		STOREZ4		<-	V0+0, CL:85312	{}
 0001		STOREZ2		<-	V6+0, CI:256	{}
-0002		CONST	R1(P)	<-	CG256(41:0)	{S}
+0002		CONST	R1(P)	<-	CG256(42:0)	{S}
 0003		STOREZ2		<-	V4+0, R1(PF)	{}
 0004		CALLN		<-	V10+0	{}
 0005		STOREZ1		<-	V0+0, CC:51	{}
-0006		STOREZ2		<-	V1+0, CI:2698	{}
+0006		STOREZ2		<-	V1+0, CI:2666	{}
 0007		STOREZ1		<-	V3+0, CC:0	{}
 0008		STOREZ1		<-	V4+0, CC:1	{}
 0009		STOREZ1		<-	V5+0, CC:2	{}
@@ -1017,13 +1015,13 @@ L150: <= D-1: (1)  P-1
 000e		STOREZ2		<-	V1+0, CI:256	{}
 000f		STOREZ2		<-	V3+0, CI:120	{}
 0010		CALLN		<-	V13+0	{}
-0011		STOREZ4		<-	V0+0, CL:82176	{}
+0011		STOREZ4		<-	V0+0, CL:81152	{}
 0012		STOREZ2		<-	V6+0, CI:1024	{}
-0013		CONST	R1(P)	<-	CG1024(42:0)	{S}
+0013		CONST	R1(P)	<-	CG1024(43:0)	{S}
 0014		STOREZ2		<-	V4+0, R1(PF)	{}
 0015		CALLN		<-	V10+0	{}
 0016		STOREZ1		<-	V0+0, CC:52	{}
-0017		STOREZ2		<-	V1+0, CI:2568	{}
+0017		STOREZ2		<-	V1+0, CI:2536	{}
 0018		STOREZ1		<-	V3+0, CC:0	{}
 0019		STOREZ1		<-	V4+0, CC:3	{}
 001a		STOREZ1		<-	V5+0, CC:2	{}
@@ -1035,7 +1033,7 @@ L150: <= D-1: (1)  P-1
 0020		STOREZ2		<-	V3+0, CI:120	{}
 0021		CALLN		<-	V13+0	{}
 0022		STOREZ1		<-	V0+0, CC:53	{}
-0023		STOREZ2		<-	V1+0, CI:2600	{}
+0023		STOREZ2		<-	V1+0, CI:2568	{}
 0024		STOREZ1		<-	V3+0, CC:0	{}
 0025		STOREZ1		<-	V4+0, CC:3	{}
 0026		STOREZ1		<-	V5+0, CC:2	{}
@@ -1047,7 +1045,7 @@ L150: <= D-1: (1)  P-1
 002c		STOREZ2		<-	V3+0, CI:232	{}
 002d		CALLN		<-	V13+0	{}
 002e		STOREZ1		<-	V0+0, CC:54	{}
-002f		STOREZ2		<-	V1+0, CI:2600	{}
+002f		STOREZ2		<-	V1+0, CI:2568	{}
 0030		STOREZ1		<-	V3+0, CC:0	{}
 0031		STOREZ1		<-	V4+0, CC:3	{}
 0032		STOREZ1		<-	V5+0, CC:2	{}
@@ -1063,7 +1061,7 @@ L150: <= D-1: (1)  P-1
 003c		STOREZ1		<-	V2+0, CB:0	{}
 003d		CALLN		<-	V14+0	{}
 003e		STOREZ1		<-	V0+0, CC:55	{}
-003f		STOREZ2		<-	V1+0, CI:2600	{}
+003f		STOREZ2		<-	V1+0, CI:2568	{}
 0040		STOREZ1		<-	V3+0, CC:0	{}
 0041		STOREZ1		<-	V4+0, CC:3	{}
 0042		STOREZ1		<-	V5+0, CC:2	{}
@@ -1079,7 +1077,7 @@ L150: <= D-1: (1)  P-1
 004c		STOREZ1		<-	V2+0, CB:1	{}
 004d		CALLN		<-	V14+0	{}
 004e		STOREZ1		<-	V0+0, CC:56	{}
-004f		STOREZ2		<-	V1+0, CI:2600	{}
+004f		STOREZ2		<-	V1+0, CI:2568	{}
 0050		STOREZ1		<-	V3+0, CC:0	{}
 0051		STOREZ1		<-	V4+0, CC:3	{}
 0052		STOREZ1		<-	V5+0, CC:2	{}
@@ -1094,9 +1092,9 @@ L150: <= D-1: (1)  P-1
 005b		STOREZ1		<-	V1+0, CB:1	{}
 005c		STOREZ1		<-	V2+0, CB:1	{}
 005d		CALLN		<-	V14+0	{}
-005e		STOREZ4		<-	V0+0, CL:80128	{}
+005e		STOREZ4		<-	V0+0, CL:79104	{}
 005f		STOREZ2		<-	V6+0, CI:2048	{}
-0060		CONST	R1(P)	<-	CG2048(43:0)	{S}
+0060		CONST	R1(P)	<-	CG2048(44:0)	{S}
 0061		STOREZ2		<-	V4+0, R1(PF)	{}
 0062		CALLN		<-	V10+0	{}
 0063		CONST	R1(I)[0..0]	<-	CI:0	{}
@@ -1104,7 +1102,7 @@ L150: <= D-1: (1)  P-1
 0065		JUMP		<-		{}
 		==> 156
 L156: <= D-1: (2) Head P370
-0000		STOREZ2		<-	V1+0, CI:2504	{}
+0000		STOREZ2		<-	V1+0, CI:2472	{}
 0001		STOREZ1		<-	V3+0, CC:0	{}
 0002		STOREZ1		<-	V4+0, CC:3	{}
 0003		STOREZ1		<-	V5+0, CC:3	{}
@@ -1125,21 +1123,21 @@ L156: <= D-1: (2) Head P370
 		==> 156
 		==> 158
 L158: <= D-1: (1)  P-1
-0000		STOREZ4		<-	V0+0, CL:86848	{}
+0000		STOREZ4		<-	V0+0, CL:85824	{}
 0001		STOREZ2		<-	V6+0, CI:512	{}
-0002		CONST	R1(P)	<-	CG512(44:0)	{S}
+0002		CONST	R1(P)	<-	CG512(45:0)	{S}
 0003		STOREZ2		<-	V4+0, R1(PF)	{}
 0004		CALLN		<-	V10+0	{}
-0005		STOREZ4		<-	V0+0, CL:86656	{}
+0005		STOREZ4		<-	V0+0, CL:85632	{}
 0006		STOREZ2		<-	V6+0, CI:128	{}
-0007		CONST	R1(P)	<-	CG128(45:0)	{S}
+0007		CONST	R1(P)	<-	CG128(46:0)	{S}
 0008		STOREZ2		<-	V4+0, R1(PF)	{}
 0009		CALLN		<-	V10+0	{}
 000a		CONST	R0(C)[0..0]	<-	CI:0	{}
 000b		JUMP		<-		{}
 		==> 160
 L160: <= D-1: (2) Head P369
-0000		STOREZ2		<-	V1+0, CI:2708	{}
+0000		STOREZ2		<-	V1+0, CI:2676	{}
 0001		STOREZ1		<-	V3+0, CC:0	{}
 0002		STOREZ1		<-	V4+0, CC:1	{}
 0003		STOREZ1		<-	V5+0, CC:1	{}
@@ -1155,7 +1153,7 @@ L160: <= D-1: (2) Head P369
 		==> 288
 L163: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V0+0, R2(CF)[79..102]	{}
-0001		STOREZ2		<-	V1+0, CI:2714	{}
+0001		STOREZ2		<-	V1+0, CI:2682	{}
 0002		STOREZ1		<-	V3+0, CC:0	{}
 0003		STOREZ1		<-	V4+0, CC:2	{}
 0004		STOREZ1		<-	V5+0, CC:2	{}
@@ -1171,169 +1169,159 @@ L288: <= D-1: (2)  P-1
 		==> 160
 		==> 162
 L162: <= D-1: (1)  P-1
-0000		STOREZ1		<-	V10+0, CC:32	{}
-0001		STOREG4		<-	V12+0, CL:129600	{}
-0002		CONST	R1(P)	<-	CG32(46:0)	{S}
-0003		STOREZ2		<-	V8+0, R1(PF)	{}
-0004		CALLN		<-	V16+0	{}
-0005		STOREZ1		<-	V10+0, CC:32	{}
-0006		STOREG4		<-	V12+0, CL:129632	{}
-0007		CONST	R1(P)	<-	CG32(47:0)	{S}
-0008		STOREZ2		<-	V8+0, R1(PF)	{}
-0009		CALLN		<-	V16+0	{}
-000a		STOREZ1		<-	V10+0, CC:32	{}
-000b		STOREG4		<-	V12+0, CL:129664	{}
-000c		CONST	R1(P)	<-	CG32(48:0)	{S}
-000d		STOREZ2		<-	V8+0, R1(PF)	{}
-000e		CALLN		<-	V16+0	{}
-000f		STOREZ1		<-	V0+0, CC:0	{}
-0010		STOREZ2		<-	V3+0, CI:32	{}
-0011		CONST	R1(P)	<-	CG32(49:0)	{S}
+0000		STOREZ1		<-	V0+0, CC:0	{}
+0001		STOREZ2		<-	V3+0, CI:32	{}
+0002		CONST	R1(P)	<-	CG32(47:0)	{S}
+0003		STOREZ2		<-	V1+0, R1(PF)	{}
+0004		CALLN		<-	V15+0	{}
+0005		STOREZ1		<-	V0+0, CC:32	{}
+0006		STOREZ2		<-	V3+0, CI:32	{}
+0007		CONST	R1(P)	<-	CG32(48:0)	{S}
+0008		STOREZ2		<-	V1+0, R1(PF)	{}
+0009		CALLN		<-	V15+0	{}
+000a		STOREZ1		<-	V0+0, CC:96	{}
+000b		STOREZ2		<-	V3+0, CI:32	{}
+000c		CONST	R1(P)	<-	CG32(49:0)	{S}
+000d		STOREZ2		<-	V1+0, R1(PF)	{}
+000e		CALLN		<-	V15+0	{}
+000f		STOREZ1		<-	V0+0, CC:112	{}
+0010		STOREZ2		<-	V3+0, CI:12	{}
+0011		CONST	R1(P)	<-	CG12(50:0)	{S}
 0012		STOREZ2		<-	V1+0, R1(PF)	{}
 0013		CALLN		<-	V15+0	{}
-0014		STOREZ1		<-	V0+0, CC:96	{}
+0014		STOREZ1		<-	V0+0, CC:128	{}
 0015		STOREZ2		<-	V3+0, CI:32	{}
-0016		CONST	R1(P)	<-	CG32(50:0)	{S}
+0016		CONST	R1(P)	<-	CG32(51:0)	{S}
 0017		STOREZ2		<-	V1+0, R1(PF)	{}
 0018		CALLN		<-	V15+0	{}
-0019		STOREZ1		<-	V0+0, CC:112	{}
-001a		STOREZ2		<-	V3+0, CI:12	{}
-001b		CONST	R1(P)	<-	CG12(51:0)	{S}
+0019		STOREZ1		<-	V0+0, CC:144	{}
+001a		STOREZ2		<-	V3+0, CI:16	{}
+001b		CONST	R1(P)	<-	CG16(52:0)	{S}
 001c		STOREZ2		<-	V1+0, R1(PF)	{}
 001d		CALLN		<-	V15+0	{}
-001e		STOREZ1		<-	V0+0, CC:128	{}
-001f		STOREZ2		<-	V3+0, CI:32	{}
-0020		CONST	R1(P)	<-	CG32(52:0)	{S}
+001e		STOREZ1		<-	V0+0, CC:160	{}
+001f		STOREZ2		<-	V3+0, CI:26	{}
+0020		CONST	R1(P)	<-	CG26(53:0)	{S}
 0021		STOREZ2		<-	V1+0, R1(PF)	{}
 0022		CALLN		<-	V15+0	{}
-0023		STOREZ1		<-	V0+0, CC:144	{}
-0024		STOREZ2		<-	V3+0, CI:16	{}
-0025		CONST	R1(P)	<-	CG16(53:0)	{S}
+0023		STOREZ1		<-	V0+0, CC:176	{}
+0024		STOREZ2		<-	V3+0, CI:28	{}
+0025		CONST	R1(P)	<-	CG28(54:0)	{S}
 0026		STOREZ2		<-	V1+0, R1(PF)	{}
 0027		CALLN		<-	V15+0	{}
-0028		STOREZ1		<-	V0+0, CC:160	{}
-0029		STOREZ2		<-	V3+0, CI:26	{}
-002a		CONST	R1(P)	<-	CG26(54:0)	{S}
-002b		STOREZ2		<-	V1+0, R1(PF)	{}
-002c		CALLN		<-	V15+0	{}
-002d		STOREZ1		<-	V0+0, CC:176	{}
-002e		STOREZ2		<-	V3+0, CI:32	{}
-002f		CONST	R1(P)	<-	CG32(55:0)	{S}
-0030		STOREZ2		<-	V1+0, R1(PF)	{}
-0031		CALLN		<-	V15+0	{}
-0032		STOREZ4		<-	V0+0, CL:83200	{}
-0033		STOREZ2		<-	V6+0, CI:1024	{}
-0034		CONST	R1(P)	<-	CG1024(56:0)	{S}
-0035		STOREZ2		<-	V4+0, R1(PF)	{}
-0036		CALLN		<-	V10+0	{}
-0037		STOREZ1		<-	V5+0, CC:3	{}
-0038		STOREZ1		<-	V6+0, CC:8	{}
-0039		STOREZ1		<-	V7+0, CC:3	{}
-003a		STOREZ4		<-	V8+0, CL:88896	{}
-003b		STOREG2		<-	V12+0, CI:8192	{}
-003c		CONST	R1(P)	<-	CG0(63:0)	{S}
-003d		STOREZ2		<-	V3+0, R1(PF)	{}
-003e		CALLN		<-	V17+0	{}
-003f		STOREZ1		<-	V0+0, CC:3	{}
-0040		STOREZ2		<-	V1+0, CI:2778	{}
-0041		STOREZ1		<-	V3+0, CC:0	{}
-0042		STOREZ1		<-	V4+0, CC:3	{}
-0043		STOREZ1		<-	V5+0, CC:3	{}
-0044		STOREZ1		<-	V6+0, CC:7	{}
-0045		STOREZ1		<-	V7+0, CC:11	{}
-0046		CALLN		<-	V12+0	{}
-0047		STOREZ1		<-	V0+0, CC:3	{}
-0048		STOREZ2		<-	V1+0, CI:8	{}
-0049		STOREZ2		<-	V3+0, CI:8	{}
-004a		CALLN		<-	V13+0	{}
-004b		STOREZ1		<-	V0+0, CC:4	{}
-004c		STOREZ2		<-	V1+0, CI:2842	{}
-004d		STOREZ1		<-	V3+0, CC:0	{}
-004e		STOREZ1		<-	V4+0, CC:3	{}
-004f		STOREZ1		<-	V5+0, CC:3	{}
-0050		STOREZ1		<-	V6+0, CC:3	{}
-0051		STOREZ1		<-	V7+0, CC:11	{}
-0052		CALLN		<-	V12+0	{}
-0053		STOREZ1		<-	V0+0, CC:4	{}
-0054		STOREZ2		<-	V1+0, CI:72	{}
-0055		STOREZ2		<-	V3+0, CI:8	{}
-0056		CALLN		<-	V13+0	{}
-0057		STOREZ1		<-	V0+0, CC:5	{}
-0058		STOREZ2		<-	V1+0, CI:2906	{}
-0059		STOREZ1		<-	V3+0, CC:0	{}
-005a		STOREZ1		<-	V4+0, CC:3	{}
-005b		STOREZ1		<-	V5+0, CC:3	{}
-005c		STOREZ1		<-	V6+0, CC:3	{}
-005d		STOREZ1		<-	V7+0, CC:11	{}
-005e		CALLN		<-	V12+0	{}
-005f		STOREZ1		<-	V0+0, CC:5	{}
-0060		STOREZ2		<-	V1+0, CI:8	{}
-0061		STOREZ2		<-	V3+0, CI:72	{}
-0062		CALLN		<-	V13+0	{}
-0063		STOREZ1		<-	V0+0, CC:6	{}
-0064		STOREZ2		<-	V1+0, CI:2970	{}
-0065		STOREZ1		<-	V3+0, CC:0	{}
-0066		STOREZ1		<-	V4+0, CC:3	{}
-0067		STOREZ1		<-	V5+0, CC:3	{}
-0068		STOREZ1		<-	V6+0, CC:3	{}
-0069		STOREZ1		<-	V7+0, CC:11	{}
-006a		CALLN		<-	V12+0	{}
-006b		STOREZ1		<-	V0+0, CC:6	{}
-006c		STOREZ2		<-	V1+0, CI:72	{}
-006d		STOREZ2		<-	V3+0, CI:72	{}
-006e		CALLN		<-	V13+0	{}
-006f		STOREZ1		<-	V0+0, CC:7	{}
-0070		STOREZ2		<-	V1+0, CI:2778	{}
-0071		STOREZ1		<-	V3+0, CC:0	{}
-0072		STOREZ1		<-	V4+0, CC:3	{}
-0073		STOREZ1		<-	V5+0, CC:3	{}
-0074		STOREZ1		<-	V6+0, CC:7	{}
-0075		STOREZ1		<-	V7+0, CC:11	{}
-0076		CALLN		<-	V12+0	{}
-0077		STOREZ1		<-	V0+0, CC:7	{}
-0078		STOREZ2		<-	V1+0, CI:504	{}
-0079		STOREZ2		<-	V3+0, CI:8	{}
-007a		CALLN		<-	V13+0	{}
-007b		STOREZ1		<-	V0+0, CC:8	{}
-007c		STOREZ2		<-	V1+0, CI:2842	{}
-007d		STOREZ1		<-	V3+0, CC:0	{}
-007e		STOREZ1		<-	V4+0, CC:3	{}
-007f		STOREZ1		<-	V5+0, CC:3	{}
-0080		STOREZ1		<-	V6+0, CC:3	{}
-0081		STOREZ1		<-	V7+0, CC:11	{}
-0082		CALLN		<-	V12+0	{}
-0083		STOREZ1		<-	V0+0, CC:8	{}
-0084		STOREZ2		<-	V1+0, CI:568	{}
-0085		STOREZ2		<-	V3+0, CI:8	{}
-0086		CALLN		<-	V13+0	{}
-0087		STOREZ1		<-	V0+0, CC:9	{}
-0088		STOREZ2		<-	V1+0, CI:2906	{}
-0089		STOREZ1		<-	V3+0, CC:0	{}
-008a		STOREZ1		<-	V4+0, CC:3	{}
-008b		STOREZ1		<-	V5+0, CC:3	{}
-008c		STOREZ1		<-	V6+0, CC:3	{}
-008d		STOREZ1		<-	V7+0, CC:11	{}
-008e		CALLN		<-	V12+0	{}
-008f		STOREZ1		<-	V0+0, CC:9	{}
-0090		STOREZ2		<-	V1+0, CI:504	{}
-0091		STOREZ2		<-	V3+0, CI:72	{}
-0092		CALLN		<-	V13+0	{}
-0093		STOREZ1		<-	V0+0, CC:10	{}
-0094		STOREZ2		<-	V1+0, CI:2970	{}
-0095		STOREZ1		<-	V3+0, CC:0	{}
-0096		STOREZ1		<-	V4+0, CC:3	{}
-0097		STOREZ1		<-	V5+0, CC:3	{}
-0098		STOREZ1		<-	V6+0, CC:3	{}
-0099		STOREZ1		<-	V7+0, CC:11	{}
-009a		CALLN		<-	V12+0	{}
-009b		STOREZ1		<-	V0+0, CC:10	{}
-009c		STOREZ2		<-	V1+0, CI:568	{}
-009d		STOREZ2		<-	V3+0, CI:72	{}
-009e		CALLN		<-	V13+0	{}
-009f		LOADA1	R0(C)[-128..255]	<-	V-1+40745	{V}
-00a0		BINOP8	R0(C)[-128..255]	<-	R0(CF)[-128..255], CC:112	{}
-00a1		STOREA1		<-	V-1+40745, R0(CF)[-128..255]	{V}
-00a2		RET		<-		{}
+0028		STOREZ4		<-	V0+0, CL:82176	{}
+0029		STOREZ2		<-	V6+0, CI:1024	{}
+002a		CONST	R1(P)	<-	CG1024(55:0)	{S}
+002b		STOREZ2		<-	V4+0, R1(PF)	{}
+002c		CALLN		<-	V10+0	{}
+002d		STOREZ1		<-	V5+0, CC:3	{}
+002e		STOREZ1		<-	V6+0, CC:8	{}
+002f		STOREZ1		<-	V7+0, CC:3	{}
+0030		STOREZ4		<-	V8+0, CL:87872	{}
+0031		STOREG2		<-	V12+0, CI:8192	{}
+0032		CONST	R1(P)	<-	CG0(61:0)	{S}
+0033		STOREZ2		<-	V3+0, R1(PF)	{}
+0034		CALLN		<-	V16+0	{}
+0035		STOREZ1		<-	V0+0, CC:3	{}
+0036		STOREZ2		<-	V1+0, CI:2746	{}
+0037		STOREZ1		<-	V3+0, CC:0	{}
+0038		STOREZ1		<-	V4+0, CC:3	{}
+0039		STOREZ1		<-	V5+0, CC:3	{}
+003a		STOREZ1		<-	V6+0, CC:7	{}
+003b		STOREZ1		<-	V7+0, CC:11	{}
+003c		CALLN		<-	V12+0	{}
+003d		STOREZ1		<-	V0+0, CC:3	{}
+003e		STOREZ2		<-	V1+0, CI:8	{}
+003f		STOREZ2		<-	V3+0, CI:8	{}
+0040		CALLN		<-	V13+0	{}
+0041		STOREZ1		<-	V0+0, CC:4	{}
+0042		STOREZ2		<-	V1+0, CI:2810	{}
+0043		STOREZ1		<-	V3+0, CC:0	{}
+0044		STOREZ1		<-	V4+0, CC:3	{}
+0045		STOREZ1		<-	V5+0, CC:3	{}
+0046		STOREZ1		<-	V6+0, CC:3	{}
+0047		STOREZ1		<-	V7+0, CC:11	{}
+0048		CALLN		<-	V12+0	{}
+0049		STOREZ1		<-	V0+0, CC:4	{}
+004a		STOREZ2		<-	V1+0, CI:72	{}
+004b		STOREZ2		<-	V3+0, CI:8	{}
+004c		CALLN		<-	V13+0	{}
+004d		STOREZ1		<-	V0+0, CC:5	{}
+004e		STOREZ2		<-	V1+0, CI:2874	{}
+004f		STOREZ1		<-	V3+0, CC:0	{}
+0050		STOREZ1		<-	V4+0, CC:3	{}
+0051		STOREZ1		<-	V5+0, CC:3	{}
+0052		STOREZ1		<-	V6+0, CC:3	{}
+0053		STOREZ1		<-	V7+0, CC:11	{}
+0054		CALLN		<-	V12+0	{}
+0055		STOREZ1		<-	V0+0, CC:5	{}
+0056		STOREZ2		<-	V1+0, CI:8	{}
+0057		STOREZ2		<-	V3+0, CI:72	{}
+0058		CALLN		<-	V13+0	{}
+0059		STOREZ1		<-	V0+0, CC:6	{}
+005a		STOREZ2		<-	V1+0, CI:2938	{}
+005b		STOREZ1		<-	V3+0, CC:0	{}
+005c		STOREZ1		<-	V4+0, CC:3	{}
+005d		STOREZ1		<-	V5+0, CC:3	{}
+005e		STOREZ1		<-	V6+0, CC:3	{}
+005f		STOREZ1		<-	V7+0, CC:11	{}
+0060		CALLN		<-	V12+0	{}
+0061		STOREZ1		<-	V0+0, CC:6	{}
+0062		STOREZ2		<-	V1+0, CI:72	{}
+0063		STOREZ2		<-	V3+0, CI:72	{}
+0064		CALLN		<-	V13+0	{}
+0065		STOREZ1		<-	V0+0, CC:7	{}
+0066		STOREZ2		<-	V1+0, CI:2746	{}
+0067		STOREZ1		<-	V3+0, CC:0	{}
+0068		STOREZ1		<-	V4+0, CC:3	{}
+0069		STOREZ1		<-	V5+0, CC:3	{}
+006a		STOREZ1		<-	V6+0, CC:7	{}
+006b		STOREZ1		<-	V7+0, CC:11	{}
+006c		CALLN		<-	V12+0	{}
+006d		STOREZ1		<-	V0+0, CC:7	{}
+006e		STOREZ2		<-	V1+0, CI:504	{}
+006f		STOREZ2		<-	V3+0, CI:8	{}
+0070		CALLN		<-	V13+0	{}
+0071		STOREZ1		<-	V0+0, CC:8	{}
+0072		STOREZ2		<-	V1+0, CI:2810	{}
+0073		STOREZ1		<-	V3+0, CC:0	{}
+0074		STOREZ1		<-	V4+0, CC:3	{}
+0075		STOREZ1		<-	V5+0, CC:3	{}
+0076		STOREZ1		<-	V6+0, CC:3	{}
+0077		STOREZ1		<-	V7+0, CC:11	{}
+0078		CALLN		<-	V12+0	{}
+0079		STOREZ1		<-	V0+0, CC:8	{}
+007a		STOREZ2		<-	V1+0, CI:568	{}
+007b		STOREZ2		<-	V3+0, CI:8	{}
+007c		CALLN		<-	V13+0	{}
+007d		STOREZ1		<-	V0+0, CC:9	{}
+007e		STOREZ2		<-	V1+0, CI:2874	{}
+007f		STOREZ1		<-	V3+0, CC:0	{}
+0080		STOREZ1		<-	V4+0, CC:3	{}
+0081		STOREZ1		<-	V5+0, CC:3	{}
+0082		STOREZ1		<-	V6+0, CC:3	{}
+0083		STOREZ1		<-	V7+0, CC:11	{}
+0084		CALLN		<-	V12+0	{}
+0085		STOREZ1		<-	V0+0, CC:9	{}
+0086		STOREZ2		<-	V1+0, CI:504	{}
+0087		STOREZ2		<-	V3+0, CI:72	{}
+0088		CALLN		<-	V13+0	{}
+0089		STOREZ1		<-	V0+0, CC:10	{}
+008a		STOREZ2		<-	V1+0, CI:2938	{}
+008b		STOREZ1		<-	V3+0, CC:0	{}
+008c		STOREZ1		<-	V4+0, CC:3	{}
+008d		STOREZ1		<-	V5+0, CC:3	{}
+008e		STOREZ1		<-	V6+0, CC:3	{}
+008f		STOREZ1		<-	V7+0, CC:11	{}
+0090		CALLN		<-	V12+0	{}
+0091		STOREZ1		<-	V0+0, CC:10	{}
+0092		STOREZ2		<-	V1+0, CI:568	{}
+0093		STOREZ2		<-	V3+0, CI:72	{}
+0094		CALLN		<-	V13+0	{}
+0095		LOADA1	R0(C)[-128..255]	<-	V-1+40745	{V}
+0096		BINOP8	R0(C)[-128..255]	<-	R0(CF)[-128..255], CC:112	{}
+0097		STOREA1		<-	V-1+40745, R0(CF)[-128..255]	{V}
+0098		RET		<-		{}
 L84: <= D-1: (1)  P-1
 0000		RELOP19	R0(B)	<-	R1(I)[44..53], CI:52	{I}
 0001		BRANCH		<-	R0(BF)	{}
@@ -1573,14 +1561,14 @@ L4: <= D-1: (2)  P-1
 rand: C:/Program Files/oscar64/include/stdlib.h:46
 $00 R0(I), $00 R1(I), 
 L0: <= D-1: (1)  P-1
-0000		LOADG2	R0(I)[-256..511]	<-	V20+0	{}
+0000		LOADG2	R0(I)[-256..511]	<-	V21+0	{}
 0001		BINOP16	R1(I)[-32768..65408]	<-	R0(I)[-256..511], CI:7	{}
 0002		BINOP10	R0(I)	<-	R1(IF)[-32768..65408], R0(IF)[-256..511]	{}
 0003		BINOP17	R1(I)	<-	R0(I), CI:9	{}
 0004		BINOP10	R0(I)	<-	R1(IF), R0(IF)	{}
 0005		BINOP16	R1(I)	<-	R0(I), CI:8	{}
 0006		BINOP10	R0(I)	<-	R1(IF), R0(IF)	{}
-0007		STOREG2		<-	V20+0, R0(I)	{}
+0007		STOREG2		<-	V21+0, R0(I)	{}
 0008		RETV		<-	R0(IF)	{}
 --------------------------------------------------------------------
 vera_spr_set: C:/Program Files/oscar64/include/cx16/vera.h:139
@@ -1754,74 +1742,59 @@ L3: <= D-1: (2) Head P34
 L4: <= D-1: (2)  P-1
 0000		RET		<-		{}
 --------------------------------------------------------------------
-SetPaletteColours: C:/Users/david/Documents/Games/CoolDemo/Sprites.h:10
-$00 R0(L), $00 R1(P), $00 R2(C), 
-L0: <= D-1: (1)  P-1
-0000		LOADG4	R0(L)	<-	V12+0	{S}
-0001		STOREZ4		<-	V0+0, R0(LF)	{}
-0002		LOADZ2	R1(P)	<-	V8+0	{S}
-0003		STOREZ2		<-	V4+0, R1(PF)	{}
-0004		LOADZ1	R2(C)[-128..255]	<-	V10+0	{S}
-0005		CONV33	R1(I)[0..255]	<-	R2(CF)[-128..255]	{S}
-0006		STOREZ2		<-	V6+0, R1(IF)[0..255]	{}
-0007		CALLN		<-	V10+0	{}
-0008		RET		<-		{}
---------------------------------------------------------------------
 LoadSprite: C:/Users/david/Documents/Games/CoolDemo/Sprites.h:12
-$02 R0(P), $00 R1(C), $04 R2(I), $00 R3(L), $00 R4(I), $00 R5(C), $00 R6(L), $00 R7(I), 
+$00 R0(P), $00 R1(C), $02 R2(I), $00 R3(L), $00 R4(I), $00 R5(L), $00 R6(I), 
 L0: <= D-1: (1)  P-1
 0000		LOADZ2	R0(P)	<-	V3+0	{S}
 0001		STOREZ2		<-	V0+0, R0(PF)	{}
-0002		CALLN		<-	V18+0	{}
+0002		CALLN		<-	V17+0	{}
 0003		LOADZ1	R1(C)[-128..255]	<-	V5+0	{S}
 0004		STOREZ1		<-	V0+0, R1(CF)[-128..255]	{}
 0005		LOADZ1	R1(C)[-128..255]	<-	V6+0	{S}
 0006		STOREZ1		<-	V1+0, R1(CF)[-128..255]	{}
 0007		LOADZ1	R1(C)[-128..255]	<-	V7+0	{S}
 0008		STOREZ1		<-	V2+0, R1(CF)[-128..255]	{}
-0009		CALLN		<-	V19+0	{}
+0009		CALLN		<-	V18+0	{}
 000a		LOADZ1	R1(C)[-128..255]	<-	V5+0	{S}
-000b		STOREZ1		<-	V1+0, R1(CF)[-128..255]	{}
-000c		CALLN		<-	V20+0	{}
-000d		LOADZ1	R1(C)[-128..255]	<-	V5+0	{S}
-000e		STOREZ1		<-	V1+0, R1(CF)[-128..255]	{}
-000f		CALLN		<-	V20+0	{}
-0010		LOADG2	R0(I)[-32768..65535]	<-	V12+0	{S}
-0011		RELOP28	R1(B)	<-	CI:0, R0(I)[-32768..65535]	{S}
-0012		BRANCH		<-	R1(BF)	{}
+000b		STOREZ1		<-	V0+0, R1(CF)[-128..255]	{}
+000c		CALLN		<-	V19+0	{}
+000d		CALLN		<-	V20+0	{}
+000e		CALLN		<-	V20+0	{}
+000f		LOADG2	R0(I)[-32768..65535]	<-	V12+0	{S}
+0010		RELOP28	R1(B)	<-	CI:0, R0(I)[-32768..65535]	{S}
+0011		BRANCH		<-	R1(BF)	{}
 		==> 8
 		==> 4
 L8: <= D-1: (1)  P-1
 0000		CONST	R2(I)[0..0]	<-	CI:0	{}
-0001		LOADZ1	R1(C)[-128..255]	<-	V5+0	{IS}
-0002		LOADZ4	R3(L)	<-	V8+0	{IS}
-0003		JUMP		<-		{}
+0001		LOADZ4	R3(L)	<-	V8+0	{IS}
+0002		JUMP		<-		{}
 		==> 2
 L2: <= D-1: (2) Head P37
-0000		STOREZ1		<-	V1+0, R1(C)[-128..255]	{}
-0001		CALLN	R4(I)	<-	V20+0	{}
-0002		LOADA1	R5(C)[-128..255]	<-	V-1+40741	{V}
-0003		BINOP9	R5(C)[-128..255]	<-	R5(CF)[-128..255], CC:-2	{}
-0004		STOREA1		<-	V-1+40741, R5(CF)[-128..255]	{V}
-0005		CONV35	R6(L)	<-	R2(I)[0..65534]	{}
-0006		BINOP1	R6(L)	<-	R6(LF), R3(L)	{}
-0007		STOREA2		<-	V-1+40736, R6(I)	{V}
-0008		BINOP17	R6(L)	<-	R6(LF), CL:16	{}
-0009		BINOP9	R6(L)[0..1]	<-	R6(LF), CL:1	{}
-000a		CONV33	R7(I)[0..1]	<-	R6(CF)[0..1]	{}
-000b		BINOP8	R7(I)[0..31]	<-	R7(IF)[0..1], CI:16	{}
-000c		STOREA1		<-	V-1+40738, R7(CF)[0..31]	{V}
-000d		STOREA1		<-	V-1+40739, R4(CF)	{V}
-000e		BINOP1	R2(I)[1..65535]	<-	R2(IF)[0..65534], CI:1	{}
-000f		RELOP28	R5(B)	<-	R2(I)[1..65535], R0(I)[-32768..65535]	{}
-0010		BRANCH		<-	R5(BF)	{}
+0000		CALLN	R4(I)	<-	V20+0	{}
+0001		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
+0002		BINOP9	R1(C)[-128..255]	<-	R1(CF)[-128..255], CC:-2	{}
+0003		STOREA1		<-	V-1+40741, R1(CF)[-128..255]	{V}
+0004		CONV35	R5(L)	<-	R2(I)[0..65534]	{}
+0005		BINOP1	R5(L)	<-	R5(LF), R3(L)	{}
+0006		STOREA2		<-	V-1+40736, R5(I)	{V}
+0007		BINOP17	R5(L)	<-	R5(LF), CL:16	{}
+0008		BINOP9	R5(L)[0..1]	<-	R5(LF), CL:1	{}
+0009		CONV33	R6(I)[0..1]	<-	R5(CF)[0..1]	{}
+000a		BINOP8	R6(I)[0..31]	<-	R6(IF)[0..1], CI:16	{}
+000b		STOREA1		<-	V-1+40738, R6(CF)[0..31]	{V}
+000c		STOREA1		<-	V-1+40739, R4(CF)	{V}
+000d		BINOP1	R2(I)[1..65535]	<-	R2(IF)[0..65534], CI:1	{}
+000e		RELOP28	R1(B)	<-	R2(I)[1..65535], R0(I)[-32768..65535]	{}
+000f		BRANCH		<-	R1(BF)	{}
 		==> 2
 		==> 4
 L4: <= D-1: (2)  P-1
-0000		LOADZ1	R1(C)[-128..255]	<-	V5+0	{S}
-0001		STOREZ1		<-	V0+0, R1(CF)[-128..255]	{}
-0002		CALLN		<-	V25+0	{}
-0003		RET		<-		{}
+0000		CALLN		<-	V21+0	{}
+0001		LOADZ1	R1(C)[-128..255]	<-	V5+0	{S}
+0002		STOREZ1		<-	V0+0, R1(CF)[-128..255]	{}
+0003		CALLN		<-	V22+0	{}
+0004		RET		<-		{}
 --------------------------------------------------------------------
 krnio_setnam: C:/Program Files/oscar64/include/c64/kernalio.h:24
 
@@ -1834,53 +1807,10 @@ $00 R0(C), $00 R1(I),
 L0: <= D-1: (1)  P-1
 0000		LOADZ1	R0(C)[0..15]	<-	V0+0	{S}
 0001		CONV33	R1(I)[0..15]	<-	R0(CF)[0..15]	{S}
-0002		LEAG	R1(P)	<-	V57+0, R1(IF)[0..15]	{S}
+0002		LEAG	R1(P)	<-	V56+0, R1(IF)[0..15]	{S}
 0003		STOREI1		<-	R1(PF)+0, CC:0	{}
 0004		JSR		<-	V2+0, V1+0, V0+0, V-1+0	{}
 0005		RET		<-		{}
---------------------------------------------------------------------
-krnio_getch: C:/Program Files/oscar64/include/c64/kernalio.h:64
-$00 R0(C), $00 R1(I), $00 R2(C), $00 R3(I), 
-L0: <= D-1: (1)  P-1
-0000		LOADZ1	R0(C)[0..15]	<-	V1+0	{S}
-0001		CONV33	R1(I)[0..15]	<-	R0(C)[0..15]	{S}
-0002		LEAG	R1(P)	<-	V57+0, R1(IF)[0..15]	{S}
-0003		LOADI1	R2(C)[0..128]	<-	R1(P)+0	{}
-0004		RELOP19	R2(B)	<-	R2(CF)[0..128], CC:64	{}
-0005		BRANCH		<-	R2(BF)	{}
-		==> 1
-		==> 3
-L1: <= D-1: (1)  P-1
-0000		RETV		<-	CI:-1	{}
-L3: <= D-1: (1)  P-1
-0000		STOREZ1		<-	V0+0, R0(CF)[0..15]	{}
-0001		CONST	R3(I)[-1..-1]	<-	CI:-1	{}
-0002		CALLN	R0(B)	<-	V21+0	{}
-0003		BRANCH		<-	R0(BF)	{}
-		==> 5
-		==> 7
-L5: <= D-1: (1)  P-1
-0000		CALLN	R3(I)	<-	V22+0	{}
-0001		CALLN	R0(C)	<-	V23+0	{}
-0002		STOREI1		<-	R1(PF)+0, R0(C)	{}
-0003		BRANCH		<-	R0(C)	{}
-		==> 8
-		==> 7
-L8: <= D-1: (1)  P-1
-0000		RELOP19	R0(B)	<-	R0(CF), CC:64	{}
-0001		BRANCH		<-	R0(BF)	{}
-		==> 11
-		==> 12
-L11: <= D-1: (1)  P-1
-0000		CALLN		<-	V24+0	{}
-0001		BINOP8	R1(I)	<-	R3(IF), CI:256	{}
-0002		RETV		<-	R1(IF)	{}
-L12: <= D-1: (1)  P-1
-0000		CALLN		<-	V24+0	{}
-0001		RETV		<-	CI:-1	{}
-L7: <= D-1: (2)  P-1
-0000		CALLN		<-	V24+0	{}
-0001		RETV		<-	R3(IF)	{}
 --------------------------------------------------------------------
 krnio_chkin: C:/Program Files/oscar64/include/c64/kernalio.h:46
 
@@ -1889,12 +1819,6 @@ L0: <= D-1: (1)  P-1
 0001		RET		<-		{}
 --------------------------------------------------------------------
 krnio_chrin: C:/Program Files/oscar64/include/c64/kernalio.h:58
-
-L0: <= D-1: (1)  P-1
-0000		JSR		<-	V-1+0	{}
-0001		RET		<-		{}
---------------------------------------------------------------------
-krnio_status: C:/Program Files/oscar64/include/c64/kernalio.h:36
 
 L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
@@ -1918,13 +1842,13 @@ L0: <= D-1: (1)  P-1
 0000		JSR		<-	V-1+0	{}
 0001		RET		<-		{}
 --------------------------------------------------------------------
-MoveSprites: C:/Users/david/Documents/Games/CoolDemo/Main.c:699
+MoveSprites: C:/Users/david/Documents/Games/CoolDemo/Main.c:744
 $00 R0(I), $00 R1(C), $01 R2(I), $03 R3(I), $00 R4(P), $00 R5(C), 
 L0: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V0+0, CC:51	{}
 0001		STOREZ2		<-	V1+0, CI:312	{}
 0002		LOADZ2	R0(I)[0..255]	<-	V5+0	{S}
-0003		LEAG	R0(P)	<-	V75+0, R0(IF)[0..255]	{S}
+0003		LEAG	R0(P)	<-	V72+0, R0(IF)[0..255]	{S}
 0004		LOADI1	R1(C)[-128..254]	<-	R0(PF)+0	{}
 0005		CONV36	R0(I)[-128..127]	<-	R1(CF)[-128..254]	{}
 0006		BINOP18	R0(I)[-16..15]	<-	R0(IF)[-128..127], CI:3	{}
@@ -1934,7 +1858,7 @@ L0: <= D-1: (1)  P-1
 000a		STOREZ1		<-	V0+0, CC:52	{}
 000b		STOREZ2		<-	V1+0, CI:288	{}
 000c		LOADZ2	R0(I)[0..255]	<-	V7+0	{S}
-000d		LEAG	R0(P)	<-	V75+0, R0(IF)[0..255]	{S}
+000d		LEAG	R0(P)	<-	V72+0, R0(IF)[0..255]	{S}
 000e		LOADI1	R1(C)[-128..254]	<-	R0(PF)+0	{}
 000f		CONV36	R0(I)[-128..127]	<-	R1(CF)[-128..254]	{}
 0010		BINOP18	R0(I)[-16..15]	<-	R0(IF)[-128..127], CI:3	{}
@@ -1944,7 +1868,7 @@ L0: <= D-1: (1)  P-1
 0014		STOREZ1		<-	V0+0, CC:53	{}
 0015		STOREZ2		<-	V1+0, CI:256	{}
 0016		LOADZ2	R0(I)[0..255]	<-	V9+0	{S}
-0017		LEAG	R0(P)	<-	V75+0, R0(IF)[0..255]	{S}
+0017		LEAG	R0(P)	<-	V72+0, R0(IF)[0..255]	{S}
 0018		LOADI1	R1(C)[-128..254]	<-	R0(P)+0	{}
 0019		CONV36	R2(I)[-128..127]	<-	R1(CF)[-128..254]	{}
 001a		BINOP18	R2(I)[-16..15]	<-	R2(IF)[-128..127], CI:3	{}
@@ -2000,8 +1924,8 @@ L2: <= D-1: (2) Head P28
 0002		STOREZ1		<-	V0+0, R2(CF)[79..102]	{}
 0003		BINOP3	R2(I)[0..276]	<-	R0(I)[0..23], CI:12	{}
 0004		BINOP9	R2(I)[0..255]	<-	R2(IF)[0..276], CI:255	{}
-0005		LOADG2	R3(I)[64..255]	<-	V76+0	{}
-0006		LEAG	R4(P)	<-	V75+0, R3(I)[64..255]	{}
+0005		LOADG2	R3(I)[64..255]	<-	V73+0	{}
+0006		LEAG	R4(P)	<-	V72+0, R3(I)[64..255]	{}
 0007		LEAI	R2(P)	<-	R4(PF)+0, R2(IF)[0..255]	{}
 0008		LOADI1	R5(C)[-128..254]	<-	R2(PF)+0	{}
 0009		CONV36	R2(I)[-128..127]	<-	R5(CF)[-128..254]	{}
@@ -2013,7 +1937,7 @@ L2: <= D-1: (2) Head P28
 000f		BINOP3	R2(I)[0..115]	<-	R0(I)[0..23], CI:5	{}
 0010		BINOP9	R2(I)[0..127]	<-	R2(IF)[0..115], CI:255	{}
 0011		BINOP2	R4(I)[0..191]	<-	R3(I)[64..255], CI:64	{}
-0012		LEAG	R4(P)	<-	V75+0, R4(IF)[0..191]	{}
+0012		LEAG	R4(P)	<-	V72+0, R4(IF)[0..191]	{}
 0013		LEAI	R2(P)	<-	R4(PF)+0, R2(IF)[0..127]	{}
 0014		LOADI1	R5(C)[-128..254]	<-	R2(PF)+0	{}
 0015		CONV36	R2(I)[-128..127]	<-	R5(CF)[-128..254]	{}
@@ -2021,7 +1945,7 @@ L2: <= D-1: (2) Head P28
 0017		BINOP16	R4(I)[0..184]	<-	R0(I)[0..23], CI:3	{}
 0018		BINOP9	R4(I)[0..255]	<-	R4(IF)[0..184], CI:255	{}
 0019		BINOP2	R3(I)[0..223]	<-	R3(IF)[64..255], CI:32	{}
-001a		LEAG	R3(P)	<-	V75+0, R3(IF)[0..223]	{}
+001a		LEAG	R3(P)	<-	V72+0, R3(IF)[0..223]	{}
 001b		LEAI	R3(P)	<-	R3(PF)+0, R4(IF)[0..255]	{}
 001c		LOADI1	R5(C)[-128..254]	<-	R3(PF)+0	{}
 001d		CONV36	R3(I)[-128..127]	<-	R5(CF)[-128..254]	{}
@@ -2053,62 +1977,131 @@ L6: <= D-1: (1)  P-1
 		==> 2
 		==> 4
 --------------------------------------------------------------------
-PlayZSM: C:/Users/david/Documents/Games/CoolDemo/Main.c:734
-$00 R0(I), $02 R1(I), $00 R2(B), 
+PlayZSM: C:/Users/david/Documents/Games/CoolDemo/Main.c:779
+$04 R0(I), $00 R1(I), $02 R2(B), $00 R3(L), 
 L0: <= D-1: (1)  P-1
 0000		STOREA1		<-	V-1+40748, CC:8	{V}
-0001		LOADZ2	R0(I)[-32768..65535]	<-	V5+0	{S}
-0002		LOADZ2	R1(I)[-32768..65535]	<-	V7+0	{S}
+0001		LOADG2	R0(I)[-32768..65535]	<-	V14+2	{S}
+0002		LOADG2	R1(I)[-32768..65535]	<-	V16+4	{S}
 0003		RELOP20	R2(B)	<-	R0(IF)[-32768..65535], R1(IF)[-32768..65535]	{S}
 0004		BRANCH		<-	R2(BF)	{}
 		==> 1
 		==> 4
 L1: <= D-1: (2)  P-1
-0000		LOADZ2	R0(I)[-32768..65535]	<-	V5+0	{S}
-0001		RELOP19	R2(B)	<-	R0(I)[-32768..65535], CI:1	{S}
+0000		LOADG2	R0(I)[-32768..65535]	<-	V14+2	{S}
+0001		RELOP19	R2(B)	<-	R0(I)[-32768..65535], CI:3	{S}
 0002		BRANCH		<-	R2(BF)	{}
-		==> 6
-		==> 14
-L6: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG0(83:0)	{S}
-0001		JUMP		<-		{}
-		==> 21
-L21: <= D-1: (4)  P-1
-0000		STOREZ2		<-	V3+0, R0(PF)	{}
-0001		CALLN		<-	V30+0	{}
-0002		JUMP		<-		{}
+		==> 12
+		==> 16
+L12: <= D-1: (1)  P-1
+0000		CONST	R0(P)	<-	CG0(87:0)	{S}
+0001		STOREZ2		<-	V3+0, R0(PF)	{}
+0002		CONST	R0(P)	<-	CG0(88:0)	{S}
+0003		JUMP		<-		{}
+		==> 27
+L27: <= D-1: (2)  P-1
+0000		CALLN		<-	V27+0	{}
+0001		STOREZ2		<-	V3+0, R0(PF)	{}
+0002		STOREZ1		<-	V5+0, CC:3	{}
+0003		STOREZ1		<-	V6+0, CC:8	{}
+0004		STOREZ1		<-	V7+0, CC:3	{}
+0005		STOREG2		<-	V12+0, CI:8192	{}
+0006		LOADG4	R3(L)	<-	V14+0	{}
+0007		STOREZ4		<-	V8+0, R3(LF)	{}
+0008		CALLN		<-	V16+0	{}
+0009		STOREZ2		<-	V3+0, CI:32	{}
+000a		CONST	R0(P)	<-	CG32(86:0)	{S}
+000b		JUMP		<-		{}
+		==> 26
+L26: <= D-1: (4)  P-1
+0000		STOREZ1		<-	V0+0, CC:176	{}
+0001		STOREZ2		<-	V1+0, R0(PF)	{}
+0002		CALLN		<-	V15+0	{}
+0003		JUMP		<-		{}
 		==> 3
-L3: <= D-1: (3)  P-1
+L3: <= D-1: (4)  P-1
 0000		RET		<-		{}
-L14: <= D-1: (1)  P-1
-0000		RELOP19	R2(B)	<-	R0(I)[-32768..65535], CI:2	{S}
+L16: <= D-1: (1)  P-1
+0000		RELOP24	R2(B)	<-	R0(I)[-32768..65535], CI:3	{S}
+0001		BRANCH		<-	R2(BF)	{}
+		==> 18
+		==> 17
+L18: <= D-1: (1)  P-1
+0000		RELOP19	R2(B)	<-	R0(I)[-32768..2], CI:0	{S}
+0001		BRANCH		<-	R2(BF)	{}
+		==> 6
+		==> 19
+L6: <= D-1: (1)  P-1
+0000		STOREZ1		<-	V5+0, CC:3	{}
+0001		STOREZ1		<-	V6+0, CC:8	{}
+0002		STOREZ1		<-	V7+0, CC:3	{}
+0003		STOREG2		<-	V12+0, CI:8192	{}
+0004		CONST	R0(P)	<-	CG0(76:0)	{S}
+0005		STOREZ2		<-	V3+0, R0(PF)	{}
+0006		LOADG4	R3(L)	<-	V14+0	{}
+0007		STOREZ4		<-	V8+0, R3(LF)	{}
+0008		CALLN		<-	V16+0	{}
+0009		STOREZ2		<-	V3+0, CI:28	{}
+000a		CONST	R0(P)	<-	CG28(54:0)	{S}
+000b		JUMP		<-		{}
+		==> 26
+L19: <= D-1: (1)  P-1
+0000		RELOP19	R2(B)	<-	R0(I)[-32768..2], CI:1	{S}
 0001		BRANCH		<-	R2(BF)	{}
 		==> 8
-		==> 15
+		==> 20
 L8: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG0(84:0)	{S}
-0001		JUMP		<-		{}
-		==> 21
-L15: <= D-1: (1)  P-1
-0000		RELOP19	R2(B)	<-	R0(I)[-32768..65535], CI:3	{S}
+0000		CONST	R0(P)	<-	CG0(81:0)	{S}
+0001		STOREZ2		<-	V3+0, R0(PF)	{}
+0002		CALLN		<-	V27+0	{}
+0003		STOREZ1		<-	V5+0, CC:3	{}
+0004		STOREZ1		<-	V6+0, CC:8	{}
+0005		STOREZ1		<-	V7+0, CC:3	{}
+0006		STOREG2		<-	V12+0, CI:8192	{}
+0007		CONST	R0(P)	<-	CG0(82:0)	{S}
+0008		STOREZ2		<-	V3+0, R0(PF)	{}
+0009		LOADG4	R3(L)	<-	V14+0	{}
+000a		STOREZ4		<-	V8+0, R3(LF)	{}
+000b		CALLN		<-	V16+0	{}
+000c		STOREZ2		<-	V3+0, CI:32	{}
+000d		CONST	R0(P)	<-	CG32(83:0)	{S}
+000e		JUMP		<-		{}
+		==> 26
+L20: <= D-1: (1)  P-1
+0000		RELOP19	R2(B)	<-	R0(IF)[-32768..2], CI:2	{S}
 0001		BRANCH		<-	R2(BF)	{}
 		==> 10
-		==> 16
-L10: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG0(85:0)	{S}
-0001		JUMP		<-		{}
-		==> 21
-L16: <= D-1: (1)  P-1
-0000		RELOP19	R2(B)	<-	R0(IF)[-32768..65535], CI:4	{S}
-0001		BRANCH		<-	R2(BF)	{}
-		==> 12
 		==> 3
-L12: <= D-1: (1)  P-1
-0000		CONST	R0(P)	<-	CG0(86:0)	{S}
-0001		JUMP		<-		{}
-		==> 21
+L10: <= D-1: (1)  P-1
+0000		CONST	R0(P)	<-	CG0(84:0)	{S}
+0001		STOREZ2		<-	V3+0, R0(PF)	{}
+0002		CONST	R0(P)	<-	CG0(85:0)	{S}
+0003		JUMP		<-		{}
+		==> 27
+L17: <= D-1: (1)  P-1
+0000		RELOP19	R2(B)	<-	R0(IF)[3..32767], CI:4	{S}
+0001		BRANCH		<-	R2(BF)	{}
+		==> 14
+		==> 3
+L14: <= D-1: (1)  P-1
+0000		CONST	R0(P)	<-	CG0(89:0)	{S}
+0001		STOREZ2		<-	V3+0, R0(PF)	{}
+0002		CALLN		<-	V27+0	{}
+0003		STOREZ1		<-	V5+0, CC:3	{}
+0004		STOREZ1		<-	V6+0, CC:8	{}
+0005		STOREZ1		<-	V7+0, CC:3	{}
+0006		STOREG2		<-	V12+0, CI:8192	{}
+0007		CONST	R0(P)	<-	CG0(90:0)	{S}
+0008		STOREZ2		<-	V3+0, R0(PF)	{}
+0009		LOADG4	R3(L)	<-	V14+0	{}
+000a		STOREZ4		<-	V8+0, R3(LF)	{}
+000b		CALLN		<-	V16+0	{}
+000c		STOREZ2		<-	V3+0, CI:32	{}
+000d		CONST	R0(P)	<-	CG32(91:0)	{S}
+000e		JUMP		<-		{}
+		==> 26
 L4: <= D-1: (1)  P-1
-0000		CALLN	R2(B)	<-	V29+0	{E}
+0000		CALLN	R2(B)	<-	V26+0	{E}
 0001		BRANCH		<-	R2(BF)	{}
 		==> 1
 		==> 3
@@ -2123,35 +2116,35 @@ zsm_init: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:16
 $00 R0(B), $01 R1(P), 
 L0: <= D-1: (1)  P-1
 0000		STOREG1		<-	V8+0, CB:1	{V}
-0001		LOADG1	R0(B)	<-	V79+0	{V}
+0001		LOADG1	R0(B)	<-	V77+0	{V}
 0002		BRANCH		<-	R0(BF)	{}
 		==> 1
 		==> 3
 L1: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V0+0, CC:2	{}
-0001		CALLN		<-	V25+0	{}
-0002		STOREG1		<-	V79+0, CB:0	{V}
+0001		CALLN		<-	V22+0	{}
+0002		STOREG1		<-	V77+0, CB:0	{V}
 0003		JUMP		<-		{}
 		==> 3
 L3: <= D-1: (2)  P-1
-0000		CALLN		<-	V31+0	{}
-0001		CALLN		<-	V32+0	{}
+0000		CALLN		<-	V28+0	{}
+0001		CALLN		<-	V29+0	{}
 0002		STOREG2		<-	V12+0, CI:0	{}
-0003		STOREG2		<-	V81+0, CI:0	{}
+0003		STOREG2		<-	V79+0, CI:0	{}
 0004		STOREG1		<-	V10+0, CC:0	{}
 0005		LOADZ2	R1(P)	<-	V3+0	{S}
 0006		STOREZ2		<-	V0+0, R1(PF)	{}
-0007		CALLN		<-	V18+0	{}
+0007		CALLN		<-	V17+0	{}
 0008		STOREZ1		<-	V0+0, CC:2	{}
 0009		STOREZ1		<-	V1+0, CC:8	{}
 000a		STOREZ1		<-	V2+0, CC:2	{}
-000b		CALLN	R0(B)	<-	V19+0	{}
+000b		CALLN	R0(B)	<-	V18+0	{}
 000c		BRANCH		<-	R0(BF)	{}
 		==> 4
 		==> 5
 L4: <= D-1: (1)  P-1
-0000		STOREG1		<-	V79+0, CB:1	{V}
-0001		CALLN		<-	V33+0	{}
+0000		STOREG1		<-	V77+0, CB:1	{V}
+0001		CALLN		<-	V30+0	{}
 0002		STOREG2		<-	V12+0, CI:16	{}
 0003		STOREG1		<-	V8+0, CB:0	{V}
 0004		RETV		<-	CB:1	{}
@@ -2188,7 +2181,7 @@ L2: <= D-1: (2) Head P21
 0001		STOREA2		<-	V-1+40736, R2(IF)[2..]	{V}
 0002		STOREA1		<-	V-1+40738, CC:1	{V}
 0003		CONV33	R2(I)[0..15]	<-	R0(C)[0..15]	{}
-0004		LEAG	R2(P)	<-	V80+0, R2(IF)[0..15]	{}
+0004		LEAG	R2(P)	<-	V78+0, R2(IF)[0..15]	{}
 0005		LOADA1	R3(C)[-128..255]	<-	V-1+40739	{V}
 0006		STOREI1		<-	R2(PF)+0, R3(CF)[-128..255]	{}
 0007		STOREA1		<-	V-1+40739, CC:0	{V}
@@ -2204,14 +2197,14 @@ L4: <= D-1: (1)  P-1
 zsm_fill: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:18
 $00 R0(B), $00 R1(I), $00 R2(I), $02 R3(I), $00 R4(I), 
 L0: <= D-1: (1)  P-1
-0000		LOADG1	R0(B)	<-	V79+0	{V}
+0000		LOADG1	R0(B)	<-	V77+0	{V}
 0001		BRANCH		<-	R0(BF)	{}
 		==> 2
 		==> 1
 L2: <= D-1: (1)  P-1
 0000		LOADG2	R1(I)[-32768..64511]	<-	V12+0	{}
 0001		BINOP1	R1(I)[-31744..65535]	<-	R1(IF)[-32768..64511], CI:1024	{}
-0002		LOADG2	R2(I)[-32768..65535]	<-	V81+0	{}
+0002		LOADG2	R2(I)[-32768..65535]	<-	V79+0	{}
 0003		RELOP19	R0(B)	<-	R2(IF)[-32768..65535], R1(IF)[-31744..65535]	{}
 0004		BRANCH		<-	R0(BF)	{}
 		==> 5
@@ -2220,7 +2213,7 @@ L5: <= D-1: (1)  P-1
 0000		RETV		<-	CI:0	{}
 L6: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V0+0, CC:2	{}
-0001		CALLN	R0(B)	<-	V21+0	{}
+0001		CALLN	R0(B)	<-	V19+0	{}
 0002		BRANCH		<-	R0(BF)	{}
 		==> 9
 		==> 1
@@ -2228,31 +2221,31 @@ L9: <= D-1: (1)  P-1
 0000		CONST	R1(I)[0..0]	<-	CI:0	{}
 0001		LOADG2	R2(I)[-32768..64511]	<-	V12+0	{}
 0002		BINOP1	R2(I)[-31744..65535]	<-	R2(IF)[-32768..64511], CI:1024	{}
-0003		LOADG2	R3(I)[-32768..65535]	<-	V81+0	{}
+0003		LOADG2	R3(I)[-32768..65535]	<-	V79+0	{}
 0004		RELOP20	R0(B)	<-	R3(IF)[-32768..65535], R2(IF)[-31744..65535]	{}
 0005		BRANCH		<-	R0(BF)	{}
 		==> 13
 		==> 38
 L13: <= D-1: (2) Head P65
-0000		CALLN	R2(I)	<-	V22+0	{}
-0001		LOADG2	R3(I)[-32768..65534]	<-	V81+0	{}
+0000		CALLN	R2(I)	<-	V20+0	{}
+0001		LOADG2	R3(I)[-32768..65534]	<-	V79+0	{}
 0002		BINOP1	R4(I)[-32767..65535]	<-	R3(I)[-32768..65534], CI:1	{}
-0003		STOREG2		<-	V81+0, R4(IF)[-32767..65535]	{}
+0003		STOREG2		<-	V79+0, R4(IF)[-32767..65535]	{}
 0004		BINOP9	R3(I)[0..1023]	<-	R3(IF)[-32768..65534], CI:1023	{}
 0005		LEAG	R3(P)	<-	V11+0, R3(IF)[0..1023]	{}
 0006		STOREI1		<-	R3(PF)+0, R2(CF)	{}
 0007		BINOP1	R1(I)[1..]	<-	R1(IF)[0..], CI:1	{}
-0008		CALLN	R0(C)	<-	V23+0	{}
+0008		CALLN	R0(C)	<-	V31+0	{}
 0009		BRANCH		<-	R0(CF)	{}
 		==> 15
 		==> 12
 L15: <= D-1: (1)  P-1
-0000		STOREG1		<-	V79+0, CB:0	{V}
+0000		STOREG1		<-	V77+0, CB:0	{V}
 0001		JUMP		<-		{}
 		==> 38
 L38: <= D-1: (3)  P-1
-0000		CALLN		<-	V24+0	{}
-0001		LOADG1	R0(B)	<-	V79+0	{V}
+0000		CALLN		<-	V21+0	{}
+0001		LOADG1	R0(B)	<-	V77+0	{V}
 0002		BRANCH		<-	R0(BF)	{}
 		==> 21
 		==> 19
@@ -2260,18 +2253,24 @@ L21: <= D-1: (1)  P-1
 0000		RETV		<-	R1(IF)[0..]	{}
 L19: <= D-1: (1)  P-1
 0000		STOREZ1		<-	V0+0, CC:2	{}
-0001		CALLN		<-	V25+0	{}
+0001		CALLN		<-	V22+0	{}
 0002		RETV		<-	R1(IF)[0..]	{}
 L12: <= D-1: (1)  P-1
 0000		LOADG2	R2(I)[-32768..64511]	<-	V12+0	{}
 0001		BINOP1	R2(I)[-31744..65535]	<-	R2(IF)[-32768..64511], CI:1024	{}
-0002		LOADG2	R3(I)[-32768..65535]	<-	V81+0	{}
+0002		LOADG2	R3(I)[-32768..65535]	<-	V79+0	{}
 0003		RELOP20	R0(B)	<-	R3(IF)[-32768..65535], R2(IF)[-31744..65535]	{}
 0004		BRANCH		<-	R0(BF)	{}
 		==> 13
 		==> 38
 L1: <= D-1: (2)  P-1
 0000		RETV		<-	CI:-1	{}
+--------------------------------------------------------------------
+krnio_status: C:/Program Files/oscar64/include/c64/kernalio.h:36
+
+L0: <= D-1: (1)  P-1
+0000		JSR		<-	V-1+0	{}
+0001		RET		<-		{}
 --------------------------------------------------------------------
 SetPaletteIndex: C:/Users/david/Documents/Games/CoolDemo/Sprites.h:11
 $00 R0(P), $00 R1(L), $00 R2(I), $02 R3(I), $00 R4(I), $04 R5(I), $06 R6(I), $00 R7(B), $00 R8(I), 
@@ -2315,7 +2314,7 @@ L4: <= D-1: (2)  P-1
 0004		CALLN		<-	V15+0	{}
 0005		RET		<-		{}
 --------------------------------------------------------------------
-ResetChars: C:/Users/david/Documents/Games/CoolDemo/Main.c:756
+ResetChars: C:/Users/david/Documents/Games/CoolDemo/Main.c:813
 $00 R0(C), $00 R1(B), 
 L0: <= D-1: (1)  P-1
 0000		LOADA1	R0(C)[-128..255]	<-	V-1+40741	{V}
@@ -2337,7 +2336,7 @@ L3: <= D-1: (2) Head P23
 L5: <= D-1: (1)  P-1
 0000		RET		<-		{}
 --------------------------------------------------------------------
-Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:335
+Control: C:/Users/david/Documents/Games/CoolDemo/Main.c:383
 $00 R0(C), 
 L0: <= D-1: (1)  P-1
 0000		LOADZ1	R0(C)[-128..255]	<-	V4+0	{S}
@@ -2351,18 +2350,18 @@ L1: <= D-1: (1)  P-1
 		==> 4
 		==> 5
 L4: <= D-1: (1)  P-1
-0000		LOADG1	R0(B)	<-	V95+0	{}
+0000		LOADG1	R0(B)	<-	V99+0	{}
 0001		RELOP19	R0(B)	<-	R0(BF), CB:0	{}
-0002		STOREG1		<-	V95+0, R0(B)	{}
+0002		STOREG1		<-	V99+0, R0(B)	{}
 0003		STOREZ1		<-	V2+0, R0(BF)	{}
-0004		CALLN		<-	V37+0	{}
+0004		CALLN		<-	V35+0	{}
 0005		LOADZ1	R0(B)	<-	V3+0	{}
 0006		RETV		<-	R0(BF)	{}
 L5: <= D-1: (1)  P-1
 0000		CONST	R0(B)	<-	CI:1	{}
 0001		STOREZ1		<-	V3+0, R0(B)	{}
 0002		STOREZ1		<-	V0+0, R0(BF)	{}
-0003		CALLN		<-	V39+0	{}
+0003		CALLN		<-	V37+0	{}
 0004		LOADZ1	R0(B)	<-	V3+0	{}
 0005		RETV		<-	R0(BF)	{}
 L3: <= D-1: (1)  P-1
@@ -2385,8 +2384,8 @@ L3: <= D-1: (4)  P-1
 0000		RET		<-		{}
 L1: <= D-1: (1)  P-1
 0000		STOREG1		<-	V9+0, CB:1	{V}
-0001		CALLN		<-	V31+0	{}
-0002		CALLN		<-	V32+0	{}
+0001		CALLN		<-	V28+0	{}
+0002		CALLN		<-	V29+0	{}
 0003		JUMP		<-		{}
 		==> 3
 L8: <= D-1: (1)  P-1
@@ -2395,7 +2394,7 @@ L8: <= D-1: (1)  P-1
 		==> 5
 		==> 3
 L5: <= D-1: (1)  P-1
-0000		CALLN		<-	V38+0	{}
+0000		CALLN		<-	V36+0	{}
 0001		STOREG1		<-	V9+0, CB:0	{V}
 0002		JUMP		<-		{}
 		==> 3
@@ -2412,7 +2411,7 @@ L2: <= D-1: (2) Head P21
 0001		STOREA2		<-	V-1+40736, R2(IF)[2..]	{V}
 0002		STOREA1		<-	V-1+40738, CC:1	{V}
 0003		CONV33	R2(I)[0..15]	<-	R0(C)[0..15]	{}
-0004		LEAG	R2(P)	<-	V80+0, R2(IF)[0..15]	{}
+0004		LEAG	R2(P)	<-	V78+0, R2(IF)[0..15]	{}
 0005		LOADI1	R3(C)[-128..255]	<-	R2(PF)+0	{}
 0006		STOREA1		<-	V-1+40739, R3(CF)[-128..255]	{V}
 0007		BINOP1	R1(I)[6..]	<-	CI:4, R1(IF)[2..]	{}
@@ -2430,6 +2429,111 @@ L0: <= D-1: (1)  P-1
 0000		LOADZ1	R0(B)	<-	V0+0	{S}
 0001		STOREG1		<-	V7+0, R0(BF)	{V}
 0002		RET		<-		{}
+--------------------------------------------------------------------
+UpdateVolume: C:/Users/david/Documents/Games/CoolDemo/Main.c:823
+$00 R0(C), $00 R1(P), $00 R2(P), $00 R3(I), $00 R4(C), $01 R5(L), $00 R6(L), 
+L0: <= D-1: (1)  P-1
+0000		STOREA1		<-	V-1+40748, CC:33	{V}
+0001		STOREG1		<-	V106+0, CC:0	{}
+0002		STOREG1		<-	V105+0, CC:0	{}
+0003		CONST	R0(C)[0..0]	<-	CI:0	{}
+0004		CONST	R1(P)	<-	CG1(105:0)	{IS}
+0005		CONST	R2(P)	<-	CG1(106:0)	{IS}
+0006		JUMP		<-		{}
+		==> 2
+L2: <= D-1: (2) Head P42
+0000		STOREZ2		<-	V0+0, R1(P)	{}
+0001		STOREZ2		<-	V2+0, R2(P)	{}
+0002		CONV33	R3(I)[0..15]	<-	R0(C)[0..15]	{}
+0003		STOREZ2		<-	V4+0, R3(I)[0..15]	{}
+0004		CALLN		<-	V39+0	{}
+0005		BINOP1	R3(I)[25..40]	<-	R3(IF)[0..15], CI:25	{}
+0006		STOREZ1		<-	V0+0, R3(CF)[25..40]	{}
+0007		LOADG1	R4(C)[-128..255]	<-	V105+0	{}
+0008		CONV34	R5(L)	<-	R4(CF)[-128..255]	{}
+0009		LOADG4	R6(L)	<-	V15+0	{}
+000a		BINOP1	R5(L)	<-	R6(LF), R5(LF)	{}
+000b		BINOP17	R5(L)	<-	R5(LF), CL:45	{}
+000c		STOREZ2		<-	V1+0, R5(IF)	{}
+000d		CALLN		<-	V40+0	{}
+000e		BINOP1	R0(C)[1..16]	<-	R0(CF)[0..15], CI:1	{}
+000f		RELOP28	R4(B)	<-	R0(C)[1..16], CC:16	{}
+0010		BRANCH		<-	R4(BF)	{}
+		==> 2
+		==> 4
+L4: <= D-1: (1)  P-1
+0000		CONST	R0(C)[0..0]	<-	CI:0	{}
+0001		CONST	R1(P)	<-	CG1(105:0)	{IS}
+0002		CONST	R2(P)	<-	CG1(106:0)	{IS}
+0003		JUMP		<-		{}
+		==> 6
+L6: <= D-1: (2) Head P41
+0000		STOREZ2		<-	V0+0, R1(P)	{}
+0001		STOREZ2		<-	V2+0, R2(P)	{}
+0002		CONV33	R3(I)[0..7]	<-	R0(C)[0..7]	{}
+0003		STOREZ2		<-	V4+0, R3(I)[0..7]	{}
+0004		CALLN		<-	V39+0	{}
+0005		BINOP1	R3(I)[41..48]	<-	R3(IF)[0..7], CI:41	{}
+0006		STOREZ1		<-	V0+0, R3(CF)[41..48]	{}
+0007		LOADG1	R4(C)[-128..255]	<-	V106+0	{}
+0008		CONV34	R5(L)	<-	R4(CF)[-128..255]	{}
+0009		LOADG4	R6(L)	<-	V15+0	{}
+000a		BINOP1	R5(L)	<-	R6(LF), R5(LF)	{}
+000b		BINOP17	R5(L)	<-	R5(LF), CL:45	{}
+000c		STOREZ2		<-	V1+0, R5(IF)	{}
+000d		CALLN		<-	V40+0	{}
+000e		BINOP1	R0(C)[1..8]	<-	R0(CF)[0..7], CI:1	{}
+000f		RELOP28	R4(B)	<-	R0(C)[1..8], CC:8	{}
+0010		BRANCH		<-	R4(BF)	{}
+		==> 6
+		==> 8
+L8: <= D-1: (1)  P-1
+0000		RET		<-		{}
+--------------------------------------------------------------------
+zsm_get_volumes: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:28
+$00 R0(I), $00 R1(C), 
+L0: <= D-1: (1)  P-1
+0000		LOADZ2	R0(I)[-8192..16383]	<-	V4+0	{S}
+0001		BINOP16	R0(I)[-32768..65532]	<-	R0(IF)[-8192..16383], CI:2	{S}
+0002		BINOP1	R0(I)[-32766..65534]	<-	R0(IF)[-32768..65532], CI:2	{S}
+0003		BINOP8	R0(I)[-32766..65535]	<-	R0(IF)[-32766..65534], CI:63936	{S}
+0004		STOREA2		<-	V-1+40736, R0(IF)[-32766..65535]	{V}
+0005		STOREA1		<-	V-1+40738, CC:1	{V}
+0006		LOADZ2	R0(P)	<-	V0+0	{S}
+0007		LOADA1	R1(C)[-128..255]	<-	V-1+40739	{V}
+0008		STOREI1		<-	R0(PF)+0, R1(CF)[-128..255]	{}
+0009		RET		<-		{}
+--------------------------------------------------------------------
+vera_spr_image: C:/Program Files/oscar64/include/cx16/vera.h:145
+$00 R0(C), $00 R1(C), $00 R2(I), $00 R3(L), $00 R4(I), 
+L0: <= D-1: (1)  P-1
+0000		LOADZ1	R0(C)[-128..255]	<-	V0+0	{S}
+0001		LOADA1	R1(C)[-128..255]	<-	V-1+40741	{V}
+0002		BINOP9	R1(C)[-128..255]	<-	R1(CF)[-128..255], CC:-2	{}
+0003		STOREA1		<-	V-1+40741, R1(CF)[-128..255]	{V}
+0004		CONV33	R2(I)[0..127]	<-	R0(CF)[0..127]	{S}
+0005		BINOP16	R2(I)[0..1016]	<-	R2(IF)[0..127], CI:3	{S}
+0006		CONV38	R3(L)	<-	R2(IF)[0..1016]	{S}
+0007		BINOP1	R3(L)	<-	R3(LF), CL:130048	{S}
+0008		STOREA2		<-	V-1+40736, R3(I)	{V}
+0009		BINOP17	R3(L)	<-	R3(LF), CL:16	{S}
+000a		BINOP9	R3(L)[0..1]	<-	R3(LF), CL:1	{S}
+000b		CONV33	R2(I)[0..1]	<-	R3(CF)[0..1]	{S}
+000c		BINOP8	R2(I)[0..31]	<-	R2(IF)[0..1], CI:16	{S}
+000d		STOREA1		<-	V-1+40738, R2(CF)[0..31]	{V}
+000e		LOADZ2	R2(I)[-32768..65535]	<-	V1+0	{S}
+000f		BINOP9	R4(I)[0..255]	<-	R2(I)[-32768..65535], CI:255	{S}
+0010		STOREA1		<-	V-1+40739, R4(CF)[0..255]	{V}
+0011		LOADA1	R0(C)[-128..255]	<-	V-1+40738	{V}
+0012		BINOP9	R0(C)[0..15]	<-	R0(CF)[-128..255], CC:15	{}
+0013		STOREA1		<-	V-1+40738, R0(CF)[0..15]	{V}
+0014		BINOP17	R2(I)[0..255]	<-	R2(IF)[-32768..65535], CI:8	{S}
+0015		LOADA1	R0(C)[-128..255]	<-	V-1+40739	{V}
+0016		CONV33	R4(I)[0..255]	<-	R0(CF)[-128..255]	{}
+0017		BINOP9	R4(I)[0..255]	<-	R4(IF)[0..255], CI:128	{}
+0018		BINOP8	R2(I)[0..255]	<-	R4(IF)[0..255], R2(IF)[0..255]	{}
+0019		STOREA1		<-	V-1+40739, R2(CF)[0..255]	{V}
+001a		RET		<-		{}
 --------------------------------------------------------------------
 frame_wait: C:/Users/david/Documents/Games/CoolDemo/ZSMPlayer.h:11
 $00 R0(C), $00 R1(I), 

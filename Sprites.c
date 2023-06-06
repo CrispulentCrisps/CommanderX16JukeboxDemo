@@ -32,12 +32,14 @@ void LoadSprite(const char* name, char fnum, char device, char channel, unsigned
 {
 	krnio_setnam(name);
 	krnio_open(fnum, device, channel);
-	krnio_getch(fnum);
-	krnio_getch(fnum);
+	krnio_chkin(fnum);
+	//FUCK THESE 2 BYTES IN PARTICULAR
+	krnio_chrin();
+	krnio_chrin();
 	for (unsigned i = 0; i < DataSize; i++)
 	{
-		vram_put_at(Addr + i, krnio_getch(fnum));
+		vram_put_at(Addr + i, krnio_chrin());
 	}
-
+	krnio_clrchn();
 	krnio_close(fnum);
 }

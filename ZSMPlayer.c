@@ -266,17 +266,9 @@ void zsm_pause(bool pause)
 	}
 }
 
-void zsm_get_volumes(char vera_v, char fm_v, int id) {
-	vera_v = vera_volumes[(id * 8) + 2];
-	fm_v = vera_fm_s_regs[(id * 8) + 2];
-}
-
-char zsm_return_volume(int ChannelID) {
-	char VolumeData = 0;
-	VolumeData = zsm_save_volume();
-	return vera_volumes[(ChannelID * 8) + 2];
-}
-
-char zsm_return_fm_volume(int ChannelID) {
-	return vera_fm_s_regs[(ChannelID * 8) + 2];
+void zsm_get_volumes(char* vera_v, char* fm_v, int id)
+{
+	vera.addr = (id * 4 + 2) | 0xf9c0;
+	vera.addrh = 0x01;
+	*vera_v = vera.data0;
 }
