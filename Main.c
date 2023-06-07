@@ -347,6 +347,25 @@ unsigned RealPal[] = {
 	0x999,
 };
 
+unsigned Aleksipal[] = {
+	0x000,
+	0x000,
+	0x03B,
+	0x06F,
+	0x222,
+	0x0CC,
+	0x0FF,
+	0x29F,
+	0x111,
+	0xCCB,
+	0xFFF,
+	0x999,
+	0xDD0,
+	0x000,
+	0x000,
+	0x000,
+};
+
 const char TestText2[] =	s" - - = = credits: code: blumba, mark-bugslayer, crisps. musicians: abstract64, aleksi winston, fade, kole-o-black, mega-sparky, the-real-hedgehog-sonic"
 							s". crisps here, this was the first time working on any 8 bit machine. thanks to the coders listed i managed to finish this with the oscar64 compiler. most folk  told me to use cc65 however i was interested in having the program actually compile than give me cryptic errors and permission issues (despite the fact i own the computer) >:[. "
 							s"either way, this is existing and i do wanna thank everyone who's helped out with this.without a group of musicians (and especially coders) this wouldn't exist in any capacity. in terms of why, well, i wanted be in a music disc / demo and since i couldn't find a coder who'd do it for me i just said \" f u c k  i t  i'll do it myself.\" and since you're reading this it was a success."
@@ -366,6 +385,8 @@ const char Song2[] = s"- - = =  song name: - \"the gem infested terra-tory\" - a
 const char Song3[] = s"- - = =  song name: - \"the radiant radioactive rockslide\" - artist: \"the-real-hedgehog-sonic\" - length: 1:36 - comment: the crystal dimension was so nice, you get to experience it twice! = = - - ";
 
 const char Song4[] = s"- - = =  song name: - \"gobsmacked\" - artist: \"fade\" - length: 3:23 - comment: i bet you didn't think the warmth of vinyl could be replicated in anything digital, but here we are :3 = = - - ";
+
+const char Song5[] = s"- - = =  song name: - \"femur freezer\" - artist: \"aleksi winston\" - length: 1:55 - comment: song brought to you by deez nut co. since 1889 = = - - ";
 
 static bool paused = false;
 
@@ -408,7 +429,7 @@ bool ShimmerState = false;
 unsigned Phase = 8;
 unsigned Phase2 = 0;
 unsigned Phase3 = 16;
-char MaxSong = 4;
+char MaxSong = 5;
 char LastSelectedSong = 255;
 char SelectedSong = 0;
 unsigned long VolAddr = 0;
@@ -435,7 +456,7 @@ void SetUpSprites() {
 	const unsigned short TextAddr = 0x1B000;
 
 	VolAddr = CrispyAddr;
-	IndAddr = 0x13100;
+	IndAddr = 0x13100L;
 	//Set up Background
 	vera.ctrl = 0; // &= ~VERA_CTRL_DCSEL;
 	//vera.dcvideo |= VERA_DCVIDEO_LAYER0 | VERA_DCVIDEO_LAYER1 | VERA_DCVIDEO_SPRITES;
@@ -714,7 +735,7 @@ void SetUpSprites() {
 	vera_pal_putn(128, TextPal, sizeof(TextPal));
 	vera_pal_putn(144, YMPal, sizeof(YMPal));
 	vera_pal_putn(160, VERAPal, sizeof(VERAPal));
-	vera_pal_putn(176, CoderPal, sizeof(CoderPal));
+	vera_pal_putn(176, CoderPal, sizeof(CoderPal));;
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 
@@ -805,6 +826,11 @@ void PlayZSM(int TuneSelection, int LastSong) {
 			zsm_init("@0:zsmfiles/gsfinal.zsm,P,R");
 			LoadSprite("@0:/sprites/bin/FLDE.BIN,P,R", 3, 8, 3, VolAddr, 8192);
 			vera_pal_putn(176, FldePal, sizeof(FldePal));
+			break;		
+		case 5:
+			zsm_init("@0:zsmfiles/FEMURFREEZER.zsm,P,R");
+			LoadSprite("@0:/sprites/bin/ALEKSI.BIN,P,R", 3, 8, 3, VolAddr, 8192);
+			vera_pal_putn(176, Aleksipal, sizeof(Aleksipal));
 			break;
 		}
 	}
@@ -828,13 +854,13 @@ void UpdateVolume() {
 	for (char i = 0; i < 16; i++)
 	{
 		zsm_get_volumes(&VeraVolume, &FMVolume, i);
-		vera_spr_image(25 + i, (IndAddr)+VeraVolume>>5+40);
+		vera_spr_image(25 + i, (IndAddr + (VeraVolume >> 4) * 0x20) >> 5);
 	}
 	//FM Volume
 	for (char i = 0; i < 8; i++)
 	{
 		zsm_get_volumes(&VeraVolume, &FMVolume, i);
-		vera_spr_image(41 + i, (IndAddr)+FMVolume>>5 + 40);
+		vera_spr_image(41 + i, (IndAddr + (FMVolume >> 4) * 0x20) >> 5);
 	}
 }
 
@@ -865,6 +891,7 @@ int main() {
 	vera.addrh |= 0b100000;
 
 	char Input = 0;
+	SetPaletteIndex(TowerPalF1, 80, 0, 16);
 	while (Running)
 	{
 		Input = getchx();
@@ -974,10 +1001,19 @@ int main() {
 				}
 				break;
 			case 4:
-				if (Song4[off1 % (sizeof(Song3) - 1)] != 0x00)
+				if (Song4[off1 % (sizeof(Song4) - 1)] != 0x00)
 				{
 					//character
 					vera.data0 = Song4[off1 % (sizeof(Song4) - 1)];
+					//colour
+					vera.data0 = (off1 % 16) + 128;
+				}
+				break;
+			case 5:
+				if (Song5[off1 % (sizeof(Song5) - 1)] != 0x00)
+				{
+					//character
+					vera.data0 = Song5[off1 % (sizeof(Song5) - 1)];
 					//colour
 					vera.data0 = (off1 % 16) + 128;
 				}

@@ -1,6 +1,7 @@
 #include "ZSMPlayer.h"
 #include <c64/kernalio.h>
 
+char vera_fm_s_regs[256];
 void frame_wait(void)
 {
 	while (vera.ien & 0x40);
@@ -63,7 +64,6 @@ static volatile bool zsm_playing = false, zsm_reading = false, zsm_finished = tr
 static char zsm_buffer[1024];
 static volatile bool zsm_paused = false;
 static char vera_volumes[16];
-	
 
 void zsm_save_volume(void)
 {
@@ -271,4 +271,5 @@ void zsm_get_volumes(char* vera_v, char* fm_v, int id)
 	vera.addr = (id * 4 + 2) | 0xf9c0;
 	vera.addrh = 0x01;
 	*vera_v = vera.data0;
+	*fm_v = vera_fm_s_regs[id + 0x78];
 }
