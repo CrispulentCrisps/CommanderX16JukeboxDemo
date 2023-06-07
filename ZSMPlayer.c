@@ -43,13 +43,8 @@ void sfx_put(char index, char data)
 	//YM Write
 	while (sfx.data & 0x80);
 	sfx.index = index;
-	__asm {
-		nop
-		nop
-		nop
-		nop
-	}
 	vera_fm_s_regs[index] = data;
+	while (sfx.data & 0x80);
 	sfx.data = data;
 }
 void delay(unsigned t)
@@ -64,6 +59,8 @@ static volatile bool zsm_playing = false, zsm_reading = false, zsm_finished = tr
 static char zsm_buffer[1024];
 static volatile bool zsm_paused = false;
 static char vera_volumes[16];
+
+#pragma align(zsm_buffer, 256)
 
 void zsm_save_volume(void)
 {
@@ -271,5 +268,5 @@ void zsm_get_volumes(char* vera_v, char* fm_v, int id)
 	vera.addr = (id * 4 + 2) | 0xf9c0;
 	vera.addrh = 0x01;
 	*vera_v = vera.data0;
-	*fm_v = vera_fm_s_regs[id + 0x78];
+	*fm_v = (char)(0x7f - (vera_fm_s_regs[id + 0x78] & 0x7f)) << 1;
 }
