@@ -897,7 +897,7 @@ void UpdateVolume() {
 	{
 		zsm_get_volumes(&VeraVolume, &FMVolume, i);
 
-		vera_spr_image(41 + i, (IndAddr + (FMTable[BinarySearch(FMTable, 0x40, 0x7F, FMVolume)]) * 0x20) >> 5);	
+		vera_spr_image(41 + i, (IndAddr + (FMVolume * 0x20)) >> 5);	
 	}
 }
 

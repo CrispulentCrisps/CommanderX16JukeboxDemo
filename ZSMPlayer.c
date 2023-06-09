@@ -38,12 +38,18 @@ void YMWriteSYSRom(char index, char data)
 	}
 }
 
+
+char vera_fm_gate[8];
+
 void sfx_put(char index, char data)
 {
 	//YM Write
 	while (sfx.data & 0x80);
 	sfx.index = index;
 	vera_fm_s_regs[index] = data;
+	if (index == 0x08)
+		vera_fm_gate[data & 0x07] = data;
+
 	while (sfx.data & 0x80);
 	sfx.data = data;
 }
@@ -263,10 +269,54 @@ void zsm_pause(bool pause)
 	}
 }
 
+static const char fm_cmask[8] = {
+	0x40, 0x40, 0x40, 0x40,
+	0x50, 0x70, 0x70, 0x78
+};
+
 void zsm_get_volumes(char* vera_v, char* fm_v, int id)
 {
 	vera.addr = (id * 4 + 2) | 0xf9c0;
 	vera.addrh = 0x01;
 	*vera_v = vera.data0;
-	*fm_v = (char)(0x7f - (vera_fm_s_regs[id + 0x78] & 0x7f)) << 1;
+	char g = vera_fm_gate[id & 7] & 0x78;
+	if (g)
+	{
+		char con = vera_fm_s_regs[id + 0x20];
+		if (g & con)
+		{
+			char v = vera_fm_s_regs[id + 0x78] & 0x7f;
+			if (con & 0x10)
+				v &= vera_fm_s_regs[id + 0x70] & 0x7f;
+
+			if (v == 0x00)
+				*fm_v = 2;
+			else if (v <= 1)
+				*fm_v = 3;
+			else if (v <= 2)
+				*fm_v = 4;
+			else if (v <= 3)
+				*fm_v = 5;
+			else if (v <= 4)
+				*fm_v = 6;
+			else if (v <= 5)
+				*fm_v = 7;
+			else if (v <= 8)
+				*fm_v = 8;
+			else if (v <= 16)
+				*fm_v = 9;
+			else if (v <= 32)
+				*fm_v = 10;
+			else if (v <= 64)
+				*fm_v = 11;
+			else if (v < 0x7f)
+				*fm_v = 12;
+			else
+				*fm_v = 13;
+		}
+	}
+	else
+		*fm_v = 0;
+
+//	*fm_v = id; //(char)(0x7f - (vera_fm_s_regs[id + 0x78] & 0x7f)) << 1;
 }
