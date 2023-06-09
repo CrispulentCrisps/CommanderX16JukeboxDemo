@@ -390,6 +390,26 @@ const char Song5[] = s"- - = =  song name: - \"femur freezer\" - artist: \"aleks
 
 static bool paused = false;
 
+static const unsigned FMTable[64] = {
+	0x40, 0x41,	0x42, 0x43,
+	0x44, 0x45,	0x46, 0x47,
+	0x48, 0x48,	0x4A, 0x4B,
+	0x4C, 0x4D,	0x4E, 0x4F,
+	0x50, 0x51,	0x52, 0x53,
+	0x54, 0x55,	0x56, 0x57,
+	0x58, 0x58,	0x5A, 0x5B,
+	0x5C, 0x5D,	0x5E, 0x5F,
+
+	0x60, 0x61,	0x62, 0x63,
+	0x64, 0x65,	0x66, 0x67,
+	0x68, 0x68,	0x6A, 0x6B,
+	0x6C, 0x6D,	0x6E, 0x6F,
+	0x70, 0x71,	0x72, 0x73,
+	0x74, 0x75,	0x76, 0x77,
+	0x78, 0x78,	0x7A, 0x7B,
+	0x7C, 0x7D,	0x7E, 0x7F,
+};
+
 static const sbyte sintab[256] = {
 	0, 2, 4, 7, 9, 11, 13, 15, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 55, 57, 59, 60,
 	62, 64, 65, 67, 68, 70, 71, 72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 85, 86, 87, 87, 88, 88, 89, 89, 89, 90, 90, 90, 90,
@@ -845,7 +865,23 @@ void ResetChars() {
 		vera.data0 = 0;
 	}
 }
+unsigned BinarySearch(const unsigned arr[], int l, int r, int x)
+{
+	while (l <= r) {
+		int m = l + (r - l) / 2;
 
+		if (arr[m] == x)
+			return m;
+
+		if (arr[m] < x)
+			l = m + 1;
+
+		else
+			r = m - 1;
+	}
+
+	return 0;
+};
 void UpdateVolume() {
 	vera.dcborder = 33;
 	//Vera Volume
@@ -860,7 +896,8 @@ void UpdateVolume() {
 	for (char i = 0; i < 8; i++)
 	{
 		zsm_get_volumes(&VeraVolume, &FMVolume, i);
-		vera_spr_image(41 + i, (IndAddr + (FMVolume >> 4) * 0x20) >> 5);
+
+		vera_spr_image(41 + i, (IndAddr + (FMTable[BinarySearch(FMTable, 0x40, 0x7F, FMVolume)]) * 0x20) >> 5);	
 	}
 }
 
