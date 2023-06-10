@@ -388,6 +388,8 @@ const char Song4[] = s"- - = =  song name: - \"gobsmacked\" - artist: \"fade\" -
 
 const char Song5[] = s"- - = =  song name: - \"femur freezer\" - artist: \"aleksi winston\" - length: 1:55 - comment: song brought to you by deez nut co. since 1889 = = - - ";
 
+const char Song6[] = s"- - = =  song name: - \" \" - artist: \"crisps\" - length: 3:24 - comment: yuzo kushiro better not sue me for this music :[ at least this was for a fun music disc, now that the coding is done :d. but hey, i wanna see what you guys looking at this what you think of it? I really do wanna see feedback on this, even if you think it's shite! = = - - ";
+
 static bool paused = false;
 
 static const unsigned FMTable[64] = {
@@ -449,7 +451,7 @@ bool ShimmerState = false;
 unsigned Phase = 8;
 unsigned Phase2 = 0;
 unsigned Phase3 = 16;
-char MaxSong = 5;
+char MaxSong = 6;
 char LastSelectedSong = 255;
 char SelectedSong = 0;
 unsigned long VolAddr = 0;
@@ -852,6 +854,11 @@ void PlayZSM(int TuneSelection, int LastSong) {
 			LoadSprite("@0:/sprites/bin/ALEKSI.BIN,P,R", 3, 8, 3, VolAddr, 8192);
 			vera_pal_putn(176, Aleksipal, sizeof(Aleksipal));
 			break;
+		case 6:
+			zsm_init("@0:zsmfiles/House4.zsm,P,R");
+			LoadSprite("@0:/sprites/bin/CRISPY.BIN,P,R", 3, 8, 3, VolAddr, 8192);
+			vera_pal_putn(176, CrispyPal, sizeof(CrispyPal));
+			break;
 		}
 	}
 }
@@ -882,6 +889,7 @@ unsigned BinarySearch(const unsigned arr[], int l, int r, int x)
 
 	return 0;
 };
+
 void UpdateVolume() {
 	vera.dcborder = 33;
 	//Vera Volume
@@ -897,7 +905,7 @@ void UpdateVolume() {
 	{
 		zsm_get_volumes(&VeraVolume, &FMVolume, i);
 
-		vera_spr_image(41 + i, (IndAddr + (FMTable[BinarySearch(FMTable, 0x40, 0x7F, FMVolume)]) * 0x20) >> 5);	
+		vera_spr_image(41 + i, (IndAddr + (FMVolume * 0x20)) >> 5);	
 	}
 }
 
@@ -1054,7 +1062,16 @@ int main() {
 					//colour
 					vera.data0 = (off1 % 16) + 128;
 				}
-				break;
+				break;			
+			case 6:
+					if (Song6[off1 % (sizeof(Song6) - 1)] != 0x00)
+					{
+						//character
+						vera.data0 = Song6[off1 % (sizeof(Song6) - 1)];
+						//colour
+						vera.data0 = (off1 % 16) + 128;
+					}
+					break;
 			}
 			off1++;
 			SetPaletteIndex(TextPal, 128, 0, 16);
