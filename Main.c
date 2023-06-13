@@ -25,7 +25,7 @@ const char Pause[] = {
 const char Playing[] = {
 	#embed 256 2 "sprites/bin/PLAYING.BIN"
 };
-const char Arrow[] = {	
+const char Arrow[] = {
 	#embed 512 2 "sprites/bin/ARROW.BIN"
 };
 const char VolumeInd[] = {
@@ -65,6 +65,11 @@ const char VERASprite[] = {
 const char YMSprite[] = {
 	#embed 512 2 "sprites/bin/YM-2151.BIN"
 };
+
+const char LogoSprite[] = {
+	#embed 4096 2 "sprites/bin/LOGO.BIN"
+};
+
 
 unsigned palette[] = {
 
@@ -366,6 +371,21 @@ unsigned Aleksipal[] = {
 	0x000,
 };
 
+unsigned LogoPal[] = {
+	0x000,
+	0x09D,
+	0x06C,
+	0x04D,
+	0x02D,
+	0x000,
+	0x0FF,
+	0x0BB,
+	0xDDD,
+	0xFFF,
+	0x009,
+};
+
+
 const char TestText2[] =	s" - - = = credits: code: blumba, mark-bugslayer, crisps. musicians: abstract64, aleksi winston, fade, kole-o-black, mega-sparky, the-real-hedgehog-sonic"
 							s". crisps here, this was the first time working on any 8 bit machine. thanks to the coders listed i managed to finish this with the oscar64 compiler. most folk  told me to use cc65 however i was interested in having the program actually compile than give me cryptic errors and permission issues (despite the fact i own the computer) >:[. "
 							s"either way, this is existing and i do wanna thank everyone who's helped out with this.without a group of musicians (and especially coders) this wouldn't exist in any capacity. in terms of why, well, i wanted be in a music disc / demo and since i couldn't find a coder who'd do it for me i just said \" f u c k  i t  i'll do it myself.\" and since you're reading this it was a success."
@@ -388,7 +408,7 @@ const char Song4[] = s"- - = =  song name: - \"gobsmacked\" - artist: \"fade\" -
 
 const char Song5[] = s"- - = =  song name: - \"femur freezer\" - artist: \"aleksi winston\" - length: 1:55 - comment: song brought to you by deez nut co. since 1889 = = - - ";
 
-const char Song6[] = s"- - = =  song name: - \" \" - artist: \"crisps\" - length: 3:24 - comment: yuzo kushiro better not sue me for this music :[ at least this was for a fun music disc, now that the coding is done :d. but hey, i wanna see what you guys looking at this what you think of it? I really do wanna see feedback on this, even if you think it's shite! = = - - ";
+const char Song6[] = s"- - = =  song name: - \" some house in laos\" - artist: \"crisps\" - length: 3:24 - comment: yuzo kushiro better not sue me for this music :[ at least this was for a fun music disc, now that the coding is done :d. but hey, i wanna see what you guys looking at this what you think of it? I really do wanna see feedback on this, even if you think it's shite! = = - - ";
 
 static bool paused = false;
 
@@ -457,7 +477,6 @@ char SelectedSong = 0;
 unsigned long VolAddr = 0;
 unsigned long IndAddr = 0;
 void SetUpSprites() {
-
 	const unsigned long PauseAddr = VERA_SPRITES;
 	const unsigned long VolumeIndAddr = VERA_SPRITES + ((sizeof(Pause) + 31) & ~31);
 	const unsigned long ArrowAddr = VolumeIndAddr + ((sizeof(VolumeInd) + 31) & ~31);
@@ -472,6 +491,7 @@ void SetUpSprites() {
 	const unsigned long VERAAddr = PlayingAddr + ((sizeof(Playing) + 31) & ~31) + 64;
 	const unsigned long YMAddr = VERAAddr + ((sizeof(VERASprite) + 31) & ~31) + 64;
 	const unsigned long CrispyAddr = YMAddr + ((sizeof(YMSprite) + 31) & ~31) + 64;
+	const unsigned long LogoAddr = CrispyAddr + ((8192 + 31) & ~31) + 128;
 
 	const unsigned long BGAddr = 0x0;
 	const unsigned short BGMapAddr = 0x2000;
@@ -512,6 +532,7 @@ void SetUpSprites() {
 	}
 
 	vram_putn(BGAddr, MainBG, sizeof(MainBG));
+	vram_putn(LogoAddr, LogoSprite, sizeof(LogoSprite));
 
 	// Set address increment mode to 1 byte increments
 	vera.addrh = 0b00010000;
@@ -666,17 +687,10 @@ void SetUpSprites() {
 	vera_spr_set(1, YMAddr >> 5, false, 2, 2, 3, 9);
 	vera_spr_move(1, 640 - 144, 438);
 
-	//Pause
-	vram_putn(PauseAddr, Pause, sizeof(Pause));
-	vera_spr_set(22, PauseAddr >> 5, false, 1, 2, 3, 1);
-	vera_spr_move(22, 304, 440);
-
-	vram_putn(ArrowAddr, Arrow, sizeof(Arrow));
-	vera_spr_set(23, ArrowAddr >> 5, false, 2, 2, 3, 1);
-	vera_spr_move(23, 252, 440);
-	vera_spr_set(24, ArrowAddr >> 5, false, 2, 2, 3, 1);
-	vera_spr_move(24, 332, 440);
-	vera_spr_flip(24, true, false);
+	vera_spr_set(11, LogoAddr >> 5, false, 3, 3, 3, 12);
+	vera_spr_move(11, 320-64, 416);
+	vera_spr_set(12, (LogoAddr+2048) >> 5, false, 3, 3, 3, 12);
+	vera_spr_move(12, 320, 416);
 
 	vera_pal_putn(16, palette, sizeof(palette));
 
@@ -758,6 +772,7 @@ void SetUpSprites() {
 	vera_pal_putn(144, YMPal, sizeof(YMPal));
 	vera_pal_putn(160, VERAPal, sizeof(VERAPal));
 	vera_pal_putn(176, CoderPal, sizeof(CoderPal));;
+	vera_pal_putn(192, LogoPal, sizeof(LogoPal));;
 
 	vram_putn(TowerTriAddr, EyeTri, sizeof(EyeTri));
 
@@ -898,7 +913,7 @@ void UpdateVolume() {
 	for (char i = 0; i < 16; i++)
 	{
 		zsm_get_volumes(&VeraVolume, &FMVolume, i);
-		vera_spr_image(25 + i, (IndAddr + (VeraVolume >> 4) * 0x20) >> 5);
+		vera_spr_image(25 + i, (IndAddr + (VeraVolume >> 4) * 0x20 - 0x20) >> 5);
 	}
 	//FM Volume
 	for (char i = 0; i < 8; i++)
@@ -959,12 +974,13 @@ int main() {
 		}
 		else
 		{
-			//vera_spr_set(22, FrameAddr2 >> 5, false, 1, 2, 3, 1);
 			PalTimer = 0;
+			PalTime2 = 0;
 		}
 
 		if (PalTime2 > 2)
 		{
+			SetPaletteIndex(LogoPal, 192, 0, 4);
 			SetPaletteIndex(palette, 16, 6, 10);
 			PalTime2 = 0;
 		}
